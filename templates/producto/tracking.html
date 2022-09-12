@@ -1,0 +1,41 @@
+{% extends "producto/base_producto.html" %} 
+
+{% load static %} 
+
+{% block panel-content %}
+{% if object_list %}
+<table class="hover">{% csrf_token %}
+    <caption>Historial</caption>
+    <thead>
+        <tr>
+            <th>Registro</th>
+            <th>Fecha</th>
+            <th>Motivo</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in object_list %}
+        <tr>
+            <td><span class="badge primary">{{forloop.counter}}</span></td>
+            <td>{{e.fecha}}</td>
+            <td>{{e.motivopr}}</td>
+            <td>{{e.estado}}</td>
+        </tr>
+        
+        {% endfor %}
+    </div>
+    </tbody>
+</table>
+
+{% else %}
+<div class="callout alert">
+    <h5>Hola.</h5>
+    <p>El envío aún no se encuentra en distribución, por lo que no es posible entregarte
+        información detallada de la ruta que lleva el envío.</p>
+    
+  </div>
+  {% endif %}
+
+
+{% endblock panel-content %}

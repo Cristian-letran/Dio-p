@@ -1,0 +1,74 @@
+{% extends "ruta/base_cargue.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x">
+    <div class="cell grid-x grid-margin-x">
+      <form class="cell small-9 input-group" method="GET">{% csrf_token %}
+        <span class="input-group-label"></span>
+        <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Mensajero...">
+        <div class="input-group-button">
+          <input type="submit" class="button secondary" value="Buscar">
+        </div>
+</form>
+      
+<div class="cell grid-x grid-margin-x" style="margin-top: 2em;">
+    <table class="hover">
+        <thead>
+            <th>Mensajero</th>
+            <th>Cedula</th>
+            <th>Ciudad</th>
+            <th>Cantidad</th>
+            <th>Imprimir</th>
+        
+        </thead>
+        <tbody>
+        
+            {% for e in page_obj %}
+            <tr>
+                <td>{{ e.courrier }}</td>
+                <td>{{ e.d_i }}</td>
+                <td>{{ e.id_ciu }}</td>
+                <td>{{e.num_guias}}</td>
+                <td>
+                    <a href="{% url 'ruta_apps:impresion' e.id %}" class="button"><i class="fi-print"></i></a>
+                </td>
+            </tr>
+            <tr>
+                {% empty %}
+                <td>Por favor asegurese de escribir el nombre correcto, de lo contrario buscar con las iniciales .</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Total Mensajeros:</th>
+                <th>{{count}}</th>
+                <th>Total cerrar</th>
+                <th>{{total}}</th>
+            </tr>
+        </tfoot>
+    </table>
+    
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock panel-content %}

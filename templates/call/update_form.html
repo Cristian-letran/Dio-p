@@ -1,0 +1,73 @@
+{% extends "call/base_call.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+    <div class="grid-x grid-margin-x align-center">
+        <h3 class="cell" style="margin-bottom: 2em; text-align: center;">Editar</h3>  
+        <form class="cell medium-9 grid-x grid-margin-x" method="POST">{% csrf_token %}
+              
+        <label>Direccion:</label>
+        
+          {{form.id}}
+        
+    <div class="cell medium-6">
+        <label>Ciudad:</label>
+        <div class="input-group">
+          <span class="input-group-label"><i class="fi-archive"></i></span>
+          {{form.id_ciu}}
+        </div>
+    </div>
+    <div class="cell medium-6">
+        <label>Motivo:</label>
+        <div class="input-group">
+          <span class="input-group-label"><i class="fi-archive"></i></span>
+          {{form.mot}}
+        </div>
+    </div>
+    <div class="cell medium-6">
+        <label>Codigo visita:</label>
+        <div class="input-group">
+          <span class="input-group-label"><i class="fi-archive"></i></span>
+          {{form.cod_vis}}
+        </div>
+    </div>
+    
+    <div class="cell medium-6">
+        <label>oficina:</label>
+        <div class="input-group">
+          <span class="input-group-label"><i class="fi-archive"></i></span>
+          {{form.oficina}}
+        </div>
+    </div>
+    <div class="cell medium-6">
+        <label>Proceso:</label>
+        <div class="input-group">
+          <span class="input-group-label"><i class="fi-archive"></i></span>
+          {{form.proceso}}
+        </div>
+    </div>
+    {{form.cod_vis}}
+    
+    <div class="cell medium-6">
+        <button type="submit" class="button" style="width: 200px;">Guardar</button>
+
+    </div>
+</form>     
+<!-- <table>
+    <thead>
+        <th>Seudo</th>
+        <th>prueba</th>
+    </thead>
+    <tbody>
+        {% for e in object_list %}
+        <tr>
+            <td>{{e.seudo}}</td>
+            <td>{{e.d_i}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>  -->
+
+{% endblock panel-content %}

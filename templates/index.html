@@ -1,0 +1,92 @@
+{% extends "guia/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+
+  <h3 class="cell" style="margin-bottom: 2em; text-align: center;">Cargue de imagenes</h3>  
+  <form method="POST" enctype="multipart/form-data">{% csrf_token %} 
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label for="exampleFileUpload" class="button" style="width: 400px;">Buscar</label>
+          <input id="exampleFileUpload" type="file" class="show-for-sr" name="images" multiple>
+        </div>
+        <div class="medium-6 cell">
+          <button type="submit" class="button secondary" >Guardar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+ 
+  <form method="GET"> {% csrf_token %}
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          
+            <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Buscar Guia digitalizada..." style="width: 400px;">
+          
+        </div>
+        <div class="medium-6 cell">
+          
+            <input type="submit" class="button secondary" value="Buscar">
+          
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+<div class="grid-x">
+<table class="hover">
+  <caption>Fisicos digitalizados</caption>
+  <thead>
+    <tr>
+      <th>guia</th>
+      <th>fecha</th>
+      <th>Usuario</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for e in page_obj %}
+    <tr>
+      <td>{{e.id_guia }}</td>
+      <td>{{e.mod_date}}</td>
+      <td>{{e.user}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Cantidad digitalizada en el dia</th>
+      <th>{{count}}</th>
+      <th></th>
+    </tr>
+  </tfoot>
+</table>
+
+
+<nav aria-label="Pagination">
+  <ul class="pagination">
+      {% if page_obj.has_previous %}
+      <li class="pagination-previous"><a href="?page=1">Inicio <span class="show-for-sr">page</span></a></li>
+      <li ><a href="?page={{ page_obj.previous_page_number }}"> Atras <span class="show-for-sr">page</span></a></li>
+    {% endif %}
+    
+    
+    {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+      <li><a href="?page={{ num }}">{{ num }}</a></li>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+      <li><a href="?page={{ num }}">{{ num }}</a></li>
+    {% endif %}
+  {% endfor %}
+    {% if page_obj.has_next %}
+    <li class="pagination-next"><a href="?page={{ page_obj.next_page_number }}" aria-label="Next page">Siguiente <span class="show-for-sr">page</span></a></li>
+    <li class="pagination-next"><a href="?page={{ page_obj.next_page_number }}" aria-label="Next page">Ultimo <span class="show-for-sr">page</span></a></li>
+    {% endif %}   
+  </ul>
+</nav>
+{% endblock panel-content %}

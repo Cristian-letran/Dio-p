@@ -1,0 +1,75 @@
+{% extends "datos_g/base_datos_g.html" %} 
+% load static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x">
+    <form class="cell grid-x grid-margin-x" method="GET">{% csrf_token %}
+      <div class="cell input-group">
+        <span class="input-group-label">Buscar</span>
+        <input class="input-group-field" type="text" id="kword" name="kword" 
+          value="{{request.GET.kword}}"
+          placeholder="Buscar ..."
+          >
+      </div>
+
+<div class="grid-x grid-margin-x">
+
+</div>
+{% if object_list %}
+<table class="hover">
+    <thead>
+        <th>Orden de impresion</th>
+        <th>Fecha</th>
+        <th>Cantidad</th>
+        <th>Imprimir</th>
+    </thead>
+    <tbody>
+        {% for e in page_obj %}
+        <tr>
+            <td>{{ e.orden }}</td>
+            <td>{{e.fecha}}</td>
+            <td>{{e.num_books}}</td>
+            <td>
+                <a href="{% url 'gatos_g:impresion-guia' e.orden %}" class="button" onclick="this.onclick=function(){return false}"><i class="fi-print"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="callout alert">
+    <h5>Parametro de busqueda incorrecto.</h5>
+    <p>1. Confirmar el número de orden.</p>
+    
+  </div>
+  {% endif %}
+<div class="cell">
+    {% if is_paginated %}
+    <nav aria-label="Pagination">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="pagination-previous">
+                <a href="?page={{page_obj.previous_page_number}}">Atras</a>
+            </li>
+            {% endif %}
+            
+
+            <li class="current"><span class="show-for-sr">You're on page</span> Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</li>
+            
+            <li class=""><a href="?page={{pagina}}">{{ pagina }}</a></li>
+            
+           
+            
+            {% if page_obj.has_next %}
+            <li class="pagination-next">
+                <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+
+{% endblock panel-content %}

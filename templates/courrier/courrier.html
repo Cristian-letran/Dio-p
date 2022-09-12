@@ -1,0 +1,99 @@
+{% extends "courrier/base_courrier.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+
+<form method="post">{% csrf_token %}
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+          <div class="medium-6 cell">
+            <label>Documento
+              {{form.d_i}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Courrier
+            {{form.courrier}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+          <div class="medium-6 cell">
+            <label>Celular
+              {{form.cel}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Direccion
+            {{form.dir}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+          <div class="medium-6 cell">
+            <label>Ciudad
+              {{form.id_ciu}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Vehiculo
+            {{form.id_veh}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+          <div class="medium-6 cell">
+            <label>Tipo de infraccion
+              {{form.infraccion}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Tipo de licencia
+            {{form.licencia}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+          <div class="medium-6 cell">
+            <label>Input Label
+              {{form.est_courrier}}
+            </label>
+          </div>
+          
+        </div>
+      </div>
+    <input class="button success" type="submit" value="Guardar">
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>Mensajero</th>
+        <th>Cedula</th>
+        <th>Celular</th>
+        <th>Ciudad</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for e in object_list%}
+        <tr>
+            <td>{{e.courrier}}</td>
+            <td>{{e.d_i}}</td>
+            <td>{{e.cel}}</td>
+            <td>{{e.id_ciu.ciudad}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+{% endblock panel-content %}

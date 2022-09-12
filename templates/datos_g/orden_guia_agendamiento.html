@@ -1,0 +1,96 @@
+{% extends "datos_g/base_datos_g.html" %} 
+% load static %}
+
+{% block panel-content %}
+<h4>Imprimir</h4>
+
+<div class="grid-x grid-margin-x">
+<form method="GET">{% csrf_token %}
+    
+</div>
+{% if orden %}
+<table class="hover">
+    <caption>REAGENDAMIENTOS</caption>
+    <thead>
+        <th>Orden de impresion</th>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Imprimir</th>
+    </thead>
+    <tbody>
+        {% for e in orden  %}
+        <tr>
+            <td>{{ e.orden }}</td>
+            <td>{{e.nombre_orden}}</td>
+            <td>{{e.num_orden}}</td>
+            <td>
+                <a href="{% url 'gatos_g:pdg-guia-agendamiento' e.orden  %}" class="button"><i class="fi-print"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<table>{% for e in call  %}
+    <caption>REAGENDAMIENTOS CALL</caption>
+    <thead>
+        <tr>
+            <th>Ordens de impresion</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Imprimir</th>
+        </tr>
+    </thead>
+    <tbody>
+<tr>
+    <td>{{ e.id }}</td>
+    <td>CALL</td>
+    <td>{{e.cant_orden_call}}</td>
+    <td>
+        <a href="{% url 'gatos_g:pdg-guia-regendamiento-call' e.id %}" class="button"><i class="fi-print"></i></a>
+    </td>
+</tr>
+</tbody>
+</table>
+
+{% endfor %}
+    {% else %}
+    <div class="callout success">
+        <h5>Hola!.</h5>
+        <p>No encontramos reagendamientos pendientes </p>
+    </div>
+   {% endif %}
+
+{% if ordentwo %}
+<table class="hover">
+    <caption>AGENDAMIENTOS</caption>
+    <thead>
+        <th>Orden de impresion</th>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Imprimir</th>
+    </thead>
+    <tbody>
+        {% for e in ordentwo  %}
+        <tr>
+            <td>{{e.orden}}</td>
+            <td>{{e.nombre_orden}}</td>
+            <td>{{e.num_orden_two}}</td>
+            <td>
+                <a href="{% url 'gatos_g:pdg-guia-agendamiento' e.orden %}" class="button"><i class="fi-print"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    {% else %}
+    <div class="callout success">
+        <h5>Hola!.</h5>
+        <p>No encontramos agendamientos pendientes </p>
+    </div>
+    {% endif %}
+
+</form>
+
+
+{% endblock panel-content %}

@@ -1,0 +1,63 @@
+{% extends "ruta/base_cargue.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+<form class="cell small-9 input-group" method="GET">{% csrf_token %}
+<div class="grid-container">
+  <div class="grid-x grid-padding-x">
+
+    <div class="medium-6 cell"> 
+      <label>Buscar
+        <input class="input-group-field" type="text" id="destino" name="destino" placeholder="Origen-destino...">
+      </label>
+      </div>
+        <div class="medium-6 cell">
+          <label>Fecha
+            <input type="date" id="fecha" name="fecha">
+          </label>
+        </div>
+
+        <div class="medium-6 cell">
+          <input type="submit" class="button secondary" value="Buscar">
+
+        </div>
+    </div>
+  </div>   
+</form>
+
+  <table>
+      <thead>
+        <tr>
+            <th>Guia</th>
+            <th>Origen-destino</th>
+        </tr>
+      </thead>
+    <tbody>
+        {% for e in lista %}
+        <tr>
+            <td>{{e.guia}}</td>
+            <td>{{e.origen}}</td>
+            <th></th>
+        </tr>
+        {% empty %}
+        <tr>
+          <td>No tiene pendientes Gracias. </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+
+        <tr>
+    
+          <th>Total:</th>
+          <th>{{count}}</th>
+    
+        </tr>
+    
+      </tfoot>
+  </table>
+
+</div>
+
+{% endblock panel-content %}

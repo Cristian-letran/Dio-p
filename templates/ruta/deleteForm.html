@@ -1,0 +1,18 @@
+{% extends "fisico/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="text-center mt-5 container">
+<div class="alert alert-danger font shadow">Delete Recepcion
+</div>
+<form method="POST" class="font1 p-5 shadow">
+    {{% csrf_token %}}
+<p class = "font1">Eliminar</p>
+<button class="btn font btn text_while" style="background-color:red;">Eliminar</button>
+</form>    
+</div>
+
+
+{% endblock panel-content %}

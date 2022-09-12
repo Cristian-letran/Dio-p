@@ -1,0 +1,25 @@
+{% extends "ruta/base_cargue.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<html>
+    <head>
+        <title>UpdateView</title>
+        
+    </head>
+
+    <body>
+<form method="POST">{% csrf_token %}
+    
+<!-- form variable -->    
+ {{ form.as_p }} 
+
+ <div class="cell medium-6"></div>
+ <button type="submit" class="cell primary button" style="width: 200px;">Guardar</button>
+</div>
+</form>
+    </body>
+
+{% endblock panel-content %}

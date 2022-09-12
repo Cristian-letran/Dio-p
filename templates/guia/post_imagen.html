@@ -1,0 +1,26 @@
+{% extends "guia/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<!-- <div class="grid-x grid-margin-x">
+            
+    
+    <div class="cell medium-6 large-8"><img src="{% static 'img/rob_im.png' %}" alt="150" width="450"></div>
+    <div class="cell medium-6 large-8">12/6/8 cells</div>
+</div> -->
+
+<div class="grid-x grid-margin-x">
+    <div class="cell medium-6"><img src="{% static 'img/rob_im.png' %}" alt="150" width="450"></div>
+    
+    <div class="cell medium-6"><br><br><br><br>
+        <div class="callout secondary">
+            <h5>Imagenes digitalizadas {{contar}}</h5>
+            <a href="{% url 'producto_app:index' %}">Volver</a>
+        </div>
+    </div>
+  </div>
+
+
+{% endblock panel-content %}

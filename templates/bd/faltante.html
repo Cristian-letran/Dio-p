@@ -1,0 +1,50 @@
+{% extends "bd/base_bd.html" %} 
+% load static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x align-center">
+    <h3 class="cell" style="margin-bottom: 2em; text-align: center;">Sobrante fisico reportar</h3>  
+    <form class="cell medium-9 grid-x grid-margin-x" method="POST">{% csrf_token %}
+
+
+        <div class="cell medium-6">
+            <label>Seudo:</label>
+            <div class="input-group">
+              <span class="input-group-label"><i class="fi-filter"></i></span>
+              {{form.seudo}}
+            </div>
+            
+        </div>
+        <div class="cell medium-6">
+            <button type="submit" class="button" style="width: 200px;">Guardar</button>
+    
+    
+        </div>
+    </form>  
+
+    <div class="cell grid-x grid-margin-x">
+        <h5 class="cell" style="text-align: center;">Sobrtante registrado</h5>
+        <div class="cell">
+          <table>
+            <thead>
+                
+                <th>Seudo</th>
+                
+                
+            </thead>
+            <tbody>
+                {% for e in object_list %}
+                <tr>
+                    <td>{{e.seudo}}</td>
+                           
+                    
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+
+{% endblock panel-content %}

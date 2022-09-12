@@ -1,0 +1,10 @@
+{% extends "users/base_users.html" %} {% load static %} {% block panel-content %}
+
+
+<p>Por favor, ingrese su contraseña antigua, por seguridad, y después introduzca la nueva contraseña dos veces para verificar que la ha escrito correctamente.</p>
+<form method="post">{% csrf_token %}
+    {{form.as_p}}
+    <button class="button secondary" type="submit">Cambiar mi contraseña <i class="fi-play"></i></button>
+</form>
+
+{% endblock panel-content %}

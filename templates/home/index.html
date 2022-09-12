@@ -1,0 +1,19 @@
+{% extends "home/base_home.html" %} 
+{% load static %} 
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x">
+    <div class="cell small-4">
+        <div class="callout secondary">
+            <h5>Hola  Bienvenido: {{user.nombres}}  </h5>
+            <p>Soy Dio <br> Estoy trabajando para ayudarte de la mejor manera posible</p>
+            
+          </div>
+    </div>
+    <div class="cell auto">
+        <img src="{% static 'img/pngwing.com.png' %}" width="400" height="400">
+    </div>
+  </div>
+
+
+{% endblock panel-content %}

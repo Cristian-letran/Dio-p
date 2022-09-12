@@ -1,0 +1,61 @@
+{% extends "guia/base_fisico.html" %} 
+{% load static %}
+{% block panel-content %}
+
+<form method="GET"> {% csrf_token %}
+<div class="input-group">
+    <span class="input-group-label"></span>
+    <input class="input-group-field" id="kword" name="kword" type="number">
+    <div class="input-group-button">
+      <input type="submit" class="button" value="Buscar">
+    </div>
+  </div>
+
+<table class="hover">
+    <thead>
+        <tr>
+            <th>Guia</th>
+            <th>Actualizar</th>
+        </tr>
+    </thead>
+    {% for e in guia_mensajeros %}
+    <tbody>
+        <tr>
+            <td>{{e.id_guia}}</td>
+            <td><a href="{% url 'producto_app:courrier-update' e  %}" class="button"><i class="fi-print"></i></a></td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+</form>
+
+<div class="cell">
+    {% if is_paginated %}
+    <nav aria-label="Pagination">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="pagination-previous">
+                <a href="?page={{page_obj.previous_page_number}}">Atras</a>
+            </li>
+            {% endif %}
+            
+            <span>
+                Page {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+            
+            {% if page_obj.has_next %}
+            <li class="pagination-next">
+                <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+
+{% endblock panel-content %}
+
+
+
+

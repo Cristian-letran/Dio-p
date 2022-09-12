@@ -1,0 +1,27 @@
+{% extends "users/base_users.html" %} {% load static %} 
+{% block panel-content %}
+
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+
+    
+    <input class="button secondary" type="submit" value="Save">
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <td>Guia</td>
+        </tr>
+    </thead>
+    {% for e in object_list%}
+    <tbody>
+        <tr>
+            <td>{{e.guia_punteo}}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+    
+</table>
+
+{% endblock panel-content %}

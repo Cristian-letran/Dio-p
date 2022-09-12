@@ -1,0 +1,17 @@
+{% extends "fisico/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<h1>{{ question.guia }}</h1>
+
+<ul>  
+  {% for question in guia %}
+    <li>{{ question.guia }} </li>
+  {% endfor %}
+</ul>
+
+  
+
+{% endblock panel-content %}

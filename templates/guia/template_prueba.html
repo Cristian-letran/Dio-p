@@ -1,0 +1,13 @@
+{% extends "guia/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<h1>-------Hola-----</h1>
+{% for guia in guia %}
+
+<li>{{guia.direccion}}</li>
+
+{% endfor %}
+{% endblock panel-content %}

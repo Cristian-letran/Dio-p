@@ -1,0 +1,43 @@
+{% extends "ruta/base_cargue.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x">
+    <form class="cell grid-x grid-margin-x" method="GET">{% csrf_token %}
+    <div class="cell input-group">
+        
+      <input class="input-group-field" type="text" id="kword" value="{{request.GET.kword}}" name="kword" placeholder="Ingrese numero de planilla aqui" >
+      <button class="success button" type="submit">Buscar</button>
+
+    </form>
+</div>
+
+    <h3>Planillas: {{ count }}</h3>
+    <table >
+        <thead>
+            <th>Planilla</th>
+            <th>Mensajero</th>
+            <th>Fecha</th>
+            <th>Impresion</th>
+            
+        </thead>
+        <tbody>
+            {% for e in planillask  %}
+                <tr>
+                    <td>{{ e.id }}</td>
+                    <td>{{ e.full_name }}</td>
+                    <td>{{ e.fecha }}</td>
+                    <td> 
+                        <a href="{% url 'ruta_apps:impresion' e.id %}" class="button warning"><i class="fi-eye"></i></a>
+                    </td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock panel-content %}
+ 
+

@@ -1,0 +1,97 @@
+{% extends "call/base_call.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+
+    <form  method="GET">{% csrf_token %}
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+                <div class="medium-6 cell">
+                    <label>Seudocodigo o Mensajero
+                        <input  type="text" id="kword" name="kword" placeholder="Seudocodigo o Mensajero ...">
+                    </label>
+                </div>
+
+                <div class="medium-6 cell">
+                    <label>Ciudad
+                     <input type="text" id="ciudad" name="ciudad" placeholder="Digitar ciudad">
+                    </label>
+                </div>
+
+                <div class="medium-6 cell">
+                    <label>Fecha
+                        <input type="date" name="date_start" id="date_start" class="cell medium-4">  
+                    </label>
+                </div>
+                    <div class="medium-6 cell">
+                    <label>Filtro
+                        <button class="cell medium-4 button success">Filtrar</button>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<div class="cell grid-x grid-margin-x">
+    <h5 class="cell" style="text-align: center;">Auditorias: {{count}}</h5>
+    <div class="table-scroll">
+      <table>
+        <thead>
+            
+            <th>Seudo</th>
+            <th>Destinatario</th>
+            <th>CC</th>
+            <th>Fecha gestion</th>
+            <th>Direccion</th>
+            <th>Ciudad</th>
+            <th>Mensajero</th>
+            <th>Telefonos</th>
+            <th>Auditar</th>
+             
+        </thead>
+        <tbody>
+            {% for e in page_obj %}
+            <tr>
+                <td>{{e.seudo}}</td>
+                <td>{{e.destinatario}}</td>  
+                <td>{{e.d_i}}</td>
+                <td>{{e.fecha_recepcion}}</td>
+                <td>{{e.direccion}}</td>  
+                <td>{{e.id_ciu}}</td>
+                <td>{{e.mensajero}}</td>  
+                <td>{{e.seudo.telefono}}</td>
+                
+                <td>
+                    <a href="{% url 'call_app:create-call-auditoria'  %}" class="button"><i class="fi-page-search"></i></a>
+                    </td>        
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <nav aria-label="Pagination">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="pagination-previous"><a href="?page=1">Inicio <span class="show-for-sr">page</span></a></li>
+            <li ><a href="?page={{ page_obj.previous_page_number }}"> Atras <span class="show-for-sr">page</span></a></li>
+          {% endif %}
+          
+          
+          {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li><a href="?page={{ num }}">{{ num }}</a></li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li><a href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+          {% if page_obj.has_next %}
+          <li class="pagination-next"><a href="?page={{ page_obj.next_page_number }}" aria-label="Next page">Siguiente <span class="show-for-sr">page</span></a></li>
+          <li class="pagination-next"><a href="?page={{ page_obj.next_page_number }}" aria-label="Next page">Ultimo <span class="show-for-sr">page</span></a></li>
+          {% endif %}   
+        </ul>
+      </nav>
+
+{% endblock panel-content %}

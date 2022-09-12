@@ -1,0 +1,51 @@
+{% extends "guia/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+<article class="grid-container">
+    <div class="grid-x align-center">
+      <div class="cell medium-8">
+        <div class="blog-post">
+          <h4 class="text-center">Impresion por guia </h4>
+            <div class="grid-x grid-margin-x">
+                <form class="cell grid-x grid-margin-x" method="GET">{% csrf_token %}
+                <div class="cell input-group">
+                    <span class="input-group-label">Buscar guia</span>
+                    <input class="input-group-field" type="text" id="id_guia" name="id_guia" 
+                    value="{{request.GET.kword}}"
+                    placeholder="Buscar .........">
+                </div>
+            </div>
+            <div class="cell medium-6">
+                <div class="button-group align-center">
+                    <button type="submit" class="button tiny" >Consultar</button>
+                </div>
+            </div>
+        
+            <div class="cell grid-x grid-margin-x">
+                <h5 class="cell" style="text-align: center;">Registro encontrado</h5>
+                
+                <table class="hover">
+                    <thead>
+                        <tr>
+                            <th>Guia</th>
+                            <th>Imprimir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in guia %}
+                        <tr>
+                            <td>{{e.seudo_dg.id_guia}}</td>
+                            <td><a href="{% url 'gatos_g:pdf-guia-buscar' e.seudo_dg.id_guia %}" class="button"><i class="fi-print"></i></a></td>                      
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>     
+        </div>
+      </div>
+    </div>
+</article>
+
+{% endblock panel-content %}

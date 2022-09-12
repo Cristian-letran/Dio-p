@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+    <style>
+        @page {
+        
+            @frame content_frame {          /* Content Frame */
+            left: 20pt; width: 550pt; top: 25pt; height: 632pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+            }        
+    
+        }
+</style>
+
+<body>
+    
+    
+    <h3>Fecha: {{ mostrarpub.fecha|date }}</h3>
+    
+    <h3>Mensajero:  {{ mostrar_nom.mensajero}} </h3>
+    
+    <h3>Cantidad a entregar: {{ count }}  </h3>
+    
+    <table BORDER="1px" >
+        <thead>
+            
+            <th>Guia</th>
+            <th width="100">direccion</th>
+            <th >Destinatario</th>
+            <th>Ciudad</th>
+            <th width="50">Bolsa</th>
+            <th width ="38">Tipo</th>
+            <th width = "200">Observacion</th>
+                             
+        </thead>
+        <tbody >
+            {% for empleado in empleados %}
+                <tr >
+                    
+                    <td width ='45'>{{ empleado.guia }}</td>
+                    <td>{{ empleado.direccion }}</td>
+                    <td>{{ empleado.destinatario }}</td>
+                    <td>{{ empleado.id_ciu }}</td>
+                    <td>{{ empleado.bolsa }}</td>
+                    <td></td>
+                                                     
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<br>
+    <p><hr> Recibe </p>
+    <p>Entrega</p>
+    <p>Observaciones: </p><hr>
+    
+
+
+    <div id="footer_content"> <pdf:pagenumber>
+        de <pdf:pagecount><hr>
+    </div>
+    
+</body>
+    
+
+
+   
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+
+{% extends "fisico/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<h1>-------Hola-----</h1>
+<div class="callout secondary">
+<a href="{% url 'ruta_apps:lista-imprimir' %}"><p>Volver</p></a>
+</div>
+
+{% for guia in guia %}
+
+<li>{{guia.guia_imprimir}}</li>
+
+{% endfor %}
+
+{% endblock panel-content %}

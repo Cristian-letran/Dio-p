@@ -1,0 +1,82 @@
+{% extends "guia/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="grid-x grid-margin-x align-center">
+  <h3 class="cell" style="margin-bottom: 1em; text-align: center; color:rgb(56, 97, 64)" >Ingreso de Fisicos </h3>  
+  <form class="cell medium-9 grid-x grid-margin-x" method="POST">{% csrf_token %}
+      <div class="cell medium-6">
+          <label>Bolsa:</label>
+          <div class="input-group">
+            <span class="input-group-label"><i class="fi-archive"></i></span>
+            {{form.bolsa}}
+          </div>    
+      </div>
+      <div class="cell medium-6">
+          <label>Seudo:</label>
+          <div class="input-group">
+            <span class="input-group-label"><i class="fi-filter"></i></span>
+            {{form.seudo}}
+          </div>
+      </div>
+      <div class="cell medium-6">
+          <button type="submit" class="button" style="width: 200px;" >Guardar</button>  
+      </div>
+  </form>                  
+</div>
+
+
+<div class="table-wrapper">
+  <table class="fl-table">
+    <h5 class="cell" style="text-align: center;">Fisicos Registrados </h5>
+      <thead>
+          <th>Guia</th>
+          <th>Seudo</th>
+          <th>Bolsa</th>
+          <th>Usuario</th>          
+      </thead>
+      <tbody>
+          {% for guia in page_obj %}
+          <tr>
+              <td>{{guia}}</td>
+              <td>{{guia.seudo}}</td>
+              <td>{{guia.bolsa}}</td>
+              <td>{{guia.user|capfirst}}</td>                
+          </tr>         
+          {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>    
+          <th>Cantidad</th>    
+          <th>{{count}}</th>
+          <form class="cell medium-9 grid-x grid-margin-x" method="GET">{% csrf_token %}
+          <th></th>
+          <th>  </th>
+        </form>      
+        </tr>    
+      </tfoot>
+  </table>
+</div>   
+
+<!-- <div class="pagination">
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+  </span>
+</div> -->
+
+       
+        {% endblock panel-content %}

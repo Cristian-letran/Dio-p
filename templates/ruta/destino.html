@@ -1,0 +1,50 @@
+{% extends "fisico/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+<div class="grid-x grid-margin-x align-center">
+    <h3 class="cell" style="margin-bottom: 2em; text-align: center;">Origen destino</h3>  
+    <form class="cell medium-9 grid-x grid-margin-x" method="POST">{% csrf_token %}
+
+            <div class="cell medium-6">
+                <label>Destino:</label>
+                <div class="input-group">
+                    <span class="input-group-label"><i class="fi-archive" ></i></span>
+                    {{form.destino}}
+                </div>
+            </div>
+        
+        
+            <div class="cell medium-6">
+                <label>Guia:</label>
+                <div class="input-group">
+                   
+                    <input type="text" name="guia" required id="id_guia" maxlength="10" placeholder="Barcode Guia"   autofocus >
+                </div>
+            </div>
+
+            <div class="cell medium-6"></div>
+                <button type="submit" class="cell primary button" style="width: 200px;">Guardar</button>
+    </div>
+    </form>   
+</div>   
+
+<table class="hover">
+    <thead>
+        <tr>
+            <td>Guia</td>
+            <td>Destino</td>
+        </tr>
+    </thead>
+    {% for e in object_list %}
+    <tbody>
+        <tr>
+            <td>{{e.guia}}</td>
+            <td>{{e.destino}}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock panel-content %}

@@ -1,0 +1,50 @@
+{% extends "ruta/base_cargue.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+<h3 >Guias imprimir</h3>
+<br>
+<form method="post">{% csrf_token %}
+    {{ form.guia_imprimir }}
+    <br>
+    <div class="button-group align-center">
+        <input class="button" type="submit" value="Guardar">
+    </div>
+</form>
+<br>
+<table class="hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Cantidad</th>
+            <th>Imprimir</th>
+            <th>Reset</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in object_list %}
+        <tr>
+            <td>{{e}}</td>
+            <td>{{count}}</td>
+            <td>
+                <a href="{% url 'ruta_apps:imprimir-guia-regendamiento-call' e %}" class="button"><i class="fi-page-edit"></i></a>
+            </td>
+            <td>
+                <a href="{% url 'ruta_apps:delete-guia' %}" class="alert button"type="button" data-tooltip tabindex="1"title="Click para eliminar."data-position="top" data-alignment="center"><i class="fi-page-delete"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% for e in lista %}
+
+<ul style="list-style-type: none;">
+    <li style="float: left; padding: 0 4px; margin-right: 10px;background-color: #F6E3CA;">{{e.guia_imprimir}}</li>
+  </ul>
+  {% endfor %}
+
+
+
+
+{% endblock panel-content %}

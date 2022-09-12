@@ -1,0 +1,52 @@
+{% extends "bd/base_bd.html" %} 
+% load static %}
+
+{% block panel-content %}
+<div class="grid-x grid-margin-x">
+    <div class="cell grid-x grid-margin-x">
+      <form class="cell small-9 input-group" method="GET"> {% csrf_token %}
+        <span class="input-group-label"></span>
+        <input class="input-group-field" type="text" id="kword" name="kword" placeholder="PSEUDOCÓDIGO...">
+        <div class="input-group-button">
+          <input type="submit" class="button secondary" value="Buscar">
+        </div>
+</form>
+
+        <div class="cell grid-x grid-margin-x" style="margin-top: 2em;">
+            <table class="hover">
+              <thead>
+                <th>FECHA INGRESO</th>
+                <th>PSEUDOCÓDIGO</th>
+                <th>NO IDENTIFICACIÓN</th>
+                <TH>NOMBRE </TH>
+            </thead>
+            <tbody>
+                <tbody>
+                    {% for e in bd %}
+                      <tr>
+                        <td>{{e.guias.fecha}}</td>
+                        <td>{{e.seudo_bd }}</td>
+                        <td>{{e.guias.d_i}}</td>
+                        <td>{{e.guias.destinatario}}</td>
+                        
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Total</th>
+                      <th>{{count}}</th>
+                      <th>Total entregado: </th>
+                      <th>{{count_total}}</th>
+                    </tr>
+                  </tfoot>
+                </table>
+
+                <div class="small button-group">
+                  <a class="secondary button" href="{% url 'sig' %}">Export Informe principal</a>
+                  <a class="secondary button" href="{% url 'sig-paquete' %}">Export paquete</a>
+                  
+                  
+                </div>
+
+{% endblock panel-content %}

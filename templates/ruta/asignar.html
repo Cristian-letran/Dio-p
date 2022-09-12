@@ -1,0 +1,59 @@
+{% extends "ruta/base_cargue.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+{{current_datetime}}
+<div class="grid-x grid-margin-x align-center">
+    <h3 class="cell" style="margin-bottom: 2em; text-align: center;">Asignar</h3>  
+    <form class="cell medium-9 grid-x grid-margin-x" method="POST">{% csrf_token %}
+
+            <div class="cell medium-6">
+                <label>Mensajero:</label>
+                <div class="input-group">
+                    <span class="input-group-label"><i class="fi-archive"></i></span>
+                    {{form.full_name}}
+                </div>
+            </div>
+            
+            <div class="cell medium-6">
+                <label>Guia:</label>
+                <div class="input-group">
+                   
+                    <input type="text" maxlength="10" placeholder="Barcode Guia" name="guia" id="idGuia_0" autofocus >
+            </div>
+                </div>
+
+            <div class="cell medium-6"></div>
+                <button type="submit" class="cell primary button" style="width: 200px;">Guardar</button>
+    </div>
+    </form>  
+    
+        <h5 class="cell" style="text-align: center;">Fisicos Registrados</h5>
+        <div class="table-scroll" table-hover-scale="2%">
+          <table class="hover">
+            <thead>
+                <th>Guia</th>
+                <th>Mensajero</th>
+                <th>Fecha</th>
+                
+            </thead>
+            <tbody>
+
+                {% for e in lista %}
+                <tr>
+                    <td>{{e.guia}}</td>
+                    <td>{{e.full_name}}</td>
+                    <td>{{e.fecha}}</td>
+                    
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+        </div> 
+</div>   
+   
+
+
+{% endblock panel-content %}

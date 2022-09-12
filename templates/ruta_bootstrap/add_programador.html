@@ -1,0 +1,102 @@
+{% extends "ruta_bootstrap/base_programador.html" %}
+
+{% load  static %}
+
+{% block panel-content %}
+
+<script>
+  window.base_url = '{{ base_url }}';
+</script>
+
+  <div class="grid-container">
+    
+    <h3 class="cell" style="margin-bottom: 2em; text-align: center;">Registrar planillas</h3> 
+    <div id="app" >
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+            
+              <select         
+              v-model="full_name">
+              <option disabled value="">Seleccione mensajero</option>
+              <option value="4">Emilio nieves </option>
+              <option value="5">Cristian </option>
+              
+            </select>
+            
+          </div>
+
+          <form v-on:submit.prevent="AgregarGuia"> 
+            <div class="input-group">
+              <span class="input-group-label">🔎</span>  
+                <label for="new-todo" >
+                  <input class="input-group-field" type="number"
+                  v-model="guia"
+                  id="new-todo"
+                  placeholder="Barcode..">
+                </label>
+                <div class="input-group-button">
+                  <input type="submit" class="button" value="Agregar">
+          
+                </div>
+            </div>
+          </form>
+          
+          
+      <!-- ---maypon----- -->
+      <div class="cell medium-12">
+        <span 
+          class="secondary button hollow"
+          v-for="(id_guia , index) in lista_agregados"
+          is="todo-item"
+          v-bind:key="id_guia.guia"
+          v-bind:title="id_guia.title"
+          v-on:remove="lista_agregados.splice(index, 1)">
+         {$ id_guia.id_guia $}
+        </pan> 
+      </div>
+
+      <!-- aqui comienza la lista de frameworks -->
+      
+      <div class="col">
+        <button 
+        class="cell warning button"
+        @click="RegistrarProgramador()">Registrar</button>
+        <a href="javascript:location.reload()" >Actualizar página</a>
+        
+      </div>
+    </div>  
+  </div> 
+  <div class="cell grid-x grid-margin-x">
+    <h5 class="cell" style="text-align: center;">Planilla Registrada</h5>
+    <div class="cell">
+  <table >
+    <thead>
+        <th>Planilla</th>
+        <th>Mensajero</th>
+        <th>Fecha</th>
+        <th>Impresion</th>
+        
+    </thead>
+    <tbody>
+        {% for e in planillask  %}
+            <tr>
+                <td>{{ e.id }}</td>
+                <td>{{ e.full_name }}</td>
+                <td>{{ e.fecha }}</td>
+                <td> 
+                    <a href="{% url 'ruta_apps:impresion' e.id %}" class="button warning"><i class="fi-eye"></i></a>
+                </td>
+                
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+    
+
+{% endblock panel-content %}
+
+    
+

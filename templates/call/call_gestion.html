@@ -1,0 +1,138 @@
+{% extends "call/base_call.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+<h4>Gestion</h4>
+<form  method="GET">{% csrf_token %}
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell small-4">
+                <label>Seudo, Ciudad
+                    <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Seudocodigo o Ciudad ...">
+                </label>
+            </div>
+            <div class="cell small-4">
+                <label>Producto
+                    <select name="producto" id="producto" class="cell medium-4">
+                        <option value="" selected></option>
+                        <option value="TARJETA DEBITO">TARJETA DEBITO</option>
+                        <option value="TARJETA DEBITO PENSIONADOS">TARJETA DEBITO PENSIONADOS</option>
+                        <option value="MOVIL APP II">MOVIL APP II</option>
+                        <option value="CERTIFICADO">CERTIFICADO</option>
+                        <option value="PERSONALIZADO">PERSONALIZADO</option>
+                        <option value="OFICINAS">OFICINAS</option>
+                        <option value="PUNTOS">PUNTOS</option>
+                        <option value="RETAIL">RETAIL</option>
+                      </select>
+                </label>
+              </div>
+             
+            <div class="cell small-4">
+                <label>Por fecha
+                    <input type="date" name="date_start" id="date_start" class="cell medium-4">
+                </label>
+            </div>
+        </div>
+
+        <div class="grid-x grid-margin-x">
+            <div class="cell small-4">
+                <label>Motivo
+                    <select name="reason" id="reason " class="cell medium-4">
+                        <option value="" selected></option>
+                        <!-- <option value="Destinatario Desconocido">Destinatario Desconocido</option> -->
+                        <option value="Direccion Incompleta">Direccion Incompleta</option> -->
+                        <option value="Direccion no existe">Direccion no existe</option>
+                        <!-- <option value="Cambio de domicilio">Cambio de domicilio</option> -->
+                    </select>
+                </label>
+            </div>
+            
+            <!-- <select name="id_mensajero" id="id_mensajero">
+                {% for e in mensajero %}
+                <option value="{{e.id}}">{{e}}</option>
+                {% endfor %}
+              </select> -->
+              <div class="cell small-4">
+                <label>Mensajero
+                    <input class="input-group-field" type="text" id="id" name="id" placeholder="Mensajero ...">
+                </label>
+            </div>
+
+            <div class="cell small-4">
+                <label>Guardar
+                    <button class="cell medium-4 button success">Filtrar</button>
+                </label>
+            </div>
+            
+        </div>
+    </div>
+</form>
+    <h5 class="cell" style="text-align: center;">Gestion: {{count}} - {{counts}}</h5>
+    
+    <div class="table-scroll"  >
+        <table class="hover" >
+            <thead >
+                <th>Seudo</th>
+                <th>Fecha fisico</th>
+                <th>Fecha gestion</th>
+                <th>Telefonos</th>
+                <th>Franquicia</th>
+                <th>cod vis</th>
+                <th>Marca</th>
+                <th>Cedula</th>
+                <th>Producto</th>
+                <th>Destinatario</th>
+                <th>Direccion</th>
+                <th>Ciudad</th>
+                <th>estado call</th>
+                <!-- <th>Agendar</th> -->
+            </thead>
+            <tbody>
+                {% for e in page_obj %}
+                <tr>
+                    <td width="20"><a href="{% url 'call_app:call-update' e.seudo %}" > <span class="label primary">{{e.seudo}}</span></a></td> 
+                    <td>{{e.fecha}}</td>
+                    <td>{{e.fecha_recepcion}}</td>
+                    <td>{{e.tel}}</td> 
+                    <td>{{e.seudo.franquicia}}</td>
+                    <td>{{e.cod_vis}}</td>
+                    <td>{{e.guia_d_g.marca}}</td>
+                    <td>{{e.d_i}}</td> 
+                    <td>{{e.producto}}</td> 
+                    <td>{{e.destinatario}}</td>  
+                    <td>{{e.direccion}}</td>  
+                    <td>{{e.id_ciu}}</td>  
+                    
+                    <td>
+                        <a href="{% url 'call_app:call-update-estado-call' e.seudo %}" class="button secondary"><i class="fi-page-search"></i></a>
+                    </td>   
+                    <!-- <td>
+                        <a href="{% url 'call_app:call-update' e.seudo %}" class="button"><i class="fi-page-search"></i></a>
+                    </td>            -->
+                </tr>    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Inicio</a>
+                <a href="?page={{ page_obj.previous_page_number }}"></a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Ultimo &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    
+      
+{% endblock panel-content %}

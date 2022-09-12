@@ -1,0 +1,6 @@
+<h1>HOla</h1>
+<form method="GET">{% csrf_token %}
+    {% for e in object_list %}
+    {{e.bolsa}}
+    {% endfor %}
+</form>

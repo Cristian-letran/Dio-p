@@ -1,0 +1,13 @@
+{% extends "zona/base_zona.html" %}
+
+{% load static %}
+
+{% block panel-content %}
+
+<form method="post">{% csrf_token %}
+    {{form.guia}}
+    {{form.zona}}
+    <input type="submit">
+</form>
+
+{% endblock panel-content %}
