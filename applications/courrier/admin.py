@@ -16,7 +16,7 @@ class courrierAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     fields = (('d_i', 'courrier'),
             ('cel', 'dir'),('id_ciu','id_veh',),
             ('infraccion', 'licencia',), ('est_courrier'))
-    list_filter = ('est_courrier', 'id_ciu')
+    list_filter = ('est_courrier', 'id_ciu__ciudad')
     raw_id_fields = ["id_veh", "id_ciu",]
     search_fields = ("d_i", "courrier")
     list_display = ('courrier', 'd_i', 'cel', 'est_courrier')
