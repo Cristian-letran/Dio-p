@@ -260,34 +260,34 @@ class PunteoCreateView(CreateView, ListView):
     success_url = '.'
     model = Punteo
     
-class ImprimirCreateView(CreateView, ListView):
-    template_name = "ruta/imprimir.html"
-    success_url = '.'
-    form_class = ImprimirForms
+# class ImprimirCreateView(CreateView, ListView):
+#     template_name = "ruta/imprimir.html"
+#     success_url = '.'
+#     form_class = ImprimirForms
     
-    def get_queryset(self):
-        imprimir = Imprimir.objects.all()[:1]
-        return imprimir
+#     def get_queryset(self):
+#         imprimir = Imprimir.objects.all()[:1]
+#         return imprimir
 
-    def get_count(self):
-        imprimir = Imprimir.objects.all().count
-        return imprimir
+#     def get_count(self):
+#         imprimir = Imprimir.objects.all().count
+#         return imprimir
 
-    def get_lista(self):
-        imprimir = Imprimir.objects.all()
-        return imprimir
+#     def get_lista(self):
+#         imprimir = Imprimir.objects.all()
+#         return imprimir
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
-        return super(ImprimirCreateView, self).form_valid(form)  
+#     def form_valid(self, form):
+#         self.object = form.save(commit=False)
+#         self.object.user = self.request.user
+#         self.object.save()
+#         return super(ImprimirCreateView, self).form_valid(form)  
 
-    def get_context_data(self, **kwargs):
-        data = super().get_context_data(**kwargs)
-        data['count'] = self.get_count()
-        data['lista'] = self.get_lista()
-        return data  
+#     def get_context_data(self, **kwargs):
+#         data = super().get_context_data(**kwargs)
+#         data['count'] = self.get_count()
+#         data['lista'] = self.get_lista()
+#         return data  
 
 
 class imprimir_reagendamientosCallListView(CustodiaPermisoMixin, ListView):

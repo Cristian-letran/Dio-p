@@ -78,20 +78,6 @@ class LoginUser(FormView):
         login(self.request, user)
         return super(LoginUser, self).form_valid(form)
 
-class LoginClienteUser(FormView):
-    template_name = 'users/login.html'
-    form_class = LoginForm
-    success_url = reverse_lazy('home_app:panel-cliente')
-
-    def form_valid(self, form):
-        user = authenticate(
-            username=form.cleaned_data['username'],
-            password=form.cleaned_data['password']
-        )
-        login(self.request, user)
-        return super(LoginClienteUser, self).form_valid(form)
-
-
 class LogoutView(View):
 
     def get(self, request, *args, **kargs):

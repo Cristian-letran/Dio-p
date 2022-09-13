@@ -96,7 +96,7 @@ class OrdenAgendaListView(CustodiaPermisoMixin, ListView):
         queryset = Orden.objects.filter(
             tipo = 2, 
             # orden_dat_g__seudo_dg__estado_zona = 0,
-            orden_dat_g__seudo_dg__mot = 20,
+            orden_dat_g__seudo_dg__mot = 19,
             orden_dat_g__seudo_dg__id_est = 3,
             orden_dat_g__seudo_dg__id_ciu__departamento = self.request.user.ciudad.departamento
             ).order_by('-orden'

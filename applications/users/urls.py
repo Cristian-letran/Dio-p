@@ -16,11 +16,11 @@ urlpatterns = [
         views.LoginUser.as_view(),
         name='user-login',
     ),
-    path(
-        'cliente', 
-        views.LoginClienteUser.as_view(),
-        name='user-cliente-login',
-    ),
+    # path(
+    #     'cliente', 
+    #     views.LoginClienteUser.as_view(),
+    #     name='user-cliente-login',
+    # ),
     
     path(
         'logout/', 

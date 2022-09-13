@@ -62,9 +62,7 @@
                                 <a href="{% url 'gatos_g:guia-buscar' %} " style="color: white;">Impresion por guia</a>
                               </li>
 
-                              <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                                <a href="{% url 'ruta_apps:lista-imprimir' %} " style="color: white;">Impresion masiva</a>
-                              </li>
+                              
 
                               <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
                                 <a href="{% url 'gatos_g:guia-buscar-agendamientos' %} " style="color: white;">Impresion Agendamiento</a>
