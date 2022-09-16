@@ -91,7 +91,7 @@ class vehiculo(models.Model):
 
 class courrier(models.Model):
 
-    d_i = models.CharField(max_length=12, verbose_name='Documento identidad')
+    d_i = models.CharField(max_length=12, verbose_name='Documento identidad', unique=True)
 
     courrier = models.CharField(
         max_length=70, 

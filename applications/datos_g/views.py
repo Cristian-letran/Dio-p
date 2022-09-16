@@ -113,7 +113,7 @@ class OrdenAgendaListView(CustodiaPermisoMixin, ListView):
         contexto ['ordentwo'] = self.get_querydoble()
         contexto ['call'] = self.get_telefono()
         return contexto  
-
+#
 class Lista_gendamientosListView(CustodiaPermisoMixin, TodayArchiveView, ListView):
     date_field = "pub_date"
     allow_future = True
