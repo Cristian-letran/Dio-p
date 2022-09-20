@@ -84,7 +84,7 @@ class Est_plaAdmin(admin.ModelAdmin):
     list_display = ('id', 'estado')
 
 @admin.register(Destino)
-class DestinoAdmin(admin.ModelAdmin):
+class DestinoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('sucursal', 'destino', 'fecha', 'guia')
     list_filter = ('destino', 'fecha')
     date_hierarchy = ('fecha')
