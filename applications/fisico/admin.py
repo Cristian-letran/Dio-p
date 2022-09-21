@@ -17,7 +17,7 @@ class FisicoResource(resources.ModelResource):
     class Meta:
         model = Fisico
         import_id_fields = ('id_guia',) 
-        fields = ("id_guia", "destinatario", "d_i", "proceso__proceso", "image_mesa__estado_img", "image_mesa__fecha", 'fecha_visita', 'mot__motivo')
+        fields = ("id_guia", "destinatario", "d_i", "proceso__proceso", "image_mesa__estado_img", "image_mesa__fecha", 'fecha_visita', 'mot__motivo', 'id_ciu')
         #
 class BolsaResource(resources.ModelResource):
     class Meta:
@@ -50,7 +50,7 @@ class FisicoAdmin(RelatedFieldAdmin,SimpleHistoryAdmin, ImportExportModelAdmin, 
     resource_class = FisicoResource
     list_display = ['id_guia', 'fecha_visita', 'fisico', 'bolsa', 'fecha', 'estado', 'mensajero', 'fecha_planilla', 'fecha_recepcion']
     date_hierarchy = ('fecha_visita')
-    list_filter = ('est_planilla', 'mensajero', 'image_mesa__estado_img', 'mot')
+    list_filter = ('est_planilla', 'mensajero', 'image_mesa__estado_img', 'mot', 'id_ciu')
     search_fields = ('bolsa', 'id_guia')
     list_per_page = 100
     raw_id_fields = ['id_ciu',]
