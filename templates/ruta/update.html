@@ -1,0 +1,13 @@
+{% extends "ruta/base_cargue.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+<h4 class="text-center">Actualizar default</h4>
+
+<form method="post">{% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Actualizar">
+</form>
+
+{% endblock panel-content %}

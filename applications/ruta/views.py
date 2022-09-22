@@ -35,7 +35,7 @@ from .utils import render_to_pdf
 
 from django.contrib.admin.models import LogEntry, ADDITION, CHANGE, DELETION
 
-from .forms import CargueForm, RecepcionForm, AsignarForms, DestinoForm, DescargueForm, PunteoForm, ImprimirForms
+from .forms import CargueForm, RecepcionForm, AsignarForms, DestinoForm, DescargueForm, PunteoForm, DefaultUpdateForm
 
 #----------------Recepcion------------------------
 class RecepcioCreateView(CustodiaPermisoMixin, CreateView, ListView ):
@@ -320,7 +320,11 @@ class EliminarGuia(TemplateView):
         print (f'Tiempo de ejecucion del metodo 1: {tiempo_final}')
         return render(request, self.template_name, {'guia': guia})
 
-
+class DefaultGuiaUpdate(UpdateView):
+    form_class = DefaultUpdateForm
+    model = Guia
+    template_name = 'ruta/update.html'
+    success_url = reverse_lazy('ruta_apps:lista-recepcion')
 
 #---------------appi----------------------------
 # from .serializers import(

@@ -149,4 +149,16 @@ class ImprimirForms(forms.ModelForm):
            
             }
 
-        
+class DefaultUpdateForm(forms.ModelForm):   
+    class Meta:
+        model = Guia
+        fields = ['mot', 'id_est']
+
+        widgets = {
+            'mot': forms.Select(
+                attrs={
+                    'class': 'input-group-field',
+                }
+            ),
+            
+            }

@@ -3,35 +3,48 @@
 {% load static %}
 
 {% block panel-content %}
-
+<h4 class="text-center">corrección motivo</h4>
+<br>
 <div class="grid-x grid-margin-x">
     <div class="cell grid-x grid-margin-x">
-      <form class="cell small-9 input-group" method="GET">{% csrf_token %}
-        <span class="input-group-label"></span>
-        <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Guia...">
-        <div class="input-group-button">
-          <input type="submit" class="button secondary" value="Buscar">
-        </div>
-</form>
+        <form class="cell small-9 input-group" method="GET">{% csrf_token %}
+            <span class="input-group-label"></span>
+            <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Guia...">
+            <div class="input-group-button">
+            <input type="submit" class="button secondary" value="Buscar">
+            </div>
+        </form>
 
-<table>
+<table class="hover">
     <thead>
         <th>Guia</th>
         <th>Motivo</th>
-        <th>Actualizar</th>
+        <th>Estado</th>
+        <th>Correccion motivo</th>
+        <th>Correccion defaul</th>
     </thead>
     {% for e in object_list %}
     <tbody>
         <tr>
             <td>{{e.id_guia}}</td>
             <td>{{e.mot}}</td>
-            <td><td>
+            <td>{{e.id_est}}</td>
+            <td>
                 <a href="{% url 'ruta_apps:update-recepcion' e.seudo %}" class="button"><i class="fi-page-edit"></i></a>
-            </td></td>
+            </td>
+            <td>
+                <a href="{% url 'ruta_apps:lista-default' e %}" class="button success"><i class="fi-page-edit"></i></a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>No existen busquedas</td>
         </tr>
         {% endfor %}    
     </tbody>
     
 </table>
+
+
 
 {% endblock panel-content %}

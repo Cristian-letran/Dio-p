@@ -91,6 +91,12 @@ urlpatterns = [
         name='delete-guia'
     ),
 
+     path(
+        'lista/default/<int:pk>/', 
+        views.DefaultGuiaUpdate.as_view(), 
+        name='lista-default'
+    ),
+
    
     
     ]
