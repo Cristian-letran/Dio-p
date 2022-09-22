@@ -325,6 +325,16 @@ class DefaultGuiaUpdate(UpdateView):
     model = Guia
     template_name = 'ruta/update.html'
     success_url = reverse_lazy('ruta_apps:lista-recepcion')
+    cantidad = 1
+    def form_valid(self, form):
+        
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        
+        self.object.cantidad -=1
+
+        self.object.save()
+        return super(DefaultGuiaUpdate, self).form_valid(form)
 
 #---------------appi----------------------------
 # from .serializers import(
