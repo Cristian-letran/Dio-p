@@ -82,6 +82,7 @@ class OrdenAgendaListView(CustodiaPermisoMixin, ListView):
     def get_queryset(self):
         queryset = Orden.objects.filter(
             tipo = 1, 
+            tipo = 0, 
             orden_dat_g__seudo_dg__mot = 20, 
             orden_dat_g__seudo_dg__id_est = 3,
             # orden_dat_g__seudo_dg__estado_zona = 0,
