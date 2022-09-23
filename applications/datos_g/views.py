@@ -82,7 +82,6 @@ class OrdenAgendaListView(CustodiaPermisoMixin, ListView):
     def get_queryset(self):
         queryset = Orden.objects.filter(
             tipo = 1, 
-            tipo = 0, 
             orden_dat_g__seudo_dg__mot = 20, 
             orden_dat_g__seudo_dg__id_est = 3,
             # orden_dat_g__seudo_dg__estado_zona = 0,
@@ -142,7 +141,7 @@ class Lista_reagendamientosCallListView(CustodiaPermisoMixin, TodayArchiveView, 
     def get(self, request, *args, **kwargs):
         nombre = self.kwargs['id_agenda']
         guia =datos_g.objects.filter(
-            seudo_dg__user__ocupation = 2,
+            # seudo_dg__user__ocupation = 2,
             id_ciu__departamento=self.request.user.ciudad.departamento,
             seudo_dg__mot = 20, 
             ).exclude(seudo_dg__id_est__id = 4)
