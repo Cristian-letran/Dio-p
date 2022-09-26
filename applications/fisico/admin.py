@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db.models.query_utils import FilteredRelation
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
-from . models import Paquete, Fisico, Bolsa, Mesa, Motivo_mesa, Cobertura, FechaUpdate
+from . models import Paquete, Fisico, Bolsa, Mesa, Motivo_mesa, Cobertura
 from simple_history.admin import SimpleHistoryAdmin
 from related_admin import RelatedFieldAdmin
 from applications.ruta.models import Recepcion
@@ -86,7 +86,7 @@ class CoberturaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     
 admin.site.register(Motivo_mesa)
-admin.site.register(FechaUpdate)
+
 
 
 

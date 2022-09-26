@@ -370,17 +370,3 @@ class Cobertura(models.Model):
         super(Cobertura, self).save(*args, **kwargs)
 
 
-class FechaUpdate(models.Model):
-    guia= models.ForeignKey(Fisico, on_delete=models.CASCADE)
-    fecha = models.DateTimeField()
-
-    @property
-    def tttt(self):
-        return str(self.fecha)
-
-    def save(self, *args, **kwargs):
-            self.guia.fecha_recepcion  = self.tttt
-        
-            self.guia.save()
-
-            super(FechaUpdate, self).save(*args, **kwargs)
