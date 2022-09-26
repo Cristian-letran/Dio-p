@@ -12,6 +12,8 @@ from simple_history.admin import SimpleHistoryAdmin
 from django.http import HttpResponse
 import datetime
 
+
+
 class PlanillaResource(resources.ModelResource):
     guia = Field(attribute='guia', column_name='GUIA')
     guia__direccion = Field(attribute='guia__direccion', column_name='DIRECCION')

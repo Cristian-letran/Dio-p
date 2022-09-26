@@ -158,7 +158,13 @@ class DefaultUpdateForm(forms.ModelForm):
             'mot': forms.Select(
                 attrs={
                     'class': 'input-group-field',
+                    'disabled' : 'disabled'
                 }
             ),
-            
+            'id_est': forms.Select(
+                attrs={
+                    'class': 'input-group-field',
+                    'disabled' : 'disabled'
+                }
+            ),
             }

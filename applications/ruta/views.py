@@ -35,7 +35,7 @@ from .utils import render_to_pdf
 
 from django.contrib.admin.models import LogEntry, ADDITION, CHANGE, DELETION
 
-from .forms import CargueForm, RecepcionForm, AsignarForms, DestinoForm, DescargueForm, PunteoForm, DefaultUpdateForm
+from .forms import CargueForm, RecepcionForm, AsignarForms, DestinoForm, DescargueForm, PunteoForm, DefaultUpdateForm, ImprimirForms
 
 #----------------Recepcion------------------------
 class RecepcioCreateView(CustodiaPermisoMixin, CreateView, ListView ):
@@ -260,34 +260,34 @@ class PunteoCreateView(CreateView, ListView):
     success_url = '.'
     model = Punteo
     
-# class ImprimirCreateView(CreateView, ListView):
-#     template_name = "ruta/imprimir.html"
-#     success_url = '.'
-#     form_class = ImprimirForms
+class ImprimirCreateView(CreateView, ListView):
+    template_name = "ruta/imprimir.html"
+    success_url = '.'
+    form_class = ImprimirForms
     
-#     def get_queryset(self):
-#         imprimir = Imprimir.objects.all()[:1]
-#         return imprimir
+    def get_queryset(self):
+        imprimir = Imprimir.objects.all()[:1]
+        return imprimir
 
-#     def get_count(self):
-#         imprimir = Imprimir.objects.all().count
-#         return imprimir
+    def get_count(self):
+        imprimir = Imprimir.objects.all().count
+        return imprimir
 
-#     def get_lista(self):
-#         imprimir = Imprimir.objects.all()
-#         return imprimir
+    def get_lista(self):
+        imprimir = Imprimir.objects.all()
+        return imprimir
 
-#     def form_valid(self, form):
-#         self.object = form.save(commit=False)
-#         self.object.user = self.request.user
-#         self.object.save()
-#         return super(ImprimirCreateView, self).form_valid(form)  
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return super(ImprimirCreateView, self).form_valid(form)  
 
-#     def get_context_data(self, **kwargs):
-#         data = super().get_context_data(**kwargs)
-#         data['count'] = self.get_count()
-#         data['lista'] = self.get_lista()
-#         return data  
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['count'] = self.get_count()
+        data['lista'] = self.get_lista()
+        return data  
 
 
 class imprimir_reagendamientosCallListView(CustodiaPermisoMixin, ListView):
@@ -320,18 +320,16 @@ class EliminarGuia(TemplateView):
         print (f'Tiempo de ejecucion del metodo 1: {tiempo_final}')
         return render(request, self.template_name, {'guia': guia})
 
-class DefaultGuiaUpdate(UpdateView):
+class DefaultGuiaUpdate(UpdateView, CustodiaPermisoMixin):
     form_class = DefaultUpdateForm
     model = Guia
     template_name = 'ruta/update.html'
     success_url = reverse_lazy('ruta_apps:lista-recepcion')
-    cantidad = 1
+    
     def form_valid(self, form):
         
         self.object = form.save(commit=False)
         self.object.user = self.request.user
-        
-        self.object.cantidad -=1
 
         self.object.save()
         return super(DefaultGuiaUpdate, self).form_valid(form)

@@ -74,6 +74,7 @@ class BuscarGuiaPdf(CustodiaPermisoMixin, ListView):
 
 ##################### Agendamientos ################################
 from django.db.models import Q
+from django.db.models import Count, F, Value
 class OrdenAgendaListView(CustodiaPermisoMixin, ListView):
     template_name = "datos_g/orden_guia_agendamiento.html"
     context_object_name = 'orden'

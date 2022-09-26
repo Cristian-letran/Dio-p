@@ -56,7 +56,6 @@ class FisicoAdmin(RelatedFieldAdmin,SimpleHistoryAdmin, ImportExportModelAdmin, 
     raw_id_fields = ['id_ciu',]
     actions = [update_date]
     
-
 @admin.register(Bolsa)    
 class BolsaAdmin(RelatedFieldAdmin,ImportExportModelAdmin, admin.ModelAdmin):
     

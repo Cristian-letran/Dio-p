@@ -73,11 +73,11 @@ urlpatterns = [
         name='lista-punteo',
     ),
 
-    # path(
-    #     'lista/imprimir/', 
-    #     views.ImprimirCreateView.as_view(),
-    #     name='lista-imprimir',
-    # ),
+    path(
+        'lista/imprimir/', 
+        views.ImprimirCreateView.as_view(),
+        name='lista-imprimir',
+    ),
 
     path(
         'imprimir-guia-regendamiento-call/<id_agenda>/',
