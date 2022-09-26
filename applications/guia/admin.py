@@ -30,7 +30,7 @@ class guiaAdmin(ImportExportModelAdmin, SimpleHistoryAdmin, RelatedFieldAdmin):
         (None,  {'fields':[(
             'seudo', 'bolsa', 'destinatario'), 
             ('producto', 'estado', 'id_ciu'), 
-            ('direccion', 'barrio', 'postal', ), ]}),
+            ('direccion', 'barrio', 'postal','fecha_recepcion' ), ]}),
 
         ('Estados', {'fields':[
                 

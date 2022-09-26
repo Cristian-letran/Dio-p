@@ -6,6 +6,7 @@ from applications.cliente.models import Ciudad
 from applications.courrier.models import courrier
 import datetime
 from django.core.validators import RegexValidator
+import django
 
 from applications.argumento.models import Estado, Motivo, Cod_vis, Proceso, Est_clie
 from simple_history.models import HistoricalRecords
@@ -134,7 +135,7 @@ class Fisico(Fisi_pa, Bolsa):
 
     d_i = models.CharField(max_length=15, blank = True, null=True)
 
-    fecha_recepcion = models.DateTimeField(auto_now=True, blank = True, null= True, verbose_name='Fecha gestion')
+    fecha_recepcion = models.DateTimeField(db_index=True, default=django.utils.timezone.now, blank = True, null= True, verbose_name='Fecha gestion')
     
     fecha_planilla = models.DateTimeField(blank= True, null= True)
 
@@ -369,3 +370,17 @@ class Cobertura(models.Model):
         super(Cobertura, self).save(*args, **kwargs)
 
 
+class FechaUpdate(models.Model):
+    guia= models.ForeignKey(Fisico, on_delete=models.CASCADE)
+    fecha = models.DateTimeField()
+
+    @property
+    def tttt(self):
+        return str(self.fecha)
+
+    def save(self, *args, **kwargs):
+            self.guia.fecha_recepcion  = self.tttt
+        
+            self.guia.save()
+
+            super(FechaUpdate, self).save(*args, **kwargs)
