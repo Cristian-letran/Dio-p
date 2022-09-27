@@ -233,7 +233,7 @@ class CallGuiaUpdateForm(forms.ModelForm):
          'id_clie', 'proceso', 'destinatario', 'postal', 'id_ser', 
          'mensajero', 'tel', 'oficina', 'fecha_descargue', 'users', 'user',
          'cantidad', 'est_planilla', 'id_planilla', 'cod_ins', 'estado', 'bolsa',
-         'estado_destino', 'seudo', 'id_est')
+         'estado_destino', 'seudo', 'id_est', 'fecha_visita')
 
     widgets = {
             'direccion': forms.TextInput(
