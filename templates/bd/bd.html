@@ -15,19 +15,26 @@
         <div class="cell grid-x grid-margin-x" style="margin-top: 2em;">
             <table class="hover">
               <thead>
-                <th>FECHA INGRESO</th>
+                <th>FECHA FISICO</th>
+                <th>FECHA VISITA</th>
+                <th>FECHA GESTION</th>
                 <th>PSEUDOCÓDIGO</th>
                 <th>NO IDENTIFICACIÓN</th>
                 <TH>NOMBRE </TH>
+                <th>BOLSA</th>
+                
             </thead>
             <tbody>
                 <tbody>
                     {% for e in bd %}
                       <tr>
-                        <td>{{e.guias.fecha}}</td>
+                        <td>{{e.guias.fecha|date}}</td>
+                        <td>{{e.fecha_visita}}</td>
+                        <td>{{e.fecha_recepcio}}</td>
                         <td>{{e.seudo_bd }}</td>
                         <td>{{e.guias.d_i}}</td>
                         <td>{{e.guias.destinatario}}</td>
+                        <td>{{e.bolsa}}</td>
                         
                       </tr>
                     {% endfor %}
