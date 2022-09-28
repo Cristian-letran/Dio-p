@@ -29,12 +29,12 @@
                     {% for e in bd %}
                       <tr>
                         <td>{{e.guias.fecha|date}}</td>
-                        <td>{{e.fecha_visita}}</td>
-                        <td>{{e.fecha_recepcio}}</td>
+                        <td>{{e.guias.fecha_visita}}</td>
+                        <td>{{e.guias.fecha_recepcio}}</td>
                         <td>{{e.seudo_bd }}</td>
                         <td>{{e.guias.d_i}}</td>
                         <td>{{e.guias.destinatario}}</td>
-                        <td>{{e.bolsa}}</td>
+                        <td>{{e.guias.bolsa}}</td>
                         
                       </tr>
                     {% endfor %}
