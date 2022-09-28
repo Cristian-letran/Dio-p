@@ -135,7 +135,7 @@ class Fisico(Fisi_pa, Bolsa):
 
     d_i = models.CharField(max_length=15, blank = True, null=True)
 
-    fecha_recepcion = models.DateTimeField(db_index=True, default=django.utils.timezone.now, blank = True, null= True, verbose_name='Fecha gestion')
+    fecha_recepcion = models.DateTimeField(auto_now=True, blank = True, null= True, verbose_name='Fecha gestion')
     
     fecha_planilla = models.DateTimeField(blank= True, null= True)
 
