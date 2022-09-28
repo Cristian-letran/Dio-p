@@ -94,11 +94,15 @@ class Bd_clieListView(SigPermisoMixin, ListView):
     def get_total_entregado(self):
         return Bd_clie.objects.filter(guias__mot = 21 )
 
+    def get_total_ruta(self):
+        return Bd_clie.objects.filter(guias__mot = 4 )
+
     def get_context_data(self, **kwargs):
         context = {}
         context['bd'] = self.get_queryset()[:5 ]
         context['count'] = self.get_count().count
         context['count_total'] = self.get_total_entregado().count
+        context['count_ruta'] = self.get_total_ruta().count
         return context
 
 class No_fisicoCreateView(CustodiaPermisoMixin, CreateView, ListView):
