@@ -173,7 +173,7 @@ class AsignarListview(CustodiaPermisoMixin, ListView):
         return queryset
         
     def cont(self):
-        return Fisico.objects.filter(est_planilla = 1)
+        return Fisico.objects.filter(est_planilla = 1, id_ciu__departamento=self.request.user.ciudad.departamento)
     
     def get_context_data(self, **kwargs):
         contexto = {}
