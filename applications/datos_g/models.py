@@ -4,6 +4,7 @@ from applications.cliente.models import Ciudad, Oficinas
 from applications.argumento.models import Estado, Motivo, Cod_vis, Proceso
 from applications.guia.models import Guia
 from django.conf import settings 
+import datetime
 
 class Postal(models.Model):
     departamento = models.CharField(max_length=60)
@@ -233,6 +234,7 @@ class datos_g (models.Model):
         self.seudo_dg.cantidad_vi = self.cantidad
         self.seudo_dg.producto = self.producto
         self.seudo_dg.codigo = self.union
+        self.fecha_visita = datetime.datetime.now()
 
         if self.seudo_dg.save == None:
             None
