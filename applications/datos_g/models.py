@@ -234,7 +234,7 @@ class datos_g (models.Model):
         self.seudo_dg.cantidad_vi = self.cantidad
         self.seudo_dg.producto = self.producto
         self.seudo_dg.codigo = self.union
-        self.fecha_visita = datetime.datetime.now()
+        self.seudo_dg.fecha_visita = datetime.datetime.now()
 
         if self.seudo_dg.save == None:
             None
