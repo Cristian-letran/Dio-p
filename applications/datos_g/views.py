@@ -7,6 +7,7 @@ from django import template
 from django.views.generic.dates import TodayArchiveView
 from django.db.models import Count
 from applications.argumento.models import Motivo_call, Motivo
+from applications.guia.models import Guia
 
 register = template.Library()
 
@@ -108,11 +109,16 @@ class OrdenAgendaListView(CustodiaPermisoMixin, ListView):
         queryset = Motivo.objects.filter(id= 20).annotate(cant_orden_call=Count('motivo'))
         return queryset
 
+    def get_count_call(self):
+        queryset = Guia.objects.filter(mot= 20, id_ciu__departamento = self.request.user.ciudad.departamento)
+        return queryset
+
     def get_context_data(self, **kwargs):
         contexto = {}
         contexto ['orden'] = self.get_queryset()
         contexto ['ordentwo'] = self.get_querydoble()
         contexto ['call'] = self.get_telefono()
+        contexto ['callcount'] = self.get_count_call().count
         return contexto  
 #
 class Lista_gendamientosListView(CustodiaPermisoMixin, TodayArchiveView, ListView):

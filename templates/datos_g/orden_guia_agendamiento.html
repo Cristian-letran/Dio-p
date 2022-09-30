@@ -45,7 +45,7 @@
 <tr>
     <td>{{ e }}</td>
     <td>CALL</td>
-    
+    <td>{{callcount}}</td>
     <td>
         <a href="{% url 'gatos_g:pdg-guia-regendamiento-call' e.id %}" class="button"><i class="fi-print"></i></a>
     </td>
@@ -91,6 +91,6 @@
     {% endif %}
 
 </form>
-<li>{{cont_call}}</li>
+
 
 {% endblock panel-content %}
