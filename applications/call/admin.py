@@ -139,7 +139,7 @@ class IndicativoAdmin(admin.ModelAdmin):
 
 class TelefonoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('id', 'fecha_call' )
-    search_fields = ('id',)
+    search_fields = ("tel", 'id__seudo__seudo_bd', 'id__id_guia')
     list_filter = ('fecha_call', 'user')
     raw_id_fields = ["id",]
     date_hierarchy = ('fecha_call')
