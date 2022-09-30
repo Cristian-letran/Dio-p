@@ -105,7 +105,7 @@ class OrdenAgendaListView(CustodiaPermisoMixin, ListView):
         return queryset
 
     def get_telefono(self):
-        queryset = Motivo.objects.filter(id= 20).annotate(cant_orden_call=Count('motivo'))
+        queryset = Motivo.objects.filter(id= 20, id_ciu__departamento=self.request.user.ciudad.departamento).annotate(cant_orden_call=Count('motivo'))
         return queryset
 
     def get_context_data(self, **kwargs):
