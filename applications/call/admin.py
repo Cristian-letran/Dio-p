@@ -143,6 +143,7 @@ class TelefonoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_filter = ('fecha_call', 'user')
     raw_id_fields = ["id",]
     date_hierarchy = ('fecha_call')
+    
 
 class AuditoriaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
@@ -172,7 +173,7 @@ class InformeCallAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('id',)
     resource_class = TelefonoResource
     date_hierarchy = ('fecha')
-    list_filter  = ('id__user',)
+    list_filter  = ('id__user', 'fecha')
     list_per_page = 5
 
 admin.site.register(Datos_t, datos_tAdmin)
