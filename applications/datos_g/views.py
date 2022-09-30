@@ -118,7 +118,7 @@ class OrdenAgendaListView(CustodiaPermisoMixin, ListView):
         contexto ['orden'] = self.get_queryset()
         contexto ['ordentwo'] = self.get_querydoble()
         contexto ['call'] = self.get_telefono()
-        contexto ['cont-call'] = self.get_count_call()
+        contexto ['cont_call'] = self.get_count_call()
         return contexto  
 #
 class Lista_gendamientosListView(CustodiaPermisoMixin, TodayArchiveView, ListView):
