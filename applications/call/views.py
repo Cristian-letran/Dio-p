@@ -15,7 +15,8 @@ from applications.datos_g.models import datos_g
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, permission_required
 from django.utils.timezone import datetime 
-
+import datetime
+from datetime import datetime, date
 
 class CacUpdateView(CallPermisoMixin, UpdateView):
     template_name = "call/update_form.html"
@@ -29,7 +30,8 @@ class CacUpdateView(CallPermisoMixin, UpdateView):
     #     contexto ['lista'] = self.get_queryset()
     #     contexto ['form'] = self.form_class
     #     return contexto
-
+import datetime
+from datetime import datetime, date
 class CallUpdateView(CallPermisoMixin, UpdateView, ListView):
     template_name = "call/call-update.html"
     form_class = CallUpdateForm
@@ -63,10 +65,12 @@ class CallUpdateView(CallPermisoMixin, UpdateView, ListView):
         form = self.form_class(request.POST, instance=telefono)
         form2 = self.second_form_class(request.POST, instance=guia)
         if form.is_valid() and form2.is_valid():
+            
             self.h= 33
             self.object = form.save(commit=False)
             self.objectl = form2.save(commit=False)
             self.object.user = self.request.user
+            self.objectl.fecha_visita = datetime.today()
             self.objectl.mot_id = 20
             self.objectl.__guia_d_g__orimp = -12
             self.objectl.user = self.request.user   
