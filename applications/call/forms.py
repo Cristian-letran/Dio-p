@@ -128,6 +128,7 @@ class CacUpdateForm(forms.ModelForm):
             'cod_vis',
             'oficina',
             'proceso',
+            'fecha_visita'
             
         )
 
