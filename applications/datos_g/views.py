@@ -111,6 +111,7 @@ class OrdenAgendaListView(CustodiaPermisoMixin, ListView):
 
     def get_count_call(self):
         queryset = Guia.objects.filter(id= 20)
+        return queryset
 
     def get_context_data(self, **kwargs):
         contexto = {}
