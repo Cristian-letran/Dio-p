@@ -215,6 +215,10 @@ class datos_g (models.Model):
         return self.cantidad
 
     @property
+    def usuariod(self):
+        return self.user
+
+    @property
     def union(self):
         return str(self.cantidad) + str(self.motivo.id) + str(self.id_est.id) + str(self.cod_vi)
 
@@ -235,6 +239,7 @@ class datos_g (models.Model):
         self.seudo_dg.producto = self.producto
         self.seudo_dg.codigo = self.union
         self.seudo_dg.fecha_visita = datetime.datetime.now()
+        self.seudo_dg.user_id = self.usuariod
 
         if self.seudo_dg.save == None:
             None

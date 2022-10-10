@@ -1,5 +1,5 @@
 from django.contrib import admin
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ExportActionMixin
 from import_export import resources
 from . models import datos_g, Orden, Cubrimiento, Agenda, Postal
 from import_export.fields import Field
@@ -13,8 +13,13 @@ class CubrimientoResource(resources.ModelResource):
 class datos_gResource(resources.ModelResource):
     
     class Meta:
-        model = datos_g     
-        import_id_fields = ('seudo_dg',)   
+        model = datos_g   
+        import_id_fields = ('seudo_dg',)  
+
+    def save_model(self, request, obj, form, change):
+        if getattr(obj, 'author', None) is None:
+            obj.user = request.user 
+        obj.save()
        
 
 class AgendaResource(resources.ModelResource):
@@ -45,6 +50,11 @@ class datos_gAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     icon_name  =  'directions'
     date_hierarchy = ('fecha')
     raw_id_fields = ['id_ciu',]
+
+    def save_model(self, request, obj, form, change):
+        if getattr(obj, 'author', None) is None:
+            obj.user = request.user 
+        obj.save()
 
 @admin.register(Orden)
 class ordenAdmin(ImportExportModelAdmin, admin.ModelAdmin):
