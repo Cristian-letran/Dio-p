@@ -216,7 +216,7 @@ class datos_g (models.Model):
 
     @property
     def usuariod(self):
-        return self.user
+        return self.user.id
 
     @property
     def union(self):
