@@ -35,7 +35,7 @@ class TrackingView(ListView):
         kword = self.kwargs["pk"]
         queryset = Rastreo.objects.filter(
             id_fisico_track = kword
-            )
+            ).order_by('fecha')
         return queryset
 
 class ProductListView(LoginRequiredMixin, ListView):
