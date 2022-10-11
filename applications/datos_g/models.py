@@ -222,7 +222,7 @@ class datos_g (models.Model):
     def union(self):
         return str(self.cantidad) + str(self.motivo.id) + str(self.id_est.id) + str(self.cod_vi)
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs, ):
         # self.seudo.bolsa  = self.vars
 
         self.seudo_dg.destinatario = self.desti
@@ -239,7 +239,7 @@ class datos_g (models.Model):
         self.seudo_dg.producto = self.producto
         self.seudo_dg.codigo = self.union
         self.seudo_dg.fecha_visita = datetime.datetime.now()
-        self.seudo_dg.user_id = self.usuariod
+        # self.seudo_dg.user_id = self.usuariod
 
         if self.seudo_dg.save == None:
             None
