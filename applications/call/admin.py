@@ -5,7 +5,7 @@ from import_export.fields import Field
 from . models import Datos_t, Indicativo, Telefono, Pregunta, Auditoria, calificacion, Tel, Informe_call
 from django.db import transaction
 from simple_history.admin import SimpleHistoryAdmin
-
+from related_admin import RelatedFieldAdmin
 
 
 class DatossResource(resources.ModelResource):
@@ -169,8 +169,8 @@ class AuditoriaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class PregutasAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('pregunta', )
 
-class InformeCallAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('id', 'fecha')
+class InformeCallAdmin(RelatedFieldAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('id', 'fecha', 'id__user')
     resource_class = TelefonoResource
     date_hierarchy = ('fecha')
     list_filter  = ('id__user', 'fecha')
