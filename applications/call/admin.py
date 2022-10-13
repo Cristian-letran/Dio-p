@@ -170,7 +170,7 @@ class PregutasAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('pregunta', )
 
 class InformeCallAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('id',)
+    list_display = ('id', 'fecha')
     resource_class = TelefonoResource
     date_hierarchy = ('fecha')
     list_filter  = ('id__user', 'fecha')
