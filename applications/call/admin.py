@@ -170,10 +170,10 @@ class PregutasAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('pregunta', )
 
 class InformeCallAdmin(RelatedFieldAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('id', 'fecha', 'id_id__user_id')
+    list_display = ('id', 'fecha', 'id__user')
     resource_class = TelefonoResource
-    date_hierarchy = ('fecha')
-    list_filter  = ('id_id__user_id', 'id__fecha')
+    date_hierarchy = ('id__fecha_call')
+    list_filter  = ('id__user', 'id__fecha_call')
     list_per_page = 5
 
 admin.site.register(Datos_t, datos_tAdmin)
