@@ -194,7 +194,7 @@ class CallUpdateForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(CallUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['motivo_call'].queryset = Motivo_call.objects.filter(Q (id = 11)|Q(id = 12))
+        self.fields['motivo_call'].queryset = Motivo_call.objects.filter(Q (id = 11)|Q(id = 12)|Q(id = 18))
     
     class Meta:     
         model = Telefono
