@@ -173,7 +173,7 @@ class InformeCallAdmin(RelatedFieldAdmin, ImportExportModelAdmin, admin.ModelAdm
     list_display = ('id', 'fecha', 'id_id__user_id')
     resource_class = TelefonoResource
     date_hierarchy = ('fecha')
-    list_filter  = ('id_id__user_id', 'fecha')
+    list_filter  = ('id_id__user_id', 'id__fecha')
     list_per_page = 5
 
 admin.site.register(Datos_t, datos_tAdmin)
