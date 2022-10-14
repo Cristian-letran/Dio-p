@@ -30,7 +30,7 @@ class CacUpdateView(CallPermisoMixin, UpdateView):
     #     contexto ['lista'] = self.get_queryset()
     #     contexto ['form'] = self.form_class
     #     return contexto
-import datetime
+
 from datetime import datetime, date
 class CallUpdateView(CallPermisoMixin, UpdateView, ListView):
     template_name = "call/call-update.html"

@@ -42,6 +42,7 @@
                     <a href="{% url 'producto_app:producto-detail' e.seudo %}" class="button "><i class="fi-eye"></i></a>
                 </td>
                 <td><a href="{% url 'producto_app:tracking-cliente' e %}" class="secondary button"><i class="fi-filter"></i></a></td>  
+                <td><a href="{% url 'fisico_app:paquete' e.bolsa %}" class="secondary button"><i class="fi-filter"></i></a></td>  
             </tr>
             
                 {% endfor %}

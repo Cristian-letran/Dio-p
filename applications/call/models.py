@@ -191,6 +191,13 @@ class Informe_call(models.Model):
         blank=True,
         null=True,
     )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE, 
+        blank=True, null=True, 
+        editable=True,
+        verbose_name= 'Usuario'
+    )
 
     def __str__(self):
         return str(self.id)

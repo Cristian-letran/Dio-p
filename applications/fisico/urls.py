@@ -28,6 +28,11 @@ urlpatterns = [
         name = 'bolsa-create',
     ),
     
+    path(
+        'paquete/<pk>',
+        views.PaqueteView.as_view(),
+        name = 'paquete',
+    ),
    
     
 

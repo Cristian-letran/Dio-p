@@ -93,3 +93,15 @@ class Bolsa_add_CreateView(CustodiaPermisoMixin, CreateView, ListView):
 
     def get_queryset(self):
         return Bolsa.objects.order_by('-fecha_bolsa')[:5]
+
+
+class PaqueteView(ListView):
+    template_name = "fisico/paquete.html"
+    model = Paquete
+    
+    def get_queryset(self):
+        kword = self.kwargs["pk"]
+        queryset = Paquete.objects.filter(
+            bolsa = kword
+            ).order_by('fecha')
+        return queryset

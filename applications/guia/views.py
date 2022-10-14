@@ -206,8 +206,13 @@ def export(request):
         'guias__destinatario', 'guias__seudo', #4
         'guias__bolsa', 'guias__proceso__tipo_e', #5
         'guias__seudo__producto__homologacion', 'guias__id_guia', #6
-        'guias__bolsa'
-        
+        ###
+        'guias__bolsapaquete__seudo', 'guias__guia_d_g__oficina__nom_ofi',
+        'guias__direccion', 'guias__id_ciu__ciudad',
+        'guias__tel', 'guias__d_i',
+        'guias__destinatario', 'guias__seudo',
+        'guias__bolsa', 'guias__proceso__tipo_e', #5
+        'guias__seudo__producto__homologacion', 'guias__id_guia',
         ):
         writer.writerow(guia)
         

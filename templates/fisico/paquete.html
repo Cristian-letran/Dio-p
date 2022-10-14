@@ -1,0 +1,31 @@
+{% extends "fisico/base_fisico.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="cell grid-x grid-margin-x">
+    <h5 class="cell" style="text-align: center;">Fisicos Registrados</h5>
+    <div class="cell">
+      <table>
+        <thead>
+            
+            <th>Seudo</th>
+            <th>Cedula</th>
+            <th>Titular</th>
+            
+        </thead>
+        <tbody>
+            {% for e in object_list %}
+            <tr>
+                <td>{{e.seudo}}</td>
+                <td>{{e.seudo.cc}}</td>
+                <td>{{e.seudo.nombre}}</td>        
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+{% endblock panel-content %}
