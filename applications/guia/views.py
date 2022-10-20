@@ -181,7 +181,7 @@ class MensajeroUpdateView(UpdateView):
         self.object.save()
         return super(MensajeroUpdateView, self).form_valid(form)
 
-    
+
 
 @login_required
 def export(request):
@@ -209,7 +209,10 @@ def export(request):
         ###
         
         ):
-        for paquete in Guia.objects.filter(
+        writer.writerow(guia)
+       
+        
+    for paquete in Guia.objects.filter(
         id_est = 2, mot = 3, producto = 3
         ).values_list(
         'guia_d_g__oficina', 'guia_d_g__oficina__nom_ofi', #1
@@ -219,9 +222,10 @@ def export(request):
         'bolsa', 'proceso__tipo_e', #5
         'seudo__producto__homologacion', 'id_guia', #6
         ):
-            writer.writerow(guia)
+            
             writer.writerow(paquete)
-    return response
+
+            return response
 
 @login_required
 def export_address(request):
