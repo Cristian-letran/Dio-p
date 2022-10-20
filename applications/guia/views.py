@@ -13,7 +13,7 @@ from django.shortcuts import render
 from .utils import render_to_pdf
 from django.db.models import Count
 from django.template.defaulttags import register
-from applications.fisico.models import Fisico
+from applications.fisico.models import Fisico, Paquete
 from applications.base_cliente.models import Bd_clie
 from applications.tracking.models import Rastreo
 from django.core.paginator import Paginator   
@@ -207,15 +207,20 @@ def export(request):
         'guias__bolsa', 'guias__proceso__tipo_e', #5
         'guias__seudo__producto__homologacion', 'guias__id_guia', #6
         ###
-        'guias__bolsapaquete__seudo', 'guias__guia_d_g__oficina__nom_ofi',
-        'guias__direccion', 'guias__id_ciu__ciudad',
-        'guias__tel', 'guias__d_i',
-        'guias__destinatario', 'guias__seudo',
-        'guias__bolsa', 'guias__proceso__tipo_e', #5
-        'guias__seudo__producto__homologacion', 'guias__id_guia',
-        ):
-        writer.writerow(guia)
         
+        ):
+        for paquete in Guia.objects.filter(
+        id_est = 2, mot = 3, producto = 3
+        ).values_list(
+        'guia_d_g__oficina', 'guia_d_g__oficina__nom_ofi', #1
+        'direccion', 'id_ciu__ciudad', #2
+        'tel', 'bolsapaquete__seudo__cc', #3
+        'bolsapaquete__seudo__nombre', 'bolsapaquete__seudo', #4
+        'bolsa', 'proceso__tipo_e', #5
+        'seudo__producto__homologacion', 'id_guia', #6
+        ):
+            writer.writerow(guia)
+            writer.writerow(paquete)
     return response
 
 @login_required
