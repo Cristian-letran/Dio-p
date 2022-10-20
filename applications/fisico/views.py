@@ -52,7 +52,7 @@ class EstadoRutaListView(CustodiaPermisoMixin, ListView):
         context['count'] = self.get_queryset().count
         return context
 
-class CoberturaCreateView(CustodiaPermisoMixin, CreateView, ListView):
+class CoberturaCreateView(LoginRequiredMixin, CreateView, ListView):
     template_name = "fisico/cobertura_bolsa.html"
     form_class = CoberturaForm
     success_url = '.'
