@@ -252,6 +252,8 @@ class CoberturaPdf(models.Model):
     fecha = models.DateTimeField(
         auto_now=True, blank = True, null= True, verbose_name='fecha cobertura')
 
+    
+
 class Guiap(models.Model):#Guia
     seudof = models.IntegerField(primary_key=True)
     nombre = models.CharField(max_length=50)

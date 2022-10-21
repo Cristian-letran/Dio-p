@@ -73,6 +73,14 @@ class Bolsa(models.Model):
         null=True, 
         
         )
+    fecha_visita = models.DateTimeField(blank=True, null=True)
+
+    fecha_recepcion = models.DateTimeField(
+        auto_now=True, 
+        blank = True, 
+        null= True, 
+        verbose_name='Fecha gestion'
+        )
 
     @property
     def can_vi(self):
@@ -134,8 +142,6 @@ class Fisico(Fisi_pa, Bolsa):
     destinatario = models.CharField(max_length=100, blank=True, null=True)
 
     d_i = models.CharField(max_length=15, blank = True, null=True)
-
-    fecha_recepcion = models.DateTimeField(auto_now=True, blank = True, null= True, verbose_name='Fecha gestion')
     
     fecha_planilla = models.DateTimeField(blank= True, null= True)
 
@@ -171,9 +177,6 @@ class Fisico(Fisi_pa, Bolsa):
         blank=True, null=True)
         
     estado_destino = models.BooleanField(default=False)
-
-    fecha_visita = models.DateTimeField(blank=True, null=True)
-
     
     cod_ins = models.ForeignKey(
         Est_clie,
@@ -355,6 +358,7 @@ class Cobertura(models.Model):
     @property
     def estados(self):
         return str(self.estado.id)
+        
     motivor = 381
     def __str__(self):
         return str(self.bolsa)
@@ -363,6 +367,7 @@ class Cobertura(models.Model):
         self.bolsa.id_est_id  = self.estados
         self.bolsa.mot_id = self.bolsa.mot_id = 3
         self.pdf_cobertura = self.pdf 
+        self.bolsa.fecha_visita = datetime.datetime.now()
         print(self.pdf)
         
         self.bolsa.save()

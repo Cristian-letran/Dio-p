@@ -62,7 +62,7 @@ class BolsaAdmin(RelatedFieldAdmin,ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('bolsa',)
     resource_class = BolsaResource
     list_per_page = 5
-    list_display = ('bolsa', 'mot')
+    list_display = ('bolsa', 'mot', 'fecha_visita')
 
 @admin.register(Mesa)
 class MesaAdmin(admin.ModelAdmin):

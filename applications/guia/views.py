@@ -197,18 +197,19 @@ def export(request):
         'PROCESO', 'GUIA' #6 
         ])
 
-    for guia in Bd_clie.objects.filter(
-        guias__id_est = 2, guias__mot = 3, guias__producto = 3
+    for guia in Guia.objects.filter(
+        id_est = 2, mot = 3, producto = 3
         ).values_list(
-        'guias__guia_d_g__oficina', 'guias__guia_d_g__oficina__nom_ofi', #1
-        'guias__direccion', 'guias__id_ciu__ciudad', #2
-        'guias__tel', 'guias__d_i', #3
-        'guias__destinatario', 'guias__seudo', #4
-        'guias__bolsa', 'guias__proceso__tipo_e', #5
-        'guias__seudo__producto__homologacion', 'guias__id_guia', #6
+        'guia_d_g__oficina', 'guia_d_g__oficina__nom_ofi', #1
+        'direccion', 'id_ciu__ciudad', #2
+        'tel', 'd_i', #3
+        'destinatario', 'seudo', #4
+        'bolsa', 'proceso__tipo_e', #5
+        'seudo__producto__homologacion', 'id_guia', #6
         ###
        
         ):
+        
         writer.writerow(guia)
 
     for paquetes in Guia.objects.filter(
