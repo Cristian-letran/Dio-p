@@ -63,7 +63,7 @@ class CoberturaForm(forms.ModelForm):
             
             'estado': forms.Select(
                 attrs = {
-                    'placeholder': 'Codigo de barras Bolsa', 'autofocus': 'autofocus',
+                    'placeholder': 'Codigo de barras Bolsa',
                     'class': 'input-group-field',
                 }
             ),
