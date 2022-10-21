@@ -7,6 +7,8 @@ from applications.courrier.models import courrier
 import datetime
 from django.core.validators import RegexValidator
 import django
+from django.utils import timezone
+from datetime import date
 
 from applications.argumento.models import Estado, Motivo, Cod_vis, Proceso, Est_clie
 from simple_history.models import HistoricalRecords
@@ -353,7 +355,7 @@ class Cobertura(models.Model):
     estado_mesa = models.BooleanField(default=False)
     @property
     def pdf(self):
-        return str("pdf_cobertura") + '/' + str(datetime.datetime.now()) + ".pdf"
+        return str("pdf_cobertura") + '/' + str(date.today()) + ".pdf"
 
     @property
     def estados(self):
