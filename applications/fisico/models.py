@@ -353,7 +353,7 @@ class Cobertura(models.Model):
     estado_mesa = models.BooleanField(default=False)
     @property
     def pdf(self):
-        return str("pdf_cobertura") + '/' + str(self.fecha) + ".pdf"
+        return str("pdf_cobertura") + '/' + str(datetime.datetime.now()) + ".pdf"
 
     @property
     def estados(self):
