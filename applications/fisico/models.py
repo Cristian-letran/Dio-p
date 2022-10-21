@@ -368,6 +368,7 @@ class Cobertura(models.Model):
         self.bolsa.mot_id = self.bolsa.mot_id = 3
         self.pdf_cobertura = self.pdf 
         self.bolsa.fecha_visita = datetime.datetime.now()
+        self.bolsa.fecha_recepcion = datetime.datetime.now()
         print(self.pdf)
         
         self.bolsa.save()
