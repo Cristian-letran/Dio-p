@@ -35,7 +35,7 @@
           <th>Guia</th>
           <th>Seudo</th>
           <th>Bolsa</th>
-          <th>Usuario</th>          
+          
       </thead>
       <tbody>
           {% for guia in page_obj %}
@@ -43,7 +43,7 @@
               <td>{{guia}}</td>
               <td>{{guia.seudo}}</td>
               <td>{{guia.bolsa}}</td>
-              <td>{{guia.user|capfirst}}</td>                
+                            
           </tr>         
           {% endfor %}
       </tbody>
