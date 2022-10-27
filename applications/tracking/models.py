@@ -30,6 +30,7 @@ class Rastreo(models.Model):
         blank=True,
         null=True
     )
+    mensajero = models.CharField(max_length = 40)
 
     fecha = models.DateTimeField(
         auto_now_add=True,
@@ -41,10 +42,11 @@ class Rastreo(models.Model):
         blank=True,
         null=True)
     
-    # def save(self, *args, **kwargs):
-    #     self.id_fisico_track = self.id_guia
+    def save(self, *args, **kwargs):
+        if self.mensajero == None:
+            self.mensajero = "No asignado"
 
-    #     super(Rastreo, self).save(*args, **kwargs)
+        super(Rastreo, self).save(*args, **kwargs)
     @property
     def usaurio(self):
         return self.id_guia.user
@@ -65,6 +67,7 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             id_guia=instance, 
             motivopr = instance.mot, 
             estado = instance.id_est,
+            
             # id_fisico_track = instance,
             )
 
@@ -74,6 +77,7 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             id_guia=instance, 
             motivopr = instance.mot, 
             estado = instance.id_est,
+            
             id_fisico_track = instance,
             )
     
@@ -86,6 +90,7 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             id_fisico_track=instance, 
             motivopr = instance.mot, 
             estado = instance.id_est,
+            mensajero = instance.mensajero
             
             )
 
@@ -95,5 +100,6 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             id_fisico_track=instance, 
             motivopr = instance.mot, 
             estado = instance.id_est,
+            mensajero = instance.mensajero
             
             )

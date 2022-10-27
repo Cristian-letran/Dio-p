@@ -376,5 +376,3 @@ class Cobertura(models.Model):
         self.bolsa.save()
 
         super(Cobertura, self).save(*args, **kwargs)
-
-
