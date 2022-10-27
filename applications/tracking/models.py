@@ -30,7 +30,7 @@ class Rastreo(models.Model):
         blank=True,
         null=True
     )
-    mensajero = models.CharField(max_length = 40)
+    mensajero = models.CharField(max_length = 120)
 
     fecha = models.DateTimeField(
         auto_now_add=True,
