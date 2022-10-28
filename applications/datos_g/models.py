@@ -225,20 +225,20 @@ class datos_g (models.Model):
     def save(self, *args, **kwargs, ):
         # self.seudo.bolsa  = self.vars
 
-        self.seudo_dg.destinatario = self.desti
-        self.seudo_dg.id_ciu = self.ciudad
-        self.seudo_dg.direccion  = self.dire
-        self.seudo_dg.barrio = self.bar
-        self.seudo_dg.postal = str(self.post)
-        self.seudo_dg.cod_vis = self.cod_vi
-        self.seudo_dg.mot = self.motivo
-        self.seudo_dg.id_est = self.id_est
-        self.seudo_dg.d_i = self.documento
-        self.seudo_dg.proceso = self.proceso
-        self.seudo_dg.cantidad_vi = self.cantidad
-        self.seudo_dg.producto = self.producto
-        self.seudo_dg.codigo = self.union
-        self.seudo_dg.fecha_visita = datetime.datetime.now()
+        # self.seudo_dg.destinatario = self.desti aca
+        # self.seudo_dg.id_ciu = self.ciudad
+        # self.seudo_dg.direccion  = self.dire
+        # self.seudo_dg.barrio = self.bar
+        # self.seudo_dg.postal = str(self.post)
+        # self.seudo_dg.cod_vis = self.cod_vi
+        # self.seudo_dg.mot = self.motivo
+        # self.seudo_dg.id_est = self.id_est
+        # self.seudo_dg.d_i = self.documento
+        # self.seudo_dg.proceso = self.proceso
+        # self.seudo_dg.cantidad_vi = self.cantidad
+        # self.seudo_dg.producto = self.producto
+        # self.seudo_dg.codigo = self.union
+        # self.seudo_dg.fecha_visita = datetime.datetime.now() aca
         # self.seudo_dg.user_id = self.usuariod
 
         if self.seudo_dg.save == None:
