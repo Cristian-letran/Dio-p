@@ -129,6 +129,27 @@ class Lista_gendamientosListView(CustodiaPermisoMixin, TodayArchiveView, ListVie
         guia =datos_g.objects.filter(
             orimp = nombre, 
             id_ciu__departamento=self.request.user.ciudad.departamento,
+            seudo_dg__mot = 20, 
+            # zona = 0,
+            ).order_by(
+                'seudo_dg__id_guia'
+                ).exclude(seudo_dg__user__ocupation = 2
+                ).exclude(seudo_dg__id_est = 4)
+        data = {
+            'count': guia.count(),
+            'pdf_guia': guia
+        }
+        pdf = render_to_pdf('datos_g/pdf_guia.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+class Lista_agendamientosListView(CustodiaPermisoMixin, TodayArchiveView, ListView):
+    date_field = "pub_date"
+    allow_future = True
+    def get(self, request, *args, **kwargs):
+        nombre = self.kwargs['id_agenda']
+        guia =datos_g.objects.filter(
+            orimp = nombre, 
+            id_ciu__departamento=self.request.user.ciudad.departamento,
             seudo_dg__mot = 19, 
             # zona = 0,
             ).order_by(
