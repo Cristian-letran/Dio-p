@@ -134,7 +134,7 @@ class CallListView(CallPermisoMixin, View):
         reason = request.GET.get("reason", "")
         seudo = request.GET.get("kword", "")
         fecha = request.GET.get("date_start", "")
-        contact_list = Guia.objects.filter(id_est = 3, telefono_guia__estado = False,
+        contact_list = Guia.objects.filter(id_est = 3,  telefono_guia__estado = False,
             producto__producto__contains = producto,
             mot__motivo__icontains = reason,
             fecha_recepcion__icontains = fecha
@@ -146,9 +146,7 @@ class CallListView(CallPermisoMixin, View):
             Q(id_guia__icontains = seudo)
         #).order_by("-motivo_call"
         ).exclude(mot = 1).exclude(mot = 22).exclude(
-            mot = 21).exclude(mot = 20).exclude(mot=19).exclude(
-            telefono_guia__motivo_call= 11).exclude(
-            telefono_guia__motivo_call= 12).order_by('-fecha')
+            mot = 21).order_by('-fecha')
         paginator = Paginator(contact_list, 2) # Show 25 contacts per page.
 
         page_number = request.GET.get('page')
