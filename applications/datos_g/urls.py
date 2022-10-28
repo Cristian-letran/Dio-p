@@ -32,7 +32,7 @@ urlpatterns = [
     path(
         'pdg-guia-agendamientoss/<id_agenda>/',
          views.Lista_agendamientosListView.as_view(),
-         name='pdg-guia-agendamiento',
+         name='pdg-guia-agendamientoss',
     ),
 
     path(
