@@ -330,6 +330,7 @@ class Mesa(models.Model):
 class Cobertura(models.Model):
     
     bolsa = models.OneToOneField(Bolsa, on_delete=models.CASCADE, primary_key=True, related_name='cobertura_bolsa')
+    
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE, 
