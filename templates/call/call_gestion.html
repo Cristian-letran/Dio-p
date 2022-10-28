@@ -70,8 +70,8 @@
 </form>
     <h5 class="cell" style="text-align: center;">Gestion: {{count}} - {{counts}}</h5>
     
-    <div class="table-scroll"  >
-        <table class="hover" >
+    <div class="table-scroll unstriped"  >
+        <table class="hover " >
             <thead >
                 <th>Seudo</th>
                 <th>Fecha fisico</th>
@@ -88,12 +88,12 @@
                 <th>estado call</th>
                 <!-- <th>Agendar</th> -->
             </thead>
-            <tbody>
+            <tbody style="text-align: center;">
                 {% for e in page_obj %}
                 <tr>
                     <td width="20"><a href="{% url 'call_app:call-update' e.seudo %}" > <span class="label primary">{{e.seudo}}</span></a></td> 
-                    <td>{{e.fecha}}</td>
-                    <td>{{e.fecha_recepcion}}</td>
+                    <td>{{e.fecha|date:"M/d"}}</td>
+                    <td>{{e.fecha_recepcion|date:"M/d"}}</td>
                     <td>{{e.tel}}</td> 
                     <td>{{e.seudo.franquicia}}</td>
                     <td>{{e.cod_vis}}</td>
