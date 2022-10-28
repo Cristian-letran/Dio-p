@@ -129,7 +129,7 @@ class Lista_gendamientosListView(CustodiaPermisoMixin, TodayArchiveView, ListVie
         guia =datos_g.objects.filter(
             orimp = nombre, 
             id_ciu__departamento=self.request.user.ciudad.departamento,
-            seudo_dg__mot = 20, 
+            seudo_dg__mot = 19, 
             # zona = 0,
             ).order_by(
                 'seudo_dg__id_guia'
