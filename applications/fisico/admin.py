@@ -18,6 +18,9 @@ class FisicoResource(resources.ModelResource):
         model = Fisico
         import_id_fields = ('id_guia',) 
         fields = ("id_guia", "bolsa", "destinatario", "d_i", "proceso__proceso", "image_mesa__estado_img", "image_mesa__fecha", 'fecha_visita', 'mot__motivo', 'id_ciu__departamento__departamento')
+        export_order = ('bolsa  ', 'id_guia', 'destinatario', 'd_i',
+        'fecha_visita', 'proceso__proceso', 'image_mesa__estado_img', 
+        'image_mesa__fecha','mot__motivo','id_ciu__departamento__departamento')
         #
 class BolsaResource(resources.ModelResource):
     class Meta:
