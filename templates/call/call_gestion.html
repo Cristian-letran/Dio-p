@@ -7,12 +7,13 @@
 <form  method="GET">{% csrf_token %}
     <div class="grid-container">
         <div class="grid-x grid-margin-x">
-            <div class="cell small-4">
+            <div class="cell large-auto">
                 <label>Seudo, Ciudad
                     <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Seudocodigo o Ciudad ...">
                 </label>
             </div>
-            <div class="cell small-4">
+            <div class="cell large-auto  ">
+                
                 <label>Producto
                     <select name="producto" id="producto" class="cell medium-4">
                         <option value="" selected></option>
@@ -21,22 +22,22 @@
                         <option value="MOVIL APP II">MOVIL APP II</option>
                         <option value="CERTIFICADO">CERTIFICADO</option>
                         <option value="PERSONALIZADO">PERSONALIZADO</option>
-                        <option value="OFICINAS">OFICINAS</option>
+                                <option value="OFICINAS">OFICINAS</option>
                         <option value="PUNTOS">PUNTOS</option>
                         <option value="RETAIL">RETAIL</option>
                       </select>
                 </label>
               </div>
              
-            <div class="cell small-4">
+            <div class="cell large-auto">
                 <label>Por fecha
                     <input type="date" name="date_start" id="date_start" class="cell medium-4">
                 </label>
             </div>
-        </div>
+        
 
         <div class="grid-x grid-margin-x">
-            <div class="cell small-4">
+            <div class="cell large-auto">
                 <label>Motivo
                     <select name="reason" id="reason " class="cell medium-4">
                         <option value="" selected></option>
@@ -53,18 +54,18 @@
                 <option value="{{e.id}}">{{e}}</option>
                 {% endfor %}
               </select> -->
-              <div class="cell small-4">
+              <div class="cell large-auto">
                 <label>Mensajero
                     <input class="input-group-field" type="text" id="id" name="id" placeholder="Mensajero ...">
                 </label>
             </div>
 
-            <div class="cell small-4">
+            <div class="cell large-auto">
                 <label>Guardar
                     <button class="cell medium-4 button success">Filtrar</button>
                 </label>
             </div>
-            
+        </div>
         </div>
     </div>
 </form>
