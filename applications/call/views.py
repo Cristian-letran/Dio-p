@@ -170,7 +170,7 @@ class CallListView(CallPermisoMixin, View):
             'count': cantidad,
             'counts': count_tel,
             'filtro': filtro,
-            'count': contact_list.count()
+            'count_total': contact_list.count()
         }
         return render(request, self.template_name, data)
 
