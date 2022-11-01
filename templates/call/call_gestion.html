@@ -118,16 +118,16 @@
     <nav aria-label="Pagination">
         <ul class="pagination">
             {% if page_obj.has_previous %}
-            <li class="pagination-previous"><a href="?page=1">Inicio <span class="show-for-sr">page</span></a></li>
+            <li class="pagination-previous disabled"><a href="?page=1">Inicio <span class="show-for-sr">page</span></a></li>
             <li ><a href="?page={{ page_obj.previous_page_number }}"> Atras <span class="show-for-sr">page</span></a></li>
           {% endif %}
           
           
           {% for num in page_obj.paginator.page_range %}
           {% if page_obj.number == num %}
-            <li><a href="?page={{ num }}">{{ num }}</a></li>
+            <li class="current"><a href="?page={{ num }}">{{ num }}</a></li>
           {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-            <li><a href="?page={{ num }}">{{ num }}</a></li>
+            <li ><a href="?page={{ num }}">{{ num }}</a></li>
           {% endif %}
         {% endfor %}
           {% if page_obj.has_next %}
