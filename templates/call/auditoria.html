@@ -8,24 +8,35 @@
     <form  method="GET">{% csrf_token %}
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
-                <div class="medium-6 cell">
-                    <label>Seudocodigo o Mensajero
-                        <input  type="text" id="kword" name="kword" placeholder="Seudocodigo o Mensajero ...">
+                <div class="cell small-2">
+                    <label>Seudocodigo
+                        <input  type="text" id="kword" name="kword" placeholder="Seudocodigo...">
                     </label>
                 </div>
 
-                <div class="medium-6 cell">
+                <div class="cell small-2">
+                    <label>Mensajero
+                        <select name="id_mensajero" id="id_mensajero">
+                        <option value="">----------------</option>
+                        {% for e in filtro %}
+                        <option value="{{e.courrier}}">{{e.courrier}}-{{e.id_ciu.departamento}}</option>
+                        {% endfor %}
+                        </select>
+                    </label>
+                </div>
+
+                <div class="cell small-2">
                     <label>Ciudad
                      <input type="text" id="ciudad" name="ciudad" placeholder="Digitar ciudad">
                     </label>
                 </div>
 
-                <div class="medium-6 cell">
+                <div class="cell small-2">
                     <label>Fecha
                         <input type="date" name="date_start" id="date_start" class="cell medium-4">  
                     </label>
                 </div>
-                    <div class="medium-6 cell">
+                    <div class="cell small-2">
                     <label>Filtro
                         <button class="cell medium-4 button success">Filtrar</button>
                     </label>
@@ -57,7 +68,7 @@
                 <td>{{e.seudo}}</td>
                 <td>{{e.destinatario}}</td>  
                 <td>{{e.d_i}}</td>
-                <td>{{e.fecha_recepcion}}</td>
+                <td>{{e.fecha_recepcion|date:"j,F"}}</td>
                 <td>{{e.direccion}}</td>  
                 <td>{{e.id_ciu}}</td>
                 <td>{{e.mensajero}}</td>  

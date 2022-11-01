@@ -124,7 +124,7 @@ class CacListView(CallPermisoMixin, ListView):
         return lista
 
 
-
+from django.db.models import Count
 class CallListView(CallPermisoMixin, View):
     template_name = "call/call_gestion.html"
     context_object_name = 'call'
@@ -137,7 +137,8 @@ class CallListView(CallPermisoMixin, View):
         reason = request.GET.get("reason", "")
         seudo = request.GET.get("kword", "")
         fecha = request.GET.get("date_start", "")
-        contact_list = Guia.objects.filter(id_est = 3,  telefono_guia__estado = False,
+        contact_list = Guia.objects.filter(
+            id_est = 3,  telefono_guia__estado = False,
             producto__producto__contains = producto,
             mot__motivo__icontains = reason,
             fecha_recepcion__icontains = fecha, 
@@ -148,9 +149,9 @@ class CallListView(CallPermisoMixin, View):
             Q(id_ciu__ciudad__icontains = seudo)|
             Q(d_i__icontains =seudo)|
             Q(id_guia__icontains = seudo)
-        #).order_by("-motivo_call"
-        ).exclude(mot = 1).exclude(mot = 22).exclude(
-            mot = 21).order_by('-fecha')
+
+        ).exclude(mot = 1).exclude(mot = 22).exclude(mot = 21).order_by('-fecha')
+
         paginator = Paginator(contact_list, 5) # Show 25 contacts per page.
 
         page_number = request.GET.get('page')
@@ -163,14 +164,19 @@ class CallListView(CallPermisoMixin, View):
             user=self.request.user, 
             fecha_call__contains=datetime.today().date()).count
         
-        filtro = courrier.objects.all()
+        filtro = courrier.objects.all().annotate(
+            num_guias = Count('user_guia', filter=Q(user_guia__mot = 7))
+            ).annotate(no_existe = Count('user_guia', filter=Q(user_guia__mot = 6))
+            ).order_by('-num_guias','-no_existe')
+        fils =  courrier.objects.annotate(number_of_entries=Count('user_guia'))
         page_obj = paginator.get_page(page_number)
         data = {
             'page_obj': page_obj,
             'count': cantidad,
             'counts': count_tel,
             'filtro': filtro,
-            'count_total': contact_list.count()
+            'count_total': contact_list.count(),
+            'plan': fils
         }
         return render(request, self.template_name, data)
 
@@ -180,25 +186,28 @@ class AuditoriaListView(CallPermisoMixin, View):
     model = Guia
 
     def get(self, request, **kwargs):
-        
+        mensajero = request.GET.get("id_mensajero", "")
         ciudad = request.GET.get("ciudad", "")
         kword = request.GET.get("kword", "")
         fecha = request.GET.get("date_start", "")
         contact_list = Guia.objects.filter(mot = 21, estado=1).filter(
             fecha_recepcion__icontains = fecha,
-            id_ciu__ciudad__icontains = ciudad  
+            id_ciu__ciudad__icontains = ciudad,
+            mensajero__courrier__contains = mensajero
         ).filter(
-            Q(mensajero__courrier__icontains =kword)|
             Q(seudo__seudo_bd__icontains=kword)
         )
 
         paginator = Paginator(contact_list, 3) # Show 25 contacts per page.
+
+        filtro = courrier.objects.all()
 
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         data = {
             'page_obj': page_obj,
             'count': Guia.objects.filter(estado=0, user=self.request.user, fecha_recepcion__contains=datetime.today().date()).count,
+            'filtro': filtro
         }
             
         return render(request, self.template_name, data)

@@ -28,6 +28,17 @@
                       </select>
                 </label>
             </div>
+
+            <div class="cell small-2">
+                <label>Mensajero
+                    <select name="id_mensajero" id="id_mensajero">
+                    <option value="">e-i-------------</option>
+                    {% for e in filtro %}
+                    <option value="{{e.courrier}}">{{e.num_guias}}-{{e.no_existe}}-{{e.courrier}}-{{e.id_ciu.departamento}}</option>
+                    {% endfor %}
+                    </select>
+                </label>
+            </div>
              
             <div class="cell small-2">
                 <label>Por fecha
@@ -47,17 +58,7 @@
                 </label>
             </div>
             
-            <div class="cell small-2">
-                <label>Mensajero
-                    <select name="id_mensajero" id="id_mensajero">
-                    <option value="">----------------</option>
-                    {% for e in filtro %}
-                    <option value="{{e.courrier}}">{{e.courrier}}</option>
-                    {% endfor %}
-                    </select>
-                </label>
-            </div>
-
+            
             <div class="cell small-2">
                 <label>Buscar
                     <button class="cell medium-4 button success">Filtrar</button>
@@ -140,7 +141,7 @@
      </div>
      
      <div class="cell small-2">
-        Total: {{count_total}}
+        <span class="label">  Total:</span> {{count_total}}
     </div>
     
     </div>
