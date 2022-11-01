@@ -7,12 +7,12 @@
 <form  method="GET">{% csrf_token %}
     <div class="grid-container">
         <div class="grid-x grid-margin-x">
-            <div class="cell large-auto">
-                <label>Seudo, Ciudad
+            <div class="cell small-2">
+                <label>Seudo
                     <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Seudocodigo o Ciudad ...">
                 </label>
             </div>
-            <div class="cell large-auto  ">
+            <div class="cell small-2  ">
                 
                 <label>Producto
                     <select name="producto" id="producto" class="cell medium-4">
@@ -27,17 +27,17 @@
                         <option value="RETAIL">RETAIL</option>
                       </select>
                 </label>
-              </div>
+            </div>
              
-            <div class="cell large-auto">
+            <div class="cell small-2">
                 <label>Por fecha
                     <input type="date" name="date_start" id="date_start" class="cell medium-4">
                 </label>
             </div>
         
 
-        <div class="grid-x grid-margin-x">
-            <div class="cell large-auto">
+        
+            <div class="cell small-2">
                 <label>Motivo
                     <select name="reason" id="reason " class="cell medium-4">
                         <option value="" selected></option>
@@ -49,23 +49,23 @@
                 </label>
             </div>
             
-            <div class="cell large-auto">
-        <label>Mensajero
-            <select name="id_mensajero" id="id_mensajero">
-                {% for e in filtro %}
-                <option value="{{e.courrier}}">{{e.courrier}}</option>
-                {% endfor %}
-            </select>
-        </label>
+            <div class="cell small-2">
+                <label>Mensajero
+                    <select name="id_mensajero" id="id_mensajero">
+                    {% for e in filtro %}
+                    <option value="{{e.courrier}}">{{e.courrier}}</option>
+                    {% endfor %}
+                    </select>
+                </label>
             </div>
 
-            <div class="cell large-auto">
+            <div class="cell small-2">
                 <label>Buscar
                     <button class="cell medium-4 button success">Filtrar</button>
                 </label>
             </div>
         </div>
-        </div>
+       
     </div>
 </form>
     <h5 class="cell" style="text-align: center;">Gestion: {{count}} - {{counts}}</h5>
@@ -94,9 +94,9 @@
                     <td width="20"><a href="{% url 'call_app:call-update' e.seudo %}" > <span class="label primary">{{e.seudo}}</span></a></td> 
                     <td>{{e.fecha|date:"M/d"}}</td>
                     <td>{{e.fecha_recepcion|date:"M/d"}}</td>
-                    <td>{{e.tel}}</td> 
+                    <td style="font-size: 13px; white-space:nowrap ;">{{e.tel}}</td> 
                     <td>{{e.seudo.franquicia}}</td>
-                    <td>{{e.cod_vis}}</td>
+                    <td style="font-size: 13px; white-space:nowrap ;">{{e.cod_vis}}</td>
                     <td>{{e.guia_d_g.marca}}</td>
                     <td>{{e.d_i}}</td> 
                     <td>{{e.producto}}</td> 
