@@ -49,19 +49,18 @@
                 </label>
             </div>
             
-            <!-- <select name="id_mensajero" id="id_mensajero">
-                {% for e in mensajero %}
-                <option value="{{e.id}}">{{e}}</option>
+            <div class="cell large-auto">
+        <label>Mensajero
+            <select name="id_mensajero" id="id_mensajero">
+                {% for e in filtro %}
+                <option value="{{e.courrier}}">{{e.courrier}}</option>
                 {% endfor %}
-              </select> -->
-              <div class="cell large-auto">
-                <label>Mensajero
-                    <input class="input-group-field" type="text" id="id" name="id" placeholder="Mensajero ...">
-                </label>
+            </select>
+        </label>
             </div>
 
             <div class="cell large-auto">
-                <label>Guardar
+                <label>Buscar
                     <button class="cell medium-4 button success">Filtrar</button>
                 </label>
             </div>

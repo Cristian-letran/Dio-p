@@ -12,6 +12,7 @@ from . models import Telefono
 from django.http import HttpResponse, HttpResponseRedirect
 from applications.call.models import Telefono
 from applications.datos_g.models import datos_g
+from applications.courrier.models import courrier
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, permission_required
 from django.utils.timezone import datetime 
@@ -122,6 +123,8 @@ class CacListView(CallPermisoMixin, ListView):
         
         return lista
 
+
+
 class CallListView(CallPermisoMixin, View):
     template_name = "call/call_gestion.html"
     context_object_name = 'call'
@@ -129,7 +132,7 @@ class CallListView(CallPermisoMixin, View):
     paginate_by = 3
 
     def get(self, request, *args, **kwargs):
-        mensajero = request.GET.get("id")
+        mensajero = request.GET.get("id_mensajero", "")
         producto = request.GET.get("producto", "")
         reason = request.GET.get("reason", "")
         seudo = request.GET.get("kword", "")
@@ -137,7 +140,8 @@ class CallListView(CallPermisoMixin, View):
         contact_list = Guia.objects.filter(id_est = 3,  telefono_guia__estado = False,
             producto__producto__contains = producto,
             mot__motivo__icontains = reason,
-            fecha_recepcion__icontains = fecha
+            fecha_recepcion__icontains = fecha, 
+            mensajero__courrier__contains = mensajero
             
         ).filter(
             Q(seudo__seudo_bd__icontains=seudo)|
@@ -159,11 +163,13 @@ class CallListView(CallPermisoMixin, View):
             user=self.request.user, 
             fecha_call__contains=datetime.today().date()).count
         
+        filtro = courrier.objects.all()
         page_obj = paginator.get_page(page_number)
         data = {
             'page_obj': page_obj,
             'count': cantidad,
-            'counts': count_tel
+            'counts': count_tel,
+            'filtro': filtro
         }
         return render(request, self.template_name, data)
 
