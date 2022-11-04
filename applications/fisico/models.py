@@ -84,6 +84,12 @@ class Bolsa(models.Model):
         verbose_name='Fecha gestion'
         )
 
+    cod_ins = models.ForeignKey(
+        Est_clie,
+        on_delete=models.CASCADE, 
+        blank = True, null= True
+    )
+
     @property
     def can_vi(self):
         return str(self.cantidad_vi) 
@@ -180,11 +186,7 @@ class Fisico(Fisi_pa, Bolsa):
         
     estado_destino = models.BooleanField(default=False)
     
-    cod_ins = models.ForeignKey(
-        Est_clie,
-        on_delete=models.CASCADE, 
-        blank = True, null= True
-    )
+    
 #
     # estado_zona = models.ForeignKey(
     #     Zona, 
@@ -361,8 +363,15 @@ class Cobertura(models.Model):
     @property
     def estados(self):
         return str(self.estado.id)
+
+    motivor = "03"
+    co = 14
+    @property
+    def cod_cliente(self):
         
-    motivor = 381
+        return (str(self.motivor) + str(self.estado.id) + str(self.co))
+        
+    
     def __str__(self):
         return str(self.bolsa)
 
@@ -370,9 +379,12 @@ class Cobertura(models.Model):
         self.bolsa.id_est_id  = self.estados
         self.bolsa.mot_id = self.bolsa.mot_id = 3
         self.pdf_cobertura = self.pdf 
+        self.cod_ins = str(self.cod_cliente)
+        
         self.bolsa.fecha_visita = datetime.datetime.now()
         self.bolsa.fecha_recepcion = datetime.datetime.now()
         print(self.pdf)
+        print(self.cod_cliente)
         
         self.bolsa.save()
 
