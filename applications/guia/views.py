@@ -212,19 +212,19 @@ def export(request):
         
         writer.writerow(guia)
 
-    for paquetes in Guia.objects.filter(
-        id_est = 2, mot = 3, producto = 3
-        ).values_list(
-        'guia_d_g__oficina', 'guia_d_g__oficina__nom_ofi', #1
-        'direccion', 'id_ciu__ciudad', #2
-        'tel', 'bolsapaquete__seudo__cc', #3
-        'bolsapaquete__seudo__nombre', 'bolsapaquete__seudo', #4
-        'bolsa', 'proceso__tipo_e', #5
-        'seudo__producto__homologacion', 'id_guia', #6
-        ###
+    # for paquetes in Guia.objects.filter(
+    #     id_est = 2, mot = 3, producto = 3
+    #     ).values_list(
+    #     'guia_d_g__oficina', 'guia_d_g__oficina__nom_ofi', #1
+    #     'direccion', 'id_ciu__ciudad', #2
+    #     'tel', 'bolsapaquete__seudo__cc', #3
+    #     'bolsapaquete__seudo__nombre', 'bolsapaquete__seudo', #4
+    #     'bolsa', 'proceso__tipo_e', #5
+    #     'seudo__producto__homologacion', 'id_guia', #6
+    #     ###
        
-        ):
-        writer.writerow(paquetes)
+    #     ):
+    #     writer.writerow(paquetes)
         
     return response
 
