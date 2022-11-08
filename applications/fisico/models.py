@@ -379,8 +379,7 @@ class Cobertura(models.Model):
         self.bolsa.id_est_id  = self.estados
         self.bolsa.mot_id = self.bolsa.mot_id = 3
         self.pdf_cobertura = self.pdf 
-        self.bolsa.cod_ins.id = str(self.cod_cliente)
-        
+        self.bolsa.cod_ins_id = str(self.cod_cliente)
         
         self.bolsa.fecha_visita = datetime.datetime.now()
         self.bolsa.fecha_recepcion = datetime.datetime.now()
