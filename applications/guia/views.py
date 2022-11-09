@@ -198,7 +198,7 @@ def export(request):
         ])
 
     for guia in Guia.objects.filter(
-        id_est = 2, mot = 3, producto = 3
+        id_est = 2, mot = 3, 
         ).values_list(
         'guia_d_g__oficina', 'guia_d_g__oficina__nom_ofi', #1
         'direccion', 'id_ciu__ciudad', #2
@@ -208,6 +208,7 @@ def export(request):
         'seudo__producto__homologacion', 'id_guia', #6
         ###
        
+        ).exclude(guia_d_g__oficina = 0
         ):
         
         writer.writerow(guia)
@@ -243,7 +244,7 @@ def export_address(request):
         'GUIA'
         ])
 
-    for guia in Guia.objects.filter(id_est = 2, mot = 3).values_list(
+    for guia in Guia.objects.filter(id_est = 2, mot = 3, guia_d_g__oficina = 0).values_list(
         
         'id_ciu__id', 'id_ciu__ciudad', #1
         'direccion', 'tel', #2
@@ -253,8 +254,7 @@ def export_address(request):
         'proceso__tipo_e', 'seudo__producto__homologacion',#6
         'id_guia',
         
-
-        ).exclude(producto = 3):
+        ):
         
         writer.writerow(guia)
         
