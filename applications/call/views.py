@@ -141,7 +141,7 @@ class CallListView(CallPermisoMixin, View):
             producto__producto__contains = producto,
             mot__motivo__icontains = reason,
             fecha_recepcion__icontains = fecha, 
-            mensajero__courrier = mensajero
+            mensajero__courrier__icontains = mensajero
             
         ).filter(
             Q(seudo__seudo_bd__icontains=seudo)|
