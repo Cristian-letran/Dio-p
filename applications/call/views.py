@@ -5,7 +5,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic import ListView, CreateView, View
 from applications.guia.models import Guia
 from django.urls import reverse_lazy
-from .forms import CallfisicoForm, CallUpdateForm, CacUpdateForm, CallGuiaUpdateForm, TelefonoMotivoForm
+from .forms import CallfisicoForm, CallUpdateForm, CacUpdateForm, CallGuiaUpdateForm, TelefonoMotivoForm, GestionForm
 from django.db.models import Q
 from applications.users.mixins import CallPermisoMixin
 from . models import Telefono
@@ -16,6 +16,7 @@ from applications.courrier.models import courrier
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, permission_required
 from django.utils.timezone import datetime 
+from django.db.models import Count
 import datetime
 from datetime import datetime, date
 
@@ -122,15 +123,14 @@ class CacListView(CallPermisoMixin, ListView):
         ).exclude(mot = 1).exclude(mot = 22).exclude(mot = 21).exclude(mot = 20).exclude(mot=19)
         
         return lista
-
-
-from django.db.models import Count
+from datetime import datetime, date
 class CallListView(CallPermisoMixin, View):
     template_name = "call/call_gestion.html"
     context_object_name = 'call'
-    model = Guia
-    paginate_by = 3
-
+    initial = {'key':'value'}
+    form_class = GestionForm
+    
+    
     def get(self, request, *args, **kwargs):
         mensajero = request.GET.get("id_mensajero", "")
         producto = request.GET.get("producto", "")
@@ -142,7 +142,7 @@ class CallListView(CallPermisoMixin, View):
             producto__producto__contains = producto,
             mot__motivo__icontains = reason,
             fecha_recepcion__icontains = fecha, 
-            mensajero__courrier__contains = mensajero
+            mensajero__courrier = mensajero
             
         ).filter(
             Q(seudo__seudo_bd__icontains=seudo)|
@@ -176,7 +176,7 @@ class CallListView(CallPermisoMixin, View):
             'counts': count_tel,
             'filtro': filtro,
             'count_total': contact_list.count(),
-            'plan': fils
+            'plan': fils,
         }
         return render(request, self.template_name, data)
 
