@@ -137,7 +137,7 @@ class CallListView(CallPermisoMixin, View):
         seudo = request.GET.get("kword", "")
         fecha = request.GET.get("date_start", "")
         contact_list = Guia.objects.filter(
-            id_est = 2, telefono_guia__estado = False,
+            telefono_guia__estado = False,
             producto__producto__contains = producto,
             mot__motivo__icontains = reason,
             fecha_recepcion__icontains = fecha, 
@@ -147,7 +147,8 @@ class CallListView(CallPermisoMixin, View):
             Q(seudo__seudo_bd__icontains=seudo)|
             Q(id_ciu__ciudad__icontains = seudo)|
             Q(d_i__icontains =seudo)|
-            Q(id_guia__icontains = seudo)
+            Q(id_guia__icontains = seudo)|
+            Q(id_est = 2)|Q(id_est = 3)
 
         ).exclude(mot = 1).exclude(mot = 22).exclude(mot = 21).order_by('-fecha')
 
