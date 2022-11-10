@@ -5,7 +5,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic import ListView, CreateView, View
 from applications.guia.models import Guia
 from django.urls import reverse_lazy
-from .forms import CallfisicoForm, CallUpdateForm, CacUpdateForm, CallGuiaUpdateForm, TelefonoMotivoForm, GestionForm
+from .forms import CallfisicoForm, CallUpdateForm, CacUpdateForm, CallGuiaUpdateForm, TelefonoMotivoForm
 from django.db.models import Q
 from applications.users.mixins import CallPermisoMixin
 from . models import Telefono
@@ -128,7 +128,6 @@ class CallListView(CallPermisoMixin, View):
     template_name = "call/call_gestion.html"
     context_object_name = 'call'
     initial = {'key':'value'}
-    form_class = GestionForm
     
     
     def get(self, request, *args, **kwargs):
