@@ -141,14 +141,15 @@ class CallListView(CallPermisoMixin, View):
             producto__producto__contains = producto,
             mot__motivo__icontains = reason,
             fecha_recepcion__icontains = fecha, 
-            mensajero__courrier__icontains = mensajero
+            
             
         ).filter(
             Q(seudo__seudo_bd__icontains=seudo)|
             Q(id_ciu__ciudad__icontains = seudo)|
             Q(d_i__icontains =seudo)|
             Q(id_guia__icontains = seudo)|
-            Q(id_est = 2)|Q(id_est = 3)
+            Q(id_est = 2)|Q(id_est = 3)|
+            Q(mensajero__courrier__icontains = mensajero)
 
         ).exclude(mot = 1).exclude(mot = 22).exclude(mot = 21).order_by('-fecha')
 
