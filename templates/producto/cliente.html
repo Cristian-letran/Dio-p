@@ -13,16 +13,16 @@
             </div>
         </div>
     </form>
-    {% if object_list %}
-<div class="table-scroll">
-    <table class="hover"  >
+{% if object_list %}
+<div class="table-scroll unstriped">
+    <table class="hover ">
         <thead>
             <th>Guia</th>
             <th>Bolsa</th>
             <th>Seudocodigo</th>
             <th>Cliente</th>
             <th>Domicilio</th>
-            <th>Fecha fisico</th>
+            <th>Fecha de ingreso</th>
             <th>Motivo</th>
             <th>Detalle</th>
             <th>Rastreo</th>
@@ -35,9 +35,9 @@
                 <td>{{e}}</td>
                 <td>{{e.bolsa}}</td>
                 <td>{{e.seudo}}</td>
-                <td>{{e.id_ciu}}</td>
+                <td>{{e.destinatario}}</td>
                 <td>{{e.direccion}}</td>
-                <td>{{e.fecha}}</td>
+                <td>{{e.fecha|date:"F j, Y"}}</td>
                 <td>{{e.mot}}</td>  
                 <td> 
                     <a href="{% url 'producto_app:producto-detail' e.seudo %}" class="button "><i class="fi-eye"></i></a>
