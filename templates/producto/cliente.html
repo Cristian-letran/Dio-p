@@ -22,11 +22,11 @@
             <th>Seudocodigo</th>
             <th>Cliente</th>
             <th>Domicilio</th>
-            <th>Fecha</th>
+            <th>Fecha fisico</th>
             <th>Motivo</th>
             <th>Detalle</th>
             <th>Rastreo</th>
-            <th>Pack</th>
+            
                 <!-- <th>Tracking</th> -->
         </thead>
         <tbody>
@@ -43,7 +43,6 @@
                     <a href="{% url 'producto_app:producto-detail' e.seudo %}" class="button "><i class="fi-eye"></i></a>
                 </td>
                 <td><a href="{% url 'producto_app:tracking-cliente' e %}" class="secondary button"><i class="fi-filter"></i></a></td>  
-                <td><a href="{% url 'fisico_app:paquete' e.bolsa %}" class="secondary button"><i class="fi-book-bookmark"></i></a></td>  
             </tr>
             
                 {% endfor %}
