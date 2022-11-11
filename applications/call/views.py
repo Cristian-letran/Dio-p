@@ -76,8 +76,11 @@ class CallUpdateView(CallPermisoMixin, UpdateView, ListView):
             self.objectl.mot_id = 20
             self.objectl.__guia_d_g__orimp = -12
             self.objectl.user = self.request.user   
+            if self.objectl.id_est_id == 2:
+                self.objectl.id_est_id = 3
+               
             form.save()
-           
+            
             form2.save()
             return HttpResponseRedirect(self.get_success_url())
         else:
