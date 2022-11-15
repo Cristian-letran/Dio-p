@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from applications.cliente.models import Ciudad
+from applications.cliente.models import Ciudad, Cliente
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 #
@@ -19,7 +19,6 @@ class Areas(models.Model):
 class User(AbstractBaseUser, PermissionsMixin):
     # TIPO DE USUARIOS
     
-
     CUSTODIA = '0'
     MESA = '1'
     CALL = '2'
@@ -84,6 +83,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     d_i = models.CharField(
         max_length=12,
         verbose_name="Documento de identidad")
+
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, blank=True, null=True)
 
     is_staff = models.BooleanField(
         default=True

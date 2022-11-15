@@ -38,11 +38,11 @@ urlpatterns = [
         name='user-verification',
     ),
 
-    # path(
-    #     'user-verification/', 
-    #     views.CargoListview.as_view(),
-    #     name='user-verification',
-    # ),
+    path(
+        'user-verification/', 
+        views.CargoListview.as_view(),
+        name='user-verification',
+    ),
     
     
 ]

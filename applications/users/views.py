@@ -139,4 +139,6 @@ class CargoListview(ListView):
     model = User
     paginate_by = 100  # if pagination is desired
 
-    
+class PanelListView(ListView):
+    template_name = "panel.html"
+    model = User

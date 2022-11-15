@@ -221,6 +221,10 @@ class datos_g (models.Model):
     @property
     def union(self):
         return str(self.cantidad) + str(self.motivo.id) + str(self.id_est.id) + str(self.cod_vi)
+    
+    @property
+    def ofi(self):
+        return self.oficina.direccion
 
     def save(self, *args, **kwargs, ):
         # self.seudo.bolsa  = self.vars
@@ -240,11 +244,6 @@ class datos_g (models.Model):
         self.seudo_dg.codigo = self.union
         self.seudo_dg.fecha_visita = datetime.datetime.now()
         # self.seudo_dg.user_id = self.usuariod
-
-        if self.seudo_dg.save == None:
-            None
-        else:
-            self.seudo_dg.save()
 
         super(datos_g, self).save(*args, **kwargs)
 

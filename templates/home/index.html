@@ -5,15 +5,29 @@
 <div class="grid-x grid-margin-x">
     <div class="cell small-4">
         <div class="callout secondary">
-            <h5>Hola  Bienvenido: {{user.nombres}}  </h5>
+          
+          {% if user.cliente.id_clie == "1" %}
+  
+    <img src="{% static 'img/Davivienda-Logo.png' %}" width="250" height="250">
+ 
+  {% endif %}
+          
+
+            <h5>Hola  Bienvenido: {{request.user.nombres}} </h5>
             <p>Soy Dio <br> Estoy trabajando para ayudarte de la mejor manera posible</p>
             
           </div>
     </div>
     <div class="cell auto">
-        <img src="{% static 'img/pngwing.com.png' %}" width="400" height="400">
+        <img src="{% static 'img/pngwing.com.png' %}" width="280" height="280">
+        
     </div>
+    
+    
+    
   </div>
+  
+
 
 
 {% endblock panel-content %}

@@ -39,12 +39,14 @@
                     </select>
                 </label>
             </div>
-             
+            
             <div class="cell small-2">
                 <label>Por fecha
-                    <input type="date" name="date_start" id="date_start" class="cell medium-4">
+                    <input type="date" name="date_start" id="date_start">
                 </label>
             </div>
+            
+            
         
             <div class="cell small-2">
                 <label>Motivo
@@ -105,7 +107,7 @@
                     <td>{{e.id_ciu.ciudad}}</td>  
                     
                     <td>
-                        <a href="{% url 'call_app:call-update-estado-call' e.seudo %}" class="button secondary"><i class="fi-page-search"></i></a>
+                        <a href="{% url 'call_app:call-update-estado-call' e.seudo %}" class="button secondary button small"><i class="fi-page-search"></i></a>
                     </td>   
                     <!-- <td>
                         <a href="{% url 'call_app:call-update' e.seudo %}" class="button"><i class="fi-page-search"></i></a>

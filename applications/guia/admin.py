@@ -40,7 +40,7 @@ class guiaAdmin(ImportExportModelAdmin, SimpleHistoryAdmin, RelatedFieldAdmin):
     ]
     search_fields = ('id_guia', 'seudo__seudo_bd', 'mot__motivo', 'd_i', 'bolsa')
     list_display = (
-        'id_guia','fecha_visita', 'image_mesa__image', 'cod_ins',
+        'id_guia','fecha_visita', 'image_mesa__image',
         'mot__motivo', 'd_i', 'seudo__telefono', 
         'fecha_recepcion', 'seudo', 
         'direccion', 'id_ciu', 'fecha', 
@@ -86,8 +86,7 @@ class ImgAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class PdfCobertura(admin.ModelAdmin):
     list_display = ('id', 'pdf')
 
-
-    
+  
 admin.site.register(Servicio)
 admin.site.register(LogEntry, MoniterLog)
 
