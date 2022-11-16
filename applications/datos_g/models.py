@@ -244,7 +244,7 @@ class datos_g (models.Model):
         self.seudo_dg.codigo = self.union
         self.seudo_dg.fecha_visita = datetime.datetime.now()
         # self.seudo_dg.user_id = self.usuariod
-
+        self.seudo_dg.save() 
         super(datos_g, self).save(*args, **kwargs)
 
 class Cubrimiento(models.Model):
