@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import authenticate
 #
 from .models import User
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 class UserRegisterForm(forms.ModelForm):
 
@@ -63,6 +65,7 @@ class LoginForm(forms.Form):
             }
         )
     )
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
 
     def clean(self):
         cleaned_data = super(LoginForm, self).clean()

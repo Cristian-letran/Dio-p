@@ -28,7 +28,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
-    # 'captcha',
+    'captcha',
     'material' ,
     'material.admin' ,
     'simple_history',
@@ -173,4 +173,6 @@ MULTI_CAPTCHA_ADMIN  = {
 }
 
 
-
+RECAPTCHA_PUBLIC_KEY = '6LehY7EjAAAAAPcDEXz3dTltdh6RjvTVGtpCmlKs'
+RECAPTCHA_PRIVATE_KEY = '6LehY7EjAAAAABMbl_CnXdgQp9IK4oMWJj8lyKrD'
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

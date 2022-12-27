@@ -33,14 +33,13 @@
             </div>
     
           </div>
-          <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdRUq8jAAAAAI5xikMKcyHwmIwOn9lyLXj1r8p-"></script>
-<script>
-grecaptcha.enterprise.ready(function() {
-    grecaptcha.enterprise.execute('6LdRUq8jAAAAAI5xikMKcyHwmIwOn9lyLXj1r8p-', {action: 'login'}).then(function(token) {
-       ...
-    });
-});
-</script>
+          <div class="cell medium-12">
+            
+            <div class="input-group" >
+              {{form.captcha}}
+            </div>
+    
+          </div>
           <div class="cell medium-12">
             <div class="input-group">
             <button type="submit" class="sign-in-form-button">Ingresar</button>
