@@ -503,7 +503,27 @@ h2{
   }
 }
 
+.bodylogin {
+  
+  background-image: url("/static/img/wallpaperbetter%20-%20copia.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  
+}
 
+.formleft{
+  margin-left: 950px;
+  padding-top: 10px;
+  margin-right: auto;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .formmov {
+    display: fixed;
+  }
+}
 
 
   

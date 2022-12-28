@@ -4,67 +4,125 @@
 
 {% block content %}
 
-<div class="grid-x">
-  <div class="cell"><img  data-interchange= "[{% static 'img/18ccb2f9-b2d8-463a-9d6d-94e18bf9a3b9.jpg' %}, small], [{% static 'img/moto.jpg' %}, medium], [{% static 'img/wallpaperbetter - copia.jpg' %}, large]">
-    <div class="centrado">
-      <div class="grid-y medium-grid-frame align-center">
-        <div class="grid-x grid-padding-x align-center">  
-        <form class="cell medium-4 grid-x grid-margin-x" 
-          method="POST" 
-          style="border: 0px solid #424242; padding: 1.7em; border-radius: 23px;">
-        {% csrf_token %}
-        <img src="{% static 'img/DIO-removebg-preview.png' %}" >
-        
-        
-          <h4  class="cell" style="text-align: center;">Bienvenido </h4>
-          <div class="cell medium-12">
-            
-            <div class="input-group">
-              <span class="input-group-label"><i class="fi-mail"></i></span>
-              {{form.username}}
-            </div>
-           
-          </div>
-          <div class="cell medium-12">
-            
-            <div class="input-group">
-              <span class="input-group-label"><i class="fi-lock"></i></span>
-              {{form.password}}
-            </div>
+<body class="bodylogin">
+  <div class="grid-x grid-padding-x small-up-0 medium-up- large-up-4 ">
     
-          </div>
-          <div class="cell medium-12">
-            
-            <div class="input-group" >
-              {{form.captcha}}
-            </div>
-    
-          </div>
-          <div class="cell medium-12">
-            <div class="input-group">
-            <button type="submit" class="sign-in-form-button">Ingresar</button>
-          </div>
-          </div>
-          <br><br>
-          <div class="cell medium-12">
-            <div class="input-group">
-            
-              {% if form.errors %}
-              <div class="callout alert">
-                Los datos de usuario no son correctos!
+    <div class="cell  ">
+      <div >
+        <form  method="POST" style="border: 0px solid #424242; height: 750px; padding: 1.7em; border-radius: 23px; background-color: rgba(165, 213, 212, 0.5);">
+          {% csrf_token %}
+          <img src="{% static 'img/DIO-removebg-preview.png' %}" >
+          
+          
+            <h4  class="cell" style="text-align: center;">Bienvenido </h4>
+            <div class="cell medium-12">
+              
+              <div class="input-group">
+                <span class="input-group-label"><i class="fi-mail"></i></span>
+                {{form.username}}
               </div>
-              {% endif %}
+             
             </div>
-          </div>
-        </form>
-       
-        </div> 
-        
-      </div>
+            <div class="cell medium-12">
+              
+              <div class="input-group">
+                <span class="input-group-label"><i class="fi-lock"></i></span>
+                {{form.password}}
+              </div>
+      
+            </div>
+            <div class="cell medium-12">
+              
+              <div class="input-group" >
+                {{form.captcha}}
+              </div>
+      
+            </div>
+            <div class="cell medium-12">
+              <div class="input-group">
+              <button type="submit" class="sign-in-form-button">Ingresar</button>
+            </div>
+            </div>
+            <br><br>
+            <div class="cell medium-12">
+              <div class="input-group">
+              
+                {% if form.errors %}
+                <div class="callout alert">
+                  Los datos de usuario no son correctos!
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </form>
+        </div>
     </div>
   </div>
-    </div>
-  </div>
+  <!-- <div class="grid-x">
     
+      
+        <div class="grid-y medium-grid-frame align-center">
+          <div class="grid-x grid-padding-x align-center">  
+          <form class="cell medium-4 grid-x grid-margin-x" 
+            method="POST" 
+            style="border: 0px solid #424242; padding: 1.7em; border-radius: 23px;">
+          {% csrf_token %}
+          <img src="{% static 'img/DIO-removebg-preview.png' %}" >
+          
+          
+            <h4  class="cell" style="text-align: center;">Bienvenido </h4>
+            <div class="cell medium-12">
+              
+              <div class="input-group">
+                <span class="input-group-label"><i class="fi-mail"></i></span>
+                {{form.username}}
+              </div>
+             
+            </div>
+            <div class="cell medium-12">
+              
+              <div class="input-group">
+                <span class="input-group-label"><i class="fi-lock"></i></span>
+                {{form.password}}
+              </div>
+      
+            </div>
+            <div class="cell medium-12">
+              
+              <div class="input-group" >
+                {{form.captcha}}
+              </div>
+      
+            </div>
+            <div class="cell medium-12">
+              <div class="input-group">
+              <button type="submit" class="sign-in-form-button">Ingresar</button>
+            </div>
+            </div>
+            <br><br>
+            <div class="cell medium-12">
+              <div class="input-group">
+              
+                {% if form.errors %}
+                <div class="callout alert">
+                  Los datos de usuario no son correctos!
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </form>
+         
+          </div> 
+          
+        </div>
+      
+    </div>
+      </div>
+    </div> -->
+      
+  
+</body>
+
+
 
 {% endblock content %}
