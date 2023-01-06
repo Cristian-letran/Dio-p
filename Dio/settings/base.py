@@ -28,6 +28,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
+    
     'captcha',
     'material' ,
     'material.admin' ,
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'preventconcurrentlogins',
+    
     
     #apps
     'applications.argumento',
@@ -101,6 +104,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
+    'preventconcurrentlogins.middleware.PreventConcurrentLoginsMiddleware',
+    
    
 ]
 #SESSION_COOKIE_AGE = 5 # 600 segundos = 10 minutos
@@ -172,7 +177,7 @@ MULTI_CAPTCHA_ADMIN  = {
      'motor' : 'recaptcha2' , 
 }
 
-
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 RECAPTCHA_PUBLIC_KEY = '6LehY7EjAAAAAPcDEXz3dTltdh6RjvTVGtpCmlKs'
 RECAPTCHA_PRIVATE_KEY = '6LehY7EjAAAAABMbl_CnXdgQp9IK4oMWJj8lyKrD'
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
