@@ -45,4 +45,8 @@ class LineaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class LineaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('infraccion',)
 
-admin.site.register(Tipo_vehiculo)
+@admin.register(Tipo_vehiculo)
+class Tipo_vehiculoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('tipo',)
+
+

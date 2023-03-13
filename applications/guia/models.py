@@ -158,10 +158,10 @@ class Guia(Fisico, TimeStampedModel):
     @property
     def userbd(self):
       return str(self.user)
-
+    
     def save(self, *args, **kwargs):
         self.seudo.sucursal = self.userbd
-        self.codigo = self.concatenar   
+        self.codigo = self.concatenar                                           
         self.seudo.fisicos = self.seudo.fisicos = 1
         # self.mot.id = 20
         # print(self.mot.id)
@@ -263,9 +263,9 @@ class Guiap(models.Model):#Guia
     email = models.EmailField()
     domicilio = models.TextField()
     
+class LogBusqueda(models.Model):
+    id_log = models.ForeignKey(Guia, on_delete=models.CASCADE)
 
-
-    
     
 # @receiver(post_save, sender=Rastreo)
 # def save_profile(sender, instance, **kwargs):

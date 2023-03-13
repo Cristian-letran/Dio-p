@@ -1,0 +1,10 @@
+{% extends "users/base_users.html" %} {% load static %} {% block panel-content %}
+
+<p>Crear usuario</p>
+
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Guardar">
+</form>
+
+{% endblock panel-content %}

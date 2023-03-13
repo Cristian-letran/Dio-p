@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'applications.ruta',
     'applications.pqr',
     'applications.tracking',
+    'applications.daviplata',
     #'applications.zona',
 
 ]

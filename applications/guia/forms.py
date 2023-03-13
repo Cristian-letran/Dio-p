@@ -1,17 +1,22 @@
 from django import forms
-from .models import Guia
+from .models import Guia, LogBusqueda
+from applications.base_cliente.models import Bd_clie
 from .models import img
 from applications.fisico.models import Fisico
 
 class guiafisicoForm(forms.ModelForm):
 
+    def __init__(self, fisicos=2, **kwargs):
+        super(guiafisicoForm, self).__init__(**kwargs)
+        if fisicos:
+            self.fields['seudo'].queryset = Bd_clie.objects.filter(fisicos =2)
+
     class Meta:
         model = Guia
         fields = (
-            'id_guia',
             'bolsa',
             'seudo',   
-            'user',   
+              
         )
 
         widgets = {
@@ -19,8 +24,8 @@ class guiafisicoForm(forms.ModelForm):
                 attrs = {
                     'placeholder': 'Codigo de barras Bolsa', 'autofocus': 'autofocus',
                     'class': 'input-group-field',
-                    'maxlength' : 10,
-                    'minlength' : 7
+                    # 'maxlength' : 10,
+                    # 'minlength' : 7
 
                 }
             ),
@@ -29,28 +34,27 @@ class guiafisicoForm(forms.ModelForm):
                 attrs = {
                     'placeholder': 'Codigo se barrras Seudo...',
                     'class': 'input-group-field',
-                    'maxlength' : 22,
-                    'minlength' : 22
+                    #'maxlength' : 22,
+                    #'minlength' : 22
                     
                 }
             ),
 
         }
-    def clean_Bolsa(self):
-        bolsa = self.cleaned_data['bolsa']
-        if len(bolsa) < 5:
-            raise forms.ValidationError('Ingrese codigo de barras correcto')
+    # def clean_Bolsa(self):
+    #     bolsa = self.cleaned_data['bolsa']
+    #     if len(bolsa) < 5:
+    #         raise forms.ValidationError('Ingrese codigo de barras correcto')
 
-        return bolsa
+    #     return bolsa
+    
+    # def clean_Seudo(self):
+    #     seudo = self.cleaned_data['seudo']
+    #     if (seudo) == 2229742839211278919978:
+    #         raise forms.ValidationError('Ingrese un codigo de barras correcto')
 
-        
-    def clean_Seudo(self):
-        Seudo = self.cleaned_data['Seudo']
-        if len(Seudo) < 22:
-            raise forms.ValidationError('Ingrese un codigo de barras correcto')
-
-        return Seudo
-
+    #     return seudo
+# 
 class ImgForm(forms.ModelForm):
     
     class Meta:
@@ -69,6 +73,15 @@ class UpdateCourrierForm(forms.ModelForm):
         model = Fisico
         fields = (
             'mot',
+            
+        )
+
+class UserLogCreateForm(forms.ModelForm):
+    
+    class Meta:
+        model = LogBusqueda
+        fields = (
+            'id_log',
             
         )
     

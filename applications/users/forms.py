@@ -5,6 +5,41 @@ from .models import User
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
 
+class UserCreateForm(forms.ModelForm):
+
+    password1 = forms.CharField(
+        label='Contraseña',
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Contraseña'
+            }
+        )
+    )
+    password2 = forms.CharField(
+        label='Contraseña',
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Repetir Contraseña'
+            }
+        )
+    )
+
+    class Meta:
+        model = User
+        fields = (
+            'nombres',
+            'apellidos',   
+            'd_i',
+            'username',
+        )
+
+    def clean_password2(self):
+        if self.cleaned_data['password1'] != self.cleaned_data['password2']:
+            self.add_error('password2', 'Las contraseñas no son iguales')
+        
+
 class UserRegisterForm(forms.ModelForm):
 
     password1 = forms.CharField(
@@ -121,3 +156,40 @@ class VerificationForm(forms.Form):
                 raise forms.ValidationError('el codigo es incorrecto')
         else:
             raise forms.ValidationError('el codigo es incorrecto')
+        
+
+class UserUpdateForm(forms.ModelForm):
+
+    password1 = forms.CharField(
+        label='Contraseña',
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Contraseña'
+            }
+        )
+    )
+    password2 = forms.CharField(
+        label='Contraseña',
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Repetir Contraseña'
+            }
+        )
+    )
+
+    class Meta:
+        model = User
+        fields = (
+            'username', 
+            'nombres', 
+            'apellidos', 
+            'd_i',
+            
+        )
+
+
+    def clean_password2(self):
+        if self.cleaned_data['password1'] != self.cleaned_data['password2']:
+            self.add_error('password2', 'Las contraseñas no son iguales')

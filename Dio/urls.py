@@ -38,7 +38,7 @@ urlpatterns = [
     re_path('', include('applications.base_cliente.urls')),
     re_path('', include('applications.pqr.urls')),
     re_path('', include('applications.courrier.urls')),
+    re_path('', include('applications.daviplata.urls')),
     # re_path('', include('applications.zona.urls')),
-    
     
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

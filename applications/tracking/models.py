@@ -42,6 +42,8 @@ class Rastreo(models.Model):
         blank=True,
         null=True)
     
+    seudo = models.CharField(max_length=30)
+    
     def save(self, *args, **kwargs):
         if self.mensajero == None:
             self.mensajero = "No asignado"

@@ -1,0 +1,336 @@
+{% extends "daviplata/base_daviplata.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<!-- <form method="post">{% csrf_token %}
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Codigo total
+            {{form.codigo_total}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Nombre_establecimiento
+            {{form.nombre_establecimiento}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+            <label>Red
+              {{form.red}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Codigo Dian
+              {{form.codigo_dian}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Direccin base
+              {{form.direccion_base}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>REFERENCIAS DETALLES ADICIONALES BASE
+              {{form.rdab}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>DIRECCIÓN COMPLETA BASE
+              {{form.direccion_c_b}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Departamento
+              {{form.departamento}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Municipio
+              {{form.municipio}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Fecha de encuesta
+                <input type="date" id="fecha_encuesta" name="fecha_encuesta" placeholder=".medium-6.cell">
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Visita efectiva
+                {{form.visita_efectiva}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Tipo no efectiva
+                {{form.tipo_no_efectiva}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Otro especificado
+                {{form.otro_especificado}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>¿PDV permite realizar la visita?
+                {{form.pdv}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Observacion
+                {{form.obervacion}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Dirección Actualizada
+                {{form.direccion_actualizada}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Detalle Dir actualizada
+                {{form.detalle_direccion}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Detalle Dir actualizada
+                {{form.direccion_completo}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Visita efectiva
+                {{form.coincide_direccion}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Nombre del establecimiento actualizado
+                {{form.mobre_e_a}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Visita efectiva
+                {{form.nombre_coincide}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Nombre de quien atendió la visita
+                {{form.nombre_atiende}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>¿Es dueño?
+                {{form.es_dueño}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Numero movil
+                {{form.numero_movil}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>El establecimiento cambió de dueño en el ultimo año?
+                {{form.establecimiento_cambio}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Tipo Establecimiento
+                {{form.tipo_establecimiento}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Otro tipo de establecimiento
+                {{form.otro_d_e}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Tipo de señalizacion
+                {{form.t_senalizacion}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Otro especificado
+                {{form.otro_senalizacion}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Se logro Implementar el Rompetráfico
+                {{form.se_implementa}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Razón indicada de no implementacion
+                {{form.razon_no}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Herramientas: Impresora
+                {{form.impresora}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Herramientas: Datafono
+                {{form.datafono}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Herramientas: Lector de código de barras
+                {{form.lector}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Herramientas: Computador
+                {{form.computador}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Herramientas: Computador
+                {{form.pago_propios}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Servicio: Depósito de retiro DaviPlata
+                {{form.deposito_retiro_propio}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Servicio: Pagos de subsidios por giros
+                {{form.servicio_pagos}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Servicio: Recaudo servicios públicos y privados
+                {{form.servicio_recaudo}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Servicio: Depósitos y retiros de cuentas ahorro y corriente
+                {{form.servicio_depositos}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Conocimiento para realizar transacciones
+                {{form.transacciones}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Depósito y Retiro DAVIVIENDA
+                {{form.deposito_retiro}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Pagos de Subsidios por Giro
+                {{form.pago_subsidios}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Tips de Seguridad
+                {{form.tip_seguridad}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Sarlaft/Lavado de activos
+                {{form.Sarlaft_activos}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Recaudo servicios públicos y privados
+                {{form.recaudo_servicios}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Tips de Riesgo
+                {{form.tip_riesgo}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Fecha de la última capacitación
+                {{form.fecha_capacitacion}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>¿A quien acude?
+                {{form.acude}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Medio
+                {{form.medio}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Medio especificado
+                {{form.medio_especificado}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>SARLAFT. ¿A quien informaría?
+                {{form.sarlaft_informa}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Material
+                {{form.material}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Ninguno_especificado
+                {{form.ninguno_especificado}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Firma
+                {{form.firma}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>IMG FACHADA
+                {{form.url_img_f}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>IMG MATERIAL
+                {{form.url_img_m}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>IMG OTRA
+                {{form.url_img_o}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Latitu
+                {{form.latitud}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Longitud
+                {{form.longitud}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Visualizar
+                {{form.visualizar}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Grupo_etnico
+                {{form.grupo_etnico}}
+            </label>
+          </div>
+          <div class="medium-6 cell">
+            <label>Especificado Grupo Etnico
+                {{form.cual}}
+            </label>
+          </div>
+          
+
+      </div>
+    </div>
+    <input type="submit" value="Guardar">
+  </form> -->
+  <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Guardar">
+</form>
+
+{% endblock panel-content %}

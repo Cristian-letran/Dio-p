@@ -1,0 +1,74 @@
+{% extends "daviplata/base_daviplata.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<div class="grid-x">
+  <div class="cell medium-6 large-10">Daviplata</div>
+    <div class="cell medium-6 large-2">
+      <span class="label success">
+        <a href="{% url 'daviplata-app:daviplata-create'  %}" >Crear Daviplata</a>
+        </span>
+    </div>
+  </div>
+
+<br>
+<form class="cell small-9 input-group" method="GET"> {% csrf_token %}
+  <div class="input-group">   
+      <span class="input-group-label"><i class="fi-page-search"></i></span>
+      <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Buscar establecimiento...">
+      <div class="input-group-button">
+          <input type="submit" class="button secondary" value="Buscar">
+      </div>
+  </div>
+</form>
+
+<div class="table-scroll">
+  <table class="hover" table-hover-scale=50%>
+    <thead>
+      <tr>
+        <th >NOMBRE ESTABLECIMIENTO</th>
+        <th width="450">DIRECCION BASE</th>
+        <th >DEPARTAMENTO</th>
+        <th >MUNICIPIO</th>
+        <th >ACTUALIZAR</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for e in object_list %}
+      <tr>
+        <td>{{e.nombre_establecimiento}}</td>
+        <td>{{e.direccion_base}}</td>
+        <td>{{e.departamento}}</td>
+        <td>{{e.municipio}}</td>
+        <td><a href="{% url 'daviplata-app:daviplata-update' e %}" class="button "><i class="fi-clipboard-pencil"></i></a></td>
+      </tr>
+        {% endfor %}
+    
+     
+    </tbody>
+  </table>
+
+<nav aria-label="Pagination">
+  <ul class="pagination text-center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <li>  <a href="?page=1">&laquo; Inicio</a></li>
+        <li>   <a href="?page={{ page_obj.previous_page_number }}">Atras</a></li>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <li>  <a href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+        <li>    <a href="?page={{ page_obj.paginator.num_pages }}">Ultimo &raquo;</a></li>
+        {% endif %}
+    </span>
+  </ul>
+</nav>
+</div>
+
+{% endblock panel-content %}

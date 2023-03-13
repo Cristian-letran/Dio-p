@@ -3,7 +3,7 @@ from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 from related_admin import RelatedFieldAdmin
 from django.contrib.admin.models import ADDITION, LogEntry, CHANGE
-from . models import Servicio, Guia, img, CoberturaPdf
+from . models import Servicio, Guia, img, CoberturaPdf, LogBusqueda
 from simple_history.admin import SimpleHistoryAdmin
 from import_export import resources
 
@@ -89,6 +89,7 @@ class PdfCobertura(admin.ModelAdmin):
   
 admin.site.register(Servicio)
 admin.site.register(LogEntry, MoniterLog)
+admin.site.register(LogBusqueda)
 
 
 

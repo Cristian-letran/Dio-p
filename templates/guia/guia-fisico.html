@@ -12,7 +12,12 @@
           <div class="input-group">
             <span class="input-group-label"><i class="fi-archive"></i></span>
             {{form.bolsa}}
-          </div>    
+          </div>   
+          {% for error in form.bolsa.errors %}
+        <p class="cell" style="color: red;">
+          {{ error|escape }}
+        </p>
+      {% endfor %}
       </div>
       <div class="cell medium-6">
           <label>Seudo:</label>
@@ -20,6 +25,11 @@
             <span class="input-group-label"><i class="fi-filter"></i></span>
             {{form.seudo}}
           </div>
+          {% for error in form.seudo.errors %}
+        <p class="cell" style="color: red;">
+          {{ error|escape }}
+        </p>
+      {% endfor %}
       </div>
       <div class="cell medium-6">
           <button type="submit" class="button" style="width: 200px;" >Guardar</button>  

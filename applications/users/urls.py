@@ -44,5 +44,23 @@ urlpatterns = [
         name='user-verification',
     ),
     
+    path(
+        'users-cliente/', 
+        views.UsersClienteView.as_view(),
+        name='users-cliente',
+    ),
+    
+    path(
+        'users-crear/', 
+        views.UserCreateView.as_view(),
+        name='users-crear',
+    ),
+    
+    path(
+        'users-update/<int:pk>/', 
+        views.UserClienteUPdateView.as_view(),
+        name='users-update',
+    ),
+    
     
 ]

@@ -186,7 +186,16 @@ class Fisico(Fisi_pa, Bolsa):
         
     estado_destino = models.BooleanField(default=False)
     
-    
+    img_guia_courrier = models.ImageField(
+        upload_to = 'img_guia_courriers',
+        null=True, 
+        blank = True,   
+    )
+    img_fachada_courrier = models.ImageField(
+        upload_to = 'img_fachada_courriers',
+        null=True, 
+        blank = True,   
+    )
 #
     # estado_zona = models.ForeignKey(
     #     Zona, 

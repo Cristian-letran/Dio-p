@@ -3,7 +3,7 @@ from django.core.signals import request_finished
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+import datetime
 from applications.cliente.models import Ciudad, Cliente
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
@@ -50,7 +50,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         unique=True,
         verbose_name= 'Usuario'
     )
-    email = models.EmailField()
+    email = models.EmailField(blank=True, null=True)
 
     nombres = models.CharField(
         max_length=30, 
@@ -69,7 +69,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     ocupation = models.CharField(
         max_length=1, 
         choices=OCUPATION_CHOICES, 
-        verbose_name= 'Ocupacion'
+        verbose_name= 'Ocupacion',
+        blank=True,
+        null=True
         
     )
     
@@ -93,6 +95,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=False
     )
 
+    date_joined = models.DateTimeField(auto_now_add=True)
+
     USERNAME_FIELD = 'username'
 
     REQUIRED_FIELDS = ['email',]   
@@ -109,6 +113,38 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return str(self.username) + ' ' +str(self.ciudad)
 
+###################################################
+class LogSesion(models.Model):
+    id = models.AutoField(primary_key=True)
+    log = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    cliente = models.CharField(max_length=90, blank=True, null=True)
+    usuario = models.CharField(max_length=150, blank=True, null=True)
+    documento = models.CharField(max_length=15, blank=True, null=True)
+    registro = models.CharField(max_length=30, blank=True, null=True)
+
+@receiver(post_save, sender=User)
+def create_user_log(sender, instance, created, **kwargs):
+    if created:
+        LogSesion.objects.create(
+            log=instance,
+            documento = instance.d_i,
+            usuario = instance.nombres,
+            registro = datetime.datetime.now()
+        )
+    elif not created:
+        LogSesion.objects.create(
+            log=instance,
+            documento = instance.d_i,
+            usuario = instance.nombres,
+            registro = datetime.datetime.now()
+        )
+
+
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.logsesion.save()   
+
+####################################################
 class Profile(models.Model):
     id = models.OneToOneField(
         User, primary_key=True, 

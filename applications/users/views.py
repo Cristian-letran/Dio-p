@@ -11,7 +11,8 @@ from django.views.generic import ListView
 
 from django.views.generic import (
     View,
-    CreateView
+    CreateView,
+    UpdateView
 )
 
 from django.views.generic.edit import (
@@ -22,7 +23,9 @@ from .forms import (
     UserRegisterForm, 
     LoginForm,
     UpdatePasswordForm,
-    VerificationForm
+    VerificationForm,
+    UserCreateForm,
+    UserUpdateForm
 )
 #
 from .models import User
@@ -142,3 +145,39 @@ class CargoListview(ListView):
 class PanelListView(ListView):
     template_name = "panel.html"
     model = User
+
+class UsersClienteView(ListView):
+    model = User
+    template_name = "users/cliente.html"
+    
+
+    def get_queryset(self):
+        kword = self.request.GET.get('kword', '')
+        queryset   = User.objects.filter(d_i__icontains = kword, cliente = 1)
+        return queryset   
+    
+class UserCreateView(CreateView):
+    form_class = UserCreateForm
+    template_name = "users/create_user.html"
+    success_url = reverse_lazy('users_app:users-cliente')
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.cliente.id_clie = 1
+        
+        self.object.save()
+        return super(UserCreateView, self).form_valid(form)
+    
+class UserClienteUPdateView(UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    template_name = "users/update_user_cliente.html"
+    success_url = reverse_lazy('users_app:users-cliente')
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['form'].fields['cliente'].queryset = User.objects.filter(cliente_id_clie=self.request.user.cliente.id_clie)   
+    #     return context
+    
+    
+

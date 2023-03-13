@@ -1,0 +1,10 @@
+{% extends "users/base_users.html" %} {% load static %} {% block panel-content %}
+<h3>Actualizar</h3>
+
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Actualizar">
+</form>
+
+
+{% endblock panel-content %}

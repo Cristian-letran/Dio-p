@@ -176,6 +176,9 @@ class InformeCallAdmin(RelatedFieldAdmin, ImportExportModelAdmin, admin.ModelAdm
     list_filter  = ('id__user', 'id__fecha_call')
     list_per_page = 5
 
+class CalificacionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display=('calficacion',)
+
 admin.site.register(Datos_t, datos_tAdmin)
 
 admin.site.register(Indicativo, IndicativoAdmin)
@@ -186,7 +189,7 @@ admin.site.register(Pregunta, PregutasAdmin)
 
 admin.site.register(Auditoria, AuditoriaAdmin)
 
-admin.site.register(calificacion)
+admin.site.register(calificacion, CalificacionAdmin)
 
 admin.site.register(Tel)
 

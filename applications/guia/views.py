@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View, TemplateView
-from .forms import guiafisicoForm, ImgForm, UpdateCourrierForm
+from .forms import guiafisicoForm, ImgForm, UpdateCourrierForm, UserLogCreateForm
 from . models import Guia, img
 from applications.users.mixins import CustodiaPermisoMixin, MesaPermisoMixin, MensajeroPermisoMixin
 from django.shortcuts import render
@@ -38,29 +38,44 @@ class TrackingView(ListView):
             ).order_by('fecha')
         return queryset
 
-class ProductListView(LoginRequiredMixin, ListView):
+class ProductListView(LoginRequiredMixin, CreateView, ListView):
     template_name = "producto/cliente.html"
+    model = Guia
+    form_class = UserLogCreateForm
     paginate_by = 4
+    success_url = '.'  
 
     def get_queryset(self):
-        kword = self.request.GET.get("kword", '')
+        kword = self.request.GET.get("id_log", '')
         order = self.request.GET.get("order", '')
         queryset = Guia.objects.buscar_producto(kword, order)
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        contexto = super().get_context_data(**kwargs)
+        contexto ['object_list'] = self.get_queryset()
+        contexto ['count'] = self.form_class
+        return contexto
            
-class ProductDetailView(LoginRequiredMixin, DetailView):
+
+class ProductDetailView(TemplateView):
     template_name = "producto/detail.html"
-    model = Guia
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
-        context['recepcion_list'] = Guia.objects.all()[:1]
-        return context
+         # El pk que pasas a la URL
+         pk = self.kwargs.get('pk')
+         context = super(ProductDetailView, self).get_context_data(**kwargs)
+         context['object'] = Guia.objects.get(pk=pk)
+         context['object_lista'] = Rastreo.objects.filter(seudo=pk)
+         
+         return context
 
-class FisicoCreateView(CustodiaPermisoMixin, LoginRequiredMixin, CreateView, ListView):
+class FisicoCreateView(CustodiaPermisoMixin, LoginRequiredMixin, CreateView):
     template_name = "guia/guia-fisico.html"
     form_class = guiafisicoForm
     success_url = '.'   
+    model= Guia
     
     def get_queryset(self):
         vargui = Guia.objects.filter(user=self.request.user).order_by('-fecha')[:5]
@@ -78,13 +93,14 @@ class FisicoCreateView(CustodiaPermisoMixin, LoginRequiredMixin, CreateView, Lis
         self.object.user = self.request.user
         self.object.save()
         return super(FisicoCreateView, self).form_valid(form)    
-
+    
     def get_context_data(self, **kwargs):
-        contexto = {}
+        # Call the base implementation first to get a context
+        contexto = super().get_context_data(**kwargs)
         contexto ['page_obj'] = self.get_queryset()
-        contexto ['form'] = self.form_class
         contexto ['count'] = self.get_cantidad().count
         return contexto
+    
 
 class ima_cargar(MesaPermisoMixin, View):
     form_class = ImgForm
@@ -147,7 +163,7 @@ class MensajeroListView(MensajeroPermisoMixin, ListView ):
 class MensajeroUpdateView(UpdateView):
     template_name = "guia/mensajero_ruta_update.html"
     model = Fisico
-    fields = ['mot',]
+    fields = ['mot', 'img_guia_courrier', 'img_fachada_courrier']
     success_url = reverse_lazy('producto_app:courrier-ruta')
 
     def form_valid(self, form):
