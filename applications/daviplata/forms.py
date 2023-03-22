@@ -13,6 +13,22 @@ class DaviplataForm(forms.ModelForm):
 
         widgets = {
 
+            'url_img_f': forms.FileInput(
+                attrs = {
+                    'accept': 'image/*', 'capture':'camera',
+                }
+            ),
+            'url_img_m': forms.FileInput(
+                attrs = {
+                    'accept': 'image/*', 'capture':'camera',
+                }
+            ),
+            'url_img_o': forms.FileInput(
+                attrs = {
+                    'accept': 'image/*', 'capture':'camera',
+                }
+            ),
+
             'obervacion': Textarea(attrs={'cols': 80, 'rows': 4}),
                
             

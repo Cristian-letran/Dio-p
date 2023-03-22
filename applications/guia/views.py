@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View, TemplateView
-from .forms import guiafisicoForm, ImgForm, UpdateCourrierForm, UserLogCreateForm
+from .forms import guiafisicoForm, ImgForm, UpdateCourrierForm, UserLogCreateForm, MensajeroUpdateForm
 from . models import Guia, img
 from applications.users.mixins import CustodiaPermisoMixin, MesaPermisoMixin, MensajeroPermisoMixin
 from django.shortcuts import render
@@ -67,7 +67,8 @@ class ProductDetailView(TemplateView):
          pk = self.kwargs.get('pk')
          context = super(ProductDetailView, self).get_context_data(**kwargs)
          context['object'] = Guia.objects.get(pk=pk)
-         context['object_lista'] = Rastreo.objects.filter(seudo=pk)
+         context['object_lista'] = Rastreo.objects.filter(seudo=pk).order_by('-fecha__minute').distinct('fecha__minute')
+        # context['object_lista'] = Rastreo.objects.filter(id_guia=pk)
          
          return context
 
@@ -91,6 +92,9 @@ class FisicoCreateView(CustodiaPermisoMixin, LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        self.object.mot_id = 4
+        self.object.id_est_id = 3
+        self.object.id_ciu = self.request.user.ciudad
         self.object.save()
         return super(FisicoCreateView, self).form_valid(form)    
     
@@ -159,11 +163,13 @@ class MensajeroListView(MensajeroPermisoMixin, ListView ):
             mensajero__d_i=self.request.user.d_i
             ).order_by('id_guia').exclude(id_est = 3)
         return queryset   
+    
 
 class MensajeroUpdateView(UpdateView):
     template_name = "guia/mensajero_ruta_update.html"
+    form_class = MensajeroUpdateForm
     model = Fisico
-    fields = ['mot', 'img_guia_courrier', 'img_fachada_courrier']
+    # fields = ['mot', 'img_guia_courrier', 'img_fachada_courrier']
     success_url = reverse_lazy('producto_app:courrier-ruta')
 
     def form_valid(self, form):

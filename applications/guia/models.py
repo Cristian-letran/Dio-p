@@ -161,8 +161,9 @@ class Guia(Fisico, TimeStampedModel):
     
     def save(self, *args, **kwargs):
         self.seudo.sucursal = self.userbd
-        self.codigo = self.concatenar                                           
-        self.seudo.fisicos = self.seudo.fisicos = 1
+        self.codigo = self.concatenar  
+        self.codigo = self.concatenar                                                     
+        self.seudo_track = str(self.seudo)
         # self.mot.id = 20
         # print(self.mot.id)
         # self.ofi = str(self.ofi)

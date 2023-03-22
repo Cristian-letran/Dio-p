@@ -4,6 +4,30 @@ from applications.base_cliente.models import Bd_clie
 from .models import img
 from applications.fisico.models import Fisico
 
+class MensajeroUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Fisico
+        fields = (
+            'mot', 
+            'img_guia_courrier', 
+            'img_fachada_courrier'
+        )
+        widgets = {
+            'img_guia_courrier': forms.FileInput(
+                attrs = {
+                    'accept': 'image/*', 'capture':'camera',
+                }
+            ),
+            'img_fachada_courrier': forms.FileInput(
+                attrs = {
+                    'accept': 'image/*', 
+                    'capture':'camera',
+                    'value': 'hola'
+                }
+            ),
+        }
+
 class guiafisicoForm(forms.ModelForm):
 
     def __init__(self, fisicos=2, **kwargs):

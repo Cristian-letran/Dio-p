@@ -196,6 +196,7 @@ class Fisico(Fisi_pa, Bolsa):
         null=True, 
         blank = True,   
     )
+    seudo_track = models.CharField(max_length=25)
 #
     # estado_zona = models.ForeignKey(
     #     Zona, 

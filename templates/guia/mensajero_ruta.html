@@ -2,6 +2,8 @@
 {% load static %}
 {% block panel-content %}
 
+<h4>Ruta courrier</h4>
+
 <form method="GET"> {% csrf_token %}
 <div class="input-group">
     <span class="input-group-label"></span>
@@ -10,11 +12,15 @@
       <input type="submit" class="button" value="Buscar">
     </div>
   </div>
-
+<div class="table-scroll">
 <table class="hover">
     <thead>
         <tr>
             <th>Guia</th>
+            <th>Direccion</th>
+            <th>Cliente</th>
+            <th>Cedula</th>
+            <th>Proceso</th>
             <th>Actualizar</th>
         </tr>
     </thead>
@@ -22,35 +28,34 @@
     <tbody>
         <tr>
             <td>{{e.id_guia}}</td>
+            <td>{{e.direccion}}</td>
+            <td>{{e.destinatario}}</td>
+            <td>{{e.d_i}}</td>
+            <td>{{e.proceso}}</td>
             <td><a href="{% url 'producto_app:courrier-update' e  %}" class="button"><i class="fi-print"></i></a></td>
         </tr>
     </tbody>
     {% endfor %}
 </table>
+</div>
 </form>
 
-<div class="cell">
-    {% if is_paginated %}
-    <nav aria-label="Pagination">
-        <ul class="pagination">
-            {% if page_obj.has_previous %}
-            <li class="pagination-previous">
-                <a href="?page={{page_obj.previous_page_number}}">Atras</a>
-            </li>
-            {% endif %}
-            
-            <span>
-                Page {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-            </span>
-            
-            {% if page_obj.has_next %}
-            <li class="pagination-next">
-                <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Primero</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Ultimo &raquo;</a>
+        {% endif %}
+    </span>
 </div>
 
 

@@ -5,9 +5,10 @@
 
 {% block panel-content %}
 
-<form method="post">{% csrf_token %}
+<form method="post" enctype="multipart/form-data" >{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Actualizar">
+    
+    <button class="submit success button">Guardar</button>
 </form>
 
 {% endblock panel-content %}

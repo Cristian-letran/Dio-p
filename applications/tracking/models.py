@@ -37,6 +37,11 @@ class Rastreo(models.Model):
         blank=True,
         null=True)
     
+    ciudad = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True
+        )
 
     guia_tracking = models.IntegerField(
         blank=True,
@@ -48,10 +53,14 @@ class Rastreo(models.Model):
         if self.mensajero == None:
             self.mensajero = "No asignado"
 
+    
         super(Rastreo, self).save(*args, **kwargs)
     @property
     def usaurio(self):
         return self.id_guia.user
+    
+    class Meta:
+        ordering = ['id']
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -59,7 +68,6 @@ from django.conf import settings
 from applications.users.models import User, Profile
 
     
-
 @receiver(post_save, sender=Guia)
 def create_user_rastreo(sender, instance, created, **kwargs):
     
@@ -69,7 +77,8 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             id_guia=instance, 
             motivopr = instance.mot, 
             estado = instance.id_est,
-            
+            seudo = instance.seudo_track,
+            ciudad = instance.id_ciu.ciudad
             # id_fisico_track = instance,
             )
 
@@ -79,8 +88,9 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             id_guia=instance, 
             motivopr = instance.mot, 
             estado = instance.id_est,
-            
+            seudo = instance.seudo_track,
             id_fisico_track = instance,
+            ciudad = instance.id_ciu.ciudad
             )
     
 @receiver(post_save, sender=Fisico)
@@ -92,8 +102,9 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             id_fisico_track=instance, 
             motivopr = instance.mot, 
             estado = instance.id_est,
-            mensajero = instance.mensajero
-            
+            mensajero = instance.mensajero,
+            seudo = instance.seudo_track,
+            ciudad = instance.id_ciu.ciudad
             )
 
     elif not created:
@@ -102,6 +113,7 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             id_fisico_track=instance, 
             motivopr = instance.mot, 
             estado = instance.id_est,
-            mensajero = instance.mensajero
-            
+            mensajero = instance.mensajero,
+            (seudo) = str(instance.seudo_track),
+            ciudad = instance.id_ciu.ciudad
             )

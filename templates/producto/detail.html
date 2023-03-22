@@ -4,12 +4,27 @@
 
 {% block panel-content %}
 
+<main role="main" class="container">
+  <div class="row">
+    <!-- Aquí pon las col-x necesarias, comienza tu contenido, etcétera -->
+    <div class="col-12">
+      <h1>Acceder </h1>
+      
+      <br>
+      <strong>Latitud: </strong> <p id="latitud"></p>
+      <br>
+      <strong>Longitud: </strong> <p id="longitud"></p>
+      <br>
+      <a target="_blank" id="enlace" href="#">Abrir en Google Maps</a>
+    </div>
+  </div>
+</main>
+
     <div class=" ">
         <h5 class="cell" style="text-align: center;">Detalle </h5>  
         
         <br>
 
-        
          <form>{% csrf_token %}    
                   
             <div class="grid-container">
@@ -38,6 +53,31 @@
             </div>
             <br>
 
+            <table class="hover">
+              <thead>
+                <tr>
+                  <th>Registro</th>
+                  <th>Fecha</th>
+                  <th>Motivo</th>
+                  <th>estado</th>
+                  <th>Ciudad</th>
+               
+                </tr>
+              </thead>
+              <tbody>
+                  {% for e in object_lista|dictsortreversed:"id" %}
+                <tr>
+                  <td><span class="badge primary">{{forloop.counter}}</span></td>
+                  <td>{{e.fecha}}</td>
+                  <td>{{e.motivopr}}</td>
+                  <td>{{e.estado}}</td>
+                  <td>{{e.ciudad}}</td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+
             
                 <div class="grid-x grid-margin-x small-up-2 medium-up-3">
                   <div class="cell">
@@ -56,8 +96,9 @@
                             <h4>Prueba de entrega courrier.</h4>
                            
                           </div>
-                      <img src="{{object.img_guia_courrier.url}}">
-                      
+                          {% if object.img_guia_courrier %}  
+                            <img src="{{object.img_guia_courrier.url}}">
+                          {% endif %}
                     </div>
                   </div>
                   <div class="cell">
@@ -66,8 +107,9 @@
                             <h4>Fachada.</h4>
                            
                           </div>
+                        {% if object.img_fachada_courrier %}  
                       <img src="{{object.img_fachada_courrier.url}}">
-                      
+                        {% endif %}
                     </div>
                   </div>
                 </div>
@@ -76,36 +118,14 @@
               </div>
             
 
-              <table>
-                <thead>
-                  <tr>
-                    <th width="200">Id</th>
-                    <th>Table Header</th>
-                    <th width="150">Table Header</th>
-                 
-                  </tr>
-                </thead>
-                <tbody>
-                    {% for e in object_lista %}
-                  <tr>
-                    <td>{{e.id}}</td>
-                    <td>{{e.id_guia.seudo}}</td>
-                    <td>{{e.id_fisico_track }}</td>
-                    <td>{{e.fecha}}</td>
-                   
-                  </tr>
-                  {% endfor %}
-                  
-                </tbody>
-              </table>
-          
-                
               </div>
             </div>
           </form>
 
           
           </table>
+          
+          
 
         
 

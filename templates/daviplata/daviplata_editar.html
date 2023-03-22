@@ -14,5 +14,503 @@
     
   </form>
 
+  <main role="main" class="container">
+		<div class="row">
+			<!-- Aquí pon las col-x necesarias, comienza tu contenido, etcétera -->
+			<div class="col-12">
+      
+				
+				
+				<strong>Latitud: </strong> <p id="latitud"></p>
+				
+				<strong>Longitud: </strong> <p id="longitud"></p>
+				
+				<a target="_blank" id="enlace" href="#">Abrir en Google Maps</a>
+			</div>
+		</div>
+	</main>
+
+  <!-- <h4>Actualizar</h4> -->
+
+<!-- <form method="post" enctype="multipart/form-data">{% csrf_token %}
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-6 cell">
+        <label>CODIGO TOTAL
+          {{form.codigo_total}}
+        </label>
+      </div>
+      <div class="medium-6 cell">
+        <label>NOMBRE ESTABLECIMIENTO
+          {{form.nombre_establecimiento}}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-6 cell">
+        <label>RED
+          {{form.red}}
+        </label>
+      </div>
+      <div class="medium-6 cell">
+        <label>Codigo Dian
+          {{form.codigo_dian}}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-6 cell">
+        <label>CODIGO DIAN
+          {{form.codigo_dian}}
+        </label>
+      </div>
+      <div class="medium-6 cell">
+        <label>DIRECCIÓN BASE
+          {{form.dirección_base}}
+        </label>
+      </div>
+    </div>
+  </div>
+    
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>REFERENCIAS DETALLES ADICIONALES BASE
+            {{form.rdab}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>DIRECCIÓN COMPLETA BASE
+            {{form.direccion_c_b}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.departamento}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.municipio}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.fecha_encuesta}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.visita_efectiva}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.tipo_no_efectiva}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.otro_especificado}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.pdv}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.obervacion}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.direccion_actualizada}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.detalle_direccion}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.direccion_completo}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.coincide_direccion}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.mobre_e_a}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.nombre_coincide}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.nombre_atiende}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.es_dueño}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.numero_movil}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.establecimiento_cambio}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.tipo_establecimiento}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.otro_d_e}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.t_senalizacion}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.otro_senalizacion}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.se_implementa}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.razon_no}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.impresora}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.datafono}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.lector}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.computador}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.pago_propios}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.deposito_retiro_propio}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.servicio_pagos}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.servicio_recaudo}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.servicio_depositos}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.transacciones}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.deposito_retiro}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.pago_subsidios}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.tip_seguridad}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.Sarlaft_activos}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.recaudo_servicios}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.tip_riesgo}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.fecha_capacitacion}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.acude}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.medio}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.medio_especificado}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.sarlaft_informa}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.material}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.ninguno_especificado}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.firma}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.url_img_f}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.url_img_m}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.url_img_o}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            
+            <input type="number" name="latitud" step="any" required="" id="id_latitud">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.longitud}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.visualizar}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.grupo_etnico}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.cual}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.grupo_etnico}}
+          </label>
+        </div>
+        <div class="medium-6 cell">
+          <label>Input Label
+            {{form.cual}}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="medium-6 cell">
+          <button class="submit success button">Actualizar</button>
+        </div>
+        <div class="medium-6 cell">
+          
+        </div>
+      </div>
+    </div>
+  
+  </form> -->
+
+
 
 {% endblock panel-content %}
