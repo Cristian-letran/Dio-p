@@ -15,7 +15,7 @@ class DaviplataListView(ListView):
             nombre_establecimiento__icontains = kword
         )
         return queryset
-
+#
 class DaviplataUpdateView(UpdateView):
     template_name = "daviplata/daviplata_editar.html"
     form_class = DaviplataForm
