@@ -18,7 +18,7 @@ class Rastreo(models.Model):
         related_name = "fisco_tracking",
         blank=True, null=True
         )
-
+#
     motivopr = models.CharField(
         max_length=30,
         blank=True,
