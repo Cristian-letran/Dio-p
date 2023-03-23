@@ -17,7 +17,7 @@ class DaviplataResource(resources.ModelResource):
     
     class Meta:
         model = Daviplata
-        import_id_fields = ('id_ruta',) 
+        import_id_fields = ('id_ruta',) #
 
 @admin.register(Daviplata)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
