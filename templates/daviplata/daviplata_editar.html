@@ -4,7 +4,7 @@
 
 {% block panel-content %}
 
-<h4>Actualizar</h4>
+<!-- <h4>Actualizar</h4>
 
 <form method="post" enctype="multipart/form-data">{% csrf_token %}
     <div class="grid-container">   
@@ -12,27 +12,13 @@
             <button class="submit success button">Actualizar</button>
     </div>
     
-  </form>
+  </form> -->
 
-  <main role="main" class="container">
-		<div class="row">
-			<!-- Aquí pon las col-x necesarias, comienza tu contenido, etcétera -->
-			<div class="col-12">
-      
-				
-				
-				<strong>Latitud: </strong> <p id="latitud"></p>
-				
-				<strong>Longitud: </strong> <p id="longitud"></p>
-				
-				<a target="_blank" id="enlace" href="#">Abrir en Google Maps</a>
-			</div>
-		</div>
-	</main>
+ 
 
-  <!-- <h4>Actualizar</h4> -->
+  <h4>Actualizar</h4> 
 
-<!-- <form method="post" enctype="multipart/form-data">{% csrf_token %}
+ <form method="post" enctype="multipart/form-data">{% csrf_token %}
   <div class="grid-container">
     <div class="grid-x grid-padding-x">
       <div class="medium-6 cell">
@@ -70,7 +56,7 @@
       </div>
       <div class="medium-6 cell">
         <label>DIRECCIÓN BASE
-          {{form.dirección_base}}
+          {{form.direccion_base}}
         </label>
       </div>
     </div>
@@ -448,23 +434,26 @@
           </label>
         </div>
         <div class="medium-6 cell">
-          <label>Input Label
-            
-            <input type="number" name="latitud" step="any" required="" id="id_latitud">
-          </label>
+           <!-- <textarea name="longitud" id="id_latitud"></textarea> -->
+           <textarea type="text" name="latitud" value="45" maxlength="15" required="" id="id_latitud"></textarea>
+           <!-- {{form.latitud}} -->
         </div>
       </div>
     </div>
     <div class="grid-container">
       <div class="grid-x grid-padding-x">
         <div class="medium-6 cell">
-          <label>Input Label
-            {{form.longitud}}
+          <label>Longitud
+            <!-- {{form.longitud}} -->
+            <textarea type="text" name="longitud" value="45" maxlength="15" required="" id="id_longitud"></textarea>
+            <!-- <textarea name="longitud" id="id_longitud"></textarea> -->
           </label>
         </div>
         <div class="medium-6 cell">
-          <label>Input Label
-            {{form.visualizar}}
+          <label>Visualizar
+            <input type="text" name="enlace" href="#" required="" id="enlace">
+            <!-- <a  id="enlace" href="#">Abrir en Google Maps</a> -->
+            <!-- {{form.visualizar}} -->
           </label>
         </div>
       </div>
@@ -509,7 +498,45 @@
       </div>
     </div>
   
-  </form> -->
+  </form>
+
+
+  <!-- <main role="main" class="container">
+		<div class="row">
+		
+			<div class="col-12">
+				<h1>Acceder a la ubicación con JavaScript</h1>
+				<a href="//parzibyte.me/blog" target="_blank">By Parzibyte</a>
+				<br>
+				<strong>Latitud: </strong> <p id="latitud"></p>
+				<br>
+				<strong>Longitud: </strong> <p id="longitud"></p>
+				<br>
+				<a target="_blank" id="enlace" href="#">Abrir en Google Maps</a>
+			</div>
+		</div>
+	</main> -->
+  <!-- <html>
+
+<head>
+    <script>
+        function displayResult(element)
+        {
+            document.getElementById(element).value = 'hi';
+        }
+    </script>
+</head>
+
+<body>
+    <textarea id="myTextarea" cols="20">
+        BYE
+    </textarea>
+    <br>
+
+    <button type="button" onclick="displayResult('myTextarea')">Change</button>
+</body>
+
+</html> -->
 
 
 

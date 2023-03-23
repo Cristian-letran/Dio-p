@@ -1,5 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
+from import_export import resources
 
 from . models import (
     Daviplata, Red, TipoNoEfectiva, 
@@ -12,9 +13,16 @@ from . models import (
     Medio,
     )
 
+class DaviplataResource(resources.ModelResource):
+    
+    class Meta:
+        model = Daviplata
+        import_id_fields = ('id_ruta',) 
+
 @admin.register(Daviplata)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('id_ruta', 'nombre_establecimiento', 'direccion_base', 'user')
+   resource_class = DaviplataResource
 
 @admin.register(Red)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):

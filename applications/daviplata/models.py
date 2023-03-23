@@ -261,8 +261,8 @@ class Daviplata(models.Model):
         blank=True,
         null=True
         )
-    latitud = models.FloatField()
-    longitud = models.FloatField()
+    latitud = models.CharField(max_length=15)
+    longitud = models.CharField(max_length=15)
     visualizar = models.CharField(max_length=250)
     grupo_etnico = models.CharField(max_length=50, choices=RESPUESTA, verbose_name='HACE PARTE DE UN GRUPO ETNICO')
     cual = models.CharField(
