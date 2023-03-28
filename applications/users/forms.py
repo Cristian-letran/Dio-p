@@ -186,7 +186,7 @@ class UserUpdateForm(forms.ModelForm):
             'nombres', 
             'apellidos', 
             'd_i',
-            
+            'is_active'
         )
 
 

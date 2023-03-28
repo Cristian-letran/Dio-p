@@ -48,11 +48,26 @@ class Rastreo(models.Model):
         null=True)
     
     seudo = models.CharField(max_length=30)
+
+    estado_final = models.CharField(max_length=100)
     
     def save(self, *args, **kwargs):
         if self.mensajero == None:
             self.mensajero = "No asignado"
 
+        if self.estado == "CUSTODIA":
+            self.estado == "CUSTODIA"
+
+        elif self.estado == "RUTA":
+            self.estado == "RUTA"
+        
+        elif self.motivopr == "Entregado":
+            self.motivopr == "Entregado"
+        
+        elif self.motivopr == "Entregado":
+            self.motivopr == "Entregado"
+
+        
     
         super(Rastreo, self).save(*args, **kwargs)
     @property
@@ -67,7 +82,6 @@ from django.db.models.signals import post_save
 from django.conf import settings
 from applications.users.models import User, Profile
 
-    
 @receiver(post_save, sender=Guia)
 def create_user_rastreo(sender, instance, created, **kwargs):
     
@@ -95,6 +109,35 @@ def create_user_rastreo(sender, instance, created, **kwargs):
     
 @receiver(post_save, sender=Fisico)
 def create_user_rastreo(sender, instance, created, **kwargs):
+
+    
+# @receiver(post_save, sender=Guia)
+# def create_user_rastreo(sender, instance, created, **kwargs):
+    
+#     if created:
+#         Rastreo.objects.create(
+            
+#             id_guia=instance, 
+#             motivopr = instance.mot, 
+#             estado = instance.id_est,
+#             seudo = instance.seudo_track,
+#             ciudad = instance.id_ciu.ciudad
+#             # id_fisico_track = instance,
+#             )
+
+#     elif not created:
+#         Rastreo.objects.create(
+            
+#             id_guia=instance, 
+#             motivopr = instance.mot, 
+#             estado = instance.id_est,
+#             seudo = instance.seudo_track,
+#             id_fisico_track = instance,
+#             ciudad = instance.id_ciu.ciudad
+#             )
+    
+# @receiver(post_save, sender=Fisico)
+# def create_user_rastreo(sender, instance, created, **kwargs):
     
     if created:
         Rastreo.objects.create(

@@ -114,6 +114,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return str(self.username) + ' ' +str(self.ciudad)
 
 ###################################################
+from django.contrib.admin.models import LogEntry, CHANGE
 class LogSesion(models.Model):
     id = models.AutoField(primary_key=True)
     log = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
@@ -121,6 +122,7 @@ class LogSesion(models.Model):
     usuario = models.CharField(max_length=150, blank=True, null=True)
     documento = models.CharField(max_length=15, blank=True, null=True)
     registro = models.CharField(max_length=30, blank=True, null=True)
+    accion = models.CharField(max_length=100, blank=True, null=True)
 
 @receiver(post_save, sender=User)
 def create_user_log(sender, instance, created, **kwargs):
@@ -129,7 +131,7 @@ def create_user_log(sender, instance, created, **kwargs):
             log=instance,
             documento = instance.d_i,
             usuario = instance.nombres,
-            registro = datetime.datetime.now()
+            registro = datetime.datetime.now(),
         )
     elif not created:
         LogSesion.objects.create(
@@ -165,4 +167,6 @@ class Profile(models.Model):
 # @receiver(post_save, sender=User)
 # def save_user_profile(sender, instance, **kwargs):
 #     instance.profile.save()   
+
+
 
