@@ -107,37 +107,9 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             ciudad = instance.id_ciu.ciudad
             )
     
+
 @receiver(post_save, sender=Fisico)
 def create_user_rastreo(sender, instance, created, **kwargs):
-
-    
-# @receiver(post_save, sender=Guia)
-# def create_user_rastreo(sender, instance, created, **kwargs):
-    
-#     if created:
-#         Rastreo.objects.create(
-            
-#             id_guia=instance, 
-#             motivopr = instance.mot, 
-#             estado = instance.id_est,
-#             seudo = instance.seudo_track,
-#             ciudad = instance.id_ciu.ciudad
-#             # id_fisico_track = instance,
-#             )
-
-#     elif not created:
-#         Rastreo.objects.create(
-            
-#             id_guia=instance, 
-#             motivopr = instance.mot, 
-#             estado = instance.id_est,
-#             seudo = instance.seudo_track,
-#             id_fisico_track = instance,
-#             ciudad = instance.id_ciu.ciudad
-#             )
-    
-# @receiver(post_save, sender=Fisico)
-# def create_user_rastreo(sender, instance, created, **kwargs):
     
     if created:
         Rastreo.objects.create(
@@ -157,6 +129,6 @@ def create_user_rastreo(sender, instance, created, **kwargs):
             motivopr = instance.mot, 
             estado = instance.id_est,
             mensajero = instance.mensajero,
-            (seudo) = str(instance.seudo_track),
+            seudo = instance.seudo_track,
             ciudad = instance.id_ciu.ciudad
             )
