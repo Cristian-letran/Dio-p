@@ -51,4 +51,5 @@ class VinculacionCreateView(CreateView):
     model = Vinculacion 
     template_name = "daviplata/vinculacion_create.html"
     fields = ('__all__')
+    success_url = reverse_lazy('daviplata-app:vinculacion-list')
     
