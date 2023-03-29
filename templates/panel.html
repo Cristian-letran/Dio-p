@@ -208,9 +208,18 @@
           </ul> 
           <ul class="vertical menu">
             <li>
-              <a href="{% url 'daviplata-app:list-daviplata' %}"><span style="color: white;"><strong><i class="fi-mobile"></i> Daviplata </strong></span></a>
+              <a href="#"><span style="color: white;"><strong><i class="fi-mobile"></i> Daviplata </strong></span></a>
+              <ul class="nested vertical menu">
+                <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                  <a href="{% url 'daviplata-app:list-daviplata' %}"style="color: white;">Marcación</a>
+                </li>   
+                <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                  <a href="{% url 'daviplata-app:vinculacion-list' %}"style="color: white;">Vinculación</a>
+                </li>                 
+              </ul>
             </li>
           </ul> 
+          
           {% endif %}
           
   </div>

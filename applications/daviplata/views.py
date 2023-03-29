@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, CreateView
-from.models import Daviplata
+from.models import Daviplata, Vinculacion
 from django.urls import reverse_lazy
 from .forms import DaviplataForm
 
@@ -42,4 +42,13 @@ class DaviplataCreateView(CreateView):
         self.object.user = self.request.user
         self.object.save()
         return super(DaviplataCreateView, self).form_valid(form)
+    
+class VinculacionListView(ListView):
+    template_name = "daviplata/list_vinculacion.html"
+    model= Vinculacion
+    
+class VinculacionCreateView(CreateView):
+    model = Vinculacion 
+    template_name = "daviplata/vinculacion_create.html"
+    fields = ('__all__')
     

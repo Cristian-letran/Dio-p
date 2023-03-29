@@ -22,4 +22,16 @@ urlpatterns = [
          name='daviplata-create',
     ),
     
+    path(
+        'vinculacion-create/',
+         views.VinculacionCreateView.as_view(),
+         name='vinculacion-create',
+    ),
+    
+    path(
+        'vinculacion-list/',
+         views.VinculacionListView.as_view(),
+         name='vinculacion-list',
+    ),
+    
 ]

@@ -1,0 +1,38 @@
+{% extends "producto/base_producto.html" %} 
+
+{% load  static %}
+
+{% block panel-content %}
+<div class="grid-x">
+    <div class="cell small-5"><span class="label secondary"><a href="{% url 'daviplata-app:vinculacion-create'  %}" >Crear</a></span></div>
+    <div class="cell small-5"><h3>Vinculacion</h3>  </div>
+  </div>
+
+  <br>
+
+<div class="table-scroll">
+    <table class="hover">
+        <thead>
+          <tr>
+            <th width="200">Tipo de identificación</th>
+            <th>identificacion</th>
+            <th width="150">Nombre del cliente DaviPlata</th>
+            <th>Nombre del comercio</th>
+            <th width="150">Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for article in object_list %}
+          <tr>
+            <td>{{ article.tipo_id }}</td>
+            <td>{{ article.identificacion }}</td>
+            <td>{{ article.nombre }}</td>
+            <td>{{article.nombre_comercio}}</td>
+            <td>{{ article.user }}</td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+{% endblock panel-content %}

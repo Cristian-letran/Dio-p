@@ -57,7 +57,7 @@ class Medio(models.Model):
     def __str__(self):
         return self.nombre
 
-class Daviplata(models.Model):
+class Daviplata(models.Model):  
 
     RESPUESTA = [
     ('NO', 'NO'),
@@ -278,3 +278,32 @@ class Daviplata(models.Model):
     
     def __str__(self):
         return str(self.id_ruta)
+    
+class Vinculacion(models.Model):
+
+    TIPO = [
+    ('CC', 'CC'),
+    ('NIT', 'NIT'),
+    ('CC DE EXTRANJERIA', 'CC DE EXTRANJERIA')
+]
+
+    tipo_id = models.CharField(
+        max_length=50, 
+        choices=TIPO, 
+        verbose_name='Tipo de identificación'
+        )
+    
+    identificacion = models.CharField(primary_key=True, max_length=13)
+
+    nombre = models.CharField(
+        max_length=150,
+        verbose_name='Nombre del cliente DaviPlata')
+    
+    nombre_comercio = models.CharField(max_length=80)
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE, 
+        blank=True, null=True, 
+        verbose_name= 'Usuario'
+    )
