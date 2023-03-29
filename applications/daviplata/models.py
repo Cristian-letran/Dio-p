@@ -1,6 +1,8 @@
 from django.db import models
 from applications.cliente.models import Departamento, Ciudad
 from django.conf import settings 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Red(models.Model):
     nombre = models.CharField(max_length=100)
@@ -279,13 +281,31 @@ class Daviplata(models.Model):
     def __str__(self):
         return str(self.id_ruta)
     
+class TipoGestion(models.Model):
+    nombre = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.nombre
+
+class Categorias(models.Model):
+    nombre = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.nombre
+    
 class Vinculacion(models.Model):
+
+    C_RUT = [
+    ('SI', 'SI'),
+    ('NO', 'NO'),
+]
 
     TIPO = [
     ('CC', 'CC'),
     ('NIT', 'NIT'),
     ('CC DE EXTRANJERIA', 'CC DE EXTRANJERIA')
 ]
+    tipo_gestion = models.ForeignKey(TipoGestion, on_delete=models.CASCADE)
 
     tipo_id = models.CharField(
         max_length=50, 
@@ -295,11 +315,13 @@ class Vinculacion(models.Model):
     
     identificacion = models.CharField(primary_key=True, max_length=13)
 
+    celular = models.CharField(max_length=12)
+
+    fecha_visita = models.DateField(auto_now=True)
+
     nombre = models.CharField(
         max_length=150,
         verbose_name='Nombre del cliente DaviPlata')
-    
-    nombre_comercio = models.CharField(max_length=80)
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -307,3 +329,6 @@ class Vinculacion(models.Model):
         blank=True, null=True, 
         verbose_name= 'Usuario'
     )
+    nombre_comercio = models.CharField(max_length=80)
+    c_rut = models.CharField(max_length=2, choices=C_RUT, verbose_name="¿Comercio cuenta con RUT?")
+    categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE)    

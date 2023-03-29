@@ -11,7 +11,9 @@ from . models import (
     Acude,
     AcudeOtro,
     Medio,
-    Vinculacion
+    Vinculacion,
+    TipoGestion,
+    Categorias
     )
 
 class DaviplataResource(resources.ModelResource):
@@ -64,4 +66,17 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 @admin.register(Vinculacion)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('identificacion',)
+
+@admin.register(TipoGestion)
+class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+   list_display = ('id',)
+
+@admin.register(Categorias)
+class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+   list_display = ('nombre',)
+
+
+
+
+
 

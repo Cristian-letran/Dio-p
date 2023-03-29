@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, CreateView
 from.models import Daviplata, Vinculacion
 from django.urls import reverse_lazy
-from .forms import DaviplataForm
+from .forms import DaviplataForm, VinculacionForm
 
 class DaviplataListView(ListView):
     template_name = "daviplata/lista_daviplata.html"
@@ -49,7 +49,7 @@ class VinculacionListView(ListView):
     
 class VinculacionCreateView(CreateView):
     model = Vinculacion 
+    form_class = VinculacionForm
     template_name = "daviplata/vinculacion_create.html"
-    fields = ('__all__')
     success_url = reverse_lazy('daviplata-app:vinculacion-list')
     

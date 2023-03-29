@@ -14,6 +14,7 @@
     <table class="hover">
         <thead>
           <tr>
+            <th>Fecha</th>
             <th width="200">Tipo de identificación</th>
             <th>identificacion</th>
             <th width="150">Nombre del cliente DaviPlata</th>
@@ -24,6 +25,7 @@
         <tbody>
             {% for article in object_list %}
           <tr>
+            <td>{{ article.fecha_visita }}</td>
             <td>{{ article.tipo_id }}</td>
             <td>{{ article.identificacion }}</td>
             <td>{{ article.nombre }}</td>

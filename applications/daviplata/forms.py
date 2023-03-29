@@ -1,5 +1,5 @@
 from django import forms
-from .models import Daviplata
+from .models import Daviplata, Vinculacion
 from django.forms import ModelForm, Textarea
 
 class DaviplataForm(forms.ModelForm):
@@ -53,4 +53,21 @@ class DaviplataForm(forms.ModelForm):
             }),
     }
 
+class VinculacionForm(forms.ModelForm):
+    class Meta:
+        model = Vinculacion
+        fields = (
+        '__all__'
+    )
+        widgets = {
+            'celular': forms.NumberInput(
+
+            ),
+            'identificacion': forms.NumberInput(
+
+            ),
+            }
         
+    
+        
+    
