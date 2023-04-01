@@ -44,6 +44,11 @@ class Ciudad (models.Model):
         ordering = ['ciudad'] # Nota el guión
 
 class Cliente (models.Model):
+    ROL = (
+        ('1', 'Administracion'),
+        ('2', 'Asesor'),
+        
+    )
     id_clie = models.CharField(max_length=10,
         primary_key = True,
         verbose_name = 'Id cliente'
@@ -81,6 +86,11 @@ class Cliente (models.Model):
         max_length = 4,
         verbose_name = 'Factura'
     )
+    rol = models.CharField(
+        max_length=2, 
+        choices=ROL, 
+        blank=True, 
+        null=True)
 
     class Meta:
         verbose_name = "Cliente"

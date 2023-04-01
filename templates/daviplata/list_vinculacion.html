@@ -15,6 +15,7 @@
         <thead>
           <tr>
             <th>Fecha</th>
+            <th>Tipo de gestión</th>
             <th width="200">Tipo de identificación</th>
             <th>identificacion</th>
             <th width="150">Nombre del cliente DaviPlata</th>
@@ -26,6 +27,7 @@
             {% for article in object_list %}
           <tr>
             <td>{{ article.fecha_visita }}</td>
+            <td>{{article.tipo_gestion}}</td>
             <td>{{ article.tipo_id }}</td>
             <td>{{ article.identificacion }}</td>
             <td>{{ article.nombre }}</td>
@@ -35,6 +37,23 @@
             {% endfor %}
         </tbody>
       </table>
+</div>
+<div class="pagination">
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; Inicio</a>
+          <a href="?page={{ page_obj.previous_page_number }}">Atras</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">Ultimo &raquo;</a>
+      {% endif %}
+  </span>
 </div>
 
 {% endblock panel-content %}

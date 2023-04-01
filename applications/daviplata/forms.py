@@ -51,21 +51,33 @@ class DaviplataForm(forms.ModelForm):
                 'placeholder':'Select a date', 
                 'type':'date'
             }),
+
+            'nombre_establecimiento': forms.TextInput(
+                attrs = {
+                    'class': 'input-group-field',
+                    'readonly':'readonly'
+                }
+            ),
+            'direccion_base': forms.TextInput(
+                attrs = {
+                    'class': 'input-group-field',
+                    'readonly':'readonly'
+                }
+            ),
     }
 
 class VinculacionForm(forms.ModelForm):
     class Meta:
         model = Vinculacion
         fields = (
-        '__all__'
-    )
+        '__all__'   )
+           
         widgets = {
             'celular': forms.NumberInput(
-
             ),
             'identificacion': forms.NumberInput(
-
             ),
+            
             }
         
     

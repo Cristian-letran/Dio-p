@@ -293,7 +293,21 @@ class Categorias(models.Model):
     def __str__(self):
         return self.nombre
     
+class MotivoNoRegistro(models.Model):
+    nombre = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.nombre
+    
+class TipoActivacion(models.Model):
+    nombre = models.CharField(max_length=40)
+    
 class Vinculacion(models.Model):
+
+    PREGUNTA = [
+    ('SI', 'SI'),
+    ('NO', 'NO'),
+]
 
     C_RUT = [
     ('SI', 'SI'),
@@ -332,3 +346,86 @@ class Vinculacion(models.Model):
     nombre_comercio = models.CharField(max_length=80)
     c_rut = models.CharField(max_length=2, choices=C_RUT, verbose_name="¿Comercio cuenta con RUT?")
     categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE)    
+    direccion = models.CharField(max_length=150)
+    dane = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
+    latitud = models.CharField(max_length=15)
+    longitud = models.CharField(max_length=15)
+    ############## Pestaña ###################
+    registro_daviplata = models.CharField(
+        max_length=2, 
+        choices=PREGUNTA,
+        verbose_name= "¿Se realizó registro en DaviPlata?"
+        )
+    motivo_no_registro = models.ForeignKey(
+        MotivoNoRegistro, 
+        on_delete=models.CASCADE,
+        verbose_name="¿Por qué no se realizó el registro DaviPlata?"
+        )
+    se_registro = models.CharField(
+        max_length=2, 
+        choices=PREGUNTA,
+        verbose_name="¿Se realizó registro en perfil mi negocio?")
+    
+    no_registro = models.CharField(
+        max_length=2, 
+        choices=PREGUNTA,
+        verbose_name="¿Por qué no se realizó el registro en perfil mi negocio?")
+    ################### 4 Pestaña ######################
+
+    MOTIVO = [
+    ('No esta interesado', 'No esta interesado'),
+    ('NO le llama la atención', 'NO le llama la atención '),
+    ('Solo trabaja con Nequi', 'Solo trabaja con Nequi '),
+    ('Le parece Complicado Manejarlo', 'Le parece Complicado Manejarlo'),
+    ]
+    
+    solicito_tencard = models.CharField(
+        max_length=2,
+        choices=PREGUNTA,
+        verbose_name= "¿Se solicitó la tentcard?")
+    
+    porque_no_solicito = models.CharField(
+        max_length = 60,
+        choices = MOTIVO,
+        verbose_name= "¿Por qué no se solicitó la tentcard?"
+        )
+    sticker = models.CharField(
+        max_length=2,
+        choices=PREGUNTA,
+        verbose_name= "Se pego Sticker"
+        )
+    razon_no_sticker = models.CharField(
+        max_length = 60,
+        choices = MOTIVO,
+        verbose_name= "Razón por la cual no se pegó el sticker"
+    )
+    flanger = models.CharField(
+        max_length=2, 
+        choices=PREGUNTA,
+        verbose_name= "Se instaló Flanger"
+        )
+    razon_no_flanger = models.CharField(
+        max_length = 60,
+        choices = MOTIVO,
+        verbose_name= "Razón por la cual no se instaló el flanger"
+    )
+    ############### 5 Pestaña ###############
+
+    tipo_activacion = models.ForeignKey(
+        TipoActivacion, 
+        on_delete=models.CASCADE,
+        verbose_name="Tipo activación"
+        )
+    datafono = models.CharField(
+        max_length=2,
+        choices=PREGUNTA,
+        verbose_name="¿Comercio tiene Datafono?"
+    )
+    interesado = models.CharField(
+        max_length=2,
+        choices=PREGUNTA,
+        verbose_name= "¿Comercio está interesado en ser corresponsal?"
+    )
+
+    ############## 6 Pestaña ####################
+    

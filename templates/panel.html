@@ -3,222 +3,195 @@
 {% load static %}
 
 {% block content %}
-
-
 <div class="off-canvas-wrapper" >
   <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>{% csrf_token %}
-   
     <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left"  style="background: linear-gradient( #020202, #00095c); ">
       <div class="row column">
-        
         <center> <a href="{% url 'home_app:index' %}"> <img  src="{% static 'img/colores letran +.png' %}" width="215" ></a> </center>
-        
-          <ul class="vertical menu accordion-menu" data-accordion-menu>    
-              <ul class="vertical menu">
-                <li>
-                  <a href="#"><span style="color: white;"><strong><i class="fi-magnifying-glass"></i> Consultar </strong></span></a>
-                    <ul class="nested vertical menu">
-                       
-                      <li class="{% if request.resolver_match.url_name == 'lista-cliente' %}activeli{% endif %}">
-                        <a href="{% url 'producto_app:lista-cliente' %}" style="color: white;">Productos</a>
-                      </li>
-                    </ul>
-              </ul>
-             
-              {% if user.is_staff %}
-                
-                <ul class="vertical menu">
-                    <li>
-                      <a href="#"><span style="color: white;"><strong><i class="fi-home"></i> Custodia </strong></span></a>
-                      <ul class="nested vertical menu">
-                        <ul class="vertical menu">
-                          <li>
-                            <a href="#"><span style="color: white;"><strong> Ingreso fisicos </strong></span></a>
-                            <ul class="nested vertical menu">
-                        <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                          <a href="{% url 'producto_app:producto-crear' %}" style="color: white;">Agregar fisico</a>
-                        </li>
-
-                        <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                          <a href="{% url 'fisico_app:fisico-paquete' %} " style="color: white;">Agregar fisico paquete</a>
-                        </li>
-
-                        <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                          <a href="{% url 'fisico_app:bolsa-create' %} " style="color: white;">Agregar bolsa</a>
-                        </li>
-                      
-                      </li>
-                    </ul>
-                  </ul>
-                 
-                        <ul class="vertical menu">
-                          <li>
-                            <a href="#"><span style="color: white;"><strong> Imprimir </strong></span></a>
-                            <ul class="nested vertical menu">
-                              <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                                <a href="{% url 'gatos_g:datos-cliente' %} " style="color: white;">Impresion Guia</a>
-                              </li>
-
-                              <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                                <a href="{% url 'gatos_g:guia-buscar' %} " style="color: white;">Impresion por guia</a>
-                              </li>
-
-                              <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                                <a href="{% url 'gatos_g:guia-buscar-agendamientos' %} " style="color: white;">Impresion Agendamiento</a>
-                              </li>
-
-                              <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                                <a href="{% url 'ruta_apps:lista-imprimir' %} " style="color: white;">Impresion Masiva</a>
-                              </li>
-
-
-                            </ul>
-                          </li>
-                      </ul> 
-                      <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                        <a href="{% url 'fisico_app:cobertura-fisico' %} " style="color: white;">No cobertura</a>
-                      </li>
-                      <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                        <a href="{% url 'bd_app:no-fisico' %} " style="color: white;">Fisico reportar</a>
-                      </li>
-                      
-                        
-                      </ul>
-                    </li>
-                </ul> 
-                
-                
-                <ul class="vertical menu">
-                    <li>
-                      <a href="#"><span style="color: white;"><strong><i class="fi-female"></i> Ruta </strong></span></a>
-                      <ul class="nested vertical menu">
-                        
-                                                  
-                          <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                            <a href="{% url 'ruta_apps:asignar' %}" style="color: white;">Asignar a mensajero</a>
-                          </li>
-                          <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                            <a href="{% url 'ruta_apps:cargue-recepcion' %}" style="color: white;">Recepcion</a>
-                          </li>
-                          <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                            <a href="{% url 'ruta_apps:lista-recepcion' %}" style="color: white;">Recepcion corregir</a>
-                          </li>
-                          <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                            <a href="{% url 'ruta_apps:planillas' %}" style="color: white;">imprimir</a>
-                          </li>
-                          <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                            <a href="{% url 'fisico_app:estado-ruta' %}" style="color: white;">Pendiente cerrar</a>
-                          </li>
-                          <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                            <a href="{% url 'ruta_apps:lista-punteo' %}" style="color: white;">Punteo</a>
-                          </li>
-                          <ul class="vertical menu">
-                            <li>
-                              <a href="#"><span style="color: white;"><strong> Traslados </strong></span></a>
-                              <ul class="nested vertical menu">
-                                <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                                  <a href="{% url 'ruta_apps:destino' %} " style="color: white;">Origen destino</a>
-                                </li>
-    
-                                <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                                  <a href="{% url 'ruta_apps:destino-descargue' %} " style="color: white;">Descargue</a>
-                                </li>
-                                <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
-                                  <a href="{% url 'ruta_apps:informe-destino' %} " style="color: white;">Consultar traslados</a>
-                                </li>
-
-                              </ul>
-                            </li>
-                        </ul> 
-                        
-                        </li>
-                      </ul>
-                    </li>
-                </ul> 
-                
-                <ul class="vertical menu">
-                  <li>
-                    <a href="#"><span style="color: white;"><strong><i class="fi-telephone-accessible"></i> Call center </strong></span></a>
-                    <ul class="nested vertical menu">
-                      <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                        <a href="{% url 'call_app:call-consultar' %}"style="color: white;">Gestion</a>
-                      </li>  
-                      <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                        <a href="{% url 'call_app:lista-call-auditoria' %}"style="color: white;">Auditoria</a>
-                      </li>     
-                      <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                        <a href="{% url 'call_app:lista-call-auditoria' %}"style="color: white;">Informes</a>
-                      </li>                            
-                    </ul>
-                  </li>
-              </ul> 
-              
-              <ul class="vertical menu">
-                <li>
-                  <a href="#"><span style="color: white;"><strong><i class="fi-database"></i> Sig </strong></span></a>
-                  <ul class="nested vertical menu">
-                                              
-                      <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                        <a href="{% url 'bd_app:bd-Informe' %}" style="color: white;">Informe</a>
-                      </li>
-                      
-                    </li>
-                  </ul>
-                </li>
-            </ul> 
-            
-            <!-- <ul class="vertical menu">
+        <ul class="vertical menu accordion-menu" data-accordion-menu>    
+          {% if user.cliente.r_s == "Firstsource" %}
+            <ul class="vertical menu">
               <li>
-                <a href="#"><span style="color: white;"><strong>Cac </strong></span></a>
+                <a href="#"><span style="color: white;"><strong><i class="fi-magnifying-glass"></i> Consultar </strong></span></a>
+                  <ul class="nested vertical menu">
+                    <li class="{% if request.resolver_match.url_name == 'lista-cliente' %}activeli{% endif %}">
+                      <a href="{% url 'producto_app:lista-cliente' %}" style="color: white;">Productos</a>
+                    </li>
+                  </ul>
+            </ul>
+            <ul class="vertical menu">
+              <li>
+                <a href="#"><span style="color: white;"><strong><i class="fi-home"></i> Custodia </strong></span></a>
                 <ul class="nested vertical menu">
-                  <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                    <a href="{% url 'call_app:lista-call' %}"style="color: white;">Gestion</a>
-                  </li>                    
+                  <ul class="vertical menu">
+                    <li>
+                      <a href="#"><span style="color: white;"><strong> Ingreso fisicos </strong></span></a>
+                      <ul class="nested vertical menu">
+                  <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                    <a href="{% url 'producto_app:producto-crear' %}" style="color: white;">Agregar fisico</a>
+                  </li>
+
+                  <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                    <a href="{% url 'fisico_app:fisico-paquete' %} " style="color: white;">Agregar fisico paquete</a>
+                  </li>
+
+                  <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                    <a href="{% url 'fisico_app:bolsa-create' %} " style="color: white;">Agregar bolsa</a>
+                  </li>
+                
+                </li>
+              </ul>
+            </ul>
+            <ul class="vertical menu">
+              <li>
+                <a href="#"><span style="color: white;"><strong> Imprimir </strong></span></a>
+                <ul class="nested vertical menu">
+                  <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                    <a href="{% url 'gatos_g:datos-cliente' %} " style="color: white;">Impresion Guia</a>
+                  </li>
+
+                  <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                    <a href="{% url 'gatos_g:guia-buscar' %} " style="color: white;">Impresion por guia</a>
+                  </li>
+
+                  <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                    <a href="{% url 'gatos_g:guia-buscar-agendamientos' %} " style="color: white;">Impresion Agendamiento</a>
+                  </li>
+
+                  <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                    <a href="{% url 'ruta_apps:lista-imprimir' %} " style="color: white;">Impresion Masiva</a>
+                  </li>
                 </ul>
               </li>
-          </ul>  -->
+          </ul> 
+                
+          <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+            <a href="{% url 'fisico_app:cobertura-fisico' %} " style="color: white;">No cobertura</a>
+          </li>
+          <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+            <a href="{% url 'bd_app:no-fisico' %} " style="color: white;">Fisico reportar</a>
+          </li>                      
+          </ul>
+        </li>
+          </ul>    
           <ul class="vertical menu">
             <li>
-              <a href="#"><span style="color: white;"><strong><i class="fi-photo"></i> Mesa de control </strong></span></a>
+              <a href="#"><span style="color: white;"><strong><i class="fi-female"></i> Ruta </strong></span></a>
               <ul class="nested vertical menu">
-                <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                  <a href="{% url 'producto_app:index' %}"style="color: white;">Cargue</a>
-                </li>                  
-              </ul>
-            </li>
-          </ul> 
+                                    
+                  <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                    <a href="{% url 'ruta_apps:asignar' %}" style="color: white;">Asignar a mensajero</a>
+                  </li>
+                  <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                    <a href="{% url 'ruta_apps:cargue-recepcion' %}" style="color: white;">Recepcion</a>
+                  </li>
+                  <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                    <a href="{% url 'ruta_apps:lista-recepcion' %}" style="color: white;">Recepcion corregir</a>
+                  </li>
+                  <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                    <a href="{% url 'ruta_apps:planillas' %}" style="color: white;">imprimir</a>
+                  </li>
+                  <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                    <a href="{% url 'fisico_app:estado-ruta' %}" style="color: white;">Pendiente cerrar</a>
+                  </li>
+                  <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                    <a href="{% url 'ruta_apps:lista-punteo' %}" style="color: white;">Punteo</a>
+                  </li>
+                  <ul class="vertical menu">
+                    <li>
+                      <a href="#"><span style="color: white;"><strong> Traslados </strong></span></a>
+                      <ul class="nested vertical menu">
+                        <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                          <a href="{% url 'ruta_apps:destino' %} " style="color: white;">Origen destino</a>
+                        </li>
 
-          <ul class="vertical menu">
-            <li>
-              <a href="#"><span style="color: white;"><strong><i class="fi-page"></i> Courrier </strong></span></a>
-              <ul class="nested vertical menu">
-                <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                  <a href="{% url 'producto_app:courrier-ruta' %}"style="color: white;">Calificar</a>
-                </li>   
-                <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                  <a href="{% url 'courrier_app:courrier-perfiles' %}"style="color: white;">Perfil</a>
-                </li>                 
+                        <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                          <a href="{% url 'ruta_apps:destino-descargue' %} " style="color: white;">Descargue</a>
+                        </li>
+                        <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
+                          <a href="{% url 'ruta_apps:informe-destino' %} " style="color: white;">Consultar traslados</a>
+                        </li>
+
+                      </ul>
+                    </li>
+                </ul> 
+                
+                </li>
               </ul>
             </li>
-          </ul> 
-          <ul class="vertical menu">
-            <li>
-              <a href="{% url 'users_app:users-cliente' %}"><span style="color: white;"><strong><i class="fi-torso"></i> Users </strong></span></a>
+        </ul> 
+        <ul class="vertical menu">
+          <li>
+            <a href="#"><span style="color: white;"><strong><i class="fi-telephone-accessible"></i> Call center </strong></span></a>
+            <ul class="nested vertical menu">
+              <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                <a href="{% url 'call_app:call-consultar' %}"style="color: white;">Gestion</a>
+              </li>  
+              <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                <a href="{% url 'call_app:lista-call-auditoria' %}"style="color: white;">Auditoria</a>
+              </li>     
+              <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                <a href="{% url 'call_app:lista-call-auditoria' %}"style="color: white;">Informes</a>
+              </li>                            
+            </ul>
+          </li>
+      </ul>                 
+      <ul class="vertical menu">
+        <li>
+          <a href="#"><span style="color: white;"><strong><i class="fi-database"></i> Sig </strong></span></a>
+          <ul class="nested vertical menu">
+                                      
+              <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+                <a href="{% url 'bd_app:bd-Informe' %}" style="color: white;">Informe</a>
+              </li>
+              
             </li>
-          </ul> 
-          <ul class="vertical menu">
-            <li>
-              <a href="#"><span style="color: white;"><strong><i class="fi-mobile"></i> Daviplata </strong></span></a>
-              <ul class="nested vertical menu">
-                <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                  <a href="{% url 'daviplata-app:list-daviplata' %}"style="color: white;">Marcación</a>
-                </li>   
-                <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
-                  <a href="{% url 'daviplata-app:vinculacion-list' %}"style="color: white;">Vinculación</a>
-                </li>                 
-              </ul>
-            </li>
-          </ul> 
+          </ul>
+        </li>
+      </ul> 
+      <ul class="vertical menu">
+        <li>
+          <a href="#"><span style="color: white;"><strong><i class="fi-photo"></i> Mesa de control </strong></span></a>
+          <ul class="nested vertical menu">
+            <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+              <a href="{% url 'producto_app:index' %}"style="color: white;">Cargue</a>
+            </li>                  
+          </ul>
+        </li>
+      </ul>             
+      <ul class="vertical menu">
+        <li>
+          <a href="#"><span style="color: white;"><strong><i class="fi-page"></i> Courrier </strong></span></a>
+          <ul class="nested vertical menu">
+            <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+              <a href="{% url 'producto_app:courrier-ruta' %}"style="color: white;">Calificar</a>
+            </li>   
+            <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+              <a href="{% url 'courrier_app:courrier-perfiles' %}"style="color: white;">Perfil</a>
+            </li>                 
+          </ul>
+        </li>
+      </ul>      
+      {% elif user.cliente.rol == "1" %}         
+      <ul class="vertical menu">
+        <li>
+          <a href="{% url 'users_app:users-cliente' %}"><span style="color: white;"><strong><i class="fi-torso"></i> Users </strong></span></a>
+        </li>
+      </ul>      
+      {% elif user.cliente.r_s == "Daviplata" %}     
+      <ul class="vertical menu">
+        <li>
+          <a href="#"><span style="color: white;"><strong><i class="fi-mobile"></i> Daviplata </strong></span></a>
+          <ul class="nested vertical menu">
+            <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+              <a href="{% url 'daviplata-app:list-daviplata' %}"style="color: white;">Marcación</a>
+            </li>   
+            <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+              <a href="{% url 'daviplata-app:vinculacion-list' %}"style="color: white;">Vinculación</a>
+            </li>                 
+          </ul>
+        </li>
+      </ul>         
           
           {% endif %}
           

@@ -13,7 +13,9 @@ from . models import (
     Medio,
     Vinculacion,
     TipoGestion,
-    Categorias
+    Categorias,
+    MotivoNoRegistro, 
+    TipoActivacion
     )
 
 class DaviplataResource(resources.ModelResource):
@@ -74,6 +76,15 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 @admin.register(Categorias)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
+
+@admin.register(MotivoNoRegistro)
+class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+   list_display = ('nombre',)
+
+@admin.register(TipoActivacion)
+class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+   list_display = ('nombre',)
+
 
 
 
