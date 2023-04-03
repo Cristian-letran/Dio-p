@@ -24,6 +24,41 @@ class DaviplataResource(resources.ModelResource):
         model = Daviplata
         import_id_fields = ('id_ruta',) #
 
+class VinculacionResource(resources.ModelResource):
+   
+    class Meta:
+        
+        model = Vinculacion
+        name = "Export/Import only book names"
+        fields = (
+           'tipo_activacion__nombre', 'tipo_gestion__nombre', 
+           'celular', 'celular_confirma', 'nombre',
+            'nombre_comercio', 'categoria__nombre', 'registro_daviplata',
+            'motivo_no_registro__nombre', 'se_registro', 'no_registro',
+            'solicito_tencard', 'porque_no_solicito', 'sticker',
+            'razon_no_sticker', 'flanger', 'razon_no_flanger',
+            'fecha_visita', 'user__d_i', 'direccion', 'dane',
+            'dane__ciudad', 'dane__departamento__departamento', 
+            'localidad', 'barrio', 'latitud', 'longitud',
+            'c_rut', 'datafono', 'interesado', 'proveedor', 'contingencia',
+            'etnico', 'author'
+
+           )
+        export_order = (
+           'tipo_activacion__nombre', 'tipo_gestion__nombre', 
+           'celular', 'celular_confirma', 'nombre',
+            'nombre_comercio', 'categoria__nombre', 'registro_daviplata',
+            'motivo_no_registro__nombre', 'se_registro', 'no_registro',
+            'solicito_tencard', 'porque_no_solicito', 'sticker',
+            'razon_no_sticker', 'flanger', 'razon_no_flanger',
+            'fecha_visita', 'user__d_i', 'direccion', 'dane',
+            'dane__ciudad', 'dane__departamento__departamento', 
+            'localidad', 'barrio', 'latitud', 'longitud',
+            'c_rut', 'datafono', 'interesado', 'proveedor', 'contingencia',
+            'etnico', 
+            )
+        
+
 @admin.register(Daviplata)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('id_ruta', 'nombre_establecimiento', 'direccion_base', 'user')
@@ -54,7 +89,7 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
 
 @admin.register(Acude)
-class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+class DaviplaAcudetaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
 
 @admin.register(AcudeOtro)
@@ -66,8 +101,10 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
 
 @admin.register(Vinculacion)
-class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+class VinculacionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('identificacion',)
+   resource_class = VinculacionResource
+
 
 @admin.register(TipoGestion)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):

@@ -3,8 +3,9 @@ from django.views.generic import ListView, UpdateView, CreateView
 from.models import Daviplata, Vinculacion
 from django.urls import reverse_lazy
 from .forms import DaviplataForm, VinculacionForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class DaviplataListView(ListView):
+class DaviplataListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/lista_daviplata.html"
     model = Daviplata
     paginate_by = 4 
@@ -16,7 +17,7 @@ class DaviplataListView(ListView):
         )
         return queryset
 #
-class DaviplataUpdateView(UpdateView):
+class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "daviplata/daviplata_editar.html"
     form_class = DaviplataForm
     model = Daviplata
@@ -29,7 +30,7 @@ class DaviplataUpdateView(UpdateView):
         self.object.save()
         return super(DaviplataUpdateView, self).form_valid(form)
 
-class DaviplataCreateView(CreateView):
+class DaviplataCreateView(LoginRequiredMixin, CreateView):
     model = Daviplata
     template_name = "daviplata/daviplata_create.html"
     form_class = DaviplataForm
@@ -43,12 +44,12 @@ class DaviplataCreateView(CreateView):
         self.object.save()
         return super(DaviplataCreateView, self).form_valid(form)
     
-class VinculacionListView(ListView):
+class VinculacionListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/list_vinculacion.html"
     model= Vinculacion
     paginate_by = 5
     
-class VinculacionCreateView(CreateView):
+class VinculacionCreateView(LoginRequiredMixin, CreateView):
     model = Vinculacion 
     form_class = VinculacionForm
     template_name = "daviplata/vinculacion_create.html"

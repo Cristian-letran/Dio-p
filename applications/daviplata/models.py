@@ -319,6 +319,17 @@ class Vinculacion(models.Model):
     ('NIT', 'NIT'),
     ('CC DE EXTRANJERIA', 'CC DE EXTRANJERIA')
 ]
+    
+    ETNICO = [
+    ('Ninguno', 'Ninguno'),
+    ('Gitano o Rrom', 'Gitano o Rrom'),
+    ('Palenquero', 'Palenquero'),
+    ('Raizal', 'Raizal'),
+    ('Negro(a), Mulato(a),afrodecendiente(a), afrocolombiano(a)', 'Negro(a), Mulato(a),afrodecendiente(a), afrocolombiano(a)'),
+    ('Indigena', 'Indigena'),
+    ('Prefiere no responder', 'Prefiere no responder'),
+    
+]
     tipo_gestion = models.ForeignKey(TipoGestion, on_delete=models.CASCADE)
 
     tipo_id = models.CharField(
@@ -329,7 +340,9 @@ class Vinculacion(models.Model):
     
     identificacion = models.CharField(primary_key=True, max_length=13)
 
-    celular = models.CharField(max_length=12)
+    celular = models.CharField(max_length=12, verbose_name="No. celular activado en DaviPlata")
+
+    celular_confirma = models.CharField(max_length=12, verbose_name="Confirmación No. celular activado en DaviPlata")
 
     fecha_visita = models.DateField(auto_now=True)
 
@@ -345,8 +358,10 @@ class Vinculacion(models.Model):
     )
     nombre_comercio = models.CharField(max_length=80)
     c_rut = models.CharField(max_length=2, choices=C_RUT, verbose_name="¿Comercio cuenta con RUT?")
-    categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE)    
-    direccion = models.CharField(max_length=150)
+    categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, verbose_name="¿A cual de las siguientes categorias pertenece el comercio?")    
+    direccion = models.CharField(max_length=150, verbose_name="Dirección Comercio")
+    barrio = models.CharField(max_length=50)
+    localidad = models.CharField(max_length=50)
     dane = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
     latitud = models.CharField(max_length=15)
     longitud = models.CharField(max_length=15)
@@ -419,13 +434,25 @@ class Vinculacion(models.Model):
     datafono = models.CharField(
         max_length=2,
         choices=PREGUNTA,
-        verbose_name="¿Comercio tiene Datafono?"
+        verbose_name="¿Comercio está interesado en Datafóno?"
     )
     interesado = models.CharField(
         max_length=2,
         choices=PREGUNTA,
         verbose_name= "¿Comercio está interesado en ser corresponsal?"
     )
+    proveedor = models.CharField(max_length=30, default="FirstSource")
+    contingencia = models.CharField(
+        max_length=2, 
+        choices=PREGUNTA,
+        verbose_name='¿Cliente contingencia?'  )
+    
+    etnico = models.CharField(
+        max_length=70, 
+        choices=ETNICO, 
+        verbose_name='El comercio se identifica con algún grupo etnico en particular?')
+
+    
 
     ############## 6 Pestaña ####################
     

@@ -31,6 +31,16 @@
             </div>
             <div class="grid-x grid-margin-x">
                 <div class="cell medium-6 large-6">
+                    <label>Confirmación No. celular activado en DaviPlata
+                    </label>
+                    {{ form.celular_confirma }}
+                </div>
+                <div class="cell medium-6 large-6">
+                    
+                    </div>
+            </div>
+            <div class="grid-x grid-margin-x">
+                <div class="cell medium-6 large-6">
                     <label>Nombre del cliente DaviPlata</label>
                     {{ form.nombre }}
                 </div>
@@ -59,8 +69,17 @@
                     {{ form.direccion  }}
                 </div>
                 <div class="cell medium-6 large-6">
-                    <label>¿A cuál de las siguientes categorías pertenece el comercio?</label>
+                    <label>Municipio</label>
                     {{form.dane}}</div>
+            </div>
+            <div class="grid-x grid-margin-x">
+                <div class="cell medium-6 large-6">
+                    <label>Localidad o Zona</label>
+                    {{ form.localidad  }}
+                </div>
+                <div class="cell medium-6 large-6">
+                    <label>Barrio</label>
+                    {{form.barrio}}</div>
             </div>
           </div>
           <div class="accordion-content" data-tab-content>
@@ -154,9 +173,19 @@
                       {{ form.interesado  }}
                   </div>
                   <div class="cell medium-6 large-6">
-                      <label></label>
+                      <label>¿Cliente contingencia?</label>
+                      {{form.contingencia}}
                       </div>
               </div>
+              <div class="grid-x grid-margin-x">
+                <div class="cell medium-6 large-6">
+                    <label>¿Comercio está interesado en ser corresponsal?</label>
+                    {{ form.etnico  }}
+                </div>
+                <div class="cell medium-6 large-6">
+                   
+                    </div>
+            </div>
             </div>
           </li>
           
