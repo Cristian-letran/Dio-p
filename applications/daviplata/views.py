@@ -58,8 +58,7 @@ class VinculacionCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
-        self.object.dane_id  = str(self.request.user.ciudad.id)
-        print(self.object.dane_id)
+        self.object.dane.id  = str(self.request.user.ciudad.id)
         
         self.object.save()
         return super(VinculacionCreateView, self).form_valid(form)
