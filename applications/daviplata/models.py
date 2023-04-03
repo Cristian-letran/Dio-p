@@ -441,7 +441,12 @@ class Vinculacion(models.Model):
         choices=PREGUNTA,
         verbose_name= "¿Comercio está interesado en ser corresponsal?"
     )
-    proveedor = models.CharField(max_length=30, default="FirstSource")
+    proveedor = models.CharField(
+        max_length=30,
+        default="FirstSource",
+        blank=True,
+        null=True)
+    
     contingencia = models.CharField(
         max_length=2, 
         choices=PREGUNTA,
