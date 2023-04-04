@@ -379,10 +379,12 @@ class Vinculacion(models.Model):
     ################### 4 Pestaña ######################
 
     MOTIVO = [
-    ('No esta interesado', 'No esta interesado'),
-    ('NO le llama la atención', 'NO le llama la atención '),
-    ('Solo trabaja con Nequi', 'Solo trabaja con Nequi '),
-    ('Le parece Complicado Manejarlo', 'Le parece Complicado Manejarlo'),
+    ('Cliente ya tiene la tencard', 'Cliente ya tiene la tencard'),
+    ('Fallas en la app', 'Fallas en la app'),
+    ('No permitió el registro en el prefil negocio', 'No permitió el registro en el prefil negocio'),
+    ('Cliente no está interesado', 'Cliente no está interesado'),
+    ('Solo activo daviplata para subsidios del gobierno', 'Solo activo daviplata para subsidios del gobierno'),
+    ('Modo contingencia', 'Modo contingencia'),
     ]
     
     solicito_tencard = models.CharField(
@@ -407,12 +409,15 @@ class Vinculacion(models.Model):
     )
     flanger = models.CharField(
         max_length=2, 
+        default= "No",
         choices=PREGUNTA,
-        verbose_name= "Se instaló Flanger"
+        verbose_name= "Se instaló Flanger",
+        blank=True, 
+        null=True
         )
     razon_no_flanger = models.CharField(
         max_length = 60,
-        choices = MOTIVO,
+        default= "No hay stock",
         verbose_name= "Razón por la cual no se instaló el flanger"
     )
     ############### 5 Pestaña ###############
