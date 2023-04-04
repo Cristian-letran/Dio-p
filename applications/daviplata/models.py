@@ -316,12 +316,6 @@ class Vinculacion(models.Model):
     ('SI', 'SI'),
     ('NO', 'NO'),
 ]
-
-    TIPO = [
-    ('CC', 'CC'),
-    ('NIT', 'NIT'),
-    ('CC DE EXTRANJERIA', 'CC DE EXTRANJERIA')
-]
     
     ETNICO = [
     ('Ninguno', 'Ninguno'),
@@ -334,12 +328,6 @@ class Vinculacion(models.Model):
     
 ]
     tipo_gestion = models.ForeignKey(TipoGestion, on_delete=models.CASCADE)
-
-    tipo_id = models.CharField(
-        max_length=50, 
-        choices=TIPO, 
-        verbose_name='Tipo de identificación'
-        )
     
     identificacion = models.CharField(primary_key=True, max_length=13)
 
@@ -366,8 +354,8 @@ class Vinculacion(models.Model):
     barrio = models.CharField(max_length=50)
     localidad = models.CharField(max_length=50)
     dane = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
-    latitud = models.CharField(max_length=15)
-    longitud = models.CharField(max_length=15)
+    latitud = models.CharField(max_length=20)
+    longitud = models.CharField(max_length=20)
     ############## Pestaña ###################
     registro_daviplata = models.CharField(
         max_length=2, 
