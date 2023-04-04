@@ -301,6 +301,9 @@ class MotivoNoRegistro(models.Model):
     
 class TipoActivacion(models.Model):
     nombre = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.nombre
     
 class Vinculacion(models.Model):
 

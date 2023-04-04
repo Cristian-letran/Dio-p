@@ -1,6 +1,7 @@
 from django import forms
 from .models import Daviplata, Vinculacion
 from django.forms import ModelForm, Textarea
+from django.core.exceptions import ValidationError
 
 class DaviplataForm(forms.ModelForm):
     
@@ -67,6 +68,24 @@ class DaviplataForm(forms.ModelForm):
     }
 
 class VinculacionForm(forms.ModelForm):
+    celular = forms.CharField(
+        label='Celular',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Celular'
+            }
+        )
+    )
+    celular_confirma = forms.CharField(
+        label='Celular',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Repetir Celular'
+            }
+        )
+    )
     class Meta:
         model = Vinculacion
         fields = (
@@ -77,8 +96,24 @@ class VinculacionForm(forms.ModelForm):
             ),
             'identificacion': forms.NumberInput(
             ),
+            'celular_confirma': forms.NumberInput()
             
             }
+
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        celular = cleaned_data.get('celular')
+        celular_confirma  = cleaned_data.get('celular_confirma')
+
+        if celular != celular_confirma:
+            raise forms.ValidationError( "Celular incorrecto." )
+
+    
+    
+    
+    
+        
         
     
         
