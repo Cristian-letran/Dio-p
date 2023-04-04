@@ -329,11 +329,11 @@ class Vinculacion(models.Model):
 ]
     tipo_gestion = models.ForeignKey(TipoGestion, on_delete=models.CASCADE)
     
-    identificacion = models.CharField(primary_key=True, max_length=13)
+    identificacion = models.AutoField(primary_key=True)
 
-    celular = models.CharField(max_length=12, verbose_name="No. celular activado en DaviPlata")
+    celular = models.CharField(unique=True, max_length=12, verbose_name="No. celular activado en DaviPlata")
 
-    celular_confirma = models.CharField(max_length=12, verbose_name="Confirmación No. celular activado en DaviPlata")
+    celular_confirma = models.CharField(unique=True, max_length=12, verbose_name="Confirmación No. celular activado en DaviPlata")
 
     fecha_visita = models.DateField(auto_now=True)
 
