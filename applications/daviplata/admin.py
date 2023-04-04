@@ -31,7 +31,7 @@ class VinculacionResource(resources.ModelResource):
         model = Vinculacion
         name = "Export/Import only book names"
         fields = (
-           'tipo_activacion__nombre', 'tipo_gestion__nombre', 
+           'tipo_activacion', 'tipo_gestion__nombre', 
            'celular', 'celular_confirma', 'nombre',
             'nombre_comercio', 'categoria__nombre', 'registro_daviplata',
             'motivo_no_registro__nombre', 'se_registro', 'no_registro',
@@ -45,7 +45,7 @@ class VinculacionResource(resources.ModelResource):
 
            )
         export_order = (
-           'tipo_activacion__nombre', 'tipo_gestion__nombre', 
+           'tipo_activacion', 'tipo_gestion__nombre', 
            'celular', 'celular_confirma', 'nombre',
             'nombre_comercio', 'categoria__nombre', 'registro_daviplata',
             'motivo_no_registro__nombre', 'se_registro', 'no_registro',

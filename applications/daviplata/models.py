@@ -307,6 +307,15 @@ class TipoActivacion(models.Model):
     
 class Vinculacion(models.Model):
 
+    PREGUNTA4 = [
+        ('Clinete ya tiene la tencard', 'Clinete ya tiene la tencard'),
+        ('Fallas en la app', 'Fallas en la app'), 
+        ('No permitió el registro en el perfil mi negocio', 'No permitió el registro en el perfil mi negocio'),
+        ('Cliente no esta interesado', 'Cliente no esta interesado'),
+        ('Solo activo Daviplata para subsidios del gobierno', 'Solo activo Daviplata para subsidios del gobierno'),
+        ('Modo contingencia', 'Modo contingencia'), 
+
+    ]
     PREGUNTA3 = [
         ('SI', 'SI'),
         ('NO', 'NO'), 
@@ -402,13 +411,13 @@ class Vinculacion(models.Model):
     ]
     
     solicito_tencard = models.CharField(
-        max_length=2,
+        max_length=40,
         choices=PREGUNTA3,
         verbose_name= "¿Se solicitó la tentcard?")
     
     porque_no_solicito = models.CharField(
-        max_length = 60,
-        choices = MOTIVO,
+        max_length = 80,
+        choices = PREGUNTA4,
         verbose_name= "¿Por qué no se solicitó la tentcard?"
         )
     sticker = models.CharField(
@@ -424,7 +433,6 @@ class Vinculacion(models.Model):
     flanger = models.CharField(
         max_length=2, 
         default= "No",
-        choices=PREGUNTA,
         verbose_name= "Se instaló Flanger",
         blank=True, 
         null=True
@@ -432,14 +440,18 @@ class Vinculacion(models.Model):
     razon_no_flanger = models.CharField(
         max_length = 60,
         default= "No hay stock",
-        verbose_name= "Razón por la cual no se instaló el flanger"
+        verbose_name= "Razón por la cual no se instaló el flanger",
+        blank=True,
+        null=True
     )
     ############### 5 Pestaña ###############
 
-    tipo_activacion = models.ForeignKey(
-        TipoActivacion, 
-        on_delete=models.CASCADE,
-        verbose_name="Tipo activación"
+    tipo_activacion = models.CharField(
+        max_length=30,
+        verbose_name="Tipo activación",
+        default= "Presencial",
+        blank=True,
+        null=True
         )
     datafono = models.CharField(
         max_length=2,
