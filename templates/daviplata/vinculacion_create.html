@@ -5,6 +5,11 @@
 {% block panel-content %}
 
 <form method="post">{% csrf_token %}
+    {% if form.errors %}
+      <div class="callout alert">
+            {{ form.errors }}
+      </div>
+      {% endif %}
     <ul class="accordion" data-accordion data-allow-all-closed="true">
         <li class="accordion-item is-active" data-accordion-item>
           <a href="#" class="accordion-title">Cliente</a>
@@ -41,7 +46,7 @@
                     <label>Confirmación No. celular activado en DaviPlata
                     </label>
                     {{ form.celular_confirma }}
-                    {{ form.errors }}
+                    
                 </div>
                 
                 <div class="cell medium-6 large-6">
@@ -202,6 +207,7 @@
       </ul>
     
     <input class="button primary" type="submit" value="Guardar">
+    
 </form>
 
 {% endblock panel-content %}

@@ -68,24 +68,7 @@ class DaviplataForm(forms.ModelForm):
     }
 
 class VinculacionForm(forms.ModelForm):
-    celular = forms.CharField(
-        label='Celular',
-        required=True,
-        widget=forms.TextInput(
-            attrs={
-                'placeholder': 'Celular'
-            }
-        )
-    )
-    celular_confirma = forms.CharField(
-        label='Celular',
-        required=True,
-        widget=forms.TextInput(
-            attrs={
-                'placeholder': 'Repetir Celular'
-            }
-        )
-    )
+   
     class Meta:
         model = Vinculacion
         fields = (
@@ -96,7 +79,13 @@ class VinculacionForm(forms.ModelForm):
             ),
             'identificacion': forms.NumberInput(
             ),
-            'celular_confirma': forms.NumberInput()
+            'celular_confirma': forms.NumberInput(
+            attrs = {
+                    'minlength': 10,
+                    
+                }
+                
+            )
             
             }
 
