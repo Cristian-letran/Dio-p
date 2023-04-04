@@ -8,6 +8,7 @@ from django.views.generic.dates import TodayArchiveView
 from django.db.models import Count
 from applications.argumento.models import Motivo_call, Motivo
 from applications.guia.models import Guia
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 register = template.Library()
 

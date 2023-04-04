@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView
 from applications.courrier.models import courrier
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class CourrierCreate(CreateView, ListView):
+class CourrierCreate(LoginRequiredMixin, CreateView, ListView):
     template_name = "courrier/courrier.html"
     model = courrier
     fields = ('__all__')

@@ -149,7 +149,7 @@ class PanelListView(ListView):
 class UsersClienteView(ListView):
     model = User
     template_name = "users/cliente.html"
-    
+        
 
     def get_queryset(self):
         kword = self.request.GET.get('kword', '')

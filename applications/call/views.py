@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from re import template
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView
 from django.views.generic import ListView, CreateView, View
 from applications.guia.models import Guia
@@ -87,7 +88,7 @@ class CallUpdateView(CallPermisoMixin, UpdateView, ListView):
             return HttpResponseRedirect(self.get_success_url())
 
 #
-class CallEstadoUpdateView(UpdateView):
+class CallEstadoUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "call/update-estado-call.html"
     form_class = TelefonoMotivoForm
     model= Telefono
@@ -221,7 +222,7 @@ class AuditoriaListView(CallPermisoMixin, View):
     #     return Guia.objects.filter(estado=0, user=self.request.user, fecha_recepcion__contains=datetime.today().date())
             
 
-class AuditoriaCreateView(CreateView):
+class AuditoriaCreateView(LoginRequiredMixin, CreateView):
     template_name = "call/create_auditoria.html"
     form_class = CallfisicoForm
     success_url = reverse_lazy('call_app:lista-call-auditoria')

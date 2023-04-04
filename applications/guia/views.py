@@ -59,7 +59,7 @@ class ProductListView(LoginRequiredMixin, CreateView, ListView):
         return contexto
            
 
-class ProductDetailView(TemplateView):
+class ProductDetailView(LoginRequiredMixin, TemplateView):
     template_name = "producto/detail.html"
 
     def get_context_data(self, *args, **kwargs):
@@ -165,7 +165,7 @@ class MensajeroListView(MensajeroPermisoMixin, ListView ):
         return queryset   
     
 
-class MensajeroUpdateView(UpdateView):
+class MensajeroUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "guia/mensajero_ruta_update.html"
     form_class = MensajeroUpdateForm
     model = Fisico
@@ -283,7 +283,7 @@ def export_address(request):
     return response
 
 from time import time
-class ActualizarPrueba(TemplateView):
+class ActualizarPrueba(LoginRequiredMixin, TemplateView):
     template_name = "guia/template_prueba.html"
     permission_required = ('guia.add_guiap', 'guia.change_guiap')
 
