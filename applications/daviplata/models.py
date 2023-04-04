@@ -307,6 +307,13 @@ class TipoActivacion(models.Model):
     
 class Vinculacion(models.Model):
 
+    PREGUNTA3 = [
+        ('SI', 'SI'),
+        ('NO', 'NO'), 
+        ('Ya tiene la tencard', ''),
+        ('Modo Contingencia', 'Modo Contingencia'),  
+    ]
+
     PREGUNTA2 = [
         ('SI', 'SI'),
         ('NO', 'NO'), 
@@ -396,7 +403,7 @@ class Vinculacion(models.Model):
     
     solicito_tencard = models.CharField(
         max_length=2,
-        choices=PREGUNTA,
+        choices=PREGUNTA3,
         verbose_name= "¿Se solicitó la tentcard?")
     
     porque_no_solicito = models.CharField(
