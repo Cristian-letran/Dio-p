@@ -307,6 +307,13 @@ class TipoActivacion(models.Model):
     
 class Vinculacion(models.Model):
 
+    PREGUNTA2 = [
+        ('SI', 'SI'),
+        ('NO', 'NO'), 
+        ('Ya está activo', 'Ya está activo'),
+        ('Modo Contingencia', 'Modo Contingencia'),  
+    ]
+
     PREGUNTA = [
     ('SI', 'SI'),
     ('NO', 'NO'),
@@ -358,8 +365,8 @@ class Vinculacion(models.Model):
     longitud = models.CharField(max_length=20)
     ############## Pestaña ###################
     registro_daviplata = models.CharField(
-        max_length=2, 
-        choices=PREGUNTA,
+        max_length=20, 
+        choices=PREGUNTA2,
         verbose_name= "¿Se realizó registro en DaviPlata?"
         )
     motivo_no_registro = models.ForeignKey(
