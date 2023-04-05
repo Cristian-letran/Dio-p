@@ -307,6 +307,27 @@ class TipoActivacion(models.Model):
     
 class Vinculacion(models.Model):
 
+    PORQUENOREGISTRO = [
+        ('Cliente ya estaba registrado', 'Cliente ya estaba registrado'),
+        ('Cliente no está interesado', 'Cliente no está interesado'),
+        ('Cliente mejor de edad', 'Cliente mejor de edad'),
+        ('Fallas en la app', 'Fallas en la app'),
+        ('Cliente activo en Sim', 'Cliente activo en Sim'),
+        ('Sistema operativo no permite registro', 'Sistema operativo no permite registro'),
+        ('Cliente desconfia', 'Cliente desconfia'),
+        ('Cliente no tiene tiempo', 'Modo contingencia'),
+    ]
+
+    
+    PERFILNEGOCIO = [
+        ('SI', 'SI'),
+        ('NO', 'NO'),
+        ('Ya está activo', 'Ya está activo'),
+        ('Modo contingencia', 'Modo contingencia'),
+        
+        
+    ]
+
     PREGUNTA4 = [
         ('Clinete ya tiene la tencard', 'Clinete ya tiene la tencard'),
         ('Fallas en la app', 'Fallas en la app'), 
@@ -326,7 +347,7 @@ class Vinculacion(models.Model):
     PREGUNTA2 = [
         ('SI', 'SI'),
         ('NO', 'NO'), 
-        ('Ya está activo', 'Ya está activo'),
+        ('Ya esta activo', 'Ya esta activo'),
         ('Modo Contingencia', 'Modo Contingencia'),  
     ]
 
@@ -391,23 +412,24 @@ class Vinculacion(models.Model):
         verbose_name="¿Por qué no se realizó el registro DaviPlata?"
         )
     se_registro = models.CharField(
-        max_length=2, 
-        choices=PREGUNTA,
+        max_length=20, 
+        choices=PERFILNEGOCIO,
         verbose_name="¿Se realizó registro en perfil mi negocio?")
     
     no_registro = models.CharField(
-        max_length=2, 
-        choices=PREGUNTA,
+        max_length=37, 
+        choices=PORQUENOREGISTRO,
         verbose_name="¿Por qué no se realizó el registro en perfil mi negocio?")
     ################### 4 Pestaña ######################
 
     MOTIVO = [
-    ('Cliente ya tiene la tencard', 'Cliente ya tiene la tencard'),
-    ('Fallas en la app', 'Fallas en la app'),
-    ('No permitió el registro en el prefil negocio', 'No permitió el registro en el prefil negocio'),
-    ('Cliente no está interesado', 'Cliente no está interesado'),
-    ('Solo activo daviplata para subsidios del gobierno', 'Solo activo daviplata para subsidios del gobierno'),
-    ('Modo contingencia', 'Modo contingencia'),
+    ('No está autorizado por el dueño', 'No está autorizado por el dueño'),
+    ('No está interesado', 'No está interesado'),
+    ('No se pudo registrar', 'No se pudo registrar'),
+    ('Vendedor informal', 'Vendedor informal'),
+    ('No hay espacio en el comercio', 'No hay espacio en el comercio'),
+    ('No hay Stock', 'No hay Stock'),
+    ('Se instaló flanger', 'Se instaló flanger'),
     ]
     
     solicito_tencard = models.CharField(
