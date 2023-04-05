@@ -76,14 +76,11 @@ class VinculacionForm(forms.ModelForm):
            
         widgets = {
             'celular': forms.NumberInput(
+                
             ),
             'identificacion': forms.NumberInput(
             ),
             'celular_confirma': forms.NumberInput(
-            attrs = {
-                    'minlength': 10,
-                    
-                }
                 
             )
             
@@ -97,6 +94,10 @@ class VinculacionForm(forms.ModelForm):
 
         if celular != celular_confirma:
             raise forms.ValidationError( "Celular incorrecto." )
+        
+        
+        
+    
 
     
     

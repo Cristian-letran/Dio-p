@@ -48,6 +48,13 @@ class VinculacionListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/list_vinculacion.html"
     model= Vinculacion
     paginate_by = 5
+
+    def get_queryset(self):
+        kword = self.request.GET.get("kword", '')
+        queryset = Vinculacion.objects.filter(
+            celular__icontains = kword
+        )
+        return queryset
     
 class VinculacionCreateView(LoginRequiredMixin, CreateView):
     model = Vinculacion 
@@ -58,7 +65,6 @@ class VinculacionCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
-        
         self.object.save()
         return super(VinculacionCreateView, self).form_valid(form)
     

@@ -340,7 +340,7 @@ class Vinculacion(models.Model):
     PREGUNTA3 = [
         ('SI', 'SI'),
         ('NO', 'NO'), 
-        ('Ya tiene la tencard', ''),
+        ('Ya tiene la tencard', 'Ya tiene la tencard'),
         ('Modo Contingencia', 'Modo Contingencia'),  
     ]
 
@@ -375,9 +375,9 @@ class Vinculacion(models.Model):
     
     identificacion = models.AutoField(primary_key=True)
 
-    celular = models.CharField(unique=True, max_length=12, verbose_name="No. celular activado en DaviPlata")
+    celular = models.CharField(unique=True, max_length=10, verbose_name="No. celular activado en DaviPlata")
 
-    celular_confirma = models.CharField(unique=True, max_length=12, verbose_name="Confirmación No. celular activado en DaviPlata")
+    celular_confirma = models.CharField(unique=True, max_length=10, verbose_name="Confirmación No. celular activado en DaviPlata")
 
     fecha_visita = models.DateField(auto_now=True)
 
