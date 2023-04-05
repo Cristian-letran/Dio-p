@@ -423,7 +423,7 @@ class Vinculacion(models.Model):
     ################### 4 Pestaña ######################
 
     MOTIVO = [
-    ('No está autorizado por el dueño', 'No está autorizado por el dueño'),
+    ('No esta autorizado por el dueno', 'No está autorizado por el dueño'),
     ('No está interesado', 'No está interesado'),
     ('No se pudo registrar', 'No se pudo registrar'),
     ('Vendedor informal', 'Vendedor informal'),
