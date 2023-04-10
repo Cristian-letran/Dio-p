@@ -310,7 +310,7 @@ class Vinculacion(models.Model):
     PORQUENOREGISTRO = [
         ('Cliente ya estaba registrado', 'Cliente ya estaba registrado'),
         ('Fallas en la app', 'Fallas en la app'),
-        ('Cliente no está interesado', 'Cliente no está interesado'),
+        ('Cliente no esta interesado', 'Cliente no está interesado'),
         ('Cliente tercera edad', 'Cliente tercera edad'),
         ('Sistema operativo no permite registro', 'Sistema operativo no permite registro'),
         ('Cliente desconfia', 'Cliente desconfia'),
