@@ -309,16 +309,17 @@ class Vinculacion(models.Model):
 
     PORQUENOREGISTRO = [
         ('Cliente ya estaba registrado', 'Cliente ya estaba registrado'),
-        ('Cliente no está interesado', 'Cliente no está interesado'),
-        ('Cliente mejor de edad', 'Cliente mejor de edad'),
         ('Fallas en la app', 'Fallas en la app'),
-        ('Cliente activo en Sim', 'Cliente activo en Sim'),
+        ('Cliente no está interesado', 'Cliente no está interesado'),
+        ('Cliente tercera edad', 'Cliente tercera edad'),
         ('Sistema operativo no permite registro', 'Sistema operativo no permite registro'),
         ('Cliente desconfia', 'Cliente desconfia'),
-        ('Cliente no tiene tiempo', 'Modo contingencia'),
+        ('Cliente no tiene tiempo', 'Cliente no tiene tiempo'),
+        ('Cliente no tiene documentos en el momento', 'Cliente no tiene documentos en el momento'),
+        ('Modo contingencia', 'Modo contingencia'),
+
     ]
 
-    
     PERFILNEGOCIO = [
         ('SI', 'SI'),
         ('NO', 'NO'),
@@ -409,7 +410,9 @@ class Vinculacion(models.Model):
     motivo_no_registro = models.ForeignKey(
         MotivoNoRegistro, 
         on_delete=models.CASCADE,
-        verbose_name="¿Por qué no se realizó el registro DaviPlata?"
+        verbose_name="¿Por qué no se realizó el registro DaviPlata?",
+        blank=True,
+        null=True
         )
     se_registro = models.CharField(
         max_length=20, 
@@ -417,9 +420,13 @@ class Vinculacion(models.Model):
         verbose_name="¿Se realizó registro en perfil mi negocio?")
     
     no_registro = models.CharField(
-        max_length=37, 
+        max_length=42, 
         choices=PORQUENOREGISTRO,
-        verbose_name="¿Por qué no se realizó el registro en perfil mi negocio?")
+        blank = True,
+        null=True,
+        verbose_name="¿Por qué no se realizó el registro en perfil mi negocio?"),
+        
+    
     ################### 4 Pestaña ######################
 
     MOTIVO = [
@@ -440,6 +447,8 @@ class Vinculacion(models.Model):
     porque_no_solicito = models.CharField(
         max_length = 80,
         choices = PREGUNTA4,
+        blank=True,
+        null=True,
         verbose_name= "¿Por qué no se solicitó la tentcard?"
         )
     sticker = models.CharField(
@@ -494,6 +503,8 @@ class Vinculacion(models.Model):
     contingencia = models.CharField(
         max_length=2, 
         choices=PREGUNTA,
+        blank=True,
+        null=True,
         verbose_name='¿Cliente contingencia?'  )
     
     etnico = models.CharField(
@@ -501,7 +512,34 @@ class Vinculacion(models.Model):
         choices=ETNICO, 
         verbose_name='El comercio se identifica con algún grupo etnico en particular?')
 
-    
+    def save(self, *args, **kwargs):
+
+        if self.registro_daviplata == "SI":
+            self.motivo_no_registro = None
+        elif self.registro_daviplata == "Ya esta activo":
+            self.motivo_no_registro = None
+        elif self.registro_daviplata == "Modo Contingencia":
+            self.motivo_no_registro_id = 9
+        #############################################
+        if self.se_registro == "SI":
+            self.no_registro = None
+        elif self.se_registro == "Ya esta activo":
+            self.no_registro = None
+        elif self.se_registro == "Modo Contingencia":
+            self.motivo_no_registro_id = 9
+        ##########TENCARD#################
+        if self.solicito_tencard == "SI":
+            self.porque_no_solicito = None
+        elif self.solicito_tencard == "Ya tiene la tencard":
+            self.porque_no_solicito = None
+        elif self.solicito_tencard == "Modo Contingencia":
+            self.porque_no_solicito = "Modo contingencia"
+        ############################################
+        
+
+       
+          
+        super(Vinculacion, self).save(*args, **kwargs)      
 
     ############## 6 Pestaña ####################
     
