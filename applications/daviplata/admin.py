@@ -116,7 +116,7 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 @admin.register(MotivoNoRegistro)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-   list_display = ('nombre',)
+   list_display = ('id','nombre',)
 
 @admin.register(TipoActivacion)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
