@@ -34,28 +34,28 @@ class VinculacionResource(resources.ModelResource):
            'tipo_activacion', 'tipo_gestion__nombre', 
            'celular', 'celular_confirma', 'nombre',
             'nombre_comercio', 'categoria__nombre', 'registro_daviplata',
-            'motivo_no_registro__nombre', 'se_registro', 'no_registro',
+            'motivo_no_registro__nombre', 'se_registro', 'no_register',
             'solicito_tencard', 'porque_no_solicito', 'sticker',
             'razon_no_sticker', 'flanger', 'razon_no_flanger',
             'fecha_visita', 'user__d_i', 'direccion', 'dane',
             'dane__ciudad', 'dane__departamento__departamento', 
             'localidad', 'barrio', 'latitud', 'longitud',
             'c_rut', 'datafono', 'interesado', 'proveedor', 'contingencia',
-            'etnico', 'author'
+            'etnico', 'author', 'transaccion'
 
            )
         export_order = (
            'tipo_activacion', 'tipo_gestion__nombre', 
            'celular', 'celular_confirma', 'nombre',
             'nombre_comercio', 'categoria__nombre', 'registro_daviplata',
-            'motivo_no_registro__nombre', 'se_registro', 'no_registro',
+            'motivo_no_registro__nombre', 'se_registro', 'no_register',
             'solicito_tencard', 'porque_no_solicito', 'sticker',
             'razon_no_sticker', 'flanger', 'razon_no_flanger',
             'fecha_visita', 'user__d_i', 'direccion', 'dane',
             'dane__ciudad', 'dane__departamento__departamento', 
             'localidad', 'barrio', 'latitud', 'longitud',
             'c_rut', 'datafono', 'interesado', 'proveedor', 'contingencia',
-            'etnico', 
+            'etnico', 'transaccion'
             )
         
 

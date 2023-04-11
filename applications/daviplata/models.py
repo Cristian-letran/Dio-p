@@ -310,7 +310,7 @@ class Vinculacion(models.Model):
     PORQUENOREGISTRO = [
         ('Cliente ya estaba registrado', 'Cliente ya estaba registrado'),
         ('Fallas en la app', 'Fallas en la app'),
-        ('Cliente no esta interesado', 'Cliente no está interesado'),
+        ('Cliente no esta interesado', 'Cliente no esta interesado'),
         ('Cliente tercera edad', 'Cliente tercera edad'),
         ('Sistema operativo no permite registro', 'Sistema operativo no permite registro'),
         ('Cliente desconfia', 'Cliente desconfia'),
@@ -323,7 +323,7 @@ class Vinculacion(models.Model):
     PERFILNEGOCIO = [
         ('SI', 'SI'),
         ('NO', 'NO'),
-        ('Ya está activo', 'Ya está activo'),
+        ('Ya esta activo', 'Ya esta activo'),
         ('Modo contingencia', 'Modo contingencia'),
         
         
@@ -417,16 +417,17 @@ class Vinculacion(models.Model):
     se_registro = models.CharField(
         max_length=20, 
         choices=PERFILNEGOCIO,
-        verbose_name="¿Se realizó registro en perfil mi negocio?")
+        verbose_name="¿Se realizó registro en perfil mi negocio?"
+        )
     
-    no_registro = models.CharField(
-        max_length=42, 
-        choices=PORQUENOREGISTRO,
+    no_register = models.CharField(
+        max_length=60, 
+        choices=PORQUENOREGISTRO, 
         blank = True,
         null=True,
-        verbose_name="¿Por qué no se realizó el registro en perfil mi negocio?"),
+        verbose_name="¿Por que no se realizo el registro en perfil mi negocio?"
+        )
         
-    
     ################### 4 Pestaña ######################
 
     MOTIVO = [
@@ -459,6 +460,7 @@ class Vinculacion(models.Model):
     razon_no_sticker = models.CharField(
         max_length = 60,
         choices = MOTIVO,
+        blank=True, null=True,
         verbose_name= "Razón por la cual no se pegó el sticker"
     )
     flanger = models.CharField(
@@ -498,19 +500,36 @@ class Vinculacion(models.Model):
         max_length=30,
         default="FirstSource",
         blank=True,
-        null=True)
+        null=True
+        )
     
     contingencia = models.CharField(
         max_length=2, 
         choices=PREGUNTA,
+        default="NO",
         blank=True,
         null=True,
-        verbose_name='¿Cliente contingencia?'  )
+        verbose_name='¿Cliente contingencia?'  
+        )
     
     etnico = models.CharField(
         max_length=70, 
         choices=ETNICO, 
-        verbose_name='El comercio se identifica con algún grupo etnico en particular?')
+        verbose_name='El comercio se identifica con algún grupo etnico en particular?'
+        )
+    transaccion = models.CharField(
+        max_length=2,
+        choices=PREGUNTA,
+        blank=True,
+        null=True
+        )
+    codigo_transaccion = models.IntegerField(
+        blank=True, null=True
+    )
+    no_transaccion =models.CharField(
+        max_length=30, 
+        blank=True, 
+        null=True)
 
     def save(self, *args, **kwargs):
 
@@ -522,11 +541,13 @@ class Vinculacion(models.Model):
             self.motivo_no_registro_id = 9
         #############################################
         if self.se_registro == "SI":
-            self.no_registro = None
+            self.no_register = None
         elif self.se_registro == "Ya esta activo":
-            self.no_registro = None
-        elif self.se_registro == "Modo Contingencia":
-            self.motivo_no_registro_id = 9
+            self.no_register = None
+        elif self.se_registro == "Modo contingencia":
+            self.no_register = "Modo contingencia"
+            self.contingencia = "SI"
+
         ##########TENCARD#################
         if self.solicito_tencard == "SI":
             self.porque_no_solicito = None
@@ -534,9 +555,11 @@ class Vinculacion(models.Model):
             self.porque_no_solicito = None
         elif self.solicito_tencard == "Modo Contingencia":
             self.porque_no_solicito = "Modo contingencia"
-        ############################################
-        
-
+        ###############CODIGO TRANSACCION#############################
+        if self.codigo_transaccion == None:
+            self.transaccion = "NO"
+        else:
+            self.transaccion = "SI"
        
           
         super(Vinculacion, self).save(*args, **kwargs)      
