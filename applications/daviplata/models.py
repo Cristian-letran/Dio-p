@@ -581,7 +581,7 @@ class Vinculacion(models.Model):
         if self.codigo_transaccion == None:
             self.transaccion = "NO"
         else:
-            self.transaccion = None
+            self.transaccion = "SI"
         ##################sticker########################
         if self.sticker == "SI":
             self.razon_no_sticker = None
