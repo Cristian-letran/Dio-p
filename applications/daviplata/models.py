@@ -376,14 +376,27 @@ class Vinculacion(models.Model):
     
     identificacion = models.AutoField(primary_key=True)
 
-    celular = models.CharField(unique=True, max_length=10, verbose_name="No. celular activado en DaviPlata")
+    celular = models.CharField(
+        unique=True, 
+        max_length=10,
+        blank= True,
+        null= True, 
+        verbose_name="No. celular activado en DaviPlata")
 
-    celular_confirma = models.CharField(unique=True, max_length=10, verbose_name="Confirmación No. celular activado en DaviPlata")
+    celular_confirma = models.CharField(
+        unique=True, 
+        max_length=10, 
+        blank= True,
+        null= True, 
+        verbose_name="Confirmación No. celular activado en DaviPlata"
+        )
 
     fecha_visita = models.DateField(auto_now=True)
 
     nombre = models.CharField(
         max_length=150,
+        blank= True,
+        null= True, 
         verbose_name='Nombre del cliente DaviPlata')
 
     user = models.ForeignKey(
@@ -392,9 +405,18 @@ class Vinculacion(models.Model):
         blank=True, null=True, 
         verbose_name= 'Usuario'
     )
-    nombre_comercio = models.CharField(max_length=80)
+    nombre_comercio = models.CharField(
+        max_length=80,
+        blank= True,
+        null= True, )
     c_rut = models.CharField(max_length=2, choices=C_RUT, verbose_name="¿Comercio cuenta con RUT?")
-    categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, verbose_name="¿A cual de las siguientes categorias pertenece el comercio?")    
+    categoria = models.ForeignKey(
+        Categorias, 
+        on_delete=models.CASCADE,
+        blank= True,
+        null= True, 
+        verbose_name="¿A cual de las siguientes categorias pertenece el comercio?"
+        )    
     direccion = models.CharField(max_length=150, verbose_name="Dirección Comercio")
     barrio = models.CharField(max_length=50)
     localidad = models.CharField(max_length=50)
