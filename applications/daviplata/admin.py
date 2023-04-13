@@ -41,7 +41,7 @@ class VinculacionResource(resources.ModelResource):
       solicito_tencard = Field(attribute='solicito_tencard', column_name='¿Se solicitó la tentcard?')
       porque_no_solicito = Field(attribute='porque_no_solicito', column_name='¿Por qué no se solicitó la tentcard?')
       transaccion = Field(attribute='transaccion', column_name='¿Se realizó transacción de $1?')
-      no_transaccion = Field(attribute='transaccion', column_name='¿Por qué no se realizó la transacción de $1?')
+      no_transaccion = Field(attribute='no_transaccion', column_name='¿Por qué no se realizó la transacción de $1?')
       sticker = Field(attribute='sticker', column_name='Se pego Sticker')
       razon_no_sticker = Field(attribute='razon_no_sticker', column_name='Razon por la cual no se pegó el sticker')
       flanger = Field(attribute='flanger', column_name='Se instalo Flanger')
@@ -76,7 +76,7 @@ class VinculacionResource(resources.ModelResource):
             'dane__ciudad', 'dane__departamento__departamento', 
             'localidad', 'barrio', 'latitud', 'longitud',
             'c_rut', 'datafono', 'interesado', 'proveedor', 'contingencia',
-            'etnico', 'author', 'transaccion'
+            'etnico', 'author', 'transaccion', 'no_transaccion'
 
            )
         export_order = (
