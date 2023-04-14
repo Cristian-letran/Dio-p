@@ -28,7 +28,7 @@ from .forms import (
     UserUpdateForm
 )
 #
-from .models import User
+from .models import User, LogSesion
 # 
 from .functions import code_generator
 from django.template.defaulttags import register
@@ -156,7 +156,7 @@ class UsersClienteView(ListView):
         queryset   = User.objects.filter(d_i__icontains = kword, cliente = 1)
         return queryset   
     
-class UserCreateView(CreateView):
+class UserCreateView(LoginRequiredMixin, CreateView):
     form_class = UserCreateForm
     template_name = "users/create_user.html"
     success_url = reverse_lazy('users_app:users-cliente')
@@ -168,7 +168,7 @@ class UserCreateView(CreateView):
         self.object.save()
         return super(UserCreateView, self).form_valid(form)
     
-class UserClienteUPdateView(UpdateView):
+class UserClienteUPdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserUpdateForm
     template_name = "users/update_user_cliente.html"
@@ -178,6 +178,16 @@ class UserClienteUPdateView(UpdateView):
     #     context = super().get_context_data(**kwargs)
     #     context['form'].fields['cliente'].queryset = User.objects.filter(cliente_id_clie=self.request.user.cliente.id_clie)   
     #     return context
+
+class LogSesionListView(ListView):
+    template_name = "users/logs_davivienda.html"
+    model = LogSesion
+    paginate_by = 5
+
+    def get_queryset(self):
+        return LogSesion.objects.filter(cliente = "Davivienda")
+
+
     
     
 

@@ -1,0 +1,27 @@
+{% extends "users/base_users.html" %} {% load static %} {% block panel-content %}
+<h1>Logs Davivienda</h1>
+
+
+<table>
+    <thead>
+      <tr>
+        <th width="200">Nombre</th>
+        <th>Usuario</th>
+        <th width="150">Estado</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for e in object_list %}
+      <tr>
+        <td></td>
+        <td>{{e.usuario}}</td>
+        <td></td>
+      </tr>
+        {% endfor %}
+      
+      
+    </tbody>
+  </table>
+
+{% endblock panel-content %}

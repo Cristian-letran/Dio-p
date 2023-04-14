@@ -96,6 +96,7 @@ class VinculacionForm(forms.ModelForm):
         nombre  = cleaned_data.get('nombre')
         nombre_comercio = cleaned_data.get('nombre_comercio')
         categoria = cleaned_data.get('categoria')
+        direccion = cleaned_data.get('direccion')
 
         if celular != celular_confirma:
             raise forms.ValidationError( "Celular incorrecto." )
@@ -112,6 +113,24 @@ class VinculacionForm(forms.ModelForm):
         elif tipo_gestion.id ==1 and categoria == None:
             raise forms.ValidationError( "Completar ¿A cuál de las siguientes categorías pertenece el comercio?" )
         
+        ###################################EMARCACIÓN#########################################
+        
+        if tipo_gestion.id ==2 and nombre == None:
+            raise forms.ValidationError( "Completar Nombre del cliente DaviPlata" )
+        
+        elif tipo_gestion.id ==2 and celular == None:
+            raise forms.ValidationError( "Completar No. celular activado en DaviPlata" )
+        
+        elif tipo_gestion.id ==2 and nombre_comercio == None:
+            raise forms.ValidationError( "Completar Nombre comercio" )
+        
+        elif tipo_gestion.id ==2 and categoria == None:
+            raise forms.ValidationError( "Completar ¿A cuál de las siguientes categorías pertenece el comercio?" )
+        
+        ########## DIRECCION  ###########################
+
+        if direccion == None:
+            raise forms.ValidationError( "Completar Dirección Comercio" )
         
         return self.cleaned_data
         

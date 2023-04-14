@@ -132,13 +132,15 @@ def create_user_log(sender, instance, created, **kwargs):
             documento = instance.d_i,
             usuario = instance.nombres,
             registro = datetime.datetime.now(),
+            cliente = instance.cliente
         )
     elif not created:
         LogSesion.objects.create(
             log=instance,
             documento = instance.d_i,
             usuario = instance.nombres,
-            registro = datetime.datetime.now()
+            registro = datetime.datetime.now(),
+            cliente = instance.cliente
         )
 
 

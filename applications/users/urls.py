@@ -62,5 +62,11 @@ urlpatterns = [
         name='users-update',
     ),
     
+    path(
+        'logs/', 
+        views.LogSesionListView.as_view(),
+        name='logs',
+    ),
+    
     
 ]
