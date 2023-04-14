@@ -52,7 +52,8 @@ class VinculacionListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         kword = self.request.GET.get("kword", '')
         queryset = Vinculacion.objects.filter(
-            celular__icontains = kword, user = self.request.user
+            celular__icontains = kword, 
+            user = self.request.user
         )
         return queryset
     
