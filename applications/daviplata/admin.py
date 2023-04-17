@@ -27,7 +27,7 @@ class DaviplataResource(resources.ModelResource):
 
 class VinculacionResource(resources.ModelResource):
       tipo_activacion = Field(attribute='tipo_activacion', column_name='Tipo activación')
-      tipo_gestion__nombre = Field(attribute='tipo_gestion__nombre', column_name='Tipo de gestion')
+      tipo_gestion__descripcion = Field(attribute='tipo_gestion__descripcion', column_name='Tipo de gestion')
       celular = Field(attribute='celular', column_name='No. celular activado en DaviPlata')
       celular_confirma = Field(attribute='celular_confirma', column_name='Confirmación No. celular activado en DaviPlata')
       nombre = Field(attribute='nombre', column_name='Nombre del cliente DaviPlata')
@@ -66,7 +66,7 @@ class VinculacionResource(resources.ModelResource):
         model = Vinculacion
         name = "Export/Import only book names"
         fields = (
-           'tipo_activacion', 'tipo_gestion__nombre', 
+           'tipo_activacion', 'tipo_gestion__descripcion', 
            'celular', 'celular_confirma', 'nombre',
             'nombre_comercio', 'categoria__nombre', 'registro_daviplata',
             'motivo_no_registro__nombre', 'se_registro', 'no_register',
@@ -80,7 +80,7 @@ class VinculacionResource(resources.ModelResource):
 
            )
         export_order = (
-           'tipo_activacion', 'tipo_gestion__nombre', 
+           'tipo_activacion', 'tipo_gestion__descripcion', 
            'celular', 'celular_confirma', 'nombre',
             'nombre_comercio', 'categoria__nombre', 'registro_daviplata',
             'motivo_no_registro__nombre', 'se_registro', 'no_register',

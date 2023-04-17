@@ -97,6 +97,8 @@ class VinculacionForm(forms.ModelForm):
         nombre_comercio = cleaned_data.get('nombre_comercio')
         categoria = cleaned_data.get('categoria')
         direccion = cleaned_data.get('direccion')
+        codigo_transaccion = cleaned_data.get('codigo_transaccion')
+        no_transaccion = cleaned_data.get('no_transaccion')
 
         if celular != celular_confirma:
             raise forms.ValidationError( "Celular incorrecto." )
@@ -131,6 +133,11 @@ class VinculacionForm(forms.ModelForm):
 
         if direccion == None:
             raise forms.ValidationError( "Completar Dirección Comercio" )
+        
+        ############## Codigo transaccion #######################
+
+        if codigo_transaccion == None and no_transaccion == None:
+            raise forms.ValidationError( "Completar ¿Por qué no se realizó la transacción de $1?" )
         
         return self.cleaned_data
         

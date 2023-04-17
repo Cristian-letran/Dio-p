@@ -3,6 +3,8 @@ from applications.cliente.models import Departamento, Ciudad
 from django.conf import settings 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 class Red(models.Model):
     nombre = models.CharField(max_length=100)
@@ -283,9 +285,10 @@ class Daviplata(models.Model):
     
 class TipoGestion(models.Model):
     nombre = models.CharField(max_length=40)
+    descripcion = models.CharField(max_length=40)
 
     def __str__(self):
-        return self.nombre
+        return self.descripcion
 
 class Categorias(models.Model):
     nombre = models.CharField(max_length=40)
@@ -372,7 +375,11 @@ class Vinculacion(models.Model):
     ('Prefiere no responder', 'Prefiere no responder'),
     
 ]
-    tipo_gestion = models.ForeignKey(TipoGestion, on_delete=models.CASCADE)
+    tipo_gestion = models.ForeignKey(
+        TipoGestion, 
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True)
     
     identificacion = models.AutoField(primary_key=True)
 
@@ -427,6 +434,8 @@ class Vinculacion(models.Model):
     registro_daviplata = models.CharField(
         max_length=20, 
         choices=PREGUNTA2,
+        blank=True,
+        null=True,
         verbose_name= "¿Se realizó registro en DaviPlata?"
         )
     motivo_no_registro = models.ForeignKey(
@@ -439,6 +448,8 @@ class Vinculacion(models.Model):
     se_registro = models.CharField(
         max_length=20, 
         choices=PERFILNEGOCIO,
+        blank=True,
+        null=True,
         verbose_name="¿Se realizó registro en perfil mi negocio?"
         )
     
@@ -465,6 +476,8 @@ class Vinculacion(models.Model):
     solicito_tencard = models.CharField(
         max_length=40,
         choices=PREGUNTA3,
+        blank=True,
+        null=True,
         verbose_name= "¿Se solicitó la tentcard?")
     
     porque_no_solicito = models.CharField(
@@ -477,6 +490,8 @@ class Vinculacion(models.Model):
     sticker = models.CharField(
         max_length=2,
         choices=PREGUNTA,
+        blank=True,
+        null=True,
         verbose_name= "Se pego Sticker"
         )
     razon_no_sticker = models.CharField(
@@ -552,6 +567,18 @@ class Vinculacion(models.Model):
         max_length=30, 
         blank=True, 
         null=True)
+    
+    FACTURA = [
+        ('Vinculacion Estandar', 'Vinculacion Estandar'),
+        ('Vinculacion Sin activacion Perfil', 'Vinculacion Sin activacion Perfil'), 
+        ('Remarcacion', 'Remarcacion'),
+        ('Comercio No acepto', 'Comercio No acepto'),  
+    ]
+    
+    sig_factura = models.CharField(
+        max_length=45, choices=FACTURA,
+        blank=True,
+        null=True)
 
     def save(self, *args, **kwargs):
 
@@ -586,8 +613,49 @@ class Vinculacion(models.Model):
         if self.sticker == "SI":
             self.razon_no_sticker = None
 
-          
-        super(Vinculacion, self).save(*args, **kwargs)      
+        ########Condicion informe sig #########
+
+        if self.tipo_gestion.id == 1 :
+            self.registro_daviplata = "SI"
+            self.motivo_no_registro = None
+            self.se_registro = "SI"
+            self.register = None
+            self.solicito_tencard = "SI"
+            self.porque_no_solicito = None
+            self.sticker = "SI"
+
+        elif self.tipo_gestion.id == 2 :
+            self.registro_daviplata = "SI"
+            self.motivo_no_registro = None
+            self.se_registro = "NO"
+            self.solicito_tencard = "NO"
+            self.sticker = "SI"
+        
+        elif self.tipo_gestion.id == 3 :
+            self.registro_daviplata = "Ya esta activo"
+            self.se_registro = "SI"
+            self.register = None
+            self.solicito_tencard = "SI"
+            self.porque_no_solicito = None
+            self.sticker = "SI"
+            if self.registro_daviplata == "Ya esta activo":
+                self.motivo_no_registro_id = 1
+
+        elif self.tipo_gestion.id == 4 :
+            self.registro_daviplata = "NO"
+            self.se_registro = "NO"
+            self.solicito_tencard = "NO"
+            self.sticker = "NO"
+            self.codigo_transaccion = None
+
+        ################¿Se realizo  registro en perfil mi negocio?####
+
+    
+
+            
+        
+        super(Vinculacion, self).save(*args, **kwargs)    
+
 
     ############## 6 Pestaña ####################
     
