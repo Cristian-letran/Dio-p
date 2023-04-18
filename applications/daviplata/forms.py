@@ -140,8 +140,8 @@ class VinculacionForm(forms.ModelForm):
         if codigo_transaccion == None and no_transaccion == None:
             raise forms.ValidationError( "Completar ¿Por qué no se realizó la transacción de $1?" )
         
-        if se_registro == "NO":
-            raise forms.ValidationError( "¿Por que no se realizo el registro en perfil mi negocio?" )
+        # if se_registro == "NO":
+        #     raise forms.ValidationError( "¿Por que no se realizo el registro en perfil mi negocio?" )
         
         return self.cleaned_data
         
