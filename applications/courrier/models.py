@@ -115,6 +115,7 @@ class courrier(models.Model):
         on_delete=models.CASCADE,
         verbose_name = 'Datos vehiculo',
         blank=True,
+        null=True
     )
 
     infraccion = models.ManyToManyField(Tipo_infraccion)
