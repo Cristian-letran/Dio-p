@@ -111,7 +111,7 @@ class courrier(models.Model):
     )
 
     id_veh = models.ForeignKey(
-        'vehiculo',
+        vehiculo,
         on_delete=models.CASCADE,
         verbose_name = 'Datos vehiculo',
         blank=True,
