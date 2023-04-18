@@ -117,7 +117,7 @@ class VinculacionForm(forms.ModelForm):
         elif tipo_gestion.id ==1 and categoria == None:
             raise forms.ValidationError( "Completar ¿A cuál de las siguientes categorías pertenece el comercio?" )
         
-        ###################################EMARCACIÓN#########################################
+        ###################################NUEVO#########################################
         
         if tipo_gestion.id ==2 and nombre == None:
             raise forms.ValidationError( "Completar Nombre del cliente DaviPlata" )
@@ -129,6 +129,19 @@ class VinculacionForm(forms.ModelForm):
             raise forms.ValidationError( "Completar Nombre comercio" )
         
         elif tipo_gestion.id ==2 and categoria == None:
+            raise forms.ValidationError( "Completar ¿A cuál de las siguientes categorías pertenece el comercio?" )
+        
+        ########################REMARCACION##########################
+        if tipo_gestion.id ==3 and nombre == None:
+            raise forms.ValidationError( "Completar Nombre del cliente DaviPlata" )
+        
+        elif tipo_gestion.id ==3 and celular == None:
+            raise forms.ValidationError( "Completar No. celular activado en DaviPlata" )
+        
+        elif tipo_gestion.id ==3 and nombre_comercio == None:
+            raise forms.ValidationError( "Completar Nombre comercio" )
+        
+        elif tipo_gestion.id ==3 and categoria == None:
             raise forms.ValidationError( "Completar ¿A cuál de las siguientes categorías pertenece el comercio?" )
         
         ########## DIRECCION  ###########################
@@ -145,6 +158,9 @@ class VinculacionForm(forms.ModelForm):
             raise forms.ValidationError( "Completar ¿Por que no se realizo el registro en perfil mi negocio?" )
         
         return self.cleaned_data
+    
+
+   
         
     
 
