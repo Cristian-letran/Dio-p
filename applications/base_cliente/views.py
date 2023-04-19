@@ -51,7 +51,7 @@ def exportSig(request):
         'guias__fecha_planilla', 'color'
         
         )
-    base["color"] = "red"
+    
     for guia in base:
         
         writer.writerow(guia)
