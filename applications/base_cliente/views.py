@@ -48,7 +48,7 @@ def exportSig(request):
         'guias__id_ciu__ciudad', 'guias__direccion', #12
         't_emi', 'guias__id_guia',#13
         'guias__origen', 'guias__destino', #14
-        'guias__fecha_planilla', 'color'
+        'guias__fecha_planilla'
         
         )
     
