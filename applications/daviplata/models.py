@@ -649,13 +649,7 @@ class Vinculacion(models.Model):
             self.codigo_transaccion = None
 
         ################¿Se realizo  registro en perfil mi negocio?####
-
-    
-
-            
-        
         super(Vinculacion, self).save(*args, **kwargs)    
-
 
     ############## 6 Pestaña ####################
     

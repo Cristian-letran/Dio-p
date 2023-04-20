@@ -17,7 +17,19 @@ class Areas(models.Model):
         return self.Areas
 
 class User(AbstractBaseUser, PermissionsMixin):
-    # TIPO DE USUARIOS
+    
+    ROL_USER_FINAL = [
+
+        (1, 'Consulta'),
+        (2, 'Davivienda Administrador'),
+        (3, 'Daviplata'),
+        (4, 'Custodia'),
+        (5, 'Courrier'),
+        (6, 'Mesa de control'),
+        (7, 'Sig'),
+        (8, 'call center')
+            
+    ]
     
     CUSTODIA = '0'
     MESA = '1'
@@ -86,7 +98,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=12,
         verbose_name="Documento de identidad")
 
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, blank=True, null=True)
+    cliente = models.ForeignKey(
+        Cliente, 
+        on_delete=models.CASCADE, 
+        blank=True, null=True,
+        verbose_name="Cliente")
+    
+    roles = models.IntegerField(
+        choices=ROL_USER_FINAL,
+        blank=True,
+        null=True)
 
     is_staff = models.BooleanField(
         default=True

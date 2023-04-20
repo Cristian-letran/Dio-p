@@ -1,7 +1,5 @@
 {% extends "base.html" %} 
-
 {% load static %}
-
 {% block content %}
 <div class="off-canvas-wrapper" >
   <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>{% csrf_token %}
@@ -9,7 +7,7 @@
       <div class="row column">
         <center> <a href="{% url 'home_app:index' %}"> <img  src="{% static 'img/colores letran +.png' %}" width="215" ></a> </center>
         <ul class="vertical menu accordion-menu" data-accordion-menu>    
-          {% if user.cliente.r_s == "Firstsource" %}
+          {% if user.roles == 1 %}
             <ul class="vertical menu">
               <li>
                 <a href="#"><span style="color: white;"><strong><i class="fi-magnifying-glass"></i> Consultar </strong></span></a>
@@ -19,6 +17,19 @@
                     </li>
                   </ul>
             </ul>
+            {% endif %}
+          {% if user.roles == 4 %}
+
+            <ul class="vertical menu">
+              <li>
+                <a href="#"><span style="color: white;"><strong><i class="fi-magnifying-glass"></i> Consultar </strong></span></a>
+                  <ul class="nested vertical menu">
+                    <li class="{% if request.resolver_match.url_name == 'lista-cliente' %}activeli{% endif %}">
+                      <a href="{% url 'producto_app:lista-cliente' %}" style="color: white;">Productos</a>
+                    </li>
+                  </ul>
+            </ul>
+
             <ul class="vertical menu">
               <li>
                 <a href="#"><span style="color: white;"><strong><i class="fi-home"></i> Custodia </strong></span></a>
@@ -111,15 +122,14 @@
                         <li class="{% if request.resolver_match.url_name == 'caja-index' %}activeli{% endif %}">
                           <a href="{% url 'ruta_apps:informe-destino' %} " style="color: white;">Consultar traslados</a>
                         </li>
-
                       </ul>
                     </li>
                 </ul> 
-                
                 </li>
               </ul>
             </li>
         </ul> 
+        {% elif user.roles == 8 %}  
         <ul class="vertical menu">
           <li>
             <a href="#"><span style="color: white;"><strong><i class="fi-telephone-accessible"></i> Call center </strong></span></a>
@@ -135,7 +145,8 @@
               </li>                            
             </ul>
           </li>
-      </ul>                 
+      </ul>     
+      {% elif user.roles == 7 %}              
       <ul class="vertical menu">
         <li>
           <a href="#"><span style="color: white;"><strong><i class="fi-database"></i> Sig </strong></span></a>
@@ -149,6 +160,7 @@
           </ul>
         </li>
       </ul> 
+      {% elif user.roles == 6 %}      
       <ul class="vertical menu">
         <li>
           <a href="#"><span style="color: white;"><strong><i class="fi-photo"></i> Mesa de control </strong></span></a>
@@ -158,7 +170,8 @@
             </li>                  
           </ul>
         </li>
-      </ul>             
+      </ul>       
+      {% elif user.roles == 5 %}               
       <ul class="vertical menu">
         <li>
           <a href="#"><span style="color: white;"><strong><i class="fi-page"></i> Courrier </strong></span></a>
@@ -172,7 +185,7 @@
           </ul>
         </li>
       </ul>      
-      {% elif user.cliente.rol == "1" %}         
+      {% elif user.roles == 2 %}     
       <ul class="vertical menu">
         <li>
           <a href="{% url 'users_app:users-cliente' %}"><span style="color: white;"><strong><i class="fi-torso"></i> Users </strong></span></a>
@@ -181,7 +194,7 @@
           <a href="{% url 'users_app:logs' %}"><span style="color: white;"><strong><i class="fi-torso"></i> Logs </strong></span></a>
         </li>
       </ul>      
-      {% elif user.cliente.r_s == "Daviplata" %}     
+      {% elif user.roles == 3 %}     
       <ul class="vertical menu">
         <li>
           <a href="#"><span style="color: white;"><strong><i class="fi-mobile"></i> Daviplata </strong></span></a>
@@ -195,15 +208,9 @@
           </ul>
         </li>
       </ul>         
-          
-          {% endif %}
-          
+        {% endif %}
   </div>
-  
-  
 </div>
-
-    
     <div class="off-canvas-content" data-off-canvas-content>
       <div class="title-bar hide-for-large">
         <div class="title-bar-left">
@@ -242,6 +249,4 @@
         </div>
     </div>   
   </div>      
-  
-
 {% endblock content %}
