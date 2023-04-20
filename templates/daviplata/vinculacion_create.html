@@ -12,9 +12,16 @@
   input:valid {
     border: 2px solid black;
   }
-</style>
-</head>
+  select:invalid {
+    border: 2px dashed red;
+  }
 
+  select:valid {
+    border: 2px solid black;
+  }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <form method="post">{% csrf_token %}
     {% if form.errors %}

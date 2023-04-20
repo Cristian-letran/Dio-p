@@ -83,11 +83,13 @@ class VinculacionForm(forms.ModelForm):
             'identificacion': forms.NumberInput(
             ),
             'celular_confirma': forms.NumberInput(
-                
-            ),
-            'tipo_gestion': forms.Select(
                 attrs={
-                    'required' : "required"
+                    'onchange':'get_sector_code'
+                }
+            ),
+            'categoria': forms.Select(
+                attrs={
+                    "required": True
                  }
             ),
             
