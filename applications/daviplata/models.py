@@ -378,8 +378,7 @@ class Vinculacion(models.Model):
     tipo_gestion = models.ForeignKey(
         TipoGestion, 
         on_delete=models.CASCADE,
-        blank=True,
-        null=True)
+        )
     
     identificacion = models.AutoField(primary_key=True)
 
@@ -414,8 +413,7 @@ class Vinculacion(models.Model):
     )
     nombre_comercio = models.CharField(
         max_length=80,
-        blank= True,
-        null= True, )
+         )
     c_rut = models.CharField(max_length=2, choices=C_RUT, verbose_name="¿Comercio cuenta con RUT?")
     categoria = models.ForeignKey(
         Categorias, 

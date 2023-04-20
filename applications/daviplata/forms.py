@@ -73,6 +73,8 @@ class VinculacionForm(forms.ModelForm):
         model = Vinculacion
         fields = (
         '__all__'   )
+
+        required =('tipo_gestion')
            
         widgets = {
             'celular': forms.NumberInput(
@@ -82,7 +84,12 @@ class VinculacionForm(forms.ModelForm):
             ),
             'celular_confirma': forms.NumberInput(
                 
-            )
+            ),
+            'tipo_gestion': forms.Select(
+                attrs={
+                    'required' : "required"
+                 }
+            ),
             
             }
 
