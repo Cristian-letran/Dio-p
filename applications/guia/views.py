@@ -46,17 +46,17 @@ class ProductListView(LoginRequiredMixin, CreateView, ListView):
     success_url = '.'  
 
     def get_queryset(self):
-        kword = self.request.GET.get("id_log", '')
+        kword = self.request.GET.get("kword", '')
         order = self.request.GET.get("order", '')
         queryset = Guia.objects.buscar_producto(kword, order)
         return queryset
     
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        contexto = super().get_context_data(**kwargs)
-        contexto ['object_list'] = self.get_queryset()[:5]
-        contexto ['count'] = self.form_class
-        return contexto
+    # def get_context_data(self, **kwargs):
+    #     # Call the base implementation first to get a context
+    #     contexto = super().get_context_data(**kwargs)
+    #     contexto ['object_list'] = self.get_queryset()[:5]
+    #     contexto ['count'] = self.form_class
+    #     return contexto
            
 
 class ProductDetailView(LoginRequiredMixin, TemplateView):
