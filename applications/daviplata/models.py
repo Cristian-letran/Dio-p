@@ -326,7 +326,7 @@ class Vinculacion(models.Model):
     PERFILNEGOCIO = [
         ('SI', 'SI'),
         ('NO', 'NO'),
-        ('Ya esta activo', 'Ya esta activo'),
+        ('Ya esta activo', 'Ya está activo'),
         ('Modo contingencia', 'Modo contingencia'),
         
         
