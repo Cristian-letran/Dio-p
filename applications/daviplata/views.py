@@ -4,6 +4,7 @@ from.models import Daviplata, Vinculacion
 from django.urls import reverse_lazy
 from .forms import DaviplataForm, VinculacionForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.timezone import datetime
 
 class DaviplataListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/lista_daviplata.html"
@@ -53,9 +54,19 @@ class VinculacionListView(LoginRequiredMixin, ListView):
         kword = self.request.GET.get("kword", '')
         queryset = Vinculacion.objects.filter(
             celular__icontains = kword, 
-            user = self.request.user
+            user = self.request.user,
+            fecha_visita__contains=datetime.today().date()
         )
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        contexto = super().get_context_data(**kwargs)
+        contexto ['object_list'] = self.get_queryset()
+        contexto ['count'] = self.get_queryset().count
+        return contexto
+    
+    
     
 class VinculacionCreateView(LoginRequiredMixin, CreateView):
     model = Vinculacion 
