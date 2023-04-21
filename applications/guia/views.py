@@ -59,7 +59,7 @@ class ProductListView(LoginRequiredMixin, CreateView, ListView):
     #     return contexto
            
 
-class ProductDetailView(LoginRequiredMixin, TemplateView):
+class ProductDetailView(TemplateView):
     template_name = "producto/detail.html"
 
     def get_context_data(self, *args, **kwargs):
