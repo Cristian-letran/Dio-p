@@ -110,9 +110,19 @@ class VinculacionForm(forms.ModelForm):
         no_transaccion = cleaned_data.get('no_transaccion')
         se_registro = cleaned_data.get('se_registro')
         no_register = cleaned_data.get('no_register')
+        registro_daviplata = cleaned_data.get('registro_daviplata')
+        motivo_no_registro = cleaned_data.get('motivo_no_registro')
+
+        ##################
+
+        if registro_daviplata == "NO" and motivo_no_registro == None:
+            raise forms.ValidationError( "Completar Por qué no se realizó el registro DaviPlata." )
 
         if celular != celular_confirma:
             raise forms.ValidationError( "Celular incorrecto." )
+        
+
+        ###########################################################
         
         if tipo_gestion.id ==1 and nombre == None:
             raise forms.ValidationError( "Completar Nombre del cliente DaviPlata" )
