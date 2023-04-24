@@ -399,6 +399,7 @@ class Vinculacion(models.Model):
 
     fecha_visita = models.DateField(
         auto_now=False,
+        blank=True,
         null=True
         )
 
