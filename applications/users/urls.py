@@ -68,5 +68,11 @@ urlpatterns = [
         name='logs',
     ),
     
+    path(
+        'logs-prueba/', 
+        views.logpruebaListView.as_view(),
+        name='logs-prueba',
+    ),
+    
     
 ]

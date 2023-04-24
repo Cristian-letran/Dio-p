@@ -117,7 +117,7 @@ class VinculacionForm(forms.ModelForm):
         sticker = cleaned_data.get('sticker')
         razon_no_sticker = cleaned_data.get('razon_no_sticker')
 
-
+        ########################################
         if sticker == "NO" and razon_no_sticker == None:
             raise forms.ValidationError( "Completar Razón por la cual no se pegó el sticker" )
         #################################

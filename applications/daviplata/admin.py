@@ -23,6 +23,9 @@ class DaviplataResource(resources.ModelResource):
     
     class Meta:
         model = Daviplata
+        widgets = {
+            'fecha_visita': {'format': '%d-%b-%y'},
+        }
         import_id_fields = ('id_ruta',) #
 
 class VinculacionResource(resources.ModelResource):

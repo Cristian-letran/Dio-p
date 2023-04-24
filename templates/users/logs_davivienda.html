@@ -5,16 +5,16 @@
 <table>
     <thead>
       <tr>
-        <th width="200">Nombre</th>
+        <th width="200">Documento</th>
         <th>Usuario</th>
-        <th width="150">Estado</th>
+        <th width="150">nombre</th>
         
       </tr>
     </thead>
     <tbody>
         {% for e in object_list %}
       <tr>
-        <td></td>
+        <td>{{e.id}}</td>
         <td>{{e.usuario}}</td>
         <td></td>
       </tr>

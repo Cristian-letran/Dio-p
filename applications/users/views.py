@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.contrib.auth.views import PasswordChangeView
+from django.contrib.admin.models import ADDITION, LogEntry
 
 from django.views.generic import ListView
 
@@ -153,7 +154,7 @@ class UsersClienteView(ListView):
 
     def get_queryset(self):
         kword = self.request.GET.get('kword', '')
-        queryset   = User.objects.filter(d_i__icontains = kword, cliente = 1)
+        queryset   = User.objects.filter(d_i__icontains = kword, roles = 1)
         return queryset   
     
 class UserCreateView(LoginRequiredMixin, CreateView):
@@ -163,7 +164,7 @@ class UserCreateView(LoginRequiredMixin, CreateView):
     
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.cliente.id_clie = 1
+        self.object.roles = 1
         
         self.object.save()
         return super(UserCreateView, self).form_valid(form)
@@ -186,6 +187,16 @@ class LogSesionListView(ListView):
 
     def get_queryset(self):
         return LogSesion.objects.filter(cliente = "Davivienda")
+    
+class logpruebaListView(ListView):
+    template_name = "users/logs_prueba.html"
+    model = LogEntry
+    paginate_by = 5
+
+    def get_queryset(self):
+        return LogEntry.objects.filter(user = "admin")
+    
+
 
 
     

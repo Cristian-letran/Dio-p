@@ -1,0 +1,32 @@
+{% extends "users/base_users.html" %} {% load static %} {% block panel-content %}
+<h1>Hola</h1>
+
+<table>
+    <thead>
+      <tr>
+        <th width="200">Fecha</th>
+        <th>Usuario</th>
+        <th width="150"></th>
+        <th width="150"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for e in object_list %}
+      <tr>
+        <td>{{ e.action_time }}</td>
+        <td>{{e.user}}</td>
+        <td>{{e.content_type}}</td>
+        <td>{{e.object_id}}</td>
+        <td>{{e.object_repr}}</td>
+        <td>{{e.action_flag}}</td>
+        <td>{{e.change_message}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+   
+
+
+
+{% endblock panel-content %}

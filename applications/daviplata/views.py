@@ -64,6 +64,8 @@ class VinculacionListView(LoginRequiredMixin, ListView):
         contexto = super().get_context_data(**kwargs)
         contexto ['object_list'] = self.get_queryset()
         contexto ['count'] = self.get_queryset().count
+        contexto ['counts'] = self.get_queryset().filter(tipo_gestion = 1).count
+        
         return contexto
     
     
@@ -77,6 +79,7 @@ class VinculacionCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        self.object.fecha_visita = datetime.now()
         self.object.save()
         return super(VinculacionCreateView, self).form_valid(form)
     

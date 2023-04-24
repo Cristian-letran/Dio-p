@@ -397,7 +397,10 @@ class Vinculacion(models.Model):
         verbose_name="Confirmación No. celular activado en DaviPlata"
         )
 
-    fecha_visita = models.DateField(auto_now=True)
+    fecha_visita = models.DateField(
+        auto_now=False,
+        null=True
+        )
 
     nombre = models.CharField(
         max_length=150,
@@ -588,6 +591,8 @@ class Vinculacion(models.Model):
             self.motivo_no_registro = None
         elif self.registro_daviplata == "Modo Contingencia":
             self.motivo_no_registro_id = 9
+
+        
         #############################################
         if self.se_registro == "SI":
             self.no_register = None

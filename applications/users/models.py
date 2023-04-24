@@ -3,12 +3,14 @@ from django.core.signals import request_finished
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import ugettext, ugettext_lazy as _
 import datetime
 from applications.cliente.models import Ciudad, Cliente
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 #
 from .managers import UserManager
+from django.contrib.admin.models import LogEntry, ADDITION, CHANGE, DELETION
 
 class Areas(models.Model):
     Areas = models.CharField(max_length=30, primary_key=True)
@@ -135,7 +137,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return str(self.username) + ' ' +str(self.ciudad)
 
 ###################################################
-from django.contrib.admin.models import LogEntry, CHANGE
+
 class LogSesion(models.Model):
     id = models.AutoField(primary_key=True)
     log = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
@@ -144,6 +146,13 @@ class LogSesion(models.Model):
     documento = models.CharField(max_length=15, blank=True, null=True)
     registro = models.CharField(max_length=30, blank=True, null=True)
     accion = models.CharField(max_length=100, blank=True, null=True)
+
+    # def save(self, *args, **kwargs):
+    #     self.accion(update_fields=["documento"])
+        
+    #     super(LogSesion, self).save(*args, **kwargs)  
+
+
 
 @receiver(post_save, sender=User)
 def create_user_log(sender, instance, created, **kwargs):
