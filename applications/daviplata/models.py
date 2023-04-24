@@ -579,6 +579,8 @@ class Vinculacion(models.Model):
         null=True)
 
     def save(self, *args, **kwargs):
+        if self.celular == None:
+            self.celular = self.identificacion
 
         if self.registro_daviplata == "SI":
             self.motivo_no_registro = None
