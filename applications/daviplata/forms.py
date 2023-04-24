@@ -112,7 +112,17 @@ class VinculacionForm(forms.ModelForm):
         no_register = cleaned_data.get('no_register')
         registro_daviplata = cleaned_data.get('registro_daviplata')
         motivo_no_registro = cleaned_data.get('motivo_no_registro')
+        solicito_tencard = cleaned_data.get('solicito_tencard')
+        porque_no_solicito = cleaned_data.get('porque_no_solicito')
+        sticker = cleaned_data.get('sticker')
+        razon_no_sticker = cleaned_data.get('razon_no_sticker')
 
+
+        if sticker == "NO" and razon_no_sticker == None:
+            raise forms.ValidationError( "Completar Razón por la cual no se pegó el sticker" )
+        #################################
+        if solicito_tencard == "NO" and porque_no_solicito == None:
+            raise forms.ValidationError( "Completar ¿Por qué no se solicitó la tentcard?" )
         ##################
 
         if registro_daviplata == "NO" and motivo_no_registro == None:
