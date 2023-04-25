@@ -71,7 +71,7 @@ class MoniterLog(admin.ModelAdmin):
 class ImgAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     
     list_display = ('id_guia', 'image', 'fecha', 'user')
-    LogEntry.objects.filter(action_flag=ADDITION)
+    LogEntry.objects.all()
     list_filter = ('fecha', 'user')
     date_hierarchy = ('fecha')
     search_fields = ('id_guia__id_guia',)

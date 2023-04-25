@@ -183,10 +183,13 @@ class UserClienteUPdateView(LoginRequiredMixin, UpdateView):
 class LogSesionListView(ListView):
     template_name = "users/logs_davivienda.html"
     model = LogSesion
-    paginate_by = 5
+    paginate_by = 10
+    
 
     def get_queryset(self):
-        return LogSesion.objects.filter(cliente = "Davivienda")
+        kword = self.request.GET.get('kword', '')
+        queryset = LogSesion.objects.filter(cliente = "Davivienda", documento__contains = kword).order_by("-id")
+        return queryset
     
 class logpruebaListView(ListView):
     template_name = "users/logs_prueba.html"
@@ -194,7 +197,12 @@ class logpruebaListView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return LogEntry.objects.filter(user = "admin")
+        kword = self.request.GET.get('kword', '')
+        queryset = LogEntry.objects.filter(
+            user__cliente = 1, user__username__contains = kword
+            )
+        return queryset
+    
     
 
 

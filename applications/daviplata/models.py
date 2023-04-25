@@ -462,6 +462,10 @@ class Vinculacion(models.Model):
         null=True,
         verbose_name="¿Por que no se realizo el registro en perfil mi negocio?"
         )
+    fecha_registro = models.DateTimeField(
+        auto_now=True,
+        null=True
+        )
         
     ################### 4 Pestaña ######################
 

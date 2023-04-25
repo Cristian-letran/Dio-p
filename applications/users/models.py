@@ -5,6 +5,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext, ugettext_lazy as _
 import datetime
+from simple_history.models import HistoricalRecords
+from simple_history import register
 from applications.cliente.models import Ciudad, Cliente
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
@@ -125,6 +127,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['email',]   
 
     objects = UserManager()
+
+    history = HistoricalRecords()    
 
     class Meta:
         verbose_name = "Permisos de usuarios"
