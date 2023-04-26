@@ -21,6 +21,10 @@ class Areas(models.Model):
         return self.Areas
 
 class User(AbstractBaseUser, PermissionsMixin):
+
+    TIPO_DI = [
+        (1, 'CC')
+    ]
     
     ROL_USER_FINAL = [
 
@@ -98,6 +102,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         related_name= "user_ciudad"
     )
+    tipo_d_i = models.CharField(
+        max_length=2,
+        choices=TIPO_DI,
+        null=True,
+        blank=True
+    )
     d_i = models.CharField(
         max_length=12,
         verbose_name="Documento de identidad")
@@ -155,8 +165,6 @@ class LogSesion(models.Model):
     #     self.accion(update_fields=["documento"])
         
     #     super(LogSesion, self).save(*args, **kwargs)  
-
-
 
 @receiver(post_save, sender=User)
 def create_user_log(sender, instance, created, **kwargs):

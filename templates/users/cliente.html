@@ -1,9 +1,10 @@
 {% extends "users/base_users.html" %} {% load static %} {% block panel-content %}
 
 <div class="grid-x">
-    <div class="cell small-10">Selecciona usuario para modificar</div>
-    <div class="cell small-2"><a href="{% url 'users_app:users-crear'%}" class="button secondary">Crear usuario</a></div>
+    <div class="cell small-10">Lista de usuarios: <span class="label primary"><a href="{% url 'users_app:users-crear'%}">Crear usuario</a></span></div>
+    <div class="cell small-2"><a class="secondary button" href="{% url 'informe-usuarios' %}">Exportar usuarios</a></div>
   </div>
+  <br>
 
 <form class="cell small-9 input-group" method="GET"> {% csrf_token %}
     <div class="input-group">   
@@ -22,6 +23,7 @@
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Cedula</th>
+        <th>último inicio de sesión</th>
         <th>Editar</th>
       </tr>
     </thead>
@@ -32,12 +34,14 @@
         <td>{{e.nombres}}</td>
         <td>{{e.apellidos}}</td>
         <td>{{e.d_i}}</td>
-        <td><a href="{% url 'users_app:users-update' e.id %}" class="secondary button"><i class="fi-filter"></i></a></td>
+        <td>{{e.last_login}}</td>
+        <td><a href="{% url 'users_app:users-update' e.id %}" class="label primary"><i class="fi-filter"></i></a></td>
       </tr>
     {% endfor %}
       
     </tbody>
   </table>
+  
 
 
 {% endblock panel-content %}

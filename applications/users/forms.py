@@ -30,7 +30,8 @@ class UserCreateForm(forms.ModelForm):
         model = User
         fields = (
             'nombres',
-            'apellidos',   
+            'apellidos',
+            'tipo_d_i',
             'd_i',
             'username',
         )

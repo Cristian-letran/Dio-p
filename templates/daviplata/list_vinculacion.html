@@ -3,12 +3,21 @@
 {% load  static %}
 
 {% block panel-content %}
-
 <div class="grid-x">
-    <div class="cell small-4"><span class="label secondary"><a href="{% url 'daviplata-app:vinculacion-create'  %}" >Crear</a></span></div>
-    <div class="cell small-5"><h3>Vinculacion</h3>  </div>
-    <div class="cell small-3"><h3>Total: {{count}}</h3></div>
+  <div class="cell small-5"><span class="label secondary"><a href="{% url 'daviplata-app:vinculacion-create'  %}" >Crear</a></span></div>
+  <div class="cell small-5"><h4>Vinculacion</h4>  </div>
+
+  
+</div>
+<div class="grid-x">
+    <div class="cell small-2"><h4> <span class="label">N</span> {{count_nuevo}}</h4></div>
+    <div class="cell small-3"><h4><span class="label">N.S.P.N</span> {{count_nspn}}</h4></div>
+    <div class="cell small-2"><h4><span class="label">R</span> {{count_r}}</h4></div>
+    <div class="cell small-2"><h4><span class="label">N.A</span> {{count_n_a}}</h4></div>
+    <div class="cell small-2"><h4><span class="label success">Total</span> {{count}}</h4></div>
   </div>
+
+
   <br>
 
   <form class="cell small-9 input-group" method="GET"> {% csrf_token %}

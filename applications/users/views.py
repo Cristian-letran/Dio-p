@@ -7,6 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.admin.models import ADDITION, LogEntry
+from django.contrib.auth.decorators import login_required
+import csv
+from django.http import HttpResponse
 
 from django.views.generic import ListView
 
@@ -154,7 +157,7 @@ class UsersClienteView(ListView):
 
     def get_queryset(self):
         kword = self.request.GET.get('kword', '')
-        queryset   = User.objects.filter(d_i__icontains = kword, roles = 1)
+        queryset   = User.objects.filter(d_i__icontains = kword, roles = 1)[:5]
         return queryset   
     
 class UserCreateView(LoginRequiredMixin, CreateView):
@@ -201,12 +204,34 @@ class logpruebaListView(ListView):
         queryset = LogEntry.objects.filter(
             user__cliente = 1, user__username__contains = kword
             )
-        return queryset
+        return queryset 
     
     
+@login_required
+def exportusers(request):
+    response = HttpResponse(content_type='text/csv')
+    writer = csv.writer(response)
+    writer.writerow([
+        'USUARIO', 'NOMBRE', #1
+        'APELLIDO', 'DOCUMENTO'
+          ])
 
+    base = User.objects.filter(cliente__r_s = "Davivienda").values_list(
+       'username', 'nombres',  #1      
+       'apellidos', 'd_i', #2 
+        )
+    
+    for guia in base:
+        
+        writer.writerow(guia)
+        
+        response['Content-Disposition'] = 'attachment; filename="informe.csv"'
 
+    return response
 
+# class UsersClienteView(ListView):
+#     model = User
+#     template_name = "users/cliente.html"
     
     
 
