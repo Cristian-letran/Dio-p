@@ -62,7 +62,7 @@ class VinculacionListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         contexto = super().get_context_data(**kwargs)
-        contexto ['object_list'] = self.get_queryset()
+        contexto ['object_list'] = self.get_queryset()[:6]
         contexto ['count'] = self.get_queryset().count
         contexto ['count_nuevo'] = self.get_queryset().filter(tipo_gestion = 1).count
         contexto ['count_nspn'] = self.get_queryset().filter(tipo_gestion = 2).count
