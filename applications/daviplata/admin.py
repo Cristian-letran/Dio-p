@@ -2,6 +2,8 @@ from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
+from import_export.widgets import DateWidget
+
 
 from . models import (
     Daviplata, Red, TipoNoEfectiva, 
@@ -23,9 +25,6 @@ class DaviplataResource(resources.ModelResource):
     
     class Meta:
         model = Daviplata
-        widgets = {
-            'fecha_visita': {'format': '%d-%b-%y'},
-        }
         import_id_fields = ('id_ruta',) #
 
 class VinculacionResource(resources.ModelResource):
@@ -49,7 +48,8 @@ class VinculacionResource(resources.ModelResource):
       razon_no_sticker = Field(attribute='razon_no_sticker', column_name='Razon por la cual no se pegó el sticker')
       flanger = Field(attribute='flanger', column_name='Se instalo Flanger')
       razon_no_flanger = Field(attribute='razon_no_flanger', column_name='Razon por la cual no se instaló el flanger')
-      fecha_visita = Field(attribute='fecha_visita', column_name='Fecha de la visita')
+      fecha_visita = Field(attribute='fecha_visita', column_name='Fecha de la visita',
+                           widget=DateWidget(format='%d/%m/%Y')) 
       user__d_i = Field(attribute='user__d_i', column_name='Cedula del asesor visitador')
       direccion = Field(attribute='direccion', column_name='Dirección Comercio')
       dane__id = Field(attribute='dane__id', column_name='Código de Ciudad ')
