@@ -319,7 +319,7 @@ class Vinculacion(models.Model):
         ('Cliente desconfia', 'Cliente desconfia'),
         ('Cliente no tiene tiempo', 'Cliente no tiene tiempo'),
         ('Cliente no tiene documentos en el momento', 'Cliente no tiene documentos en el momento'),
-        ('Modo contingencia', 'Modo contingencia'),
+        
 
     ]
 
@@ -327,7 +327,7 @@ class Vinculacion(models.Model):
         ('SI', 'SI'),
         ('NO', 'NO'),
         ('Ya esta activo', 'Ya está activo'),
-        ('Modo contingencia', 'Modo contingencia'),
+        
         
         
     ]
@@ -338,21 +338,21 @@ class Vinculacion(models.Model):
         ('No permitió el registro en el perfil mi negocio', 'No permitió el registro en el perfil mi negocio'),
         ('Cliente no esta interesado', 'Cliente no esta interesado'),
         ('Solo activo Daviplata para subsidios del gobierno', 'Solo activo Daviplata para subsidios del gobierno'),
-        ('Modo contingencia', 'Modo contingencia'), 
+        
 
     ]
     PREGUNTA3 = [
         ('SI', 'SI'),
         ('NO', 'NO'), 
         ('Ya tiene la tencard', 'Ya tiene la tencard'),
-        ('Modo Contingencia', 'Modo Contingencia'),  
+        
     ]
 
     PREGUNTA2 = [
         ('SI', 'SI'),
         ('NO', 'NO'), 
         ('Ya esta activo', 'Ya esta activo'),
-        ('Modo Contingencia', 'Modo Contingencia'),  
+        
     ]
 
     PREGUNTA = [
