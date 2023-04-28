@@ -1,0 +1,37 @@
+{% extends "daviplata/base_daviplata.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+
+<h3>Novedades</h3>
+
+<div class="table-scroll">
+    <table class="hover">
+        <thead>
+          <tr>
+            <th>Celular</th>
+            <th>Tipo de gestión</th>
+            <th width="150">Nombre del cliente DaviPlata</th>
+            <th>Nombre del comercio</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for article in object_list %}
+          <tr>
+            <td>{{article.celular}}</td>
+            <td>{{article.tipo_gestion}}</td>
+            <td>{{ article.nombre }}</td>
+            <td>{{article.nombre_comercio}}</td>
+            <td> 
+                <a href="{% url 'daviplata-app:novedad-update' article.identificacion %}" class="button "><i class="fi-eye"></i></a>
+            </td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+{% endblock panel-content %}

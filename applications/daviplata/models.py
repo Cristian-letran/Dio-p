@@ -308,8 +308,8 @@ class TipoActivacion(models.Model):
     def __str__(self):
         return self.nombre
     
-class Vinculacion(models.Model):
 
+class Vinculacion(models.Model):
     PORQUENOREGISTRO = [
         ('Cliente ya estaba registrado', 'Cliente ya estaba registrado'),
         ('Fallas en la app', 'Fallas en la app'),
@@ -429,7 +429,7 @@ class Vinculacion(models.Model):
     direccion = models.CharField(max_length=150, verbose_name="Dirección Comercio")
     barrio = models.CharField(max_length=50)
     localidad = models.CharField(max_length=50)
-    dane = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
+    dane = models.ForeignKey(Ciudad, on_delete=models.CASCADE, blank=True)
     latitud = models.CharField(max_length=20)
     longitud = models.CharField(max_length=20)
     ############## Pestaña ###################
@@ -573,6 +573,10 @@ class Vinculacion(models.Model):
         max_length=30, 
         blank=True, 
         null=True)
+
+    novedad = models.BooleanField(
+        default=True
+        )
     
     FACTURA = [
         ('Vinculacion Estandar', 'Vinculacion Estandar'),
@@ -662,4 +666,17 @@ class Vinculacion(models.Model):
         super(Vinculacion, self).save(*args, **kwargs)    
 
     ############## 6 Pestaña ####################
+
+class NovedadVinculacion(models.Model):
+    id_vinculacion = models.ForeignKey(
+        Vinculacion, 
+        on_delete=models.CASCADE)
+    
+    def save(self, *args, **kwargs):
+        self.id_vinculacion.novedad  = False
+        
+        self.id_vinculacion.save()
+
+        super(NovedadVinculacion, self).save(*args, **kwargs)
+
     

@@ -71,8 +71,6 @@ class VinculacionListView(LoginRequiredMixin, ListView):
         
         return contexto
     
-    
-    
 class VinculacionCreateView(LoginRequiredMixin, CreateView):
     model = Vinculacion 
     form_class = VinculacionForm
@@ -82,7 +80,45 @@ class VinculacionCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        self.object.dane = self.request.user.ciudad
         self.object.fecha_visita = datetime.now()
         self.object.save()
         return super(VinculacionCreateView, self).form_valid(form)
+    
+class NovedadListView(LoginRequiredMixin, ListView):
+    template_name = "daviplata/novedades.html"
+    filed= ['identificacion', ]
+    model = Vinculacion 
+    paginate_by = 5
+
+    def get_queryset(self):
+        queryset = Vinculacion.objects.filter(
+            user = self.request.user,
+            novedad = False
+        )
+        return queryset
+
+class NovedadUpdateView(UpdateView):
+    
+    model = Vinculacion
+    fields = ["tipo_gestion", "celular", 
+              "celular_confirma", "nombre", "nombre_comercio",
+              "c_rut", "categoria",
+              "direccion", "barrio", "localidad",
+              "registro_daviplata", "motivo_no_registro",
+              "se_registro", "no_register",
+              "solicito_tencard","porque_no_solicito",
+              "sticker", "razon_no_sticker",
+              "flanger", "razon_no_flanger",
+              "datafono", "interesado",
+              "etnico", "transaccion", "codigo_transaccion"
+              ]
+    template_name = "daviplata/update_novedad.html"
+    success_url = reverse_lazy('daviplata-app:vinculacion-list')
+
+    
+    
+    
+
+    
     

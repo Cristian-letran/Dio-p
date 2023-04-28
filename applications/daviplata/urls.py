@@ -34,4 +34,16 @@ urlpatterns = [
          name='vinculacion-list',
     ),
     
+    path(
+        'novedad-list/',
+         views.NovedadListView.as_view(),
+         name='novedad-list',
+    ),
+
+    path(
+        'novedad-update/<int:pk>/',
+         views.NovedadUpdateView.as_view(),
+         name='novedad-update',
+    ),
+    
 ]

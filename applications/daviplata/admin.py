@@ -18,7 +18,8 @@ from . models import (
     TipoGestion,
     Categorias,
     MotivoNoRegistro, 
-    TipoActivacion
+    TipoActivacion,
+    NovedadVinculacion
     )
 
 class DaviplataResource(resources.ModelResource):
@@ -79,7 +80,7 @@ class VinculacionResource(resources.ModelResource):
             'dane__ciudad', 'dane__departamento__departamento', 
             'localidad', 'barrio', 'latitud', 'longitud',
             'c_rut', 'datafono', 'interesado', 'proveedor', 'contingencia',
-            'etnico', 'author', 'transaccion', 'no_transaccion'
+            'etnico', 'author', 'transaccion', 'no_transaccion', 'identificacion'
 
            )
         export_order = (
@@ -94,7 +95,7 @@ class VinculacionResource(resources.ModelResource):
             'dane__ciudad', 'dane__departamento__departamento', 
             'localidad', 'barrio', 'latitud', 'longitud',
             'c_rut', 'datafono', 'interesado', 'proveedor', 'fecha_visita', 'contingencia',
-            'etnico', 
+            'etnico', 'identificacion'
             )
         
 
@@ -163,6 +164,11 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 @admin.register(TipoActivacion)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
+
+@admin.register(NovedadVinculacion)
+class novedadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+   list_display = ('id_vinculacion',)
+   
 
 
 
