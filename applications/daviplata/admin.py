@@ -19,7 +19,8 @@ from . models import (
     Categorias,
     MotivoNoRegistro, 
     TipoActivacion,
-    NovedadVinculacion
+    NovedadVinculacion,
+    Gestores
     )
 
 class DaviplataResource(resources.ModelResource):
@@ -168,6 +169,10 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 @admin.register(NovedadVinculacion)
 class novedadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('id_vinculacion',)
+
+@admin.register(Gestores)
+class novedadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+   list_display = ('user', 'celular', 'fecha_contrato')
    
 
 

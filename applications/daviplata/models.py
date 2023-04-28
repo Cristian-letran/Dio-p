@@ -1,5 +1,6 @@
 from django.db import models
 from applications.cliente.models import Departamento, Ciudad
+from applications.users.models import User
 from django.conf import settings 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -678,5 +679,24 @@ class NovedadVinculacion(models.Model):
         self.id_vinculacion.save()
 
         super(NovedadVinculacion, self).save(*args, **kwargs)
+
+class Gestores(models.Model):
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE, 
+        blank=True, null=True, 
+        verbose_name= 'Usuario'
+    )
+    celular = models.CharField(max_length=10)
+    fecha_contrato = models.DateField(auto_now=True)
+
+@receiver(post_save, sender=User)
+def create_user_Gestores(sender, instance, created, **kwargs):
+    if created and instance.cliente.r_s == "Daviplata":
+        Gestores.objects.create(user=instance)
+
+    
+
 
     
