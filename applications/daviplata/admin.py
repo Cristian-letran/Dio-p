@@ -3,7 +3,7 @@ from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.fields import Field
 from import_export.widgets import DateWidget
-
+from related_admin import RelatedFieldAdmin
 
 from . models import (
     Daviplata, Red, TipoNoEfectiva, 
@@ -22,6 +22,18 @@ from . models import (
     NovedadVinculacion,
     Gestores
     )
+
+class GestoresResource(resources.ModelResource):
+    
+    class Meta:
+        model = Gestores
+        fields = (
+           'user__d_i', 'user__nombres', 
+            'user__tipo_d_i', 'user__d_i', 'fecha_contrato',
+            'celular', 'user__genero', 'user__fecha_contrato', 'user__ciudad__ciudad',
+            'user__ciudad__departamento', 'user__is_staff'
+          
+           )
 
 class DaviplataResource(resources.ModelResource):
     
@@ -170,9 +182,16 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class novedadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('id_vinculacion',)
 
-@admin.register(Gestores)
-class novedadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-   list_display = ('user', 'celular', 'fecha_contrato')
+
+class GestorAdmin(ImportExportModelAdmin, RelatedFieldAdmin):
+   list_display = ('user__d_i', 'user__nombres', 
+                   'user__tipo_d_i', 'user__d_i', 'fecha_contrato',
+                   'celular', 'user__genero', 'user__ciudad__ciudad',
+                     'user__ciudad__departamento', 'user__is_staff')
+   resource_class = GestoresResource
+
+admin.site.register(Gestores, GestorAdmin)
+   
    
 
 

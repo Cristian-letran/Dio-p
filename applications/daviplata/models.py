@@ -689,7 +689,8 @@ class Gestores(models.Model):
         verbose_name= 'Usuario'
     )
     celular = models.CharField(max_length=10)
-    fecha_contrato = models.DateField(auto_now=True)
+    fecha_contrato = models.DateField()
+    fecha_retiro = models.DateField(null=True, verbose_name="Fecha de Retiro del asesor")
 
 @receiver(post_save, sender=User)
 def create_user_Gestores(sender, instance, created, **kwargs):
