@@ -30,7 +30,7 @@ class GestoresResource(resources.ModelResource):
         fields = (
            'user__d_i', 'user__nombres', 
             'user__tipo_d_i', 'user__d_i', 'fecha_contrato',
-            'celular', 'user__genero', 'user__fecha_contrato', 'user__ciudad__ciudad',
+            'celular', 'user__genero',  'user__ciudad__ciudad',
             'user__ciudad__departamento', 'user__is_staff'
           
            )
