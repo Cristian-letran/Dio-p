@@ -689,7 +689,7 @@ class Gestores(models.Model):
         verbose_name= 'Usuario'
     )
     celular = models.CharField(max_length=10)
-    fecha_contrato = models.DateField(blank=True)
+    fecha_contrato = models.DateField(blank=True, null = True)
     fecha_retiro = models.DateField(null=True, verbose_name="Fecha de Retiro del asesor")
 
 @receiver(post_save, sender=User)
