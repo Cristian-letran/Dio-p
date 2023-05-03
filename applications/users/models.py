@@ -23,7 +23,8 @@ class Areas(models.Model):
 class User(AbstractBaseUser, PermissionsMixin):
 
     TIPO_DI = [
-        ('CC', 'CC')
+        ('Cedula', 'Cedula'),
+        
     ]
     
     ROL_USER_FINAL = [
@@ -103,7 +104,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         related_name= "user_ciudad"
     )
     tipo_d_i = models.CharField(
-        max_length=2,
+        max_length=10,
         choices=TIPO_DI,
         null=True,
         blank=True
