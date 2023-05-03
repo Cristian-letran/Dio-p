@@ -210,6 +210,8 @@ class GestorAdmin(ImportExportModelAdmin, RelatedFieldAdmin):
    exclude = ('proveedor',)
 
 admin.site.register(Gestores, GestorAdmin)
+
+##
    
    
 
