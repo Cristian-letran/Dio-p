@@ -23,7 +23,7 @@ class Areas(models.Model):
 class User(AbstractBaseUser, PermissionsMixin):
 
     TIPO_DI = [
-        (1, 'CC')
+        ('CC', 'CC')
     ]
     
     ROL_USER_FINAL = [

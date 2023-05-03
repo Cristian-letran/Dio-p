@@ -681,6 +681,10 @@ class NovedadVinculacion(models.Model):
         super(NovedadVinculacion, self).save(*args, **kwargs)
 
 class Gestores(models.Model):
+    ESTADO= [
+        ('Activo', 'Activo'),
+        ('Inactivo', 'Inactivo')
+    ]
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -689,8 +693,18 @@ class Gestores(models.Model):
         verbose_name= 'Usuario'
     )
     celular = models.CharField(max_length=10)
+    barrio = models.CharField(max_length=35, null= True)
     fecha_contrato = models.DateField(blank=True, null = True)
-    fecha_retiro = models.DateField(null=True, verbose_name="Fecha de Retiro del asesor")
+    fecha_retiro = models.DateField(null=True, blank=True)
+    estado = models.CharField(
+        max_length=15, 
+        choices=ESTADO,
+        null=True,
+        default = 'Activo')
+    proveedor = models.CharField(
+        max_length=30, 
+        default="Firstsource", 
+        null=True)
 
 @receiver(post_save, sender=User)
 def create_user_Gestores(sender, instance, created, **kwargs):

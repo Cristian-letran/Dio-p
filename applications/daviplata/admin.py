@@ -24,16 +24,34 @@ from . models import (
     )
 
 class GestoresResource(resources.ModelResource):
+    user__d_i = Field(attribute='user__d_i', column_name='Documento')
+    user__nombres = Field(attribute='Nombre', column_name='Nombre')
+    user__tipo_d_i = Field(attribute='user__tipo_d_i', column_name='Tipo ID')
+    celular = Field(attribute='celular', column_name='Celular')
+    user__genero = Field(attribute='user__genero', column_name='Genero')
+    fecha_contrato = Field(attribute='fecha_contrato', column_name='Fecha de contratación')
+    user__ciudad__ciudad = Field(attribute='user__ciudad__ciudad', column_name='Ciudad en la que labora actualmente el asesor')
+    user__ciudad__departamento = Field(attribute='user__ciudad__departamento', column_name='Departamento en la que labora actualmente el asesor')
+    barrio = Field(attribute='barrio', column_name='Barrio en el cual labora actualmente')
+    proveedor = Field(attribute='proveedor', column_name='Nombre Proveedor')
+    fecha_retiro = Field(attribute='fecha_retiro', column_name='Fecha de Retiro del asesor')
+    estado = Field(attribute='estado', column_name='Estado')
     
     class Meta:
         model = Gestores
         fields = (
-           'user__d_i', 'user__nombres', 
-            'user__tipo_d_i', 'user__d_i', 'fecha_contrato',
-            'celular', 'user__genero',  'user__ciudad__ciudad',
-            'user__ciudad__departamento', 'user__is_staff'
+           'user__d_i', 'user__nombres', 'user__tipo_d_i',
+            'celular', 'user__genero', 'fecha_contrato',
+             'user__ciudad__ciudad', 'user__ciudad__departamento',
+            'barrio', 'proveedor', 'fecha_retiro', 'estado'
           
            )
+        export_order = (
+           'user__d_i', 'user__nombres', 'user__tipo_d_i',
+            'celular', 'user__genero', 'fecha_contrato',
+             'user__ciudad__ciudad', 'user__ciudad__departamento',
+            'barrio', 'proveedor', 'fecha_retiro', 'estado'
+        )
 
 class DaviplataResource(resources.ModelResource):
     
@@ -189,6 +207,7 @@ class GestorAdmin(ImportExportModelAdmin, RelatedFieldAdmin):
                    'celular', 'user__genero', 'user__ciudad__ciudad',
                      'user__ciudad__departamento', 'user__is_staff')
    resource_class = GestoresResource
+   exclude = ('proveedor',)
 
 admin.site.register(Gestores, GestorAdmin)
    
