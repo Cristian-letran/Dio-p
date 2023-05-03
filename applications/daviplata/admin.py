@@ -25,7 +25,7 @@ from . models import (
 
 class GestoresResource(resources.ModelResource):
     user__d_i = Field(attribute='user__d_i', column_name='Documento')
-    user__nombres = Field(attribute='Nombre', column_name='Nombre')
+    user__nombres = Field(attribute='user__nombres', column_name='Nombre')
     user__tipo_d_i = Field(attribute='user__tipo_d_i', column_name='Tipo ID')
     celular = Field(attribute='celular', column_name='Celular')
     user__genero = Field(attribute='user__genero', column_name='Genero')
