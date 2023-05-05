@@ -8,9 +8,6 @@ from related_admin import RelatedFieldAdmin
 from . models import (
     Daviplata, Red, TipoNoEfectiva, 
     TipoEstablecimiento, 
-    OtroTipoEstablecimiento, 
-    TipoSenalizacion, 
-    OtroTipoSenalizacion,
     Acude,
     AcudeOtro,
     Medio,
@@ -144,18 +141,6 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
 
 @admin.register(TipoEstablecimiento)
-class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-   list_display = ('nombre',)
-
-@admin.register(OtroTipoEstablecimiento)
-class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-   list_display = ('nombre',)
-
-@admin.register(TipoSenalizacion)
-class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-   list_display = ('nombre',)
-
-@admin.register(OtroTipoSenalizacion)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
 

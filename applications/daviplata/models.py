@@ -26,24 +26,6 @@ class TipoEstablecimiento(models.Model):
     def __str__(self):
         return self.nombre
 
-class OtroTipoEstablecimiento(models.Model):
-    nombre = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nombre
-
-class TipoSenalizacion(models.Model):
-    nombre = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nombre
-
-class OtroTipoSenalizacion(models.Model):
-    nombre = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nombre
-
 class Acude(models.Model):
     nombre = models.CharField(max_length=100)
 
@@ -63,6 +45,19 @@ class Medio(models.Model):
         return self.nombre
 
 class Daviplata(models.Model):  
+
+    OTRO_SENALIZACION = [
+        ('Flanger', 'Flanger'),
+        ('Hablador', 'Hablador'),
+        ('Peldaño', 'Peldaño'),
+        ('Pendon', 'Pendon')
+    ]
+
+    T_SENALIZACION = [
+        ('Otro', 'Otro'),
+        ('Rompetrafico', 'Rompetrafico'),
+        ('Aviso ', 'Aviso')
+    ]
 
     RED = [
         ('PuntoRed (ConexRed)', 'PuntoRed (ConexRed'),
@@ -193,16 +188,16 @@ class Daviplata(models.Model):
         null=True,
         verbose_name='Otro tipo de establecimiento'
         )
-    t_senalizacion = models.ForeignKey(
-        TipoSenalizacion, 
-        on_delete=models.CASCADE, 
+    t_senalizacion = models.CharField(
+        max_length=30, 
+        choices=T_SENALIZACION,
         blank=True,
         null=True,
         verbose_name='Tipo de señalizacion'
         )
-    otro_senalizacion =  models.ForeignKey(
-        OtroTipoSenalizacion, 
-        on_delete=models.CASCADE, 
+    otro_senalizacion =  models.CharField(
+        max_length=30,  
+        choices=OTRO_SENALIZACION,
         blank=True,
         null=True,
         verbose_name='Otro especificado'
