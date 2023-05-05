@@ -14,7 +14,9 @@ class DaviplataListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         kword = self.request.GET.get("kword", '')
         queryset = Daviplata.objects.filter(
-            nombre_establecimiento__icontains = kword
+            nombre_establecimiento__icontains = kword,
+            user = self.request.user,
+            visita_efectiva = None
         )
         return queryset
 #
@@ -31,19 +33,6 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         self.object.save()
         return super(DaviplataUpdateView, self).form_valid(form)
 
-class DaviplataCreateView(LoginRequiredMixin, CreateView):
-    model = Daviplata
-    template_name = "daviplata/daviplata_create.html"
-    form_class = DaviplataForm
-    # model = Daviplata
-    # fields = ('__all__')
-    success_url = reverse_lazy('daviplata-app:list-daviplata')
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
-        return super(DaviplataCreateView, self).form_valid(form)
     
 class VinculacionListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/list_vinculacion.html"

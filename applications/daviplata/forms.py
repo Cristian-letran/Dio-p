@@ -74,7 +74,7 @@ class VinculacionForm(forms.ModelForm):
         fields = (
         '__all__'   )
 
-        required =('tipo_gestion')
+        required =('tipo_gestion', 'registro_daviplata')
            
         widgets = {
             'celular': forms.NumberInput(

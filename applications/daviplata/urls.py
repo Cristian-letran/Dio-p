@@ -17,12 +17,6 @@ urlpatterns = [
     ),
     
     path(
-        'daviplata-create/',
-         views.DaviplataCreateView.as_view(),
-         name='daviplata-create',
-    ),
-    
-    path(
         'vinculacion-create/',
          views.VinculacionCreateView.as_view(),
          name='vinculacion-create',
