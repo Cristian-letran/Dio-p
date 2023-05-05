@@ -65,7 +65,7 @@ class Medio(models.Model):
 class Daviplata(models.Model):  
 
     RED = [
-        ('Puntored', 'Puntored'),
+        ('PuntoRed (ConexRed)', 'PuntoRed (ConexRed'),
         ('Conred', 'Conred'),
         ('Punto de Pago ', 'Punto de Pago ')
     ]
@@ -79,7 +79,7 @@ class Daviplata(models.Model):
     id_ruta = models.AutoField(primary_key=True)
     codigo_total = models.IntegerField(blank=True, null=True)
     nombre_establecimiento = models.CharField(max_length=200)
-    red = models.CharField(max_length=15,
+    red = models.CharField(max_length=25,
         choices=RED
         )#
     codigo_dian = models.IntegerField()
@@ -187,11 +187,10 @@ class Daviplata(models.Model):
         blank=True,
         null=True,
         on_delete=models.CASCADE)
-    otro_d_e = models.ForeignKey(
-        OtroTipoEstablecimiento, 
+    otro_d_e = models.CharField(
+        max_length=30,
         blank=True,
         null=True,
-        on_delete=models.CASCADE, 
         verbose_name='Otro tipo de establecimiento'
         )
     t_senalizacion = models.ForeignKey(

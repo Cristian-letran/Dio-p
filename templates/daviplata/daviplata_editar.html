@@ -13,7 +13,11 @@
     </div>
     
   </form> -->
-
+  {% if form.errors %}
+  <div class="callout alert">
+        {{ form.errors }}
+  </div>
+  {% endif %}
  
 
   <h4>Actualizar</h4> 
@@ -54,11 +58,11 @@
           {{form.codigo_dian}}
         </label>
       </div> -->
-      <!-- <div class="medium-6 cell">
+      <div class="medium-6 cell">
         <label>DIRECCIÓN BASE
           {{form.direccion_base}}
         </label>
-      </div> -->
+      </div>
     </div>
   </div>
     
