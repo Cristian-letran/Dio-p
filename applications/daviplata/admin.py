@@ -6,11 +6,10 @@ from import_export.widgets import DateWidget
 from related_admin import RelatedFieldAdmin
 
 from . models import (
-    Daviplata, Red, TipoNoEfectiva, 
+    Daviplata, Red,
     TipoEstablecimiento, 
     Acude,
     AcudeOtro,
-    Medio,
     Vinculacion,
     TipoGestion,
     Categorias,
@@ -131,12 +130,10 @@ class VinculacionResource(resources.ModelResource):
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('id_ruta', 'nombre_establecimiento', 'direccion_base', 'user')
    resource_class = DaviplataResource
+   date_hierarchy = ('fecha_encuesta')
+   list_filter = ('fecha_encuesta',)
 
 @admin.register(Red)
-class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-   list_display = ('nombre',)
-
-@admin.register(TipoNoEfectiva)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
 
@@ -149,10 +146,6 @@ class DaviplaAcudetaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
 
 @admin.register(AcudeOtro)
-class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-   list_display = ('nombre',)
-   
-@admin.register(Medio)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('nombre',)
 

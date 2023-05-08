@@ -13,11 +13,11 @@
     </div>
     
   </form> -->
-  {% if form.errors %}
-  <div class="callout alert">
-        {{ form.errors }}
-  </div>
-  {% endif %}
+{% if form.errors %}
+      <div class="callout alert">
+            {{ form.errors }}
+      </div>
+      {% endif %}
  
 
   <h4>Actualizar</h4> 
@@ -26,9 +26,6 @@
   <div class="grid-container">
     <div class="grid-x grid-padding-x">
       <div class="medium-6 cell">
-        <label>CODIGO TOTAL
-          {{form.codigo_total}}
-        </label>
       </div>
       <div class="medium-6 cell">
         <label>NOMBRE ESTABLECIMIENTO
@@ -37,41 +34,10 @@
       </div>
     </div>
   </div>
-  <div class="grid-container">
-    <div class="grid-x grid-padding-x">
-      <div class="medium-6 cell">
-        <label>RED
-          {{form.red}}
-        </label>
-      </div>
-      <div class="medium-6 cell">
-        <label>CODIGO DIAN
-          {{form.codigo_dian}}
-        </label>
-      </div>
-    </div>
-  </div>
-  <div class="grid-container">
-    <div class="grid-x grid-padding-x">
-      <!-- <div class="medium-6 cell">
-        <label>CODIGO DIAN
-          {{form.codigo_dian}}
-        </label>
-      </div> -->
-      <div class="medium-6 cell">
-        <label>DIRECCIÓN BASE
-          {{form.direccion_base}}
-        </label>
-      </div>
-    </div>
-  </div>
-    
     <div class="grid-container">
       <div class="grid-x grid-padding-x">
         <div class="medium-6 cell">
-          <label>REFERENCIAS DETALLES ADICIONALES BASE
-            {{form.rdab}}
-          </label>
+          
         </div>
         <div class="medium-6 cell">
           <label>DIRECCIÓN COMPLETA BASE
@@ -80,26 +46,10 @@
         </div>
       </div>
     </div>
+    
     <div class="grid-container">
       <div class="grid-x grid-padding-x">
         <div class="medium-6 cell">
-          <label>DEPARTAMENTO
-            {{form.departamento}}
-          </label>
-        </div>
-        <div class="medium-6 cell">
-          <label>MUNICIPIO
-            {{form.municipio}}
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class="grid-container">
-      <div class="grid-x grid-padding-x">
-        <div class="medium-6 cell">
-          <label>FECHA ENCUESTA
-            {{form.fecha_encuesta}}
-          </label>
         </div>
         <div class="medium-6 cell">
           <label>VISITA EFECTIVA
@@ -116,9 +66,7 @@
           </label>
         </div>
         <div class="medium-6 cell">
-          <label>OTRO ESPECIFICADO 
-            {{form.otro_especificado}}
-          </label>
+          
         </div>
       </div>
     </div>
@@ -223,14 +171,10 @@
     <div class="grid-container">
       <div class="grid-x grid-padding-x">
         <div class="medium-6 cell">
-          <label>TIPO DE SEÑALIZACIÓN
-            {{form.t_senalizacion}}
-          </label>
+          {{form.t_senalizacion}}
         </div>
         <div class="medium-6 cell">
-          <label>OTRO TIPO DE SEÑALIZACIÓN
-            {{form.otro_senalizacion}}
-          </label>
+         
         </div>
       </div>
     </div>
@@ -417,20 +361,7 @@
         </div>
       </div>
     </div>
-    <div class="grid-container">
-      <div class="grid-x grid-padding-x">
-        <div class="medium-6 cell">
-          <label>NINGUNO ESPECIFICADO
-            {{form.ninguno_especificado}}
-          </label>
-        </div>
-        <div class="medium-6 cell">
-          <label>FIRMA
-            {{form.firma}}
-          </label>
-        </div>
-      </div>
-    </div>
+    
     <div class="grid-container">
       <div class="grid-x grid-padding-x">
         <div class="medium-6 cell">

@@ -13,13 +13,6 @@ class Red(models.Model):
     def __str__(self):
         return self.nombre
 
-
-class TipoNoEfectiva(models.Model):
-    nombre = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nombre
-
 class TipoEstablecimiento(models.Model):
     nombre = models.CharField(max_length=100)
 
@@ -38,13 +31,40 @@ class AcudeOtro(models.Model):
     def __str__(self):
         return self.nombre
 
-class Medio(models.Model):
-    nombre = models.CharField(max_length=100)
+class Daviplata(models.Model): 
 
-    def __str__(self):
-        return self.nombre
+    SARLAFT_INFORMA = [
+        ('Servicio al Cliente','Servicio al Cliente'),
+        ('Operador','Operador' ),
+        ('puntored ','puntored'),
+        ('Chat Plataforma', 'Chat Plataforma'),
+        ('Asesor Comercial ','Asesor Comercial'),
+        ('Conred ','Conred'),
+        ('No sabe','No sabe'),
+        ('Supervisor','Supervisor'),
+        ('Punto de Pago','Punto de Pago'),
+    ]
 
-class Daviplata(models.Model):  
+    MEDIO = [
+        ('Telefono','Telefono'),
+        ('Internet','Internet' ),
+        ('E-Mail ','E-Mail '),
+        ('Otro', 'Otro'),
+        ('WhatsApp','WhatsApp')
+
+    ]
+
+    TIPO_NO_EFECTIVA = [
+
+        ('Direccion Errada','Direccion Errada'),
+        ('Local Cerrado', 'Local Cerrado'),
+        ('No Existe PVD','No Existe PVD'),
+        ('El Cliente No Permitio Realizar encuesta','El Cliente No Permitio Realizar encuesta'),
+        ('Otros','Otros'),
+        ('Cambio de Direccion PVD','Cambio de Direccion PVD'),
+        ('Ya esta Marcado', 'Ya esta Marcado'),
+
+    ]
 
     OTRO_SENALIZACION = [
         ('Flanger', 'Flanger'),
@@ -60,9 +80,10 @@ class Daviplata(models.Model):
     ]
 
     RED = [
-        ('PuntoRed (ConexRed)', 'PuntoRed (ConexRed'),
+        ('PuntoRed (ConexRed)', 'PuntoRed (ConexRed)'),
         ('Conred', 'Conred'),
-        ('Punto de Pago ', 'Punto de Pago ')
+        ('Punto de Pago ', 'Punto de Pago'),
+        ('PuntoRed (ConexRed) Onboarding', 'PuntoRed (ConexRed) Onboarding')
     ]
 
     RESPUESTA = [
@@ -74,7 +95,7 @@ class Daviplata(models.Model):
     id_ruta = models.AutoField(primary_key=True)
     codigo_total = models.IntegerField(blank=True, null=True)
     nombre_establecimiento = models.CharField(max_length=200)
-    red = models.CharField(max_length=25,
+    red = models.CharField(max_length=60,
         choices=RED
         )#
     codigo_dian = models.IntegerField()
@@ -101,9 +122,9 @@ class Daviplata(models.Model):
         blank=True,
         null=True
         )
-    tipo_no_efectiva = models.ForeignKey(
-        TipoNoEfectiva, 
-        on_delete=models.CASCADE,
+    tipo_no_efectiva = models.CharField(
+        max_length=43, 
+        choices=TIPO_NO_EFECTIVA,
         blank=True,
         null=True
         )
@@ -338,11 +359,11 @@ class Daviplata(models.Model):
         blank=True,
         null=True,
         )
-    medio = models.ForeignKey(
-        Medio, 
+    medio = models.CharField(
+        max_length=30, 
+        choices=MEDIO,
         blank=True,
         null=True,
-        on_delete=models.CASCADE
         )
     medio_especificado = models.CharField(
         max_length=30, 
@@ -350,9 +371,9 @@ class Daviplata(models.Model):
         null=True,
         verbose_name='Medio especificado'
         )
-    sarlaft_informa = models.ForeignKey(
-        AcudeOtro, 
-        on_delete=models.CASCADE, 
+    sarlaft_informa = models.CharField(
+        max_length=30,
+        choices=SARLAFT_INFORMA,
         blank=True,
         null=True,
         verbose_name='SARLAFT. ¿A quien informaría?'

@@ -26,9 +26,10 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
     model = Daviplata
     success_url = reverse_lazy('daviplata-app:list-daviplata')
 
-    def form_valid(self, form):
+    def form_valid(self, form):######aca
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        self.object.fecha_encuesta = datetime.now()
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
         return super(DaviplataUpdateView, self).form_valid(form)
