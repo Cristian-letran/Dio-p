@@ -592,8 +592,8 @@ class Vinculacion(models.Model):
     barrio = models.CharField(max_length=50)
     localidad = models.CharField(max_length=50)
     dane = models.ForeignKey(Ciudad, on_delete=models.CASCADE, blank=True)
-    latitud = models.CharField(max_length=20)
-    longitud = models.CharField(max_length=20)
+    latitud = models.CharField(max_length=20, blank = True, null=True)
+    longitud = models.CharField(max_length=20, blank = True, null=True)
     ############## Pestaña ###################
     registro_daviplata = models.CharField(
         max_length=20, 
