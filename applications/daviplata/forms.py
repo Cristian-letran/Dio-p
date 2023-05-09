@@ -43,7 +43,8 @@ class DaviplataForm(forms.ModelForm):
                 'class':'form-control', 
                 'placeholder':'Select a date', 
                 'type':'date'
-            }),
+                }
+            ),
 
             'fecha_encuesta': forms.DateInput(
             format=(
@@ -53,7 +54,8 @@ class DaviplataForm(forms.ModelForm):
                 'class':'form-control', 
                 'placeholder':'Select a date', 
                 'type':'date'
-            }),
+                }   
+            ),
 
             'nombre_establecimiento': forms.TextInput(
                 attrs = {
@@ -61,12 +63,29 @@ class DaviplataForm(forms.ModelForm):
                     'readonly':'readonly'
                 }
             ),
-            'direccion_base': forms.TextInput(
+            'direccion_c_b': forms.TextInput(
                 attrs = {
                     'class': 'input-group-field',
                     'readonly':'readonly'
                 }
             ),
+            'visualizar': forms.TextInput(
+                attrs = {
+                    'class': 'input-group-field',
+                    'readonly':'readonly'
+                }
+            ),
+            'visita_efectiva': forms.Select(
+                attrs = {
+                    'required': 'required', 
+                }
+            ),
+            'pdv': forms.Select(
+                attrs = {
+                    'required': 'required', 
+                }
+            ),
+            
     }
 
 class VinculacionForm(forms.ModelForm):
