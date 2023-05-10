@@ -752,6 +752,8 @@ class Vinculacion(models.Model):
     def save(self, *args, **kwargs):
         if self.celular == None:
             self.celular = self.identificacion
+        
+        ################ Se realizó registro en DaviPlata ##############
 
         if self.registro_daviplata == "SI":
             self.motivo_no_registro = None
@@ -760,8 +762,7 @@ class Vinculacion(models.Model):
         elif self.registro_daviplata == "Modo Contingencia":
             self.motivo_no_registro_id = 9
 
-        
-        #############################################
+        ##################PERFIL NEGOCIO ##########
         if self.se_registro == "SI":
             self.no_register = None
         elif self.se_registro == "Ya esta activo":
@@ -815,10 +816,11 @@ class Vinculacion(models.Model):
                 self.motivo_no_registro_id = 1
 
         elif self.tipo_gestion.id == 4 :
-            self.registro_daviplata = "NO"
-            self.se_registro = "NO"
-            self.solicito_tencard = "NO"
-            self.sticker = "NO"
+            ###PASADO TIEMPO BORRAR ###
+            # self.registro_daviplata = "NO"
+            # self.se_registro = "NO"
+            # self.solicito_tencard = "NO"
+            # self.sticker = "NO"
             self.codigo_transaccion = None
 
         ################¿Se realizo  registro en perfil mi negocio?####
