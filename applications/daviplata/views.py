@@ -29,7 +29,7 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):######aca
         self.object = form.save(commit=False)
         self.object.user = self.request.user
-        self.object.fecha_visita = datetime.now()
+        self.object.fecha_encuesta = datetime.now()
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
         return super(DaviplataUpdateView, self).form_valid(form)
