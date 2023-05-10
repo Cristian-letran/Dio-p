@@ -18,8 +18,6 @@
             {{ form.errors }}
       </div>
       {% endif %}
- 
-
   <h4>Actualizar</h4> 
 
  <form method="post" enctype="multipart/form-data">{% csrf_token %}
@@ -45,7 +43,7 @@
           </label>
         </div>
         <div class="medium-6 cell">
-          <label>TIPO NO EFECTIVA
+          <label>MOTIVO NO EFECTIVA
             {{form.tipo_no_efectiva}}
           </label>
         </div>
@@ -152,7 +150,9 @@
     <div class="grid-container">
       <div class="grid-x grid-padding-x">
         <div class="medium-6 cell">
+          <label>TIPO SEÑALIZACION
           {{form.t_senalizacion}}
+          </label>
         </div>
         <div class="medium-6 cell">
          
