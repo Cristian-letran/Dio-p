@@ -131,7 +131,7 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
    list_display = ('id_ruta', 'nombre_establecimiento', 'visita_efectiva', 'fecha_encuesta', 'direccion_base', 'user')
    resource_class = DaviplataResource
    date_hierarchy = ('fecha_encuesta')
-   list_filter = ('fecha_encuesta',)
+   list_filter = ('fecha_encuesta', 'visita_efectiva')
 
 @admin.register(Red)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
