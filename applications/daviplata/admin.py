@@ -128,7 +128,7 @@ class VinculacionResource(resources.ModelResource):
 
 @admin.register(Daviplata)
 class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-   list_display = ('id_ruta', 'nombre_establecimiento', 'fecha_encuesta', 'direccion_base', 'user')
+   list_display = ('id_ruta', 'nombre_establecimiento', 'visita_efectiva', 'fecha_encuesta', 'direccion_base', 'user')
    resource_class = DaviplataResource
    date_hierarchy = ('fecha_encuesta')
    list_filter = ('fecha_encuesta',)
