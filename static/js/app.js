@@ -44,4 +44,18 @@ $('[data-open-details]').click(function (e) {
   };
   
   document.addEventListener("DOMContentLoaded", funcionInit);
+
+  //////No permit copiar /////
+  window.onload = function() {
+    var myInput = document.getElementById('celular');
+    myInput.onpaste = function(e) {
+      e.preventDefault();
+      alert("esta acción está prohibida");
+    }
+    
+    myInput.oncopy = function(e) {
+      e.preventDefault();
+      alert("esta acción está prohibida");
+    }
+  }
  

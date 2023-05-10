@@ -9,15 +9,12 @@
     border: 2px dashed red;
   }
 
-  input:valid {
-    border: 2px solid black;
-  }
   select:invalid {
     border: 2px dashed red;
   }
 
   select:valid {
-    border: 2px solid black;
+    border: 2px solid rgb(144, 208, 187);
   }
 </style>
 
@@ -43,9 +40,8 @@
                 
                 <div class="cell medium-6 large-6">
                     <label>No. celular activado en DaviPlata</label>
-                    {{form.celular}}
+                    <input type="number" name="celular" id="celular">
                     </div>
-                    
             </div>
             
             <div class="grid-x grid-margin-x">
