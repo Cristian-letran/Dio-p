@@ -187,7 +187,8 @@ class Daviplata(models.Model):
         max_length=2, choices=RESPUESTA,
         blank=True,
         null=True)
-    numero_movil = models.IntegerField(
+    numero_movil = models.CharField(
+        max_length=11,
         blank=True,
         null=True
     )
