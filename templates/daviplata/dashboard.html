@@ -30,8 +30,8 @@
   
 
   <span class="label success">Total</span> {{count_efectivo}}
-
-  <table>
+<div class="table-scroll">
+  <table class="hover">
     <thead>
       <tr>
         <th width="200">Hora</th>
@@ -50,6 +50,7 @@
       
     </tbody>
   </table>
+</div>
 
   <div class="pagination">
     <span class="step-links">
@@ -67,7 +68,7 @@
             <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
-</div>
+</div> 
 
 
 
