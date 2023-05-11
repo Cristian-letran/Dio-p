@@ -129,7 +129,7 @@ class DashboardListView(ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         contexto = super().get_context_data(**kwargs)
-        contexto ['object_list'] = self.get_queryset()[:1]
+        contexto ['object_list'] = self.get_queryset()[:5]
         contexto ['count_efectivo'] = self.get_queryset().count
         
         
