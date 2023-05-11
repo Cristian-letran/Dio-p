@@ -442,6 +442,9 @@ class Daviplata(models.Model):
         blank=True, null=True, 
         verbose_name= 'Usuario'
     )
+    hora = models.CharField(max_length=22,
+                            blank = True, null=True)
+
     
     def __str__(self):
         return str(self.id_ruta)
@@ -748,7 +751,7 @@ class Vinculacion(models.Model):
         max_length=45, choices=FACTURA,
         blank=True,
         null=True)
-
+    
     def save(self, *args, **kwargs):
         if self.celular == None:
             self.celular = self.identificacion

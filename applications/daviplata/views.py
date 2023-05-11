@@ -9,7 +9,7 @@ from django.utils.timezone import datetime
 class DaviplataListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/lista_daviplata.html"
     model = Daviplata
-    paginate_by = 15
+    paginate_by = 30
 
     def get_queryset(self):
         kword = self.request.GET.get("kword", '')
@@ -30,6 +30,7 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.fecha_encuesta = datetime.now()
+        self.object.hora = datetime.now().time()
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
         return super(DaviplataUpdateView, self).form_valid(form)
@@ -107,7 +108,26 @@ class NovedadUpdateView(UpdateView):
     success_url = reverse_lazy('daviplata-app:vinculacion-list')
 
 class DashboardListView(ListView): 
-    pass
+    model = Daviplata
+    template_name = "daviplata/dashboard.html"
+
+    def get_queryset(self):
+        kword = self.request.GET.get("kword", '')
+        date = self.request.GET.get("date", '')
+        queryset = Daviplata.objects.filter(
+            visita_efectiva__contains = kword,
+            fecha_encuesta__contains = date
+        )
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        contexto = super().get_context_data(**kwargs)
+        contexto ['object_list'] = self.get_queryset()
+        contexto ['count_efectivo'] = self.get_queryset().count
+        
+        return contexto
+
     
     
 

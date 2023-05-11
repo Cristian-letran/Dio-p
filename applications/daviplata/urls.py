@@ -40,4 +40,10 @@ urlpatterns = [
          name='novedad-update',
     ),
     
+    path(
+        'dashboard-marcacion/',
+         views.DashboardListView.as_view(),
+         name='dashboard-marcacion',
+    ),
+    
 ]
