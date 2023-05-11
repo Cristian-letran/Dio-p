@@ -36,7 +36,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         (5, 'Courrier'),
         (6, 'Mesa de control'),
         (7, 'Sig'),
-        (8, 'call center')
+        (8, 'call center'),
+        (9, 'DASHBOARD')
             
     ]
     
@@ -58,6 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         (TECNOLOGIA, 'Tecnologia'),
         (ADMINISTRADOR, 'Administrador'),
         (CLIENTE, 'Cliente'),
+        
         
     ]
 

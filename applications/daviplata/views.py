@@ -9,7 +9,7 @@ from django.utils.timezone import datetime
 class DaviplataListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/lista_daviplata.html"
     model = Daviplata
-    paginate_by = 4 
+    paginate_by = 15
 
     def get_queryset(self):
         kword = self.request.GET.get("kword", '')
@@ -106,7 +106,8 @@ class NovedadUpdateView(UpdateView):
     template_name = "daviplata/update_novedad.html"
     success_url = reverse_lazy('daviplata-app:vinculacion-list')
 
-    
+class DashboardListView(ListView): 
+    pass
     
     
 
