@@ -19,13 +19,17 @@
             <span class="label">Fecha</span>
             <input  type="date" id="date" name="date">
         </div>
+        <div class="cell medium-6 large-4">
+            <span class="label">Courrier</span>
+            <input  type="text" id="kword3" name="kword3">
+        </div>
     </div>
         <input  type="submit" class="button secondary" value="Buscar">
     
   </form>
   
 
-  {{count_efectivo}}
+  <span class="label success">Total</span> {{count_efectivo}}
 
   <table>
     <thead>
@@ -47,12 +51,24 @@
     </tbody>
   </table>
 
-  <!-- {% for article in object_list %}
-  <tr>
-    <td>{{article}}</td>
-   
-  </tr>
-    {% endfor %} -->
+  <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
 
 
 

@@ -212,7 +212,13 @@
           </ul>
         </li>
       </ul>         
+        
+        {% elif user.roles == 9 %}    
+        <a href="{% url 'daviplata-app:dashboard-marcacion' %}"style="color: white;">Panel</a>
+
+
         {% endif %}
+      
   </div>
 </div>
     <div class="off-canvas-content" data-off-canvas-content>
