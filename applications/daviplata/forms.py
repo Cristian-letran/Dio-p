@@ -88,6 +88,13 @@ class DaviplataForm(forms.ModelForm):
             ),
             
     }
+    def clean_marcacion(self):
+        visita_efectiva = self.cleaned_data['visita_efectiva']
+        tipo_no_efectiva = self.cleaned_data['tipo_no_efectiva']
+        if visita_efectiva =="NO" and tipo_no_efectiva == None:
+             raise forms.ValidationError('Responder, tipo no efectiva')
+
+        return self.clean_marcacion
 
 class VinculacionForm(forms.ModelForm):
    
