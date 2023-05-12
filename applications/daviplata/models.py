@@ -446,7 +446,15 @@ class Daviplata(models.Model):
                             blank = True, null=True)
     tiempo = models.CharField(max_length=22, blank=True, null=True)
 
+    def save(self, *args, **kwargs):
     
+        self.direccion_completo = self.direccion_actualizada + " " + self.detalle_direccion
+
+        super(Daviplata, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.bolsa)
+
     def __str__(self):
         return str(self.id_ruta)
     

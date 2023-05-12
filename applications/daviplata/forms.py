@@ -12,7 +12,8 @@ class DaviplataForm(forms.ModelForm):
         )
         exclude = ('user', 'departamento', 
                    'direccion_base', 'departamento', 
-                   'municipio', 'red', 'codigo_dian', 'codigo_total')
+                   'municipio', 'red', 'codigo_dian', 
+                   'codigo_total', 'direccion_completo')
 
         widgets = {
 
