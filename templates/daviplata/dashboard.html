@@ -35,6 +35,7 @@
     <thead>
       <tr>
         <th width="200">Hora</th>
+        <th>Tiempo</th>
         <th>Courrier</th>
         <th>Mapa</th>
       </tr>
@@ -43,6 +44,7 @@
         {% for e in object_list %}
       <tr>
         <td>{{e.hora}}</td>
+        <td>{{e.tiempo}}</td>
         <td>{{e.user}}</td>
         <td>{{e.visualizar}}</td>
       </tr>

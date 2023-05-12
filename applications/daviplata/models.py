@@ -444,6 +444,7 @@ class Daviplata(models.Model):
     )
     hora = models.CharField(max_length=22,
                             blank = True, null=True)
+    tiempo = models.CharField(max_length=22, blank=True, null=True)
 
     
     def __str__(self):

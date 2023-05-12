@@ -121,7 +121,7 @@ class DashboardListView(ListView):
             visita_efectiva__icontains = kword,
             fecha_encuesta__contains = date,
             user__nombres__contains = courrier
-        )
+        ).order_by('-hora')
         return queryset
     
     
