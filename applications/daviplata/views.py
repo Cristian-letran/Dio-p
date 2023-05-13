@@ -107,11 +107,10 @@ class NovedadUpdateView(UpdateView):
     template_name = "daviplata/update_novedad.html"
     success_url = reverse_lazy('daviplata-app:vinculacion-list')
 
-from django.core.paginator import Paginator
-from django.shortcuts import render
 class DashboardListView(ListView): 
     model = Daviplata
     template_name = "daviplata/dashboard.html"
+    paginate_by = 2
 
     def get_queryset(self):
         kword = self.request.GET.get("kword", '')
@@ -120,19 +119,14 @@ class DashboardListView(ListView):
         queryset = Daviplata.objects.filter(
             visita_efectiva__icontains = kword,
             fecha_encuesta__contains = date,
-            user__nombres__contains = courrier
+            user__nombres__contains = courrier,
         ).order_by('hora', '-fecha_encuesta')
         return queryset
     
-    
-    
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
-        contexto = super().get_context_data(**kwargs)
-        contexto ['object_list'] = self.get_queryset()[:5]
+        contexto = super(DashboardListView, self).get_context_data(**kwargs)
         contexto ['count_efectivo'] = self.get_queryset().count
-        
-        
         return contexto
 
     

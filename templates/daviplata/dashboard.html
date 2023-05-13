@@ -7,7 +7,7 @@
 <form  method="GET"> {% csrf_token %}
     <div class="grid-x grid-margin-x">
         <div class="cell medium-6 large-4">
-            <span class="label">Fecha</span>
+            <span class="label">Tipo efectiva</span>
             <select  name="kword" id="kword">
                 <option value=""></option>
                 <option value="SI">SI</option>
@@ -41,7 +41,7 @@
       </tr>
     </thead>
     <tbody>
-        {% for e in object_list %}
+        {% for e in page_obj %}
       <tr>
         <td>{{e.hora}}</td>
         <td>{{e.tiempo}}</td>
@@ -54,23 +54,23 @@
   </table>
 </div>
 
-  <div class="pagination">
+<div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            <a href="?page=1">&laquo; Inicio</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
         {% endif %}
 
         <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
         </span>
 
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">último &raquo;</a>
         {% endif %}
     </span>
-</div> 
+</div>
 
 
 
