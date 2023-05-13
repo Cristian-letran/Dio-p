@@ -54,23 +54,25 @@
   </table>
 </div>
 
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; Inicio</a>
-            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
-        {% endif %}
+<nav aria-label="Pagination">
+    <ul class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <li><a href="?page=1">&laquo; Inicio </a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}">Anterior </a></li>
+            {% endif %}
 
-        <span class="current">
-            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <li class="pagination-next"><a href="?page={{ page_obj.next_page_number }}">Siguiente </a></li>
+                <li><a  href="?page={{ page_obj.paginator.num_pages }}">último &raquo; </a></li>
+            {% endif %}
         </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">último &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+    </ul>
+</nav>
 
 
 
