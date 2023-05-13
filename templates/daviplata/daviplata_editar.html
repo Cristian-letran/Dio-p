@@ -18,6 +18,7 @@
             {{ form.errors }}
       </div>
       {% endif %}
+ 
   <h4>Actualizar</h4> 
 
  <form method="post" enctype="multipart/form-data">{% csrf_token %}
@@ -80,9 +81,7 @@
     <div class="grid-container">
       <div class="grid-x grid-padding-x">
         <div class="medium-6 cell">
-          <label>COMPLETO ACTUALIZADA
-            {{form.direccion_completo}}
-          </label>
+          
         </div>
         <div class="medium-6 cell">
           <label>COINCIDE DIRECCIÓN

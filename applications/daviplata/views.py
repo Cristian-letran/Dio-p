@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from .forms import DaviplataForm, VinculacionForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.timezone import datetime
+from applications.users.models import User
 
 class DaviplataListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/lista_daviplata.html"
@@ -19,7 +20,7 @@ class DaviplataListView(LoginRequiredMixin, ListView):
             visita_efectiva = None
         )
         return queryset
-#
+import time 
 class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "daviplata/daviplata_editar.html"
     form_class = DaviplataForm
@@ -107,6 +108,7 @@ class NovedadUpdateView(UpdateView):
     template_name = "daviplata/update_novedad.html"
     success_url = reverse_lazy('daviplata-app:vinculacion-list')
 
+import statistics
 class DashboardListView(ListView): 
     model = Daviplata
     template_name = "daviplata/dashboard.html"
@@ -122,6 +124,7 @@ class DashboardListView(ListView):
             user__nombres__contains = courrier,
         ).order_by('hora', '-fecha_encuesta')
         return queryset
+        
     
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
