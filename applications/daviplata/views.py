@@ -110,7 +110,7 @@ class NovedadUpdateView(UpdateView):
 class DashboardListView(ListView): 
     model = Daviplata
     template_name = "daviplata/dashboard.html"
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         kword = self.request.GET.get("kword", '')
