@@ -397,7 +397,6 @@ class Daviplata(models.Model):
     url_img_f = models.ImageField(
         upload_to = 'IMG FACHADA',
         verbose_name='URL IMAGEN FACHADA',
-        blank=True,
         null=True,
         )
     url_img_m = models.ImageField(
@@ -450,7 +449,7 @@ class Daviplata(models.Model):
     def save(self, *args, **kwargs):
     
         self.direccion_completo = str(self.direccion_actualizada) + " " + str(self.detalle_direccion)
-        
+         
         super(Daviplata, self).save(*args, **kwargs)
 
     def __str__(self):
