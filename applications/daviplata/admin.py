@@ -181,7 +181,7 @@ class novedadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 class GestorAdmin(ImportExportModelAdmin, RelatedFieldAdmin):
    list_display = ('user__d_i', 'user__nombres', 
-                   'user__tipo_d_i', 'user__d_i', 'fecha_contrato',
+                   'estado', 'user__d_i', 'fecha_contrato',
                    'celular', 'user__genero', 'user__ciudad__ciudad',
                      'user__ciudad__departamento', 'user__is_staff')
    resource_class = GestoresResource
