@@ -29,7 +29,6 @@ Total: <span class="badge primary">{{count}}</span>
       <tr>
         <th >NOMBRE ESTABLECIMIENTO</th>
         <th width="450">DIRECCION BASE</th>
-        <th >MUNICIPIO</th>
         <th >ACTUALIZAR</th>
       </tr>
     </thead>
@@ -38,7 +37,6 @@ Total: <span class="badge primary">{{count}}</span>
       <tr>
         <td>{{e.nombre_establecimiento}}</td>
         <td>{{e.direccion_base}}</td>
-        <td>{{e.municipio}}</td>
         <td><a href="{% url 'daviplata-app:daviplata-update' e %}" class="button "><i class="fi-clipboard-pencil"></i></a></td>
       </tr>
         {% endfor %}

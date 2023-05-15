@@ -10,7 +10,7 @@ from applications.users.models import User
 class DaviplataListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/lista_daviplata.html"
     model = Daviplata
-    paginate_by = 30
+    paginate_by = 20
 
     def get_queryset(self):
         kword = self.request.GET.get("kword", '')
