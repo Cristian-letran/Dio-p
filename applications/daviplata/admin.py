@@ -186,6 +186,7 @@ class GestorAdmin(ImportExportModelAdmin, RelatedFieldAdmin):
                      'user__ciudad__departamento', 'user__is_staff')
    resource_class = GestoresResource
    exclude = ('proveedor',)
+   list_filter = ('estado',)
 
 admin.site.register(Gestores, GestorAdmin)
 
