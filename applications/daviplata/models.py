@@ -450,7 +450,7 @@ class Daviplata(models.Model):
     def save(self, *args, **kwargs):
     
         self.direccion_completo = str(self.direccion_actualizada) + " " + str(self.detalle_direccion)
-
+        
         super(Daviplata, self).save(*args, **kwargs)
 
     def __str__(self):

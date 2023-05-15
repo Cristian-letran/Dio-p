@@ -20,7 +20,14 @@ class DaviplataListView(LoginRequiredMixin, ListView):
             visita_efectiva = None
         )
         return queryset
-import time 
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        contexto = super().get_context_data(**kwargs)
+        contexto ['count'] = self.get_queryset().count()
+        
+        return contexto
+
 class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "daviplata/daviplata_editar.html"
     form_class = DaviplataForm
