@@ -29,8 +29,8 @@
   </form>
   
 
-  <span class="label success">Total</span> {{count_efectivo}}
-  <span class="label success">Total</span> {{count_promedio}}
+  <span class="label label secondary">Total gestion</span> {{count_efectivo}}
+  <span class="label secondary">Total base</span> {{count_completo}}
 <div class="table-scroll">
   <table class="hover">
     <thead>
@@ -75,7 +75,9 @@
     </ul>
 </nav>
 
-
+{% verbatim myblock %}
+    Avoid template rendering via the {% verbatim %}{% endverbatim %} block.
+{% endverbatim myblock %}
 
 
 

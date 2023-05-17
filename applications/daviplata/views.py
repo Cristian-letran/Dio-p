@@ -137,6 +137,7 @@ class DashboardListView(ListView):
         # Call the base implementation first to get a context
         contexto = super(DashboardListView, self).get_context_data(**kwargs)
         contexto ['count_efectivo'] = self.get_queryset().count
+        contexto ['count_completo'] = Daviplata.objects.all().count
         return contexto
 
     
