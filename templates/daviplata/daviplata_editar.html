@@ -4,15 +4,19 @@
 
 {% block panel-content %}
 
-<!-- <h4>Actualizar</h4>
+<style>
+  input:invalid {
+    border: 2px dashed red;
+  }
 
-<form method="post" enctype="multipart/form-data">{% csrf_token %}
-    <div class="grid-container">   
-            {{ form.as_p }}   
-            <button class="submit success button">Actualizar</button>
-    </div>
-    
-  </form> -->
+  select:invalid {
+    border: 2px dashed red;
+  }
+
+  select:valid {
+    border: 2px solid rgb(144, 208, 187);
+  }
+</style>
 {% if form.errors %}
       <div class="callout alert">
             {{ form.errors }}

@@ -93,7 +93,10 @@ class Daviplata(models.Model):
 
     fecha_cargue = models.DateField(auto_now_add=True)
     id_ruta = models.AutoField(primary_key=True)
-    codigo_total = models.IntegerField(blank=True, null=True)
+    codigo_total = models.IntegerField(
+        blank=True, 
+        null=True,
+        unique=True)
     nombre_establecimiento = models.CharField(max_length=200)
     red = models.CharField(max_length=60,
         choices=RED
