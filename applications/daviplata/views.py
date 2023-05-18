@@ -6,6 +6,7 @@ from .forms import DaviplataForm, VinculacionForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.timezone import datetime
 from applications.users.models import User
+from django.db.models import Count, F, Value
 
 class DaviplataListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/lista_daviplata.html"
@@ -138,6 +139,7 @@ class DashboardListView(ListView):
         contexto = super(DashboardListView, self).get_context_data(**kwargs)
         contexto ['count_efectivo'] = self.get_queryset().count
         contexto ['count_completo'] = Daviplata.objects.all().count
+        
         return contexto
 
     

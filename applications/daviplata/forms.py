@@ -13,7 +13,7 @@ class DaviplataForm(forms.ModelForm):
         exclude = ('user', 'departamento', 
                    'departamento', 
                    'municipio', 'red', 'codigo_dian', 
-                   'codigo_total', 'direccion_base')
+                   'codigo_total', 'direccion_base', 'exclude')
 
         widgets = {
 
@@ -81,11 +81,7 @@ class DaviplataForm(forms.ModelForm):
                     'required': 'required', 
                 }
             ),
-            'pdv': forms.Select(
-                attrs = {
-                    'required': 'required', 
-                }
-            ),
+            
             
     }
    

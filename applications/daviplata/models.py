@@ -83,7 +83,9 @@ class Daviplata(models.Model):
         ('PuntoRed (ConexRed)', 'PuntoRed (ConexRed)'),
         ('Conred', 'Conred'),
         ('Punto de Pago ', 'Punto de Pago'),
-        ('PuntoRed (ConexRed) Onboarding', 'PuntoRed (ConexRed) Onboarding')
+        ('PuntoRed (ConexRed) Onboarding', 'PuntoRed (ConexRed) Onboarding'),
+        ('Conred (Super Pagos)', 'Conred (Super Pagos)'),
+        ('Reval', 'Reval')
     ]
 
     RESPUESTA = [
@@ -452,6 +454,18 @@ class Daviplata(models.Model):
     def save(self, *args, **kwargs):
     
         self.direccion_completo = str(self.direccion_actualizada) + " " + str(self.detalle_direccion)
+
+        ################################################
+
+        # visita_efectiva + pdv
+        # if self.visita_efectiva == "SI":
+        #     self.pdv = "SI"
+
+        # elif self.visita_efectiva == "NO":
+        #     self.pdv = "NO"
+
+        # else:
+        #     self.pdv = ""
          
         super(Daviplata, self).save(*args, **kwargs)
 
