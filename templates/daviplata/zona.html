@@ -1,0 +1,28 @@
+{% extends "daviplata/base_daviplata.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<form method="post">{% csrf_token %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>User</th>
+                <th>Actualizar</th>
+            </tr>
+        </thead>
+        {% for e in object_list %}
+        <tbody>
+            <td>{{e.direccion_base}}</td>
+            <td>{{form.user}}</td>
+            <td><input type="submit" value="Send message"></td>
+        </tbody>
+        {% endfor %}
+
+    </table>
+</form>
+
+{% endblock panel-content %}

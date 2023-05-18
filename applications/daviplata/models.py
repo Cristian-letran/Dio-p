@@ -457,15 +457,15 @@ class Daviplata(models.Model):
 
         ################################################
 
-        # visita_efectiva + pdv
-        # if self.visita_efectiva == "SI":
-        #     self.pdv = "SI"
+        #visita_efectiva + pdv
+        if self.visita_efectiva == "SI":
+            self.pdv = "SI"
 
-        # elif self.visita_efectiva == "NO":
-        #     self.pdv = "NO"
+        elif self.visita_efectiva == "NO":
+            self.pdv = "NO"
 
-        # else:
-        #     self.pdv = ""
+        else:
+            self.pdv = ""
          
         super(Daviplata, self).save(*args, **kwargs)
 

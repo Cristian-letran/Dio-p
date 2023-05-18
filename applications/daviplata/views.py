@@ -149,6 +149,17 @@ class DashboardListView(ListView):
         
         return contexto
 
+class RutaUpdate(UpdateView):
+    model = Daviplata
+    template_name = "daviplata/zona.html"
+    fields =  ['user']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context ['object_list'] = Daviplata.objects.all
+        
+        return context
+
     
     
 

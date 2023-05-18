@@ -46,4 +46,10 @@ urlpatterns = [
          name='dashboard-marcacion',
     ),
     
+    path(
+        'zona-update/<int:pk>/',
+         views.RutaUpdate.as_view(),
+         name='zona-update',
+    ),
+    
 ]
