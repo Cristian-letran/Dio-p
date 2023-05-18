@@ -133,7 +133,7 @@ class DashboardListView(ListView):
             visita_efectiva__icontains = kword,
             fecha_encuesta__contains = date,
             user__nombres__contains = courrier,
-            departamento__departamento = departamento,
+            departamento__departamento__contains = departamento,
         ).order_by('hora', '-fecha_encuesta')
         return queryset
         
