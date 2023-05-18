@@ -6,7 +6,7 @@
 
 <form  method="GET"> {% csrf_token %}
     <div class="grid-x grid-margin-x">
-        <div class="cell medium-6 large-4">
+        <div class="cell medium-6 large-3">
             <span class="label">Tipo efectiva</span>
             <select  name="kword" id="kword">
                 <option value=""></option>
@@ -15,13 +15,31 @@
             </select>
         </div>
 
-        <div class="cell medium-6 large-4">
+        <div class="cell medium-6 large-3">
             <span class="label">Fecha</span>
             <input  type="date" id="date" name="date">
         </div>
-        <div class="cell medium-6 large-4">
+        <div class="cell medium-6 large-3">
             <span class="label">Courrier</span>
-            {{form.user}}
+            
+            <select name="id" id="id">
+                <option value="">--------</option>
+                {% for e in user %}
+                <option value="{{e.nombres}}">{{e.nombres}}</option>
+                {% endfor %}
+            </select>
+            
+        </div>
+        <div class="cell medium-6 large-3">
+            <span class="label">Departamento</span>
+            
+            <select name="id_dep" id="id_dep">
+                <option value="">--------</option>
+                {% for e in departamento %}
+                <option value="{{e.departamento}}">{{e.departamento}}</option>
+                {% endfor %}
+            </select>
+            
         </div>
     </div>
         <input  type="submit" class="button secondary" value="Buscar">
