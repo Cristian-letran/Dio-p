@@ -143,6 +143,7 @@ class DashboardListView(ListView):
         contexto = super(DashboardListView, self).get_context_data(**kwargs)
         contexto ['count_efectivo'] = self.get_queryset().count
         contexto ['count_completo'] = Daviplata.objects.all().count
+        contexto ['sin_gestion'] = Daviplata.objects.filter(visita_efectiva = None).count
         contexto ['user'] = User.objects.filter(roles = 5)
         contexto ['departamento'] = Departamento.objects.all()
         
