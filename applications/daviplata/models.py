@@ -166,9 +166,7 @@ class Daviplata(models.Model):
     coincide_direccion = models.CharField(
         max_length=2, 
         choices=RESPUESTA,
-        blank=True,
         null=True
-
         )
     mobre_e_a = models.CharField(
         max_length=200, 
@@ -178,7 +176,6 @@ class Daviplata(models.Model):
         )
     nombre_coincide = models.CharField(
         max_length=2, choices=RESPUESTA,
-        blank=True,
         null=True
         )
 
@@ -218,7 +215,6 @@ class Daviplata(models.Model):
     t_senalizacion = models.CharField(
         max_length=30, 
         choices=T_SENALIZACION,
-        blank=True,
         null=True,
         verbose_name='Tipo de señalizacion'
         )
@@ -232,7 +228,6 @@ class Daviplata(models.Model):
     se_implementa = models.CharField(
         max_length=50, 
         choices=RESPUESTA, 
-        blank=True,
         null=True,
         verbose_name ='Se logro Implementar el Rompetráfico'
         )

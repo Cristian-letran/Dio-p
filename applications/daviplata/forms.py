@@ -84,6 +84,43 @@ class DaviplataForm(forms.ModelForm):
             
             
     }
+    def clean(self):
+        cleaned_data = super().clean()
+        visita_efectiva = cleaned_data.get('visita_efectiva')
+        imagen_matrerial = cleaned_data.get('url_img_m')
+        tipo_no_efectiva = cleaned_data.get('tipo_no_efectiva')
+        ############### HERRAMIENTAS #####################
+        impresora = cleaned_data.get('impresora')
+        datafono = cleaned_data.get('datafono')
+        lector = cleaned_data.get('lector')
+        computador = cleaned_data.get('computador')
+        ################ SERVICIOS ################
+        pago_propios = cleaned_data.get('pago_propios')
+        
+        ####################################################
+        if visita_efectiva == "NO" and tipo_no_efectiva == None:
+            raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
+        ############################HERRAMIENTAS#################################
+        if visita_efectiva == "SI" and impresora == None:
+            raise forms.ValidationError( "Favor responder si tiene impresora")
+        
+        elif visita_efectiva == "SI" and datafono == None:
+            raise forms.ValidationError( "Favor responder si tiene datafono")
+        
+        elif visita_efectiva == "SI" and lector == None:
+            raise forms.ValidationError( "Favor responder si tiene lector")
+        
+        elif visita_efectiva == "SI" and computador == None:
+            raise forms.ValidationError( "Favor responder si tiene lector")
+        
+        ######################  SERVIVCIOS ###############################
+        
+        ##################IMAGENES#######################
+        if visita_efectiva == "SI" and imagen_matrerial == None:
+            raise forms.ValidationError( "Favor tomar imagen de fachada")
+    
+        
+        ###################################
    
 
 class VinculacionForm(forms.ModelForm):
