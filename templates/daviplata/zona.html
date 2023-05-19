@@ -5,24 +5,12 @@
 {% block panel-content %}
 
 <form method="post">{% csrf_token %}
+    {{ form.user }}
+    <select name="cars" id="{{form.direccion}}"  multiple >
+       
+      </select>
 
-    <table>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>User</th>
-                <th>Actualizar</th>
-            </tr>
-        </thead>
-        {% for e in object_list %}
-        <tbody>
-            <td>{{e.direccion_base}}</td>
-            <td>{{form.user}}</td>
-            <td><input type="submit" value="Send message"></td>
-        </tbody>
-        {% endfor %}
-
-    </table>
+    <input type="submit" value="Save">
 </form>
 
 {% endblock panel-content %}

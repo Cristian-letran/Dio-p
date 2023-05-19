@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, CreateView
-from.models import Daviplata, Vinculacion
+from.models import Daviplata, Vinculacion, RutaDaviplata
 from django.urls import reverse_lazy
 from .forms import DaviplataForm, VinculacionForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.timezone import datetime
 from applications.users.models import User
 from django.db.models import Count, F, Value
-from applications.users.models import User
 from applications.cliente.models import Departamento
+
+
 
 class DaviplataListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/lista_daviplata.html"
@@ -64,7 +65,6 @@ class VinculacionListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         contexto = super().get_context_data(**kwargs)
-        contexto ['object_list'] = self.get_queryset()[:6]
         contexto ['count'] = self.get_queryset().count
         contexto ['count_nuevo'] = self.get_queryset().filter(tipo_gestion = 1).count
         contexto ['count_nspn'] = self.get_queryset().filter(tipo_gestion = 2).count
@@ -149,14 +149,16 @@ class DashboardListView(ListView):
         
         return contexto
 
-class RutaUpdate(UpdateView):
-    model = Daviplata
+class RutaUpdate(CreateView):
+    model = RutaDaviplata
     template_name = "daviplata/zona.html"
-    fields =  ['user']
+    fields =  ['user', 'direccion']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context ['object_list'] = Daviplata.objects.all
+        context['form'].fields['direccion'].queryset = Daviplata.objects.all() 
+        context
         
         return context
 

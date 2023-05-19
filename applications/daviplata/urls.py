@@ -47,7 +47,7 @@ urlpatterns = [
     ),
     
     path(
-        'zona-update/<int:pk>/',
+        'zona-update',
          views.RutaUpdate.as_view(),
          name='zona-update',
     ),
