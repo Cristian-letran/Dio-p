@@ -94,6 +94,7 @@ class DaviplataForm(forms.ModelForm):
         visita_efectiva = cleaned_data.get('visita_efectiva')
         imagen_matrerial = cleaned_data.get('url_img_m')
         tipo_no_efectiva = cleaned_data.get('tipo_no_efectiva')
+        tipo_establecimiento = cleaned_data.get('tipo_establecimiento')
         ############### HERRAMIENTAS #####################
         impresora = cleaned_data.get('impresora')
         datafono = cleaned_data.get('datafono')
@@ -111,6 +112,9 @@ class DaviplataForm(forms.ModelForm):
         ####################################################
         if visita_efectiva == "NO" and tipo_no_efectiva == None:
             raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
+        
+        if visita_efectiva == "SI" and tipo_establecimiento == None:
+            raise forms.ValidationError( "Favor responder TIPO DE ESTABLECIMIENTO? ")
         ############################HERRAMIENTAS#################################
         if visita_efectiva == "SI" and impresora == None:
             raise forms.ValidationError( "Favor responder si tiene impresora")
