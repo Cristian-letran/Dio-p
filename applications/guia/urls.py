@@ -54,7 +54,7 @@ urlpatterns = [
     ),
     
     path(
-        'api/guia/list', 
+        'api/guia/list/<kword>/', 
         views.GuiListApiView.as_view(), 
         
     ),

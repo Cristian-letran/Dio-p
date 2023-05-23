@@ -303,9 +303,11 @@ class GuiListApiView(ListAPIView):
 
     serializer_class = GuiaSerializer
 
-    def get_queryset(self):       
+    def get_queryset(self):   
+        kword = self.kwargs['kword']    
         return Guia.objects.filter(
-            seudo__id_clie__r_s = "Falabella"
+            seudo__id_clie__r_s = "Falabella",
+            id_guia = kword
             ) 
 
 
