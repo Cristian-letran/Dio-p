@@ -81,6 +81,11 @@ class DaviplataForm(forms.ModelForm):
                     'required': 'required', 
                 }
             ),
+            'material': forms.Select(
+                attrs={
+                    "required": True
+                }
+            )
             
             
     }
@@ -96,6 +101,12 @@ class DaviplataForm(forms.ModelForm):
         computador = cleaned_data.get('computador')
         ################ SERVICIOS ################
         pago_propios = cleaned_data.get('pago_propios')
+        deposito_retiro_propio = cleaned_data.get('deposito_retiro_propio')
+        servicio_pagos = cleaned_data.get('servicio_pagos')
+        servicio_recaudo = cleaned_data.get('servicio_recaudo')
+        servicio_depositos = cleaned_data.get('servicio_depositos')
+        transacciones = cleaned_data.get('transacciones')
+        deposito_retiro = cleaned_data.get('deposito_retiro')
         
         ####################################################
         if visita_efectiva == "NO" and tipo_no_efectiva == None:
@@ -114,6 +125,23 @@ class DaviplataForm(forms.ModelForm):
             raise forms.ValidationError( "Favor responder si tiene lector")
         
         ######################  SERVIVCIOS ###############################
+        if visita_efectiva == "SI" and pago_propios == None:
+            raise forms.ValidationError( "Favor responder PAGO DE PRODUCTOS PROPIOS?")
+        
+        elif visita_efectiva == "SI" and deposito_retiro_propio == None:
+            raise forms.ValidationError( "Favor responder DEPÓSITO DE RETIRO DAVIPLATA?")
+        
+        elif visita_efectiva == "SI" and servicio_pagos == None:
+            raise forms.ValidationError( "Favor responder PAGOS DE SUBSIDIOS POR GIROS?")
+        
+        elif visita_efectiva == "SI" and servicio_recaudo == None:
+            raise forms.ValidationError( "Favor responder RECAUDO SERVICIOS PÚBLICOS Y PRIVADOS?")
+        
+        elif visita_efectiva == "SI" and servicio_depositos == None:
+            raise forms.ValidationError( "Favor responder DEPÓSITOS Y RETIROS DE CUENTAS AHORRO Y CORRIENTE?")
+        
+        elif visita_efectiva == "SI" and transacciones == None:
+            raise forms.ValidationError( "Favor responder CONOCIMIENTO PARA REALIZAR TRANSACCIONES?")
         
         ##################IMAGENES#######################
         if visita_efectiva == "SI" and imagen_matrerial == None:
