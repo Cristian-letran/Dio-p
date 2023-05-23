@@ -52,6 +52,12 @@ urlpatterns = [
         views.ActualizarPrueba.as_view(), 
         name='update-prueba'
     ),
+    
+    path(
+        'api/guia/list', 
+        views.GuiListApiView.as_view(), 
+        
+    ),
 
     
     ]

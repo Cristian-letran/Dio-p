@@ -17,6 +17,8 @@ from applications.fisico.models import Fisico, Paquete
 from applications.base_cliente.models import Bd_clie
 from applications.tracking.models import Rastreo
 from django.core.paginator import Paginator   
+from rest_framework.generics import ListAPIView
+from .serializers import GuiaSerializer
 
 @register.filter
 def cuts(value):
@@ -296,6 +298,15 @@ class ActualizarPrueba(LoginRequiredMixin, TemplateView):
         tiempo_final = time() - tiempo_inicial
         print (f'Tiempo de ejecucion del metodo 1: {tiempo_final}')
         return render(request, self.template_name, {'guia': guia})
+    
+class GuiListApiView(ListAPIView):
+
+    serializer_class = GuiaSerializer
+
+    def get_queryset(self):       
+        return Guia.objects.filter(
+            seudo__id_clie__r_s = "Falabella"
+            ) 
 
 
 

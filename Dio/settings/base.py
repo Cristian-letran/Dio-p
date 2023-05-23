@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'simple_history',
     'import_export',
     # 'grappelli',
-    # 'rest_framework',
     # 'rest_framework.authtoken',
     # 'related_admin',
     # 'django.contrib.admin',
@@ -62,6 +61,7 @@ INSTALLED_APPS = [
     'applications.pqr',
     'applications.tracking',
     'applications.daviplata',
+    'rest_framework',
     #'applications.zona',
 
 ]
