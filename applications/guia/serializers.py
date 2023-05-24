@@ -20,6 +20,7 @@ class GuiaSerializer(serializers.ModelSerializer):
         fields = (
             'id_guia',
             'motivopr',
+            'estado',
             'mensajero',
             'fecha',
             'ciudad',
