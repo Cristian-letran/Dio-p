@@ -23,4 +23,5 @@ class GuiaSerializer(serializers.ModelSerializer):
             'mensajero',
             'fecha',
             'ciudad',
+            'guia_tracking'
         )

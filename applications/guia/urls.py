@@ -54,11 +54,9 @@ urlpatterns = [
     ),
     
     path(
-        'api/guia/list/', 
+        'api/guia/list/<kword>/', 
         views.GuiListApiView.as_view(), 
 
-        
-        
     ),
     path('api/authentication/', include('dj_rest_auth.urls')),
 
