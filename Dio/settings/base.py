@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'simple_history',
     'import_export',
     # 'grappelli',
-    # 'rest_framework.authtoken',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     # 'related_admin',
     # 'django.contrib.admin',
     'django.contrib.auth',
@@ -66,8 +67,12 @@ INSTALLED_APPS = [
 
 ]
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication' 
     ],
 }
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

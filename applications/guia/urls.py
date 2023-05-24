@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 from . views import export
 
@@ -54,10 +54,13 @@ urlpatterns = [
     ),
     
     path(
-        'api/guia/list/<kword>/', 
+        'api/guia/list/', 
         views.GuiListApiView.as_view(), 
+
+        
         
     ),
+    path('api/authentication/', include('dj_rest_auth.urls')),
 
     
     ]

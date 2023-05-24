@@ -19,6 +19,8 @@ from applications.tracking.models import Rastreo
 from django.core.paginator import Paginator   
 from rest_framework.generics import ListAPIView
 from .serializers import GuiaSerializer
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
 
 @register.filter
 def cuts(value):
@@ -298,17 +300,19 @@ class ActualizarPrueba(LoginRequiredMixin, TemplateView):
         tiempo_final = time() - tiempo_inicial
         print (f'Tiempo de ejecucion del metodo 1: {tiempo_final}')
         return render(request, self.template_name, {'guia': guia})
-    
+from rest_framework import permissions
 class GuiListApiView(ListAPIView):
+    
 
     serializer_class = GuiaSerializer
 
     def get_queryset(self):   
-        kword = self.kwargs['kword']    
-        return Guia.objects.filter(
-            seudo__id_clie__r_s = "Falabella",
-            id_guia = kword
+        # kword = self.kwargs['kword']    
+        return Rastreo.objects.all(
             ) 
+    
+    
+    
 
 
 

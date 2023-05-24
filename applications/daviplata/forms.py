@@ -94,6 +94,10 @@ class DaviplataForm(forms.ModelForm):
         visita_efectiva = cleaned_data.get('visita_efectiva')
         imagen_matrerial = cleaned_data.get('url_img_m')
         tipo_no_efectiva = cleaned_data.get('tipo_no_efectiva')
+        ################# claves ###########################
+        
+        es_dueño = cleaned_data.get('es_dueño')
+        establecimiento_cambio = cleaned_data.get('establecimiento_cambio')
         tipo_establecimiento = cleaned_data.get('tipo_establecimiento')
         ############### HERRAMIENTAS #####################
         impresora = cleaned_data.get('impresora')
@@ -108,13 +112,30 @@ class DaviplataForm(forms.ModelForm):
         servicio_depositos = cleaned_data.get('servicio_depositos')
         transacciones = cleaned_data.get('transacciones')
         deposito_retiro = cleaned_data.get('deposito_retiro')
+        pago_subsidios = cleaned_data.get('pago_subsidios')
+        tip_seguridad = cleaned_data.get('tip_seguridad')
+        Sarlaft_activos = cleaned_data.get('Sarlaft_activos')
+        recaudo_servicios = cleaned_data.get('recaudo_servicios')
+        tip_riesgo = cleaned_data.get('tip_riesgo')
+        acude = cleaned_data.get('acude')
+        medio = cleaned_data.get('medio')
+        sarlaft_informa = cleaned_data.get('sarlaft_informa')
         
         ####################################################
         if visita_efectiva == "NO" and tipo_no_efectiva == None:
             raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
+        ################## claves ##########################
         
-        if visita_efectiva == "SI" and tipo_establecimiento == None:
+        elif visita_efectiva == "SI" and es_dueño == None:
+            raise forms.ValidationError( "Favor responder SI ES DUEÑO? ")
+        
+        elif visita_efectiva == "SI" and establecimiento_cambio == None:
+            raise forms.ValidationError( "Favor responder SI EL ESTABLECIMIENTO CAMBIÓ DE DUEÑO EN EL ULTIMO AÑO? ")
+        
+        elif visita_efectiva == "SI" and tipo_establecimiento == None:
             raise forms.ValidationError( "Favor responder TIPO DE ESTABLECIMIENTO? ")
+        
+        
         ############################HERRAMIENTAS#################################
         if visita_efectiva == "SI" and impresora == None:
             raise forms.ValidationError( "Favor responder si tiene impresora")
@@ -147,6 +168,32 @@ class DaviplataForm(forms.ModelForm):
         elif visita_efectiva == "SI" and transacciones == None:
             raise forms.ValidationError( "Favor responder CONOCIMIENTO PARA REALIZAR TRANSACCIONES?")
         
+        elif visita_efectiva == "SI" and deposito_retiro == None:
+            raise forms.ValidationError( "Favor responder DEPÓSITO Y RETIROS DAVIVIENDA?")
+        
+        elif visita_efectiva == "SI" and pago_subsidios == None:
+            raise forms.ValidationError( "Favor responder PAGOS DE SUBSIDIOS POR GIRO?")
+        
+        elif visita_efectiva == "SI" and tip_seguridad == None:
+            raise forms.ValidationError( "Favor responder TIPS DE SEGURIDAD?")
+        
+        elif visita_efectiva == "SI" and Sarlaft_activos == None:
+            raise forms.ValidationError( "Favor responder SARLAFT/LAVADO DE ACTIVOS?")
+        
+        elif visita_efectiva == "SI" and recaudo_servicios == None:
+            raise forms.ValidationError( "Favor responder RECAUDO SERVICIOS PÚBLICOS Y PRIVADOS?")
+        
+        elif visita_efectiva == "SI" and tip_riesgo == None:
+            raise forms.ValidationError( "Favor responder TIPS DE RIESGO?")
+        
+        elif visita_efectiva == "SI" and acude == None:
+            raise forms.ValidationError( "Favor responder ¿A QUIEN ACUDE?")
+        
+        elif visita_efectiva == "SI" and medio == None:
+            raise forms.ValidationError( "Favor responder ¿MEDIO?")
+        
+        elif visita_efectiva == "SI" and sarlaft_informa == None:
+            raise forms.ValidationError( "Favor responder SARLAFT ¿A QUIEN INFORMARÍA?")
         ##################IMAGENES#######################
         if visita_efectiva == "SI" and imagen_matrerial == None:
             raise forms.ValidationError( "Favor tomar imagen de fachada")
