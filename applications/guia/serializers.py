@@ -9,12 +9,12 @@ from applications.tracking.models import Rastreo
 class GuiaSerializer(serializers.ModelSerializer):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
-    # id_ciu = serializers.SlugRelatedField(
+    estado = serializers.SlugRelatedField(
     
         
-        # read_only=True,
-        # slug_field='ciudad'
-    # )
+        read_only=True,
+        slug_field='Estado'
+    )
     class Meta:
         model = Rastreo
         fields = (
@@ -23,6 +23,6 @@ class GuiaSerializer(serializers.ModelSerializer):
             'estado',
             'mensajero',
             'fecha',
-            'ciudad',
+            'estado',
             'guia_tracking'
         )
