@@ -529,8 +529,8 @@ class Vinculacion(models.Model):
         ('No permitió el registro en el perfil mi negocio', 'No permitió el registro en el perfil mi negocio'),
         ('Cliente no esta interesado', 'Cliente no esta interesado'),
         ('Solo activo Daviplata para subsidios del gobierno', 'Solo activo Daviplata para subsidios del gobierno'),
-        
-
+        ('Modo contigencia', 'Modo contigencia'), 
+    
     ]
     PREGUNTA3 = [
         ('SI', 'SI'),
