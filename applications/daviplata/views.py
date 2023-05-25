@@ -136,7 +136,6 @@ class DashboardListView(ListView):
             departamento__departamento__contains = departamento,
         ).order_by('hora', '-fecha_encuesta')
         return queryset
-        
     
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
