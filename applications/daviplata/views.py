@@ -33,7 +33,7 @@ class DaviplataListView(LoginRequiredMixin, ListView):
         contexto ['count'] = self.get_queryset().count()
         
         return contexto
-
+from time import gmtime, strftime
 class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "daviplata/daviplata_editar.html"
     form_class = DaviplataForm
@@ -44,7 +44,7 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.fecha_encuesta = datetime.now()
-        self.object.hora = datetime.now().time()
+        self.object.hora = datetime.now().time().strftime("%H:%M")
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
         return super(DaviplataUpdateView, self).form_valid(form)
