@@ -64,9 +64,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     ]
 
     GENDER_CHOICES = (
-        ('M', 'Masculino'),
-        ('F', 'Femenino'),
-        ('O', 'Otros'),
+        ('Masculino', 'Masculino'),
+        ('Femenino', 'Femenino'),
+        ('Otros', 'Otros'),
     )
     username = models.CharField(
         max_length=20, 
@@ -84,7 +84,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True
     )
     genero = models.CharField(
-        max_length=1, 
+        max_length=9, 
         choices=GENDER_CHOICES, 
         blank=True
     )

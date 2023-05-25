@@ -24,7 +24,7 @@ class GestoresResource(resources.ModelResource):
     user__nombres = Field(attribute='user__nombres', column_name='Nombre')
     user__tipo_d_i = Field(attribute='user__tipo_d_i', column_name='Tipo ID')
     celular = Field(attribute='celular', column_name='Celular')
-    user__genero = Field(attribute='user__genero', column_name='Genero')
+    user__genero = Field(attribute='user__genero', column_name='Genero') 
     fecha_contrato = Field(attribute='fecha_contrato', column_name='Fecha de contratación')
     user__ciudad__ciudad = Field(attribute='user__ciudad__ciudad', column_name='Ciudad en la que labora actualmente el asesor')
     user__ciudad__departamento = Field(attribute='user__ciudad__departamento', column_name='Departamento en la que labora actualmente el asesor')
