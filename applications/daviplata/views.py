@@ -1,3 +1,5 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, CreateView
 from.models import Daviplata, Vinculacion, RutaDaviplata
@@ -8,7 +10,7 @@ from django.utils.timezone import datetime
 from applications.users.models import User
 from django.db.models import Count, F, Value
 from applications.cliente.models import Departamento
-
+from applications.courrier.models import courrier
 
 
 class DaviplataListView(LoginRequiredMixin, ListView):
@@ -100,7 +102,7 @@ class NovedadListView(LoginRequiredMixin, ListView):
         )
         return queryset
 
-class NovedadUpdateView(UpdateView):
+class NovedadUpdateView(LoginRequiredMixin, UpdateView):
     
     model = Vinculacion
     fields = ["tipo_gestion", "celular", 
@@ -119,7 +121,7 @@ class NovedadUpdateView(UpdateView):
     success_url = reverse_lazy('daviplata-app:vinculacion-list')
 
 import statistics
-class DashboardListView(ListView): 
+class DashboardListView(LoginRequiredMixin, ListView): 
     model = Daviplata
     template_name = "daviplata/dashboard.html"
     paginate_by = 5
@@ -148,7 +150,7 @@ class DashboardListView(ListView):
         
         return contexto
 
-class RutaUpdate(CreateView):
+class RutaUpdate(LoginRequiredMixin, CreateView):
     model = RutaDaviplata
     template_name = "daviplata/zona.html"
     fields =  ['user', 'direccion']
@@ -160,6 +162,35 @@ class RutaUpdate(CreateView):
         context
         
         return context
+    
+class CoorMarcacionListView(LoginRequiredMixin, ListView):
+    model = Daviplata
+    template_name = "daviplata/coor_marcacion.html"
+    paginate_by = 5
+
+    def get_queryset(self):
+        kword = self.request.GET.get("kword", '')
+        date = self.request.GET.get("date", '')
+        courrier = self.request.GET.get("id", '')
+
+        queryset = Daviplata.objects.filter(
+            visita_efectiva__icontains = kword,
+            fecha_encuesta__contains = date,
+            user__nombres__contains = courrier,
+            municipio__departamento = self.request.user.ciudad.departamento
+        )
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        contexto = super(CoorMarcacionListView, self).get_context_data(**kwargs)
+        contexto ['count_efectivo'] = self.get_queryset().count
+        contexto ['count_completo'] = Daviplata.objects.all().count
+        contexto ['sin_gestion'] = Daviplata.objects.filter(visita_efectiva = None).count
+        contexto ['user'] = User.objects.filter(roles = 5)
+        contexto ['departamento'] = Departamento.objects.all()
+        
+        return contexto
 
     
     

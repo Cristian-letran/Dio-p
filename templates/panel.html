@@ -129,6 +129,15 @@
               </ul>
             </li>
         </ul> 
+        <ul class="vertical menu">
+          <li>
+            <a href="#"><span style="color: white;"><strong><i class="fi-magnifying-glass"></i> Daviplata </strong></span></a>
+              <ul class="nested vertical menu">
+                <li class="{% if request.resolver_match.url_name == 'lista-cliente' %}activeli{% endif %}">
+                  <a href="{% url 'daviplata-app:lista-marcacion' %}" style="color: white;">Marcacion</a>
+                </li>
+              </ul>
+        </ul>
         {% elif user.roles == 8 %}  
         <ul class="vertical menu">
           <li>

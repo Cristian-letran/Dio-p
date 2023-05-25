@@ -52,4 +52,10 @@ urlpatterns = [
          name='zona-update',
     ),
     
+    path(
+        'Lista-marcacion',
+         views.CoorMarcacionListView.as_view(),
+         name='lista-marcacion',
+    ),
+    
 ]

@@ -1,0 +1,91 @@
+{% extends "daviplata/base_daviplata.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<form  method="GET"> {% csrf_token %}
+    <div class="grid-x grid-margin-x">
+        <div class="cell medium-6 large-2">
+            <span class="label">Tipo efectiva</span>
+            <select  name="kword" id="kword">
+                <option value=""></option>
+                <option value="SI">SI</option>
+                <option value="NO">NO</option>
+            </select>
+        </div>
+
+        <div class="cell medium-6 large-2">
+            <span class="label">Fecha</span>
+            <input  type="date" id="date" name="date">
+        </div>
+        <div class="cell medium-6 large-2">
+            <span class="label">Courrier</span>
+            <select name="id" id="id">
+                <option value="">--------</option>
+                {% for e in user %}
+                <option value="{{e.nombres}}">{{e.nombres}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="cell medium-6 large-2">
+            <br>
+            <input  type="submit" class="submit success button" value="Buscar">
+        </div> 
+</form>
+
+<div class="table-scroll">
+    <table class="hover">
+      <caption>Consulta</caption>
+      <thead>
+        <tr>
+          <th>Hora</a></th>
+          <th>Tiempo</th>
+          <th>Courrier</th>
+          <th>Mapa</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for e in page_obj %}
+        <tr>
+          <td>{{e.hora}}</td>
+          <td>{{e.tiempo}}</td>
+          <td>{{e.user}}</td>
+          <td>{{e.visualizar}}</td>
+        </tr>
+          {% endfor %}
+        
+      </tbody>
+      <tfoot>
+          <tr>
+            <th>Gestionados</th>
+            <th>{{count_efectivo}}</th>
+            <th>Sin gestion: {{sin_gestion}}</th>
+            <th>Total: {{count_completo}}</th>
+          </tr>
+        </tfoot>
+    </table>
+  </div>
+  
+  <nav aria-label="Pagination">
+      <ul class="pagination">
+          <span class="step-links">
+              {% if page_obj.has_previous %}
+                  <li><a href="?page=1">&laquo; Inicio </a></li>
+                  <li><a href="?page={{ page_obj.previous_page_number }}">Anterior </a></li>
+              {% endif %}
+  
+              <span class="current">
+                  Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+              </span>
+  
+              {% if page_obj.has_next %}
+                  <li class="pagination-next"><a href="?page={{ page_obj.next_page_number }}">Siguiente </a></li>
+                  <li><a  href="?page={{ page_obj.paginator.num_pages }}">último &raquo; </a></li>
+              {% endif %}
+          </span>
+      </ul>
+  </nav>
+
+{% endblock panel-content %}
