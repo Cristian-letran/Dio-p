@@ -412,11 +412,11 @@ class Daviplata(models.Model):
         null=True
         )
     latitud = models.CharField(
-        max_length=19,
+        max_length=22,
         blank=True,
         null=True,)
     longitud = models.CharField(
-        max_length=19,
+        max_length=22,
         blank=True,
         null=True,)
     visualizar = models.CharField(
