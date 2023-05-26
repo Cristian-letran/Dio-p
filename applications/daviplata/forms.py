@@ -126,8 +126,8 @@ class DaviplataForm(forms.ModelForm):
         if visita_efectiva == "NO" and tipo_no_efectiva == None:
             raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
         
-        if tipo_no_efectiva == "Otros" and otro_especificado:
-            raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
+        if tipo_no_efectiva == "Otros" and otro_especificado == None:
+            raise forms.ValidationError( "Favor tipificar otro especificado")
         ################## claves ##########################
         
         elif visita_efectiva == "SI" and es_dueño == None:
