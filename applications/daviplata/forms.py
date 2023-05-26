@@ -120,9 +120,13 @@ class DaviplataForm(forms.ModelForm):
         acude = cleaned_data.get('acude')
         medio = cleaned_data.get('medio')
         sarlaft_informa = cleaned_data.get('sarlaft_informa')
+        otro_especificado = cleaned_data.get('otro_especificado')
         
         ####################################################
         if visita_efectiva == "NO" and tipo_no_efectiva == None:
+            raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
+        
+        if tipo_no_efectiva == "Otros" and otro_especificado:
             raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
         ################## claves ##########################
         
