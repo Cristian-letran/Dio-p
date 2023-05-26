@@ -121,6 +121,7 @@ class DaviplataForm(forms.ModelForm):
         medio = cleaned_data.get('medio')
         sarlaft_informa = cleaned_data.get('sarlaft_informa')
         otro_especificado = cleaned_data.get('otro_especificado')
+        medio_especificado = cleaned_data.get('medio_especificado')
         
         ####################################################
         if visita_efectiva == "NO" and tipo_no_efectiva == None:
@@ -128,6 +129,7 @@ class DaviplataForm(forms.ModelForm):
         
         if tipo_no_efectiva == "Otros" and otro_especificado == None:
             raise forms.ValidationError( "Favor tipificar otro especificado")
+        
         ################## claves ##########################
         
         elif visita_efectiva == "SI" and es_dueño == None:
@@ -201,6 +203,9 @@ class DaviplataForm(forms.ModelForm):
         ##################IMAGENES#######################
         if visita_efectiva == "SI" and imagen_matrerial == None:
             raise forms.ValidationError( "Favor tomar imagen de fachada")
+        
+        if medio == "Otro" and medio_especificado == None:
+            raise forms.ValidationError( "Favor tipificar MEDIO ESPECIFICADO")
     
         
         ###################################
