@@ -412,11 +412,11 @@ class Daviplata(models.Model):
         null=True
         )
     latitud = models.CharField(
-        max_length=15,
+        max_length=19,
         blank=True,
         null=True,)
     longitud = models.CharField(
-        max_length=15,
+        max_length=19,
         blank=True,
         null=True,)
     visualizar = models.CharField(
@@ -443,6 +443,8 @@ class Daviplata(models.Model):
         related_name = "user_marcacion"
     )
     hora = models.CharField(max_length=22,
+                            blank = True, null=True)
+    minuto = models.CharField(max_length=22,
                             blank = True, null=True)
     tiempo = models.CharField(max_length=22, blank=True, null=True)
 
