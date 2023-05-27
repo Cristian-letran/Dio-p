@@ -41,16 +41,27 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('daviplata-app:list-daviplata')
 
     def form_valid(self, form):######aca
-        #hour1 = self.object.tiempo = Daviplata.objects.values_list("hora").latest('hora')
-        #hour2 = self.object.hora = datetime.now().time().strftime("%H")
-        #cuenta = hour2 - hour1
+        ################ HOUR TIEMPO ##################
+        hour1 = Daviplata.objects.values_list("hora", flat=True).latest('hora')
+        hour2 = self.object.hora = datetime.now().time().strftime("%H")
+        hour1t = int(hour1)
+        hour2t = int(hour2)
+        hour_calculo = hour2t - hour1t
+        ################ MINUTE TIEMPO  ##################
+        minute1 = Daviplata.objects.values_list("hora", flat=True).latest('hora')
+        minute2 = datetime.now().time().strftime("%M")
+        minute1t = int(minute1)
+        minute2t = int(minute2)
+        minute_calculo = minute2t - minute1t
+        ########################
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.fecha_encuesta = datetime.now()
+        ###################ACTUAL#######################
         self.object.hora = datetime.now().time().strftime("%H")#("%H:%M")
-        #self.object.minuto = datetime.now().time().strftime("%M")
+        self.object.minuto = datetime.now().time().strftime("%M")
         #self.self.object.minuto = cuenta
-        #self.object.tiempo = Daviplata.objects.values_list("hora").latest('hora')
+        self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
         return super(DaviplataUpdateView, self).form_valid(form)
