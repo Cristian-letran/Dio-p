@@ -48,6 +48,7 @@
     <caption>Consulta</caption>
     <thead>
       <tr>
+        <th>Encuesta</th>
         <th>Hora</a></th>
         <th>Tiempo</th>
         <th>Courrier</th>
@@ -57,6 +58,7 @@
     <tbody>
         {% for e in object_list %}
       <tr>
+        <td>{{e.fecha_encuesta}}</td>
         <td>{{e.hora}}</td>
         <td>{{e.tiempo}}</td>
         <td>{{e.user}}</td>
