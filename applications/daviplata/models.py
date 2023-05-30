@@ -443,10 +443,20 @@ class Daviplata(models.Model):
         related_name = "user_marcacion"
     )
     hora = models.CharField(max_length=22,
-                            blank = True, null=True)
+                            blank = True, 
+                            null=True,
+                            default=0
+                            )
     minuto = models.CharField(max_length=22,
-                            blank = True, null=True)
+                            blank = True, 
+                            null=True,
+                            default=0)
     tiempo = models.CharField(max_length=22, blank=True, null=True)
+
+    contingencia_img1 = models.BooleanField(
+        default = False,
+        
+                                     )
 
     def save(self, *args, **kwargs):
     

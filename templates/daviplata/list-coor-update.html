@@ -1,0 +1,30 @@
+{% extends "daviplata/base_daviplata.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<p>Hola desde la lista</p>
+
+<table>
+    <thead>
+      <tr>
+        <th width="200">id</th>
+        <th>Courrier</th>
+        <th width="150">Direccion</th>
+        <th width="150">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for e in object_list %}
+      <tr>
+        <td>{{e}}</td>
+        <td>{{e.user}}</td>
+        <td>{{e.direccion_c_b}}</td>
+        <td><a href="{% url 'daviplata-app:coor-update' e %}" class="button "><i class="fi-clipboard-pencil"></i></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock panel-content %}

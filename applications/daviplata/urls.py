@@ -58,4 +58,15 @@ urlpatterns = [
          name='lista-marcacion',
     ),
     
+    path(
+        'list-coor-update',
+         views.ListCoorUpdateView.as_view(),
+         name='list-coor-update',
+    ),
+    
+    path(
+        'coor-update/<int:pk>/',
+         views.MaracionCoorUpdateView.as_view(),
+         name='coor-update',
+    ),
 ]

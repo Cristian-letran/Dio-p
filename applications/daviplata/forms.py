@@ -85,7 +85,8 @@ class DaviplataForm(forms.ModelForm):
                 attrs={
                     "required": True
                 }
-            )
+            ),
+           
             
             
     }

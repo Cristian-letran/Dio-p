@@ -134,3 +134,5 @@ class courrier(models.Model):
         return str(self.courrier ) + '-' + str(self.id_ciu)
 
 
+
+

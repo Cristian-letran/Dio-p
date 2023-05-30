@@ -11,6 +11,7 @@ from applications.users.models import User
 from django.db.models import Count, F, Value
 from applications.cliente.models import Departamento
 from applications.courrier.models import courrier
+from applications.users.mixins import CustodiaPermisoMixin
 
 
 class DaviplataListView(LoginRequiredMixin, ListView):
@@ -42,17 +43,25 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):######aca
         ################ HOUR TIEMPO ##################
-        # hour1 = Daviplata.objects.values_list("hora", flat=True).latest('hora')
-        # hour2 = self.object.hora = datetime.now().time().strftime("%H")
-        # hour1t = int(hour1)
-        # hour2t = int(hour2)
-        # hour_calculo = hour2t - hour1t
+        hour1 = Daviplata.objects.filter(
+            user = self.request.user,
+            fecha_encuesta__contains=datetime.today().date()
+            ).values_list("hora", flat=True).latest('hora')
+        hour2 = self.object.hora = datetime.now().time().strftime("%H")
+        hour1t = int(hour1)
+        hour2t = int(hour2)
+        hour_calculo = hour2t - hour1t
+        
         ################ MINUTE TIEMPO  ##################
-        # minute1 = Daviplata.objects.values_list("hora", flat=True).latest('hora')
-        # minute2 = datetime.now().time().strftime("%M")
-        # minute1t = int(minute1)
-        # minute2t = int(minute2)
-        # minute_calculo = minute2t - minute1t
+        minute1 = Daviplata.objects.filter(
+            user = self.request.user,
+            fecha_encuesta__contains=datetime.today().date()
+            ).values_list("hora", flat=True).latest('hora')
+        minute2 = datetime.now().time().strftime("%M")
+        minute1t = int(minute1)
+        minute2t = int(minute2)
+        minute_calculo = minute2t - minute1t
+        
         ########################
         self.object = form.save(commit=False)
         self.object.user = self.request.user
@@ -61,7 +70,8 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         self.object.hora = datetime.now().time().strftime("%H")#("%H:%M")
         self.object.minuto = datetime.now().time().strftime("%M")
         #self.self.object.minuto = cuenta
-        # self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
+        self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
+        
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
         return super(DaviplataUpdateView, self).form_valid(form)
@@ -180,7 +190,7 @@ class RutaUpdate(LoginRequiredMixin, CreateView):
         
         return context
     
-class CoorMarcacionListView(LoginRequiredMixin, ListView):
+class CoorMarcacionListView(CustodiaPermisoMixin, ListView):
     model = Daviplata
     template_name = "daviplata/coor_marcacion.html"
     paginate_by = 5
@@ -208,8 +218,31 @@ class CoorMarcacionListView(LoginRequiredMixin, ListView):
         contexto ['departamento'] = Departamento.objects.all()
         
         return contexto
-
     
+class MaracionCoorUpdateView(CustodiaPermisoMixin, UpdateView):
+    template_name = "daviplata/coor_update.html"
+    form_class = DaviplataForm
+    model = Daviplata
+    success_url = reverse_lazy('daviplata-app:list-daviplata')
+    list
+
+class ListCoorUpdateView(CustodiaPermisoMixin, ListView):
+    template_name = "daviplata/list-coor-update.html"
+    form_class = DaviplataForm
+    model = Daviplata
+    success_url = reverse_lazy('daviplata-app:list-daviplata')
+    paginate_by = 5
+
+    def get_queryset(self):
+        kword = self.request.GET.get("kword", '')
+        
+
+        queryset = Daviplata.objects.filter(
+            visita_efectiva__icontains = kword,
+            contingencia_img1 = True,
+            municipio__departamento = self.request.user.ciudad.departamento
+        )
+        return queryset
     
 
     

@@ -1,0 +1,20 @@
+{% extends "daviplata/base_daviplata.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+
+<form method="post">{% csrf_token %}
+
+    {{form.direccion_c_b}}
+    <br>
+    {{ form.latitud }}
+
+    {{form.longitud}}
+
+    {{form.visualizar}}
+    <input type="submit" class="button" value="Actualizar">
+</form>
+
+{% endblock panel-content %}
