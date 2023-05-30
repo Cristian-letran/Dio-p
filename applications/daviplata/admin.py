@@ -16,7 +16,8 @@ from . models import (
     MotivoNoRegistro, 
     TipoActivacion,
     NovedadVinculacion,
-    Gestores
+    Gestores,
+    RutaDaviplata
     )
 
 class GestoresResource(resources.ModelResource):
@@ -190,6 +191,7 @@ class GestorAdmin(ImportExportModelAdmin, RelatedFieldAdmin):
    list_filter = ('estado',)
 
 admin.site.register(Gestores, GestorAdmin)
+admin.site.register(RutaDaviplata)
 
 ##
    

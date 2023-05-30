@@ -6,11 +6,11 @@
 
 <form method="post">{% csrf_token %}
     {{ form.user }}
-    <select name="cars" id="{{form.direccion}}"  multiple >
+    <select style="width:900px; height: 500px;" id="{{form.direccion}}">
        
-      </select>
+    </select>
 
-    <input type="submit" value="Save">
+    <input class="button" type="submit" value="Guardar">
 </form>
 
 {% endblock panel-content %}

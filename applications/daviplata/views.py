@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, CreateView
 from.models import Daviplata, Vinculacion, RutaDaviplata
 from django.urls import reverse_lazy
-from .forms import DaviplataForm, VinculacionForm
+from .forms import DaviplataForm, VinculacionForm, RutaDaviplataForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.timezone import datetime
 from applications.users.models import User
@@ -48,9 +48,9 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
             fecha_encuesta__contains=datetime.today().date()
             ).values_list("hora", flat=True).latest('hora')
         hour2 = self.object.hora = datetime.now().time().strftime("%H")
-        hour1t = int(hour1)
-        hour2t = int(hour2)
-        hour_calculo = hour2t - hour1t
+        #hour1t = int(hour1)
+        #hour2t = int(hour2)
+        #hour_calculo = hour2t - hour1t
         
         ################ MINUTE TIEMPO  ##################
         minute1 = Daviplata.objects.filter(
@@ -58,9 +58,9 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
             fecha_encuesta__contains=datetime.today().date()
             ).values_list("hora", flat=True).latest('hora')
         minute2 = datetime.now().time().strftime("%M")
-        minute1t = int(minute1)
-        minute2t = int(minute2)
-        minute_calculo = minute2t - minute1t
+        #minute1t = int(minute1)
+        #minute2t = int(minute2)
+        #minute_calculo = minute2t - minute1t
         
         ########################
         self.object = form.save(commit=False)
@@ -70,7 +70,7 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         self.object.hora = datetime.now().time().strftime("%H")#("%H:%M")
         self.object.minuto = datetime.now().time().strftime("%M")
         #self.self.object.minuto = cuenta
-        self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
+        #self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
         
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
@@ -178,17 +178,19 @@ class DashboardListView(LoginRequiredMixin, ListView):
         return contexto
 
 class RutaUpdate(LoginRequiredMixin, CreateView):
-    model = RutaDaviplata
+    
+    form_class = RutaDaviplataForm
     template_name = "daviplata/zona.html"
-    fields =  ['user', 'direccion']
+    
+    success_url = reverse_lazy('daviplata-app:list-daviplata')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context ['object_list'] = Daviplata.objects.all
-        context['form'].fields['direccion'].queryset = Daviplata.objects.all() 
-        context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context ['form'].fields['direccion'].queryset = Daviplata.objects.filter(
+    #         municipio__departamento =self.request.user.ciudad.departamento
+    #         )
         
-        return context
+    #     return context
     
 class CoorMarcacionListView(CustodiaPermisoMixin, ListView):
     model = Daviplata
