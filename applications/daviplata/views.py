@@ -163,7 +163,7 @@ class DashboardListView(LoginRequiredMixin, ListView):
             fecha_encuesta__contains = date,
             user__nombres__contains = courrier,
             departamento__departamento__contains = departamento,
-        ).order_by('-hora', '-fecha_encuesta')
+        ).order_by('hora', '-fecha_encuesta')
         return queryset
     
     def get_context_data(self, **kwargs):
