@@ -43,21 +43,21 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):######aca
         ################ HOUR TIEMPO ##################
-        hour1 = Daviplata.objects.filter(
-            user = self.request.user,
-            fecha_encuesta__contains=datetime.today().date()
-            ).values_list("hora", flat=True).latest('hora')
-        hour2 = self.object.hora = datetime.now().time().strftime("%H")
+        #hour1 = Daviplata.objects.filter(
+         #   user = self.request.user,
+          #  fecha_encuesta__contains=datetime.today().date()
+           # ).values_list("hora", flat=True).latest('hora')
+        #hour2 = self.object.hora = datetime.now().time().strftime("%H")
         #hour1t = int(hour1)
         #hour2t = int(hour2)
         #hour_calculo = hour2t - hour1t
         
         ################ MINUTE TIEMPO  ##################
-        minute1 = Daviplata.objects.filter(
-            user = self.request.user,
-            fecha_encuesta__contains=datetime.today().date()
-            ).values_list("hora", flat=True).latest('hora')
-        minute2 = datetime.now().time().strftime("%M")
+        #minute1 = Daviplata.objects.filter(
+         #   user = self.request.user,
+          #  fecha_encuesta__contains=datetime.today().date()
+           # ).values_list("hora", flat=True).latest('hora')
+        #minute2 = datetime.now().time().strftime("%M")
         #minute1t = int(minute1)
         #minute2t = int(minute2)
         #minute_calculo = minute2t - minute1t
@@ -237,14 +237,30 @@ class ListCoorUpdateView(CustodiaPermisoMixin, ListView):
 
     def get_queryset(self):
         kword = self.request.GET.get("kword", '')
-        
-
         queryset = Daviplata.objects.filter(
             visita_efectiva__icontains = kword,
             contingencia_img1 = True,
             municipio__departamento = self.request.user.ciudad.departamento
         )
         return queryset
+    
+class EnrutadoListView(ListView):
+    template_name = "daviplata/enrutado.html"
+    model = Daviplata
+    paginate_by = 5
+
+    def get_queryset(self):
+        queryset = Daviplata.objects.filter(
+            municipio = self.request.user.ciudad
+        ).exclude(
+            visita_efectiva = None
+        )
+        return queryset 
+
+class EnrrutadoUpdateView(UpdateView):
+    template_name = "daviplata/enrutado-update.html"
+    fields = ['user']
+    success_url = reverse_lazy('daviplata-app:enrrutado')
     
 
     
