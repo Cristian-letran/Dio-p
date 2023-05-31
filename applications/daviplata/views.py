@@ -254,8 +254,12 @@ class EnrutadoListView(ListView):
             municipio = self.request.user.ciudad,
             visita_efectiva = None
         )
-        
         return queryset 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        contexto = super(EnrutadoListView, self).get_context_data(**kwargs)
+        contexto ['total'] = self.get_queryset().count
+        return contexto
 
 class EnrrutadoUpdateView(UpdateView):
     template_name = "daviplata/marcacion/enrutado-update.html"
