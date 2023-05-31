@@ -251,7 +251,7 @@ class EnrutadoListView(ListView):
 
     def get_queryset(self):
         queryset = Daviplata.objects.filter(
-            municipio = self.request.user.ciudad,
+            municipio__departamento = self.request.user.ciudad.departamento,
             visita_efectiva = None
         ).exclude(user = None).order_by("user")
         return queryset 
