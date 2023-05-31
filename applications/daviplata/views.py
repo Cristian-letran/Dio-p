@@ -253,7 +253,7 @@ class EnrutadoListView(ListView):
         queryset = Daviplata.objects.filter(
             municipio = self.request.user.ciudad,
             visita_efectiva = None
-        )
+        ).exclude(user = None)
         return queryset 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
