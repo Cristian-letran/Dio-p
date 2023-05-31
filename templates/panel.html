@@ -139,6 +139,9 @@
                 <li class="{% if request.resolver_match.url_name == 'lista-cliente' %}activeli{% endif %}">
                   <a href="{% url 'daviplata-app:list-coor-update' %}" style="color: white;">Marcacion actualizar</a>
                 </li>
+                <li class="{% if request.resolver_match.url_name == 'lista-cliente' %}activeli{% endif %}">
+                  <a href="{% url 'daviplata-app:enrrutado' %}" style="color: white;">Actualizar</a>
+                </li>
               </ul>
         </ul>
         {% elif user.roles == 8 %}  

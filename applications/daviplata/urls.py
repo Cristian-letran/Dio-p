@@ -47,7 +47,7 @@ urlpatterns = [
     ),
     
     path(
-        'zona-update',
+        '   ',
          views.RutaUpdate.as_view(),
          name='zona-update',
     ),
@@ -69,4 +69,15 @@ urlpatterns = [
          views.MaracionCoorUpdateView.as_view(),
          name='coor-update',
     ),
+    
+    path(
+        'enrrutado',
+         views.EnrutadoListView.as_view(),
+         name='enrrutado',
+    ),
+    path(
+        'enrrutado-update/<int:pk>/',
+         views.EnrrutadoUpdateView.as_view(),
+         name='enrrutado-update',
+    ),  
 ]

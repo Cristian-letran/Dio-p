@@ -3,13 +3,11 @@
 {% load static %}
 
 {% block panel-content %}
+<h1>hola</h1>
 
 <form method="post">{% csrf_token %}
-    {{ form.user }}
-    <select style="width:900px; height: 500px;" id="{{form.direccion}}">
-    </select>
-
-    <input class="button" type="submit" value="Guardar">
+    {{ form.as_p }}
+    <input type="submit" value="Update">
 </form>
 
 {% endblock panel-content %}

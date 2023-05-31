@@ -492,6 +492,7 @@ class TipoGestion(models.Model):
 
     def __str__(self):
         return self.descripcion
+        
 
 class Categorias(models.Model):
     nombre = models.CharField(max_length=40)

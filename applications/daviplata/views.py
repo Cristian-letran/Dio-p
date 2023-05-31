@@ -247,7 +247,7 @@ class ListCoorUpdateView(CustodiaPermisoMixin, ListView):
 class EnrutadoListView(ListView):
     template_name = "daviplata/enrutado.html"
     model = Daviplata
-    paginate_by = 5
+    paginate_by = 100
 
     def get_queryset(self):
         queryset = Daviplata.objects.filter(
@@ -258,8 +258,9 @@ class EnrutadoListView(ListView):
         return queryset 
 
 class EnrrutadoUpdateView(UpdateView):
-    template_name = "daviplata/enrutado-update.html"
+    template_name = "daviplata/marcacion/enrutado-update.html"
     fields = ['user']
+    model = Daviplata
     success_url = reverse_lazy('daviplata-app:enrrutado')
     
 
