@@ -60,7 +60,6 @@ class Daviplata(models.Model):
         ('Local Cerrado', 'Local Cerrado'),
         ('No Existe PVD','No Existe PVD'),
         ('El Cliente No Permitio Realizar encuesta','El Cliente No Permitio Realizar encuesta'),
-        ('Otros','Otros'),
         ('Cambio de Direccion PVD','Cambio de Direccion PVD'),
         ('Ya esta Marcado', 'Ya esta Marcado'),
 
