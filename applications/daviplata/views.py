@@ -169,11 +169,19 @@ class DashboardListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         contexto = super(DashboardListView, self).get_context_data(**kwargs)
-        contexto ['count_efectivo'] = self.get_queryset().count
         contexto ['count_completo'] = Daviplata.objects.all().count
         contexto ['sin_gestion'] = Daviplata.objects.filter(visita_efectiva = None).count
         contexto ['user'] = User.objects.filter(roles = 5)
         contexto ['departamento'] = Departamento.objects.all()
+        ###############################################
+        contexto ['count_efectivo'] = self.get_queryset().count
+        contexto ['cambio_dir'] = self.get_queryset().filter(tipo_no_efectiva = "Cambio de Direccion PVD").count
+        contexto ['dir_errrada'] = self.get_queryset().filter(tipo_no_efectiva = "Direccion Errada").count
+        contexto ['cliente_no_encuesta'] = self.get_queryset().filter(tipo_no_efectiva = "El Cliente No Permitio Realizar encuesta").count
+        contexto ['lcl_cerrado'] = self.get_queryset().filter(tipo_no_efectiva = "Local Cerrado").count
+        contexto ['no_pdv'] = self.get_queryset().filter(tipo_no_efectiva = "No Existe PVD").count
+        contexto ['otros'] = self.get_queryset().filter(tipo_no_efectiva = "Otros").count
+        contexto ['ya_marcado'] = self.get_queryset().filter(tipo_no_efectiva = "Ya esta Marcado").count
         
         return contexto
 
