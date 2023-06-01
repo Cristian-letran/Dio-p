@@ -818,7 +818,7 @@ class Vinculacion(models.Model):
         on_delete=models.CASCADE,
         null=True
         )
-    detail_complemento = models.CharField(max_length=5, null=True, blank=True)
+    detail_complemento = models.CharField(max_length=10, null=True, blank=True)
         
     
     def save(self, *args, **kwargs):
