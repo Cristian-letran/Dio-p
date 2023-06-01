@@ -78,11 +78,30 @@
           <a href="#" class="accordion-title">2. Localización</a>   
           <div class="accordion-content" data-tab-content>
             <div class="grid-x grid-margin-x">
-                <div class="cell medium-6 large-6">
-                    <label>Dirección Comercio</label>
-                      {{ form.direccion  }}
+                <div class="cell small-6">
+                    <label>Dirección</label>
+                      {{ form.dir_a }}
                 </div>
-                
+                <div class="cell small-6">
+                  <label>Numero</label>
+                    {{ form.num_dir1 }}
+                </div>
+                <div class="cell small-1">
+                  <br>
+                    #
+                </div>
+                <div class="cell small-5">
+                  <label>Numero</label>
+                  {{ form.num_dir2 }}
+                </div>
+                <div class="cell small-4">
+                  <label>Complemento</label>
+                  {{ form.complemento }}
+                </div>
+                <div class="cell small-2">
+                  <label>#</label>
+                  {{ form.detail_complemento }}
+                </div>
             </div>
             <div class="grid-x grid-margin-x">
                 <div class="cell medium-6 large-6">

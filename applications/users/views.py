@@ -32,7 +32,7 @@ from .forms import (
     UserUpdateForm
 )
 #
-from .models import User, LogSesion
+from .models import User, LogSesion, Asistencia
 # 
 from .functions import code_generator
 from django.template.defaulttags import register
@@ -234,4 +234,16 @@ def exportusers(request):
 #     template_name = "users/cliente.html"
     
     
+################### ASISTENCIA #################
 
+class AsistenciaCreateView(LoginRequiredMixin, CreateView, ListView):
+    template_name = "users/asistencia.html"
+    model = Asistencia
+    fields = ['check',]
+    success_url = reverse_lazy('users_app:asistencia')
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return super(AsistenciaCreateView, self).form_valid(form)

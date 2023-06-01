@@ -74,5 +74,11 @@ urlpatterns = [
         name='logs-prueba',
     ),
     
+    path(
+        'asistencia/', 
+        views.AsistenciaCreateView.as_view(),
+        name='asistencia',
+    ),
+    
     
 ]

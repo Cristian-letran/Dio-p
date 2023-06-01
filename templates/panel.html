@@ -186,7 +186,17 @@
           </ul>
         </li>
       </ul>       
-      {% elif user.roles == 5 %}               
+      {% elif user.roles == 5 %}      
+      <ul class="vertical menu">
+        <li>
+          <a href="#"><span style="color: white;"><strong><i class="fi-page"></i> Asistencia </strong></span></a>
+          <ul class="nested vertical menu">
+            <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
+              <a href="{% url 'users_app:asistencia' %}"style="color: white;">Registrar ingreso</a>
+            </li>           
+          </ul>
+        </li>
+      </ul>               
       <ul class="vertical menu">
         <li>
           <a href="#"><span style="color: white;"><strong><i class="fi-page"></i> Courrier </strong></span></a>

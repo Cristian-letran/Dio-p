@@ -511,7 +511,18 @@ class TipoActivacion(models.Model):
 
     def __str__(self):
         return self.nombre
-    
+
+class Direccion(models.Model):
+    direccion = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.direccion
+
+class ComplementoDireccion(models.Model):
+    complemento = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.complemento
 
 class Vinculacion(models.Model):
     PORQUENOREGISTRO = [
@@ -630,7 +641,10 @@ class Vinculacion(models.Model):
         null= True, 
         verbose_name="¿A cual de las siguientes categorias pertenece el comercio?"
         )    
-    direccion = models.CharField(max_length=150, verbose_name="Dirección Comercio")
+    direccion = models.CharField(
+        max_length=150, 
+        verbose_name="Dirección Comercio",
+        blank=True)
     barrio = models.CharField(max_length=50)
     localidad = models.CharField(max_length=50)
     dane = models.ForeignKey(Ciudad, on_delete=models.CASCADE, blank=True)
@@ -790,7 +804,27 @@ class Vinculacion(models.Model):
         blank=True,
         null=True)
     
+    dir_a = models.ForeignKey(
+        Direccion,
+        on_delete=models.CASCADE,
+        null=True)
+    
+    num_dir1 = models.CharField(max_length=10, null=True)
+
+    num_dir2 = models.CharField(max_length=10,null=True)
+    
+    complemento = models.ForeignKey(
+        ComplementoDireccion,
+        on_delete=models.CASCADE,
+        null=True
+        )
+    detail_complemento = models.CharField(max_length=5, null=True, blank=True)
+        
+    
     def save(self, *args, **kwargs):
+    
+        self.direccion = str(self.dir_a.direccion) + " " + str(self.num_dir1) + " # " + str(self.num_dir2) + " " + str(self.complemento.complemento)
+    
         if self.celular == None:
             self.celular = self.identificacion
         

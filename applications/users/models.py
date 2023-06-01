@@ -215,5 +215,10 @@ class Profile(models.Model):
 # def save_user_profile(sender, instance, **kwargs):
 #     instance.profile.save()   
 
+class Asistencia(models.Model):
+    check = models.BooleanField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    date = models.DateTimeField(auto_now=True)
 
+    
 

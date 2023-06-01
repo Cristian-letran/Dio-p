@@ -17,7 +17,9 @@ from . models import (
     TipoActivacion,
     NovedadVinculacion,
     Gestores,
-    RutaDaviplata
+    RutaDaviplata,
+    Direccion,
+    ComplementoDireccion
     )
 
 class GestoresResource(resources.ModelResource):
@@ -190,8 +192,16 @@ class GestorAdmin(ImportExportModelAdmin, RelatedFieldAdmin):
    exclude = ('proveedor',)
    list_filter = ('estado',)
 
+class DireccionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+       list_display = ('direccion',)
+
+class ComplementoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+       list_display = ('complemento',)
+
 admin.site.register(Gestores, GestorAdmin)
 admin.site.register(RutaDaviplata)
+admin.site.register(Direccion, DireccionAdmin)
+admin.site.register(ComplementoDireccion, ComplementoAdmin)
 
 ##
    
