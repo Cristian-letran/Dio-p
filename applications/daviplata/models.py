@@ -460,6 +460,7 @@ class Daviplata(models.Model):
     def save(self, *args, **kwargs):
     
         self.direccion_completo = str(self.direccion_actualizada) + " " + str(self.detalle_direccion)
+        self.material = self.visita_efectiva
 
         ################################################
 
