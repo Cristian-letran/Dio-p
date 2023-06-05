@@ -15,7 +15,8 @@ class DepartamentoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 @admin.register(Cliente)
 class ClienteAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    raw_id_fields = ('id_clie','id_ciu',)
+    raw_id_fields = ('id_ciu',)
+    list_display = ('id_clie', 'r_s')
 
 @admin.register(Oficinas)
 class OficinasAdmin(ImportExportModelAdmin, admin.ModelAdmin):
