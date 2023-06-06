@@ -160,6 +160,15 @@ class UsersClienteView(ListView):
         queryset   = User.objects.filter(d_i__icontains = kword, roles = 1)[:5]
         return queryset   
     
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        contexto = super().get_context_data(**kwargs)
+        contexto ['count_users'] = self.get_queryset().count
+        
+        return contexto
+    
+    
+    
 class UserCreateView(LoginRequiredMixin, CreateView):
     form_class = UserCreateForm
     template_name = "users/create_user.html"

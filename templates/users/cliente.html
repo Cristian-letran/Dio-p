@@ -1,15 +1,15 @@
 {% extends "users/base_users.html" %} {% load static %} {% block panel-content %}
 
-<div class="grid-x">
-    <div class="cell small-10">Lista de usuarios: <span class="label primary"><a href="{% url 'users_app:users-crear'%}">Crear usuario</a></span></div>
+  <div class="grid-x grid-margin-x">
+    <div class="cell small-8"><h3>Usuarios</h3></div>
+    <div class="cell small-2"><a class="secondary button" href="{% url 'users_app:users-crear'%}">Crear usuario</a></div>
     <div class="cell small-2"><a class="secondary button" href="{% url 'informe-usuarios' %}">Exportar usuarios</a></div>
   </div>
-  <br>
 
 <form class="cell small-9 input-group" method="GET"> {% csrf_token %}
     <div class="input-group">   
         <span class="input-group-label"></span>
-        <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Bolsa o seudo...">
+        <input class="input-group-field" type="text" id="kword" name="kword" placeholder="Documento...">
         <div class="input-group-button">
             <input type="submit" class="button secondary" value="Buscar">
         </div>
@@ -38,8 +38,15 @@
         <td><a href="{% url 'users_app:users-update' e.id %}" class="label primary"><i class="fi-filter"></i></a></td>
       </tr>
     {% endfor %}
-      
     </tbody>
+    <tfoot>
+
+      <tr>
+        <th>total</th>
+        <th>{{count_users}}</th>
+      </tr>
+  
+    </tfoot>
   </table>
   
 
