@@ -14,6 +14,13 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .managers import UserManager
 from django.contrib.admin.models import LogEntry, ADDITION, CHANGE, DELETION
 
+class Modulos(models.Model):
+    
+    modulo = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.modulo
+
 class Areas(models.Model):
     Areas = models.CharField(max_length=30, primary_key=True)
 
@@ -125,6 +132,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         choices=ROL_USER_FINAL,
         blank=True,
         null=True)
+    
+    rol_m = models.ManyToManyField(
+        Modulos, 
+        blank=True,
+        related_name= 'modulo_user')
 
     is_staff = models.BooleanField(
         default=True

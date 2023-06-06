@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
-from . models import User, Profile, Areas,LogSesion
+from . models import User, Profile, Areas,LogSesion, Modulos
 import datetime
 from simple_history.admin import SimpleHistoryAdmin
 from related_admin import RelatedFieldAdmin
@@ -20,5 +20,9 @@ class AreasAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 @admin.register(LogSesion)
 class LogSesion(admin.ModelAdmin):
     list_display = ('id', 'log', 'cliente')
+
+@admin.register(Modulos)
+class LogSesion(admin.ModelAdmin):
+    list_display = ('id', 'modulo',)
 
 

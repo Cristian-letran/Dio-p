@@ -255,7 +255,7 @@ class VinculacionForm(forms.ModelForm):
         nombre  = cleaned_data.get('nombre')
         nombre_comercio = cleaned_data.get('nombre_comercio')
         categoria = cleaned_data.get('categoria')
-        direccion = cleaned_data.get('direccion')
+        
         codigo_transaccion = cleaned_data.get('codigo_transaccion')
         no_transaccion = cleaned_data.get('no_transaccion')
         se_registro = cleaned_data.get('se_registro')
@@ -325,8 +325,7 @@ class VinculacionForm(forms.ModelForm):
         
         ########## DIRECCION  ###########################
 
-        if direccion == None:
-            raise forms.ValidationError( "Completar Dirección Comercio" )
+        
         
         ############## Codigo transaccion #######################
 

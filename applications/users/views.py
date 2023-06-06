@@ -168,10 +168,11 @@ class UserCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.roles = 1
+        self.object.cliente_id_clie = 1
         
         self.object.save()
         return super(UserCreateView, self).form_valid(form)
-    
+        
 class UserClienteUPdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserUpdateForm
@@ -213,7 +214,7 @@ def exportusers(request):
     writer = csv.writer(response)
     writer.writerow([
         'USUARIO', 'NOMBRE', #1
-        'APELLIDO', 'DOCUMENTO'
+        'APELLIDO', 'DOCUMENTO' #2
           ])
 
     base = User.objects.filter(cliente__r_s = "Davivienda").values_list(
@@ -247,3 +248,4 @@ class AsistenciaCreateView(LoginRequiredMixin, CreateView, ListView):
         self.object.user = self.request.user
         self.object.save()
         return super(AsistenciaCreateView, self).form_valid(form)
+    

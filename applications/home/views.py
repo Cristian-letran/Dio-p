@@ -9,6 +9,7 @@ from django.views.generic import (
     TemplateView, View,
     ListView
 )
+from applications.users.models import Modulos
 
 ###### pagina ###############################
 
@@ -50,8 +51,17 @@ class Politica_SGC(TemplateView):
 
 ###########################################
 
-class PanelHomeView(LoginRequiredMixin, TemplateView):
+class PanelHomeView(LoginRequiredMixin, ListView):
     template_name = "home/index.html"
+    model = Modulos
+    fields = ['rol_m']
+
+    def get_queryset(self):
+        queryset = Modulos.objects.filter(
+            modulo_user = self.request.user
+        )
+        return queryset 
+
 
 class FechaMixin(object):
     
@@ -60,9 +70,17 @@ class FechaMixin(object):
         context['fecha'] = datetime.datetime.now()
         return context
 
-class HomePage(LoginRequiredMixin, TemplateView):
+class HomePage(LoginRequiredMixin, ListView):
     template_name = "home/index.html"
     login_url = reverse_lazy('users_app:user-login')
+    model = Modulos
+    fields = ['rol_m']
+
+    def get_queryset(self):
+        queryset = Modulos.objects.filter(
+            modulo_user = self.request.user
+        )
+        return queryset 
 
 class TemplatePruebaMixin(FechaMixin, TemplateView):
     template_name = "home/mixin.html"

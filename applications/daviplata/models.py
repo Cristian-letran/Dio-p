@@ -807,6 +807,7 @@ class Vinculacion(models.Model):
     dir_a = models.ForeignKey(
         Direccion,
         on_delete=models.CASCADE,
+        
         null=True)
     
     num_dir1 = models.CharField(max_length=10, null=True)
@@ -941,10 +942,10 @@ class Gestores(models.Model):
         default="Firstsource", 
         null=True)
 
-@receiver(post_save, sender=User)
-def create_user_Gestores(sender, instance, created, **kwargs):
-    if created and instance.cliente.r_s == "Daviplata":
-        Gestores.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def create_user_Gestores(sender, instance, created, **kwargs):
+#     if created and instance.cliente.r_s == "Daviplata":
+#         Gestores.objects.create(user=instance)
 
     
 
