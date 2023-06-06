@@ -174,7 +174,7 @@ class DashboardListView(LoginRequiredMixin, ListView):
         contexto ['user'] = User.objects.filter(roles = 5)
         contexto ['departamento'] = Departamento.objects.all()
         ###############################################
-        contexto ['count_efectivo'] = self.get_queryset().count
+        contexto ['count_efectivo'] = self.get_queryset().filter(visita_efectiva = "SI").count
         contexto ['cambio_dir'] = self.get_queryset().filter(tipo_no_efectiva = "Cambio de Direccion PVD").count
         contexto ['dir_errrada'] = self.get_queryset().filter(tipo_no_efectiva = "Direccion Errada").count
         contexto ['cliente_no_encuesta'] = self.get_queryset().filter(tipo_no_efectiva = "El Cliente No Permitio Realizar encuesta").count
