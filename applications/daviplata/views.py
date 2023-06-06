@@ -173,7 +173,9 @@ class DashboardListView(LoginRequiredMixin, ListView):
         contexto ['sin_gestion'] = Daviplata.objects.filter(visita_efectiva = None).count
         contexto ['user'] = User.objects.filter(roles = 5)
         contexto ['departamento'] = Departamento.objects.all()
+        
         ###############################################
+        contexto ['gestionados'] = self.get_queryset().count
         contexto ['count_efectivo'] = self.get_queryset().filter(visita_efectiva = "SI").count
         contexto ['cambio_dir'] = self.get_queryset().filter(tipo_no_efectiva = "Cambio de Direccion PVD").count
         contexto ['dir_errrada'] = self.get_queryset().filter(tipo_no_efectiva = "Direccion Errada").count
