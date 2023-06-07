@@ -71,10 +71,10 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         self.object.minuto = datetime.now().time().strftime("%M")
         #self.self.object.minuto = cuenta
         var_final = str(hour_calculo) + ":" + str(minute_calculo)
-        if self.object.tiempo == None:
-            self.object.tiempo = 1
+        if var_final == None:
+            self.object.tiempo = 1 
         else :
-            self.object.tiempo = var_final
+            self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
         #self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
         
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
