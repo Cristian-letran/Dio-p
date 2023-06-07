@@ -43,24 +43,24 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):######aca
         ################ HOUR TIEMPO ##################
-        #hour1 = Daviplata.objects.filter(
-         #   user = self.request.user,
-          #  fecha_encuesta__contains=datetime.today().date()
-           # ).values_list("hora", flat=True).latest('hora')
-        #hour2 = self.object.hora = datetime.now().time().strftime("%H")
-        #hour1t = int(hour1)
-        #hour2t = int(hour2)
-        #hour_calculo = hour2t - hour1t
+        hour1 = Daviplata.objects.filter(
+           user = self.request.user,
+           fecha_encuesta__contains=datetime.today().date()
+           ).values_list("hora", flat=True).latest('hora')
+        hour2 = self.object.hora = datetime.now().time().strftime("%H")
+        hour1t = int(hour1)
+        hour2t = int(hour2)
+        hour_calculo = hour2t - hour1t
         
         ################ MINUTE TIEMPO  ##################
-        #minute1 = Daviplata.objects.filter(
-         #   user = self.request.user,
-          #  fecha_encuesta__contains=datetime.today().date()
-           # ).values_list("hora", flat=True).latest('hora')
-        #minute2 = datetime.now().time().strftime("%M")
-        #minute1t = int(minute1)
-        #minute2t = int(minute2)
-        #minute_calculo = minute2t - minute1t
+        minute1 = Daviplata.objects.filter(
+           user = self.request.user,
+           fecha_encuesta__contains=datetime.today().date()
+           ).values_list("hora", flat=True).latest('hora')
+        minute2 = datetime.now().time().strftime("%M")
+        minute1t = int(minute1)
+        minute2t = int(minute2)
+        minute_calculo = minute2t - minute1t
         
         ########################
         self.object = form.save(commit=False)
@@ -70,7 +70,7 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         self.object.hora = datetime.now().time().strftime("%H")#("%H:%M")
         self.object.minuto = datetime.now().time().strftime("%M")
         #self.self.object.minuto = cuenta
-        #self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
+        self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
         
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
