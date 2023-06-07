@@ -56,7 +56,7 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         minute1 = Daviplata.objects.filter(
            user = self.request.user,
            fecha_encuesta__contains=datetime.today().date()
-           ).values_list("hora", flat=True).latest('hora')
+           ).values_list("minuto", flat=True).latest('minuto')
         minute2 = datetime.now().time().strftime("%M")
         minute1t = int(minute1)
         minute2t = int(minute2)
