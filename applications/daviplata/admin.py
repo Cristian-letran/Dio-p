@@ -155,9 +155,9 @@ class DaviplataAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 @admin.register(Vinculacion)
 class VinculacionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-   list_display = ('fecha_registro', 'celular','novedad', 'fecha_visita', 'user','latitud','registro_daviplata','motivo_no_registro','se_registro', 'no_register')
-   list_filter = ('fecha_visita','tipo_gestion', 'novedad')
-   list_editable = ('novedad',)
+   list_display = ('fecha_registro', 'celular', 'cambio', 'fecha_visita', 'user','latitud','registro_daviplata','motivo_no_registro','se_registro', 'no_register')
+   list_filter = ('fecha_visita','tipo_gestion', 'cambio')
+   list_editable = ('cambio',)
    date_hierarchy = ('fecha_visita')
    search_fields = ('user__nombres', 'celular')
    resource_class = VinculacionResource

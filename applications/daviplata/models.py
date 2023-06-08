@@ -788,8 +788,8 @@ class Vinculacion(models.Model):
         blank=True, 
         null=True)
 
-    novedad = models.BooleanField(
-        default=False
+    cambio = models.BooleanField(
+        default=False,
         )
     
     FACTURA = [
