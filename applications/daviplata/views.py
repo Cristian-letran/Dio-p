@@ -131,6 +131,12 @@ class NovedadListView(LoginRequiredMixin, ListView):
             cambio = True
         )
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        contexto = super().get_context_data(**kwargs)
+        contexto ['count'] = self.get_queryset().count
+        return contexto
 
 class NovedadUpdateView(LoginRequiredMixin, UpdateView):
     
