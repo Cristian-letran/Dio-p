@@ -128,7 +128,7 @@ class NovedadListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Vinculacion.objects.filter(
             user = self.request.user,
-            novedad = True
+            cambio = True
         )
         return queryset
 
