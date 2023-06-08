@@ -910,7 +910,7 @@ class NovedadVinculacion(models.Model):
         on_delete=models.CASCADE)
     
     def save(self, *args, **kwargs):
-        self.id_vinculacion.novedad  = False
+        self.id_vinculacion.cambio  = True
         
         self.id_vinculacion.save()
 
