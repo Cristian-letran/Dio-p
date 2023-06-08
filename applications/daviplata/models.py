@@ -441,7 +441,7 @@ class Daviplata(models.Model):
         verbose_name= 'Usuario',
         related_name = "user_marcacion"
     )
-    hora = models.CharField(max_length=22,
+    hora = models.CharField(max_length=30,
                             blank = True, 
                             null=True,
                             default=0
@@ -789,7 +789,7 @@ class Vinculacion(models.Model):
         null=True)
 
     novedad = models.BooleanField(
-        default=True
+        default=False
         )
     
     FACTURA = [
@@ -942,10 +942,10 @@ class Gestores(models.Model):
         default="Firstsource", 
         null=True)
 
-# @receiver(post_save, sender=User)
-# def create_user_Gestores(sender, instance, created, **kwargs):
-#     if created and instance.cliente.r_s == "Daviplata":
-#         Gestores.objects.create(user=instance)
+@receiver(post_save, sender=User)
+def create_user_Gestores(sender, instance, created, **kwargs):
+    if created and instance.cliente.r_s == "Daviplata":
+        Gestores.objects.create(user=instance)
 
     
 

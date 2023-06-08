@@ -6,7 +6,7 @@ from.models import Daviplata, Vinculacion, RutaDaviplata
 from django.urls import reverse_lazy
 from .forms import DaviplataForm, VinculacionForm, RutaDaviplataForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.timezone import datetime
+from django.utils.timezone import datetime, timedelta
 from applications.users.models import User
 from django.db.models import Count, F, Value
 from applications.cliente.models import Departamento
@@ -47,10 +47,13 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         #    user = self.request.user,
         #    fecha_encuesta__contains=datetime.today().date()
         #    ).values_list("hora", flat=True).latest('hora')
-        # hour2 = self.object.hora = datetime.now().time().strftime("%H")
-        # hour1t = int(hour1)
-        # hour2t = int(hour2)
-        # hour_calculo = hour2t - hour1t
+        # hour2 = datetime.today().time()#.strftime("%H")
+        # resul = hour2.strftime("%H:%M:%S") - hour1
+
+        # print("acassssssss",resul)
+
+        
+        #hour_calculo = type(tdelta(hour1 - hour2))
         
         ################ MINUTE TIEMPO  ##################
         # minute1 = Daviplata.objects.filter(
@@ -67,15 +70,10 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         self.object.user = self.request.user
         self.object.fecha_encuesta = datetime.now()
         ###################ACTUAL#######################
-        self.object.hora = datetime.now().time().strftime("%H")#("%H:%M")
-        self.object.minuto = datetime.now().time().strftime("%M")
-        #self.self.object.minuto = cuenta
-        # var_final = str(hour_calculo) + ":" + str(minute_calculo)
-        # if var_final == None:
-        #     self.object.tiempo = 1 
-        # else :
-        #     self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
-        #self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
+        self.object.hora = datetime.today().time()#.strftime("%H")#("%H:%M")
+        #minuto = datetime.now().time()#.strftime("%M")
+        
+        #elf.object.tiempo = (hour_calculo) 
         
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
@@ -130,7 +128,7 @@ class NovedadListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Vinculacion.objects.filter(
             user = self.request.user,
-            novedad = False
+            novedad = True
         )
         return queryset
 
