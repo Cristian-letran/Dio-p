@@ -142,6 +142,7 @@ class NovedadUpdateView(LoginRequiredMixin, UpdateView):
     
     model = Vinculacion
     fields = ["tipo_gestion", "celular", 
+              'dir_a', 'num_dir1', 'num_dir2', 'complemento', 'detail_complemento',
               "celular_confirma", "nombre", "nombre_comercio",
               "c_rut", "categoria",
               "direccion", "barrio", "localidad",
@@ -155,6 +156,12 @@ class NovedadUpdateView(LoginRequiredMixin, UpdateView):
               ]
     template_name = "daviplata/update_novedad.html"
     success_url = reverse_lazy('daviplata-app:vinculacion-list')
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.cambio = False
+        self.object.save()
+        return super(NovedadUpdateView, self).form_valid(form)   
 
 import statistics
 class DashboardListView(LoginRequiredMixin, ListView): 
