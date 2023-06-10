@@ -454,8 +454,8 @@ class Daviplata(models.Model):
 
     contingencia_img1 = models.BooleanField(
         default = False,
-        
-                                     )
+         )
+    fecha_eliminar = models.DateTimeField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
     

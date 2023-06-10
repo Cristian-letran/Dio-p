@@ -43,17 +43,15 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):######aca
         ################ HOUR TIEMPO ##################
-        # hour1 = Daviplata.objects.filter(
-        #    user = self.request.user,
-        #    fecha_encuesta__contains=datetime.today().date()
-        #    ).values_list("hora", flat=True).latest('hora')
-        # hour2 = datetime.today().time()#.strftime("%H")
-        # resul = hour2.strftime("%H:%M:%S") - hour1
+        # hour_last = Daviplata.objects.filter(
+        #     user = self.request.user,
+        #     fecha_eliminar__contains=datetime.today().date()
+        #     ).values_list("fecha_eliminar", flat=True).latest('fecha_eliminar')
+        # hour_now = datetime.today().time().strftime("%H")
+        # #minute_now = datetime.today().time().strftime("%H")
 
-        # print("acassssssss",resul)
-
-        
-        #hour_calculo = type(tdelta(hour1 - hour2))
+        # hour_calculo = int(hour_last) - int(hour_now)
+        # print("aaaaaaaaaaaaaaaaaa",hour_calculo)
         
         ################ MINUTE TIEMPO  ##################
         # minute1 = Daviplata.objects.filter(
@@ -70,7 +68,7 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         self.object.user = self.request.user
         self.object.fecha_encuesta = datetime.now()
         ###################ACTUAL#######################
-        self.object.hora = datetime.today().time()#.strftime("%H")#("%H:%M")
+        #self.object.hora = datetime.today().time()#.strftime("%H")#("%H:%M")
         #minuto = datetime.now().time()#.strftime("%M")
         
         #elf.object.tiempo = (hour_calculo) 
@@ -244,8 +242,20 @@ class CoorMarcacionListView(CustodiaPermisoMixin, ListView):
         contexto ['sin_gestion'] = Daviplata.objects.filter(visita_efectiva = None).count
         contexto ['user'] = User.objects.filter(roles = 5)
         contexto ['departamento'] = Departamento.objects.all()
+
+        ####
+        contexto ['gestionados'] = self.get_queryset().count
+        contexto ['count_efectivo'] = self.get_queryset().filter(visita_efectiva = "SI").count
+        contexto ['cambio_dir'] = self.get_queryset().filter(tipo_no_efectiva = "Cambio de Direccion PVD").count
+        contexto ['dir_errrada'] = self.get_queryset().filter(tipo_no_efectiva = "Direccion Errada").count
+        contexto ['cliente_no_encuesta'] = self.get_queryset().filter(tipo_no_efectiva = "El Cliente No Permitio Realizar encuesta").count
+        contexto ['lcl_cerrado'] = self.get_queryset().filter(tipo_no_efectiva = "Local Cerrado").count
+        contexto ['no_pdv'] = self.get_queryset().filter(tipo_no_efectiva = "No Existe PVD").count
+        contexto ['otros'] = self.get_queryset().filter(tipo_no_efectiva = "Otros").count
+        contexto ['ya_marcado'] = self.get_queryset().filter(tipo_no_efectiva = "Ya esta Marcado").count
         
         return contexto
+
     
 class MaracionCoorUpdateView(CustodiaPermisoMixin, UpdateView):
     template_name = "daviplata/coor_update.html"

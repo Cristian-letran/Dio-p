@@ -1,9 +1,16 @@
 from email.errors import MultipartConversionError
 from django.db import models
 
+class Localidad(models.Model):
+    nombre = models.CharField(max_length=40)
+
 class Departamento(models.Model):
     departamento = models.CharField(max_length=30)
     capital = models.IntegerField()
+    localidad = models.ForeignKey(
+        Localidad, 
+        on_delete=models.CASCADE,
+        null=True)
 
     def __str__(self):
         return self.departamento
