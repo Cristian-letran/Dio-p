@@ -219,7 +219,7 @@ class RutaUpdate(LoginRequiredMixin, CreateView):
 class CoorMarcacionListView(CustodiaPermisoMixin, ListView):
     model = Daviplata
     template_name = "daviplata/coor_marcacion.html"
-    paginate_by = 5
+    paginate_by = 15
 
     def get_queryset(self):
         kword = self.request.GET.get("kword", '')
