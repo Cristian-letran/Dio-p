@@ -43,35 +43,39 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):######aca
         ################ HOUR TIEMPO ##################
-        # hour_last = Daviplata.objects.filter(
-        #     user = self.request.user,
-        #     fecha_eliminar__contains=datetime.today().date()
-        #     ).values_list("fecha_eliminar", flat=True).latest('fecha_eliminar')
-        # hour_now = datetime.today().time().strftime("%H")
-        # #minute_now = datetime.today().time().strftime("%H")
+        hour_last = Daviplata.objects.filter(
+            user = self.request.user,
+            #fecha_encuesta__contains=datetime.today().date()
+            ).values_list("hora", flat=True).latest('hora')
+        hour_now = datetime.today().time().strftime("%H")
 
-        # hour_calculo = int(hour_last) - int(hour_now)
-        # print("aaaaaaaaaaaaaaaaaa",hour_calculo)
+        hour_calculo = int(hour_now) - int(hour_last)
+        print("hhhhhhhhhhhhhh",hour_calculo)
         
         ################ MINUTE TIEMPO  ##################
-        # minute1 = Daviplata.objects.filter(
-        #    user = self.request.user,
-        #    fecha_encuesta__contains=datetime.today().date()
-        #    ).values_list("minuto", flat=True).latest('minuto')
-        # minute2 = datetime.now().time().strftime("%M")
-        # minute1t = int(minute1)
-        # minute2t = int(minute2)
-        # minute_calculo = minute2t - minute1t
+        minute1 = Daviplata.objects.filter(
+           user = self.request.user,
+           #fecha_encuesta__contains=datetime.today().date()
+           ).values_list("minuto", flat=True).latest('minuto')
+        minute2 = datetime.now().time().strftime("%M")
+        
+        minute_calculo = int(minute2) - int(minute1)
+        print("mmmmmmmmmmmm",minute_calculo)
         
         ########################
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.fecha_encuesta = datetime.now()
         ###################ACTUAL#######################
-        #self.object.hora = datetime.today().time()#.strftime("%H")#("%H:%M")
-        #minuto = datetime.now().time()#.strftime("%M")
+        self.object.hora = datetime.today().time().strftime("%H").lstrip('+-0')#("%H:%M")
+        self.object.minuto = datetime.now().time().strftime("%M").lstrip('+-0')
+
+
+        calculo = str(hour_calculo) + ":" + str(minute_calculo)
+        self.object.tiempo = str(calculo) 
+
         
-        #elf.object.tiempo = (hour_calculo) 
+        self.object.tiempo = calculo
         
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()
@@ -177,7 +181,7 @@ class DashboardListView(LoginRequiredMixin, ListView):
             fecha_encuesta__contains = date,
             user__nombres__contains = courrier,
             departamento__departamento__contains = departamento,
-        ).order_by('-hora', '-minuto', '-fecha_encuesta')
+        ).order_by('-hora', '-minuto')
         return queryset
     
     def get_context_data(self, **kwargs):
