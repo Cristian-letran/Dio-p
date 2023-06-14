@@ -331,7 +331,7 @@ class DashVinculacionView(ListView):
         queryset = User.objects.filter(
             roles = 3, 
             ).filter(Q(user_vinculacion__fecha_visita__range = [kword, kword2])| Q (user_vinculacion__tipo_gestion = tipo)
-            ).annotate(vincula=Count('user_vinculacion'))
+            ).annotate(vincula=Count('user_vinculacion')).order_by('vincula')
         return queryset
         
     def get_context_data(self, **kwargs):
