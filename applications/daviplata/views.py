@@ -333,12 +333,11 @@ class DashVinculacionView(ListView):
             ).filter(Q(user_vinculacion__fecha_visita__range = [kword, kword2])| Q (user_vinculacion__tipo_gestion = tipo)
             ).annotate(vincula=Count('user_vinculacion'))
         return queryset
-         
-    
+        
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         contexto = super(DashVinculacionView, self).get_context_data(**kwargs)
-        contexto ['count_efectivo'] = self.get_queryset()   
+        contexto ['count_vin'] = self.get_queryset().count
 
         return contexto
     
