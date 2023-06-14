@@ -627,7 +627,8 @@ class Vinculacion(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE, 
         blank=True, null=True, 
-        verbose_name= 'Usuario'
+        verbose_name= 'Usuario',
+        related_query_name="user_vinculacion"
     )
     nombre_comercio = models.CharField(
         max_length=80,

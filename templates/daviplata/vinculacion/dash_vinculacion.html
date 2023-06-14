@@ -1,0 +1,42 @@
+{% extends "daviplata/base_daviplata.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+
+<form  method="GET"> {% csrf_token %}
+    <div class="grid-x grid-margin-x">
+
+        <div class="cell medium-6 large-2">
+            <span class="label">Fecha</span>
+            <input  type="date" id="date" name="date">
+        </div>
+        
+        <div class="cell medium-6 large-2">
+            <br>
+            <input  type="submit" class="submit success button" value="Buscar">
+        </div> 
+</form>
+
+<table>
+    <thead>
+      <tr>
+        <th width="200">Nombre</th>
+        <th>Apellido</th>
+        <th width="150">Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for e in object_list %}
+      <tr>
+        <td>{{e.nombres}}</td>
+        <td>{{e.apellidos}}</td>
+        <td>{{e.vincula}}</td>
+    
+      </tr>
+      {% endfor %}
+     
+    </tbody>
+  </table>
+
+{% endblock panel-content %}

@@ -317,6 +317,26 @@ class EnrrutadoUpdateView(UpdateView):
     model = Daviplata
     success_url = reverse_lazy('daviplata-app:enrrutado')
     
+############ Dash Vinculacion ###################
+class DashVinculacionView(ListView):
+    template_name = "daviplata/vinculacion/dash_vinculacion.html"
+    model = User
+    fields = ['user']
+    
+    def get_queryset(self):
+        kword = self.request.GET.get("date", "")
+        queryset = User.objects.filter(
+            roles = 3, user_vinculacion__fecha_visita__contains = kword
+            ).annotate(vincula=Count('user_vinculacion'))
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        contexto = super(DashVinculacionView, self).get_context_data(**kwargs)
+        contexto ['count_efectivo'] = self.get_queryset()   
+
+        return contexto
+    
 
     
     

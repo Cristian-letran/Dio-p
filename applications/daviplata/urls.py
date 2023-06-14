@@ -80,4 +80,10 @@ urlpatterns = [
          views.EnrrutadoUpdateView.as_view(),
          name='enrrutado-update',
     ),  
+    
+    path(
+        'dash-vinculacion',
+         views.DashVinculacionView.as_view(),
+         name='dash-vinculacion',
+    ),  
 ]
