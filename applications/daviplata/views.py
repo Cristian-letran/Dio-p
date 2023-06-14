@@ -324,9 +324,10 @@ class DashVinculacionView(ListView):
     fields = ['user']
     
     def get_queryset(self):
-        kword = self.request.GET.get("date", "")
+        kword = self.request.GET.get("date")
+        kword2 = self.request.GET.get("date2")
         queryset = User.objects.filter(
-            roles = 3, user_vinculacion__fecha_visita__contains = kword
+            roles = 3, user_vinculacion__fecha_visita__range = [kword, kword2],
             ).annotate(vincula=Count('user_vinculacion'))
         return queryset
     
