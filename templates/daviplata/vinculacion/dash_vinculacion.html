@@ -16,6 +16,17 @@
             <span class="label">Fecha</span>
             <input  type="date" id="date2" name="date2">
         </div>
+
+        <div class="cell medium-6 large-2">
+            <span class="label">Tipo Gestion</span>
+            <select  name="tipo" id="tipo">
+                <option value=0></option>
+                <option value=1>Nuevo</option>
+                <option value=2>Nuevo Sin Perf. Negocio</option>
+                <option value=3>Remarcación</option>
+                <option value=4>No Activo</option>
+            </select>
+        </div>
         
         <div class="cell medium-6 large-2">
             <br>
@@ -37,9 +48,13 @@
         <td>{{e.nombres}}</td>
         <td>{{e.apellidos}}</td>
         <td>{{e.vincula}}</td>
-    
+        
       </tr>
+      {% empty %}
+      <tr>
+        <td>Sorry</td> </tr>
       {% endfor %}
+      
      
     </tbody>
   </table>
