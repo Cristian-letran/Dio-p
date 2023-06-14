@@ -52,7 +52,7 @@ class Politica_SGC(TemplateView):
 ###########################################
 
 class PanelHomeView(LoginRequiredMixin, ListView):
-    template_name = "home/panel.html"
+    template_name = "home/index.html"
     model = Modulos
     fields = ['rol_m']
 
@@ -71,7 +71,7 @@ class FechaMixin(object):
         return context
 
 class HomePage(LoginRequiredMixin, ListView):
-    template_name = "home/panel.html"
+    template_name = "home/index.html"
     login_url = reverse_lazy('users_app:user-login')
     model = Modulos
     fields = ['rol_m']
