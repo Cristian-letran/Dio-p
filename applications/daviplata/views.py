@@ -327,7 +327,7 @@ class DashVinculacionView(ListView):
     def get_queryset(self):
         kword = self.request.GET.get("date",)
         kword2 = self.request.GET.get("date2",)
-        tipo = self.request.GET.get("tipo")
+        tipo = self.request.GET.get("tipo_gestion")
         queryset = User.objects.filter(
             roles = 3, 
             ).filter(Q(user_vinculacion__fecha_visita__range = [kword, kword2])& ~Q (user_vinculacion__tipo_gestion = tipo)
