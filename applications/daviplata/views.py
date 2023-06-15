@@ -2,13 +2,13 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, CreateView
-from.models import Daviplata, Vinculacion, RutaDaviplata
+from.models import Daviplata, Vinculacion, RutaDaviplata, TipoGestion
 from django.urls import reverse_lazy
 from .forms import DaviplataForm, VinculacionForm, RutaDaviplataForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.timezone import datetime, timedelta
 from applications.users.models import User
-from django.db.models import Count, F, Value
+from django.db.models import Count, Avg, Sum, F, Value
 from applications.cliente.models import Departamento
 from applications.courrier.models import courrier
 from applications.users.mixins import CustodiaPermisoMixin
@@ -327,10 +327,10 @@ class DashVinculacionView(ListView):
     def get_queryset(self):
         kword = self.request.GET.get("date",)
         kword2 = self.request.GET.get("date2",)
-        tipo = self.request.GET.get("tipo",)
+        tipo = self.request.GET.get("tipo", "")
         queryset = User.objects.filter(
             roles = 3, 
-            ).filter(user_vinculacion__fecha_visita__range = [kword, kword2] #user_vinculacion__tipo_gestion = tipo
+            ).filter(Q(user_vinculacion__fecha_visita__range = [kword, kword2])& Q (user_vinculacion__tipo_gestion = tipo)
             ).annotate(vincula=Count('user_vinculacion')).order_by('-vincula')
         return queryset
         

@@ -594,6 +594,7 @@ class Vinculacion(models.Model):
     tipo_gestion = models.ForeignKey(
         TipoGestion, 
         on_delete=models.CASCADE,
+        related_query_name="tipo_gestion_vinculacion"
         )
     
     identificacion = models.AutoField(primary_key=True)
