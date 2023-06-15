@@ -461,7 +461,9 @@ class Daviplata(models.Model):
         self.direccion_completo = str(self.direccion_actualizada) + " " + str(self.detalle_direccion)
         self.material = self.visita_efectiva
 
-        ################################################
+        ######### VISITA EFECTIVA + NO EFECTIVA #######################################
+        if self.visita_efectiva == "SI":
+            self.tipo_no_efectiva = None
 
         #visita_efectiva + pdv
         if self.visita_efectiva == "SI":
