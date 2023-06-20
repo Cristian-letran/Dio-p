@@ -56,6 +56,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     TECNOLOGIA = '5'
     ADMINISTRADOR = '6'
     CLIENTE = '7'
+    COOR_RETAIL ="8"
 
     OCUPATION_CHOICES = [
         (CUSTODIA, 'Custodia'),
@@ -66,8 +67,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         (TECNOLOGIA, 'Tecnologia'),
         (ADMINISTRADOR, 'Administrador'),
         (CLIENTE, 'Cliente'),
-        
-        
+        (COOR_RETAIL, 'COOR_RETAIL')
     ]
 
     GENDER_CHOICES = (

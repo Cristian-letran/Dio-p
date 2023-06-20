@@ -233,7 +233,12 @@
             </li>         
             <li class="{% if request.resolver_match.url_name == 'venta-index' %}activeli{% endif %}">
               <a href="{% url 'daviplata-app:novedad-list' %}"style="color: white;">Novedades</a>
-            </li>              
+            </li>      
+            {% if user.d_i == "11228634" %}      
+            <li class="{% if request.resolver_match.url_name == 'lista-cliente' %}activeli{% endif %}">
+              <a href="{% url 'daviplata-app:dash-vinculacion' %}" style="color: white;">Panel</a>
+            </li>      
+            {% endif %}
           </ul>
         </li>
       </ul>         
