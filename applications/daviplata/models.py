@@ -215,7 +215,8 @@ class Daviplata(models.Model):
         max_length=30, 
         choices=T_SENALIZACION,
         null=True,
-        verbose_name='Tipo de señalizacion'
+        blank=True,
+        verbose_name='Tipo de señalizacion',
         )
     otro_senalizacion =  models.CharField(
         max_length=30,  
@@ -432,8 +433,8 @@ class Daviplata(models.Model):
         max_length=80, 
         blank=True,
         null=True,
-        verbose_name='especificado Grupo Etnico'
-        )
+        verbose_name='especificado Grupo Etnico')
+    
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE, 
@@ -465,9 +466,12 @@ class Daviplata(models.Model):
         if self.visita_efectiva == "SI":
             self.tipo_no_efectiva = None
 
+        ######### TIPO SENALIZACION ##################
+
         #visita_efectiva + pdv
         if self.visita_efectiva == "SI":
             self.pdv = "SI"
+            self.t_senalizacion = "Rompetrafico"
 
         elif self.visita_efectiva == "NO":
             self.pdv = "NO"
