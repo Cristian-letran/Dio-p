@@ -327,11 +327,11 @@ class DashVinculacionView(ListView):
     def get_queryset(self):
         kword = self.request.GET.get("date",)
         kword2 = self.request.GET.get("date2",)
-        tipo = self.request.GET.get("tipo", 0)
+        tipo = self.request.GET.get("tipo", '')
         order = self.request.GET.get("order", '')
         queryset = User.objects.filter(
             roles = 3, 
-            ).filter(user_vinculacion__fecha_visita__range = [kword, kword2], user_vinculacion__tipo_gestion = tipo
+            ).filter(user_vinculacion__fecha_visita__range = [kword, kword2], user_vinculacion__tipo_gestion__id__contains = tipo
             ).annotate(vincula=Count('user_vinculacion')).order_by('-vincula')
         return queryset
         
