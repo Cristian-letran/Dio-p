@@ -40,28 +40,36 @@
       <caption>Consulta</caption>
       <thead>
         <tr>
+          <th>Codigo</th>
           <th>Hora</a></th>
           <th>Tiempo</th>
           <th>Tipo efectiva</th>
+          <th>Tipo no efectiva</th>
           <th>Dirección</th>
           <th>Observación</th>
           <th>Courrier</th>
           <th>Mapa</th>
-          <th>Imagen</th>
+          <th>Img Fachada</th>
+          <th>Img Material</th>
         </tr>
       </thead>
       <tbody>
           {% for e in page_obj %}
         <tr>
+          <td>{{e.codigo_total}}</td>
           <td>{{e.hora}}</td>
           <td>{{e.tiempo}}</td>
           <td>{{e.visita_efectiva}}</td>
+          <td>{{e.tipo_no_efectiva}}</td>
           <td>{{e.direccion_c_b}}</td>
           <td>{{e.observacion}}</td>
           <td>{{e.user}}</td>
           <td >{{e.visualizar}}</td>
           <td>
-            <img src="{{ e.url_img_f.url }}" width="100">
+            <img src="{{ e.url_img_f.url }}" width="80">
+          </td>
+          <td>
+            {{ e.url_img_o }}
           </td>
         </tr>
           {% endfor %}
