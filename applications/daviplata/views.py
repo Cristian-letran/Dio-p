@@ -239,13 +239,14 @@ class CoorMarcacionListView(CustodiaPermisoMixin, ListView):
         kword = self.request.GET.get("kword", '')
         date = self.request.GET.get("date", '')
         courrier = self.request.GET.get("id", '')
+        busqueda = self.request.GET.get("cod", '')
 
         queryset = Daviplata.objects.filter(
             visita_efectiva__icontains = kword,
             fecha_encuesta__contains = date,
             user__nombres__contains = courrier,
             municipio__departamento = self.request.user.ciudad.departamento
-        )
+        ).filter(codigo_total__contains = busqueda)
         return queryset
     
     def get_context_data(self, **kwargs):

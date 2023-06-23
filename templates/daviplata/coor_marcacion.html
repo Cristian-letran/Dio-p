@@ -33,6 +33,10 @@
             <br>
             <input  type="submit" class="submit success button" value="Buscar">
         </div> 
+        <div class="cell input-group">
+          <span class="input-group-label">Buscar</span>
+          <input class="input-group-field" type="text" id="cod" name="cod" >
+        </div>
 </form>
 
 <div class="table-scroll">
@@ -41,6 +45,7 @@
       <thead>
         <tr>
           <th>Codigo</th>
+          <th>Nombre establecimiento</th>
           <th>Hora</a></th>
           <th>Tiempo</th>
           <th>Tipo efectiva</th>
@@ -57,6 +62,7 @@
           {% for e in page_obj %}
         <tr>
           <td>{{e.codigo_total}}</td>
+          <td>{{e.nombre_establecimiento}}</td>
           <td>{{e.hora}}</td>
           <td>{{e.tiempo}}</td>
           <td>{{e.visita_efectiva}}</td>
@@ -69,7 +75,7 @@
             <img src="{{ e.url_img_f.url }}" width="80">
           </td>
           <td>
-            {{ e.url_img_o }}
+            {{ e.url_img_m }}
           </td>
         </tr>
           {% endfor %}
