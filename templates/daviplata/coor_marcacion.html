@@ -44,6 +44,7 @@
           <th>Tiempo</th>
           <th>Courrier</th>
           <th>Mapa</th>
+          <th>Imagen</th>
         </tr>
       </thead>
       <tbody>
@@ -52,7 +53,10 @@
           <td>{{e.hora}}</td>
           <td>{{e.tiempo}}</td>
           <td>{{e.user}}</td>
-          <td>{{e.visualizar}}</td>
+          <td WIDTH="350">{{e.visualizar}}</td>
+          <td>
+            <img src="{{ e.url_img_f.url }}" width="100">
+          </td>
         </tr>
           {% endfor %}
         

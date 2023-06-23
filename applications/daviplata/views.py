@@ -318,7 +318,8 @@ class EnrrutadoUpdateView(UpdateView):
     success_url = reverse_lazy('daviplata-app:enrrutado')
     
 ############ Dash Vinculacion ###################
-
+from django.http import HttpResponse
+from django.template import loader
 class DashVinculacionView(ListView):
     template_name = "daviplata/vinculacion/dash_vinculacion.html"
     model = User
@@ -333,7 +334,8 @@ class DashVinculacionView(ListView):
             roles = 3, 
             ).filter(user_vinculacion__fecha_visita__range = [kword, kword2], user_vinculacion__tipo_gestion__id__contains = tipo
             ).annotate(vincula=Count('user_vinculacion')).order_by('-vincula')
-        return queryset
+        return queryset 
+
         
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
