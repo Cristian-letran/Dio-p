@@ -42,6 +42,8 @@
         <tr>
           <th>Hora</a></th>
           <th>Tiempo</th>
+          <th>Dirección</th>
+          <th>Observación</th>
           <th>Courrier</th>
           <th>Mapa</th>
           <th>Imagen</th>
@@ -52,8 +54,10 @@
         <tr>
           <td>{{e.hora}}</td>
           <td>{{e.tiempo}}</td>
+          <td>{{e.direccion_c_b}}</td>
+          <td>Observacion</td>
           <td>{{e.user}}</td>
-          <td WIDTH="350">{{e.visualizar}}</td>
+          <td >{{e.visualizar}}</td>
           <td>
             <img src="{{ e.url_img_f.url }}" width="100">
           </td>
