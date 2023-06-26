@@ -135,8 +135,8 @@ class DaviplataForm(forms.ModelForm):
         if visita_efectiva == "NO" and tipo_no_efectiva == None:
             raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
         
-        elif visita_efectiva == "NO" and obervacion == None:
-            raise forms.ValidationError( "Campo bservación, Favor describa de manera detallada porque no fue efectiva.")
+        # elif visita_efectiva == "NO" and obervacion == None:
+        #     raise forms.ValidationError( "Campo bservación, Favor describa de manera detallada porque no fue efectiva.")
         
         ################## claves ##########################
         
