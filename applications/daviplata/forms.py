@@ -102,6 +102,7 @@ class DaviplataForm(forms.ModelForm):
         visita_efectiva = cleaned_data.get('visita_efectiva')
         imagen_matrerial = cleaned_data.get('url_img_m')
         tipo_no_efectiva = cleaned_data.get('tipo_no_efectiva')
+        obervacion = cleaned_data.get('observacion')
         ################# claves ###########################
         
         es_dueño = cleaned_data.get('es_dueño')
@@ -134,7 +135,8 @@ class DaviplataForm(forms.ModelForm):
         if visita_efectiva == "NO" and tipo_no_efectiva == None:
             raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
         
-        
+        if visita_efectiva == "NO" and obervacion == None:
+            raise forms.ValidationError( "Campo bservación, Favor describa de manera detallada porque no fue efectiva.")
         
         ################## claves ##########################
         

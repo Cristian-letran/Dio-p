@@ -230,9 +230,9 @@ class RutaUpdate(LoginRequiredMixin, CreateView):
         
     #     return context
     
-class CoorMarcacionListView(CustodiaPermisoMixin, ListView):
-    model = Daviplata
+class CoorMarcacionListView(ListView):
     template_name = "daviplata/coor_marcacion.html"
+    model = Daviplata
     paginate_by = 15
 
     def get_queryset(self):

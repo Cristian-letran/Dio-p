@@ -41,11 +41,10 @@
 
 <div class="table-scroll">
     <table class="hover">
-      <caption>Consulta</caption>
       <thead>
         <tr>
           <th>Codigo</th>
-          <th>Nombre establecimiento</th>
+          <th>establecimiento</th>
           <th>Hora</a></th>
           <th>Tiempo</th>
           <th>Tipo efectiva</th>
@@ -63,7 +62,7 @@
         <tr>
           <td>{{e.codigo_total}}</td>
           <td>{{e.nombre_establecimiento}}</td>
-          <td>{{e.hora}}</td>
+          <td>{{e.hora}} {{e.minuto}}</td>
           <td>{{e.tiempo}}</td>
           <td>{{e.visita_efectiva}}</td>
           <td>{{e.tipo_no_efectiva}}</td>
@@ -167,4 +166,4 @@
 
 
 
-{% endblock panel-content %}
+  {% endblock panel-content %}

@@ -46,16 +46,16 @@ urlpatterns = [
          name='dashboard-marcacion',
     ),
     
-    path(
-        '   ',
-         views.RutaUpdate.as_view(),
-         name='zona-update',
-    ),
+    # path(
+    #     '   ',
+    #      views.RutaUpdate.as_view(),
+    #      name='zona-update',
+    # ),
     
     path(
-        'Lista-marcacion',
+        'lista-marcacion/',
          views.CoorMarcacionListView.as_view(),
-         name='lista-marcacion',
+         name='lista-marcacionn',
     ),
     
     path(
