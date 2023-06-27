@@ -301,15 +301,18 @@ class EnrutadoListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
+        courrier = self.request.GET.get("id", '')
         queryset = Daviplata.objects.filter(
             municipio__departamento = self.request.user.ciudad.departamento,
-            visita_efectiva = None
+            user__nombres__contains = courrier,
+            visita_efectiva = None,
         ).exclude(user = None).order_by("user")
         return queryset 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         contexto = super(EnrutadoListView, self).get_context_data(**kwargs)
         contexto ['total'] = self.get_queryset().count
+        contexto ['user'] = User.objects.filter(roles = 5)
         return contexto
 
 class EnrrutadoUpdateView(UpdateView):
