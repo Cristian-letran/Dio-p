@@ -187,3 +187,12 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 RECAPTCHA_PUBLIC_KEY = '6LehY7EjAAAAAPcDEXz3dTltdh6RjvTVGtpCmlKs'
 RECAPTCHA_PRIVATE_KEY = '6LehY7EjAAAAABMbl_CnXdgQp9IK4oMWJj8lyKrD'
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
+# SESSIO_ENGINE = "django.contrib.sessions.backends.cache"
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+#         "LOCATION": "127.0.0.1:11211",
+#     }
+# }
