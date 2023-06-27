@@ -40,9 +40,10 @@ class DaviplataForm(forms.ModelForm):
                 }
             ),
 
-            'obervacion': Textarea(attrs={'cols': 80, 'rows': 4}),
+            'obervacion': Textarea(attrs={
+                'cols': 80, 
+                'rows': 4,}),
                
-            
             'fecha_capacitacion': forms.DateInput(
             format=(
                 '%m/%d/%Y'
@@ -102,7 +103,7 @@ class DaviplataForm(forms.ModelForm):
         visita_efectiva = cleaned_data.get('visita_efectiva')
         imagen_matrerial = cleaned_data.get('url_img_m')
         tipo_no_efectiva = cleaned_data.get('tipo_no_efectiva')
-        obervacion = cleaned_data.get('observacion')
+        observacion = cleaned_data.get('obervacion')
         ################# claves ###########################
         
         es_dueño = cleaned_data.get('es_dueño')
@@ -135,8 +136,8 @@ class DaviplataForm(forms.ModelForm):
         if visita_efectiva == "NO" and tipo_no_efectiva == None:
             raise forms.ValidationError( "Favor tipificar porque no fue efectiva")
         
-        # elif visita_efectiva == "NO" and obervacion == None:
-        #     raise forms.ValidationError( "Campo bservación, Favor describa de manera detallada porque no fue efectiva.")
+        elif visita_efectiva == "NO" and observacion == None:
+            raise forms.ValidationError( "Campo observación, Favor describa de manera detallada porque no fue efectiva.")
         
         ################## claves ##########################
         

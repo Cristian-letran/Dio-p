@@ -140,7 +140,7 @@ class Daviplata(models.Model):
         blank=True,
         null=True
         )
-    obervacion = models.TextField(
+    obervacion = models.CharField(
         max_length=300,
         blank=True,
         null=True)
