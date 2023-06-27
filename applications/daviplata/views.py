@@ -298,7 +298,7 @@ class ListCoorUpdateView(CustodiaPermisoMixin, ListView):
 class EnrutadoListView(ListView):
     template_name = "daviplata/enrutado.html"
     model = Daviplata
-    paginate_by = 10
+    paginate_by = 50
 
     def get_queryset(self):
         courrier = self.request.GET.get("id", '')
