@@ -69,9 +69,9 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         #     minute_calculo = int(minute2) - int(minute1)
         
         ########################
-        # self.object = form.save(commit=False)
-        # self.object.user = self.request.user
-        # self.object.fecha_encuesta = datetime.now()
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.fecha_encuesta = datetime.now()
         # ###################ACTUAL#######################
         # self.object.hora = datetime.today().time().strftime("%H").lstrip('+-0')#("%H:%M")
         # self.object.minuto = datetime.now().time().strftime("%M").lstrip('+-0')
