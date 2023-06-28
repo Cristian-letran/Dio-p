@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from . models import Cliente, Ciudad, Departamento, Oficinas, Localidad, Zona
+from . models import Cliente, Ciudad, Departamento, Oficinas, Localidad, Zona, Barrio
 
 class CiudadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     raw_id_fields = ('departamento',)
@@ -30,6 +30,11 @@ class LocalidadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class ZonaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('id', 'name', 'zona') 
 
+class BarrioAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('id', 'name_barrio', 'zona')
+    #readonly_fields = ('zona',)
+
 admin.site.register(Ciudad, CiudadAdmin)
 admin.site.register(Localidad, LocalidadAdmin)
 admin.site.register(Zona, ZonaAdmin)
+admin.site.register(Barrio, BarrioAdmin)

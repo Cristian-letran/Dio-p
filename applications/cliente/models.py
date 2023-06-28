@@ -139,6 +139,13 @@ class Zona(models.Model):
     def __str__(self):
         return (self.name)
 
+class Barrio(models.Model):
+    zona = models.ForeignKey(Zona, on_delete=models.CASCADE)
+    name_barrio = models.CharField(max_length=30)
+
+    def __str__(self):
+        return (self.name_barrio)
+
 
 
 
