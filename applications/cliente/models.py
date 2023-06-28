@@ -133,7 +133,7 @@ class Oficinas(models.Model):
         return (self.dir_cita)
     
 class Zona(models.Model):
-    zona = models.ForeignKey(Ciudad, on_delete=models.CASCADE,)
+    zona = models.ForeignKey(Ciudad, on_delete=models.CASCADE, verbose_name="Ciudad")
     name = models.CharField(max_length=30)
 
     def __str__(self):
