@@ -1,5 +1,5 @@
 from django.db import models
-from applications.cliente.models import Departamento, Ciudad
+from applications.cliente.models import Departamento, Ciudad, Zona
 from applications.users.models import User
 from django.conf import settings 
 from django.db.models.signals import post_save
@@ -827,6 +827,8 @@ class Vinculacion(models.Model):
         null=True
         )
     detail_complemento = models.CharField(max_length=10, null=True, blank=True)
+
+    zona = models.ForeignKey(Zona, on_delete=models.CASCADE, blank=True, null=True)
         
     
     def save(self, *args, **kwargs):
@@ -933,7 +935,8 @@ class Gestores(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE, 
         blank=True, null=True, 
-        verbose_name= 'Usuario'
+        verbose_name= 'Usuario',
+        related_query_name= 'user_asistencia'
     )
     celular = models.CharField(max_length=10)
     barrio = models.CharField(max_length=35, null= True)
@@ -953,8 +956,3 @@ class Gestores(models.Model):
 def create_user_Gestores(sender, instance, created, **kwargs):
     if created and instance.cliente.r_s == "Daviplata":
         Gestores.objects.create(user=instance)
-
-    
-
-
-    

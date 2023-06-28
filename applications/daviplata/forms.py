@@ -4,6 +4,7 @@ from django.forms import ModelForm, Textarea
 from django.core.exceptions import ValidationError
 from applications.users.models import User
 
+
 class RutaDaviplataForm(forms.ModelForm):
 
     class Meta:

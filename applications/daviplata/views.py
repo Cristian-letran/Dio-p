@@ -2,7 +2,7 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, CreateView
-from.models import Daviplata, Vinculacion, RutaDaviplata, TipoGestion
+from.models import Daviplata, Vinculacion, RutaDaviplata, TipoGestion, Gestores
 from django.urls import reverse_lazy
 from .forms import DaviplataForm, VinculacionForm, RutaDaviplataForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -347,6 +347,8 @@ class DashVinculacionView(ListView):
         contexto ['count_vin'] = self.get_queryset().count
 
         return contexto
+    
+
     
 
     

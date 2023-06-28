@@ -1,0 +1,13 @@
+{% extends "daviplata/base_daviplata.html" %} 
+
+{% load static %}
+
+{% block panel-content %}
+hola
+
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Guardar">
+</form>
+
+{% endblock panel-content %}

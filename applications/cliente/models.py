@@ -131,6 +131,13 @@ class Oficinas(models.Model):
 
     def __str__(self):
         return (self.dir_cita)
+    
+class Zona(models.Model):
+    zona = models.ForeignKey(Ciudad, on_delete=models.CASCADE,)
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return (self.name)
 
 
 

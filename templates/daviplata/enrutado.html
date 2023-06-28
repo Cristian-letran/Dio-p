@@ -4,19 +4,22 @@
 
 {% block panel-content %}
 <form  method="GET"> {% csrf_token %}
-  <div class="cell medium-6 large-2">
-    <span class="label">Courrier</span>
-    <select name="id" id="id">
+  <div class="grid-x grid-margin-x">
+    <div class="cell medium-6 large-7">
+      <span class="label">Courrier</span>
+      <select name="id" id="id">
         <option value="">--------</option>
         {% for e in user %}
         <option value="{{e.nombres}}">{{e.nombres}}</option>
         {% endfor %}
-    </select>
+      </select>
+    </div>
+  
+    <div class="cell medium-2 large-3">
+      <br>
+      <input  type="submit" class="submit success button" value="Buscar">
+    </div> 
   </div>
-  <div class="cell medium-6 large-2">
-    <br>
-    <input  type="submit" class="submit success button" value="Buscar">
-  </div> 
 </form>
 
 <h1>Ruta: {{total}} </h1>

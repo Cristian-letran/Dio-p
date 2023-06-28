@@ -19,7 +19,7 @@ from . models import (
     Gestores,
     RutaDaviplata,
     Direccion,
-    ComplementoDireccion
+    ComplementoDireccion,
     )
 
 class GestoresResource(resources.ModelResource):
@@ -203,6 +203,7 @@ admin.site.register(Gestores, GestorAdmin)
 admin.site.register(RutaDaviplata)
 admin.site.register(Direccion, DireccionAdmin)
 admin.site.register(ComplementoDireccion, ComplementoAdmin)
+
 
 ##
    

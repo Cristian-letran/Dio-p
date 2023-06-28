@@ -86,4 +86,6 @@ urlpatterns = [
          views.DashVinculacionView.as_view(),
          name='dash-vinculacion',
     ),  
+
+
 ]
