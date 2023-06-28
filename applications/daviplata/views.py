@@ -41,45 +41,45 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
     model = Daviplata
     success_url = reverse_lazy('daviplata-app:list-daviplata')
 
-    # def form_valid(self, form):######aca
-    #     ################ HOUR TIEMPO ##################
-    #     hour_last = Daviplata.objects.filter(Q(fecha_encuesta__contains=datetime.today().date()) | Q(fecha_encuesta=None),
-    #         user = self.request.user
+    def form_valid(self, form):######aca
+        ################ HOUR TIEMPO ##################
+        # hour_last = Daviplata.objects.filter(Q(fecha_encuesta__contains=datetime.today().date()) | Q(fecha_encuesta=None),
+        #     user = self.request.user
             
-    #         ).values_list("hora", flat=True).latest('hora')
-    #     hour_now = datetime.today().time().strftime("%H")
+        #     ).values_list("hora", flat=True).latest('hora')
+        # hour_now = datetime.today().time().strftime("%H")
 
-    #     if hour_last == None:
-    #         hour_calculo = 1
-    #     else:
-    #         hour_calculo = int(hour_now) - int(hour_last)
+        # if hour_last == None:
+        #     hour_calculo = 1
+        # else:
+        #     hour_calculo = int(hour_now) - int(hour_last)
         
-    #     print("hhhhhhhhhhhhhh",hour_calculo)
+        # print("hhhhhhhhhhhhhh",hour_calculo)
         
-    #     ################ MINUTE TIEMPO  ##################
-    #     minute1 = Daviplata.objects.filter(Q(fecha_encuesta__contains=datetime.today().date()) | Q(fecha_encuesta=None),
-    #        user = self.request.user,
+        # ################ MINUTE TIEMPO  ##################
+        # minute1 = Daviplata.objects.filter(Q(fecha_encuesta__contains=datetime.today().date()) | Q(fecha_encuesta=None),
+        #    user = self.request.user,
            
-    #        ).values_list("minuto", flat=True).latest('minuto')
-    #     minute2 = datetime.now().time().strftime("%M")
+        #    ).values_list("minuto", flat=True).latest('minuto')
+        # minute2 = datetime.now().time().strftime("%M")
 
-    #     if minute1 == None:
-    #         hour_calculo = 1
-    #     else:
-    #         minute_calculo = int(minute2) - int(minute1)
+        # if minute1 == None:
+        #     hour_calculo = 1
+        # else:
+        #     minute_calculo = int(minute2) - int(minute1)
         
-    #     ########################
-    #     self.object = form.save(commit=False)
-    #     self.object.user = self.request.user
-    #     self.object.fecha_encuesta = datetime.now()
-    #     ###################ACTUAL#######################
-    #     self.object.hora = datetime.today().time().strftime("%H").lstrip('+-0')#("%H:%M")
-    #     self.object.minuto = datetime.now().time().strftime("%M").lstrip('+-0')
+        ########################
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.fecha_encuesta = datetime.now()
+        ###################ACTUAL#######################
+        # self.object.hora = datetime.today().time().strftime("%H").lstrip('+-0')#("%H:%M")
+        # self.object.minuto = datetime.now().time().strftime("%M").lstrip('+-0')
 
-    #     if hour_last == None and minute1 == None:
-    #         self.object.tiempo = 1
-    #     else:
-    #         self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
+        # if hour_last == None and minute1 == None:
+        #     self.object.tiempo = 1
+        # else:
+        #     self.object.tiempo = str(hour_calculo) + ":" + str(minute_calculo)
 
         #calculo = str(hour_calculo) + ":" + str(minute_calculo)
         #self.object.tiempo = str(calculo) 
@@ -87,9 +87,9 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         
         #self.object.tiempo = calculo
         
-        # self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
-        # self.object.save()
-        # return super(DaviplataUpdateView, self).form_valid(form)
+        self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
+        self.object.save()
+        return super(DaviplataUpdateView, self).form_valid(form)
 
     
 class VinculacionListView(LoginRequiredMixin, ListView):
