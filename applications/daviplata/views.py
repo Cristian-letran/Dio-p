@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.timezone import datetime, timedelta
 from applications.users.models import User
 from django.db.models import Count, Avg, Sum, F, Value
-from applications.cliente.models import Departamento
+from applications.cliente.models import Departamento, Zona
 from applications.courrier.models import courrier
 from applications.users.mixins import CustodiaPermisoMixin
 
@@ -130,6 +130,11 @@ class VinculacionCreateView(LoginRequiredMixin, CreateView):
         self.object.fecha_visita = datetime.now()
         self.object.save()
         return super(VinculacionCreateView, self).form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'].fields['zona'].queryset = Zona.objects.filter(zona__departamento=self.request.user.ciudad.departamento)   
+        return context
     
 class NovedadListView(LoginRequiredMixin, ListView):
     template_name = "daviplata/novedades.html"
