@@ -28,7 +28,7 @@ class LocalidadAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('id',)           
 
 class ZonaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('id', 'name') 
+    list_display = ('id', 'name', 'zona') 
 
 admin.site.register(Ciudad, CiudadAdmin)
 admin.site.register(Localidad, LocalidadAdmin)
