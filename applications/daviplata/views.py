@@ -68,10 +68,7 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         # else:
         #     minute_calculo = int(minute2) - int(minute1)
         
-        ########################
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.fecha_encuesta = datetime.now()
+        
         # ###################ACTUAL#######################
         # self.object.hora = datetime.today().time().strftime("%H").lstrip('+-0')#("%H:%M")
         # self.object.minuto = datetime.now().time().strftime("%M").lstrip('+-0')
@@ -84,8 +81,12 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         #calculo = str(hour_calculo) + ":" + str(minute_calculo)
         #self.object.tiempo = str(calculo) 
 
-        
         #self.object.tiempo = calculo
+
+        ########################
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.fecha_encuesta = datetime.now()
         
         self.object.visualizar = "https://www.google.com/maps/search/?api=1&query=" + self.object.latitud +"," + self.object.longitud
         self.object.save()

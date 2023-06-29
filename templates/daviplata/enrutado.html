@@ -29,6 +29,7 @@
       <tr>
         <th width="200">Courrier</th>
         <th>Direccion</th>
+        <th>Establecimiento</th>
         <th>Municipio</th>
         <th>Actualizar</th>
       </tr>
@@ -39,6 +40,7 @@
       <tr>
         <td>{{e.user}}</td>
         <td>{{e.direccion_c_b}}</td>
+        <td>{{e.nombre_establecimiento}}</td>
         <td>{{e.municipio}} </td>
         <td><a href="{% url 'daviplata-app:enrrutado-update' e %}" class="button "><i class="fi-clipboard-pencil"></i></a></td>
       </tr>
