@@ -398,6 +398,7 @@ class Daviplata(models.Model):
         upload_to = 'IMG FACHADA',
         verbose_name='URL IMAGEN FACHADA',
         null=True,
+        blank=True
         )
     url_img_m = models.ImageField(
         upload_to = 'IMG MATERIAL', 
