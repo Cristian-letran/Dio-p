@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, CreateView
 from.models import Daviplata, Vinculacion, RutaDaviplata, TipoGestion, Gestores
 from django.urls import reverse_lazy
-from .forms import DaviplataForm, VinculacionForm, RutaDaviplataForm
+from .forms import DaviplataForm, VinculacionForm, RutaDaviplataForm, VinculacionNoActivoForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.timezone import datetime, timedelta
 from applications.users.models import User
@@ -354,6 +354,42 @@ class DashVinculacionView(ListView):
 
         return contexto
     
+
+
+
+class DashVinculacionNoActivoView(CreateView):
+    template_name = "daviplata/vinculacion/create_noactivo.html"
+    form_class = VinculacionNoActivoForm
+    success_url = reverse_lazy('daviplata-app:vinculacion-list')
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.dane = self.request.user.ciudad
+        self.object.fecha_visita = datetime.now()
+        self.object.tipo_gestion.id = 4
+        self.object.c_rut = "NO"
+        self.object.registro_daviplata = "NO"
+        self.object.motivo_no_registro_id = 3
+        self.object.no_register = "Cliente no esta interesado"
+        self.object.interesado = "NO"
+        self.object.se_registro = "NO"
+        self.object.solicito_tencard = "NO"
+        self.object.porque_no_solicito = "Cliente no esta interesado"
+        self.object.sticker = "NO"
+        self.object.razon_no_sticker = "No está interesado"    
+        self.object.datafono = "NO" 
+        self.object.datafono = "NO" 
+        self.object.etnico = "Ninguno"
+        self.object.no_transaccion = "Cliente no esta interesado"
+        self.object.save()
+        return super(DashVinculacionNoActivoView, self).form_valid(form)
+
+    
+    
+    
+        
+   
 
     
 

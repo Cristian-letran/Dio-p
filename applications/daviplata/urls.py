@@ -86,6 +86,11 @@ urlpatterns = [
          views.DashVinculacionView.as_view(),
          name='dash-vinculacion',
     ),  
-
+    
+    path(
+        'vinculacion-no-activo',
+         views.DashVinculacionNoActivoView.as_view(),
+         name='vinculacion-no-activo',
+    ),  
 
 ]

@@ -4,6 +4,15 @@ from django.forms import ModelForm, Textarea
 from django.core.exceptions import ValidationError
 from applications.users.models import User
 
+class VinculacionNoActivoForm(forms.ModelForm):
+    class Meta:
+        model = Vinculacion
+        fields = (
+        'tipo_gestion','celular', 'celular_confirma', 'nombre',
+          'nombre_comercio', 'categoria', 'dir_a',
+          'num_dir1', 'num_dir2', 'complemento', 
+          'detail_complemento', 'localidad', 'barrio',
+          'latitud', 'longitud')
 
 class RutaDaviplataForm(forms.ModelForm):
 
