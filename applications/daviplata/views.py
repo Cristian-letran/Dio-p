@@ -70,8 +70,8 @@ class DaviplataUpdateView(LoginRequiredMixin, UpdateView):
         
         
         # ###################ACTUAL#######################
-        # self.object.hora = datetime.today().time().strftime("%H").lstrip('+-0')#("%H:%M")
-        # self.object.minuto = datetime.now().time().strftime("%M").lstrip('+-0')
+        self.object.hora = datetime.today().time().strftime("%H").lstrip('+-0')#("%H:%M")
+        self.object.minuto = datetime.now().time().strftime("%M").lstrip('+-0')
 
         # if hour_last == None and minute1 == None:
         #     self.object.tiempo = 1
