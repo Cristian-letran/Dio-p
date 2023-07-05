@@ -225,7 +225,10 @@ class DaviplataForm(forms.ModelForm):
         if visita_efectiva == "SI" and imagen_matrerial == None:
             raise forms.ValidationError( "Favor tomar imagen de material")
         
-        elif visita_efectiva == "NO" and imagen_matrerial == None:
+        elif visita_efectiva == "SI" and url_img_f == None:
+            raise forms.ValidationError( "Favor tomar IMAGEN FACHADA")
+        
+        if visita_efectiva == "NO" and imagen_matrerial == None:
             raise forms.ValidationError( "Favor tomar imagen de material")
         
         elif visita_efectiva == "NO" and  url_img_f == None:
