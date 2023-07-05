@@ -42,6 +42,7 @@ class DaviplataForm(forms.ModelForm):
             'url_img_m': forms.FileInput(
                 attrs = {
                     'accept': 'image/*', 'capture':'camera',
+                    
                 }
             ),
             'url_img_o': forms.FileInput(
@@ -114,6 +115,7 @@ class DaviplataForm(forms.ModelForm):
         imagen_matrerial = cleaned_data.get('url_img_m')
         tipo_no_efectiva = cleaned_data.get('tipo_no_efectiva')
         observacion = cleaned_data.get('obervacion')
+        url_img_f = cleaned_data.get('url_img_f')
         ################# claves ###########################
         
         es_dueño = cleaned_data.get('es_dueño')
@@ -221,7 +223,14 @@ class DaviplataForm(forms.ModelForm):
             raise forms.ValidationError( "Favor responder SARLAFT ¿A QUIEN INFORMARÍA?")
         ##################IMAGENES#######################
         if visita_efectiva == "SI" and imagen_matrerial == None:
+            raise forms.ValidationError( "Favor tomar imagen de material")
+        
+        elif visita_efectiva == "NO" and imagen_matrerial == None:
+            raise forms.ValidationError( "Favor tomar imagen de material")
+        
+        elif visita_efectiva == "NO" and  url_img_f == None:
             raise forms.ValidationError( "Favor tomar imagen de fachada")
+        
         
         if medio == "Otro" and medio_especificado == None:
             raise forms.ValidationError( "Favor tipificar MEDIO ESPECIFICADO")
